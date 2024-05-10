@@ -803,11 +803,16 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
+        // $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        //     ->orderBy('score_total','desc')
+        //     // ->limit(100)
+        //     ->get();
         $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->orderBy('score_total','desc')
-            // ->limit(100)
-            ->get();
-
+        ->select(DB::raw('YEAR(created_at) year'))
+        ->groupby('year')
+        ->orderBy('year','asc')
+        ->get();
+        
         return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' ,
             compact('data_sos')
         );

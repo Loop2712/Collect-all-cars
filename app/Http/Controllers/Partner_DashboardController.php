@@ -987,9 +987,9 @@ class Partner_DashboardController extends Controller
     function dashboard_1669_all_case_sos_show(Request $request){
         // $user_login = Auth::user();
         $user_login = $request->get('user_sub_organization');
-
-        // dd($user_login);
-        // นับ sos ทั้งหมด
+        $year_start = $request->get('year');
+        $month_start = $request->get('month_start');
+        $month_end = $request->get('month_end');
         
         $data_sos = DB::table('sos_help_centers as main_sos_help_center')
         ->where('main_sos_help_center.notify', 'LIKE', "%$user_login%")
@@ -1067,10 +1067,37 @@ class Partner_DashboardController extends Controller
             'sos_1669_form_yellows.registration_province',
             'sos_1669_form_yellows.owner_registration',
             'data_1669_officer_commands.name_officer_command'
-        )->get();
+        );
 
+        if (($month_start == 11 || $month_start == 12) && ($month_end == 1 || $month_end == 2)) {
+            $year_end = $year_start + 1;
+
+            $data_sos_filter = $data_sos->whereYear('main_sos_help_center.created_at', '>=', $year_start)
+            ->whereYear('main_sos_help_center.created_at', '<=', $year_end)
+            ->where(function ($query) use ($month_start, $month_end) {
+                $query->where(function ($query) use ($month_start, $month_end) {
+                    $query->whereMonth('main_sos_help_center.created_at', '>=', $month_start)
+                        ->whereMonth('main_sos_help_center.created_at', '<=', 12);
+                })->orWhere(function ($query) use ($month_start, $month_end) {
+                    $query->whereMonth('main_sos_help_center.created_at', '>=', 1)
+                        ->whereMonth('main_sos_help_center.created_at', '<=', $month_end);
+                });
+            })
+            ->get();
+            
+        } else {
+           
+            $data_sos_filter = $data_sos->whereYear('main_sos_help_center.created_at', $year_start)
+                ->whereMonth('main_sos_help_center.created_at', '>=', $month_start)
+                ->whereMonth('main_sos_help_center.created_at', '<=', $month_end)
+                ->get();
+        }
+        // dd($user_login);
+        // นับ sos ทั้งหมด
+        
+       
         // ddd($data_sos);
-        return response()->json($data_sos);
+        return response()->json($data_sos_filter);
 
     }
     function viisos_3_topic(Request $request){
