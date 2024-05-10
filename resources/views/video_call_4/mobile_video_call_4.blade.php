@@ -3310,9 +3310,7 @@
 
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
-                let testSetVolume = agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
-                console.log("testSetVolume");
-                console.log(testSetVolume);
+                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
                 console.log("UID : "+uid_remote);
                 console.log("div_id : "+div_id);
                 console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
