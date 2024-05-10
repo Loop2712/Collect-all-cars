@@ -3310,11 +3310,14 @@
 
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
-                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
+                let testSetVolume = agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
+                console.log("testSetVolume");
+                console.log(testSetVolume);
                 console.log("UID : "+uid_remote);
                 console.log("div_id : "+div_id);
                 console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
-                alert("setRemote_Volume : "+value_slider);
+                // alert("setRemote_Volume : "+value_slider);
+                alert(agoraEngine['remoteUsers'][index]['audioTrack']['_volume']);
             }
 
             //เช็คว่าสถานะ remote เปิดหรือปิดไมค์ แล้วส่งไปยังฟังก์ชันเปลี่ยน ไอคอนตามสถานะ
