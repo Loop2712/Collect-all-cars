@@ -3134,9 +3134,9 @@
                     let user_data = result['data'];
 
                     user_data.forEach(element => {
-                        // console.log("element user_data");
-                        // console.log(element);
-
+                        console.log("element user_data");
+                        console.log(element);
+                        console.log(element.id);
                         let create_profile_remote = document.createElement("div");
                             create_profile_remote.id = "profile_"+element.id;
                             create_profile_remote.classList.add('row');
@@ -3162,7 +3162,7 @@
                         if (element.id == me_id) {
                             name_profile = `<span class="h3 font-weight-bold text-info mx-auto">`+element.name+`</span>`;
 
-                            localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
+                            localVolume = parseInt(localStorage.getItem('local_sos_1669_rangeValue')) ?? 100;
 
                             console.log("localVolume");
                             console.log(localVolume);
@@ -3173,10 +3173,18 @@
                                             </div>`;
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
-
-                            inputValue_remote = array_remoteVolumeAudio[element.id] ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
-                            inputValue_remote.toString();
-
+                            console.log("element.id");
+                            console.log(element.id);
+                            console.log("array_remoteVolumeAudio[element.id]");
+                            console.log(array_remoteVolumeAudio);
+                            console.log(array_remoteVolumeAudio[element.id]);
+                            if (array_remoteVolumeAudio[element.id]) {
+                                inputValue_remote = parseInt(array_remoteVolumeAudio[element.id]);
+                            }else{
+                                inputValue_remote = 70; // หรือค่าที่ต้องการ
+                            };
+                            // inputValue_remote = parseInt(array_remoteVolumeAudio[element.id]) ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
+                            console.log(array_remoteVolumeAudio[element.id]);
                             console.log("inputValue_remote");
                             console.log(inputValue_remote);
 
@@ -3213,9 +3221,6 @@
                                 </div>
                             </div>
                             `;
-
-
-
 
 
                             create_profile_remote.innerHTML = detailHTML;
@@ -3273,7 +3278,7 @@
     }
 
     function onChangeVolumeRemote(div_id , slider){
-
+        console.log("onChangeVolumeRemote : " + slider);
         let value_slider;
         if (slider == "handle") {
             value_slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
@@ -3284,8 +3289,10 @@
         document.querySelector('#customVolumeInput_'+div_id).value = value_slider; // ตัวทดลอง
 
         array_remoteVolumeAudio[div_id] = value_slider;
-        // console.log("agoraEngine onChangeVolumeRemote");
-        // console.log(agoraEngine);
+        console.log("agoraEngine onChangeVolumeRemote");
+        console.log(agoraEngine);
+        console.log("array_remoteVolumeAudio");
+        console.log(array_remoteVolumeAudio[div_id]);
 
         let length_remote = agoraEngine['remoteUsers']['length'];
 
@@ -3314,7 +3321,6 @@
         }
 
     }
-
 
 	// ฟังก์ชันสุ่มสี
 	function getRandomColor() {
