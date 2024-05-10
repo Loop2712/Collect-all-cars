@@ -540,6 +540,13 @@
 
 }
 
+.menu-select-vehicle-motorbike{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
 
 .menu-select-vehicle-car{
     background-color: #fff!important;
@@ -2221,9 +2228,11 @@
 	<div class="switcher-wrapper">
 		@if(Auth::check())
             @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
+                @if(Auth::user()->organization != "สพฉ")
 				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="">
 					<i class='bx bx-cog bx-spin'></i>
 				</div>
+                @endif
 			@endif
 		@endif
 		<div class="switcher-body">
@@ -2553,6 +2562,11 @@
 	                                        ทั้งหมด
 	                                    </a>
 	                                </div>
+                                    <div class="item" style="width:100%">
+                                        <a class="btn menu-select-vehicle-motorbike ask_more-select-vehicle-motorbike" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'หน่วยเคลื่อนที่เร็ว';select_officer_ask_more_btn_menu_select();">
+                                            หน่วยเคลื่อนที่เร็ว
+                                        </a>
+                                    </div>
 	                                <div class="item" style="width:100%">
 	                                    <a class="btn menu-select-vehicle-car ask_more-select-vehicle-car" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'รถ';select_officer_ask_more_btn_menu_select();">
 	                                        รถ
@@ -4207,6 +4221,7 @@
 
         // VEHICLE TYPE
         document.querySelector('.ask_more-select-vehicle-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-motorbike').classList.remove("vehicle-one-officer-active");
         document.querySelector('.ask_more-select-vehicle-car').classList.remove("vehicle-one-officer-active");
         document.querySelector('.ask_more-select-vehicle-aircraft').classList.remove("vehicle-one-officer-active");
         document.querySelector('.ask_more-select-vehicle-boat-1').classList.remove("vehicle-one-officer-active");
