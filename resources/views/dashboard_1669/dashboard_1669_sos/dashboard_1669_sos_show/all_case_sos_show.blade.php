@@ -571,6 +571,7 @@
             lengthChange: false,
             bDestroy: true,
             deferRender: true,
+            pageLength: 25,
             buttons: [{
                 extend: "excelHtml5",
                 text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
@@ -593,9 +594,9 @@
         let month_end = document.getElementById("month2").value;
         let year = document.getElementById("year").value;
 
-        console.log(month_start);
-        console.log(month_end);
-        console.log(year);
+        // console.log(month_start);
+        // console.log(month_end);
+        // console.log(year);
         fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization + "&year=" + year + "&month_start=" + month_start + "&month_end=" + month_end)
             .then(response => response.json())
             .then(result => {
