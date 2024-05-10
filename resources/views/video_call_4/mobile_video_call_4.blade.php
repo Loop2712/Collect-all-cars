@@ -1686,6 +1686,14 @@
                 }
                 channelParameters.remoteAudioTrack.setVolume(userVolume);
 
+                // document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
+                //     document.querySelector("#remoteAudioVolume_"+user.uid).value = evt.target.value;
+                //     console("ปรับเสียงเป็น : "+evt.target.value);
+                //     // Set the local audio volume.
+                //     channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
+                //     // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+                // });
+
                 let localVolumeFromStorage = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
                 // ตั้งค่าเสียงในตอนที่เริ่มต้น
                 if (localVolumeFromStorage !== null) {
@@ -3173,20 +3181,20 @@
                                             </div>`;
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
-                            console.log("element.id");
-                            console.log(element.id);
-                            console.log("array_remoteVolumeAudio[element.id]");
-                            console.log(array_remoteVolumeAudio);
-                            console.log(array_remoteVolumeAudio[element.id]);
+                            // console.log("element.id");
+                            // console.log(element.id);
+                            // console.log("array_remoteVolumeAudio[element.id]");
+                            // console.log(array_remoteVolumeAudio);
+                            // console.log(array_remoteVolumeAudio[element.id]);
                             if (array_remoteVolumeAudio[element.id]) {
                                 inputValue_remote = parseInt(array_remoteVolumeAudio[element.id]);
                             }else{
                                 inputValue_remote = 70; // หรือค่าที่ต้องการ
                             };
                             // inputValue_remote = parseInt(array_remoteVolumeAudio[element.id]) ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
-                            console.log(array_remoteVolumeAudio[element.id]);
-                            console.log("inputValue_remote");
-                            console.log(inputValue_remote);
+                            // console.log(array_remoteVolumeAudio[element.id]);
+                            // console.log("inputValue_remote");
+                            // console.log(inputValue_remote);
 
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input class="w-100" style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
@@ -3288,7 +3296,7 @@
 
         document.querySelector('#customVolumeInput_'+div_id).value = value_slider; // ตัวทดลอง
 
-        array_remoteVolumeAudio[div_id] = value_slider;
+        array_remoteVolumeAudio[div_id] = parseInt(value_slider);
         console.log("agoraEngine onChangeVolumeRemote");
         console.log(agoraEngine);
         console.log("array_remoteVolumeAudio");
