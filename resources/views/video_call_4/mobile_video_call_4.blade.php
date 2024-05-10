@@ -3311,7 +3311,9 @@
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
-                agoraEngine['remoteUsers'][index]['audioTrack'].play();
+                // agoraEngine['remoteUsers'][index]['audioTrack'].play();
+                agoraEngine['remoteUsers'][index]['audioTrack'].setEnabled(true);
+
                 console.log("UID : "+uid_remote);
                 console.log("div_id : "+div_id);
                 console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
