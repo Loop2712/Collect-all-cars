@@ -1670,13 +1670,13 @@
                 }
                 channelParameters.remoteAudioTrack.setVolume(userVolume);
 
-                document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
-                    document.querySelector("#remoteAudioVolume_"+user.uid).value = evt.target.value;
-                    console("ปรับเสียงเป็น : "+evt.target.value);
-                    // Set the local audio volume.
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
-                    // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
-                });
+                // document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
+                //     document.querySelector("#remoteAudioVolume_"+user.uid).value = evt.target.value;
+                //     console("ปรับเสียงเป็น : "+evt.target.value);
+                //     // Set the local audio volume.
+                //     channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
+                //     // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+                // });
 
                 let localVolumeFromStorage = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
                 // ตั้งค่าเสียงในตอนที่เริ่มต้น
@@ -3314,7 +3314,7 @@
                 console.log("div_id : "+div_id);
                 console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
                 // alert("setRemote_Volume : "+value_slider);
-                alert(agoraEngine['remoteUsers'][index]['audioTrack']['_volume']);
+                // alert(agoraEngine['remoteUsers'][index]['audioTrack']['_volume']);
             }
 
             //เช็คว่าสถานะ remote เปิดหรือปิดไมค์ แล้วส่งไปยังฟังก์ชันเปลี่ยน ไอคอนตามสถานะ
@@ -4593,17 +4593,14 @@
                 fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call)
                 .then(response => response.json())
                 .then(result => {
-
                     let status_delete = "delete";
 
                     customDivAll.forEach(element => {
-
                         let id = element.id;
 
                         if (id.startsWith("videoDiv_")) {
                             // แยก UID จาก id โดยตัด "videoDiv_" ออก
                             let uid = id.replace("videoDiv_", "");
-
                             const promises = result['data'].map(data_user => {
                                 return new Promise((resolve, reject) => {
                                     // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
@@ -4615,12 +4612,10 @@
                                     resolve();
                                 });
                             });
-
                             Promise.all(promises)
                                 .then(() => {
                                     if (status_delete == "delete") {
                                         element.remove();
-
                                         console.log("ลบ div ที่ค้าง")
                                     }
                                 })
@@ -4628,22 +4623,16 @@
                                     // จัดการกับข้อผิดพลาด (ถ้ามี)
                                     console.error("catch error in promise :"+error);
                                 });
-
                         }
                         else{
                             element.remove();
                         }
-
-
-
                     });
-
                 })
                 .catch(error => {
                     // check_user_in_video_call = false;
                     console.log("check_user_in_video_call error : "+error);
                 });
-
             } // endif
 
 
