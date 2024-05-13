@@ -21,6 +21,45 @@
     #all_data_sos_1669_table_paginate ul.pagination {
         float: left !important;
     }
+
+    .svg-loader {
+ width: 2em;
+ transform-origin: center;
+ animation: rotate4 2s linear infinite;
+}
+
+.svg-loader circle {
+ fill: none;
+ stroke: #27a444;
+ stroke-width: 4;
+ stroke-dasharray: 1, 200;
+ stroke-dashoffset: 0;
+ stroke-linecap: round;
+ animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes dash4 {
+ 0% {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+ }
+
+ 50% {
+  stroke-dasharray: 90, 200;
+  stroke-dashoffset: -35px;
+ }
+
+ 100% {
+  stroke-dashoffset: -125px;
+ }
+}
+
 </style>
 
 @section('content')
@@ -84,7 +123,15 @@
                             <!-- ตำแหน่งที่เลือกจาก select แรก และเดือนถัดไป 2 เดือน -->
                         </select>
                     </div>
+                    
                 </div>
+                
+            </div>
+            <div class="mt-2 d-none" id="loading_get_data_sos">
+                <svg class="svg-loader" viewBox="25 25 50 50">
+                    <circle r="20" cy="50" cx="50"></circle>
+                </svg>
+                <span>กำลังโหลดข้อมูล</span>
             </div>
             <!-- <div class="col-md-3">
                 <button class="btn btn-primary" onclick="get_data_sos()">Submit</button>
@@ -554,8 +601,32 @@
         $('#your_table_id').DataTable();
     });
     // สมาชิกในทีมของทุกทีม
-    function get_data_sos() {
 
+    async function get_data_sos() {
+        
+        await loading_get_data('loading');
+        await get_all_data_sos();
+        await loading_get_data('success');
+    }
+    // function get_data_sos() {
+
+    function loading_get_data(status) {
+
+        if (status == 'loading') {
+            document.querySelector('#loading_get_data_sos').classList.remove('d-none');
+            document.getElementById("year").disabled = true;
+            document.getElementById("month").disabled = true;
+            document.getElementById("month2").disabled = true;
+
+        }else{
+            document.querySelector('#loading_get_data_sos').classList.add('d-none');
+            document.getElementById("year").disabled = false;
+            document.getElementById("month").disabled = false;
+            document.getElementById("month2").disabled = false;
+        }
+    }  
+    
+    function get_all_data_sos() {
         document.title = "ข้อมูลการขอความช่วยเหลือ";
         // Create search inputs in footer
         $("#all_data_sos_1669_table tfoot th").each(function() {
@@ -716,9 +787,9 @@
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-
-
     }
+
+    // }
 
 
     // // console.log('start here');
