@@ -594,7 +594,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
-        get_data_sos();
+        loading_get_data();
     });
 
     $(document).ready(function() {
@@ -612,18 +612,21 @@
 
     function loading_get_data(status) {
 
-        if (status == 'loading') {
+        if (status == 'success') {
+            
+            document.querySelector('#loading_get_data_sos').classList.add('d-none');
+            document.getElementById("year").disabled = false;
+            document.getElementById("month").disabled = false;
+            document.getElementById("month2").disabled = false;
+        }else{
             document.querySelector('#loading_get_data_sos').classList.remove('d-none');
             document.getElementById("year").disabled = true;
             document.getElementById("month").disabled = true;
             document.getElementById("month2").disabled = true;
 
-        }else{
-            document.querySelector('#loading_get_data_sos').classList.add('d-none');
-            document.getElementById("year").disabled = false;
-            document.getElementById("month").disabled = false;
-            document.getElementById("month2").disabled = false;
+            get_all_data_sos();
         }
+
     }  
     
     function get_all_data_sos() {
@@ -782,6 +785,9 @@
 
                     table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
                 });
+
+                loading_get_data('success');
+
 
             })
             .catch(error => {
