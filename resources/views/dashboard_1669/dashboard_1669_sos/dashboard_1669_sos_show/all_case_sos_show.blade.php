@@ -630,53 +630,53 @@
 
     function get_all_data_sos() {
         console.log('asdasdasd')
-        return new Promise(resolve => {
-            document.title = "ข้อมูลการขอความช่วยเหลือ";
-            // Create search inputs in footer
-            $("#all_data_sos_1669_table tfoot th").each(function() {
-                let title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-            });
 
-            // DataTable initialisation
-            let table = $("#all_data_sos_1669_table").DataTable({
-                dom: '<"dt-buttons"Bf><"clear">lirtp',
-                paging: true,
-                autoWidth: true,
-                lengthChange: false,
-                bDestroy: true,
-                deferRender: true,
-                pageLength: 25,
-                buttons: [{
-                    extend: "excelHtml5",
-                    text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
-                }],
-                initComplete: function(settings, json) {
-                    let footer = $("#all_data_sos_1669_table tfoot tr");
-                    $("#all_data_sos_1669_table thead").append(footer);
-                }
-            });
+        document.title = "ข้อมูลการขอความช่วยเหลือ";
+        // Create search inputs in footer
+        $("#all_data_sos_1669_table tfoot th").each(function() {
+            let title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
 
-            // Apply the search
-            $("#all_data_sos_1669_table thead").on("keyup", "input", function() {
-                table.column($(this).parent().index())
-                    .search(this.value)
-                    .draw();
-            });
+        // DataTable initialisation
+        let table = $("#all_data_sos_1669_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: true,
+            autoWidth: true,
+            lengthChange: false,
+            bDestroy: true,
+            deferRender: true,
+            pageLength: 25,
+            buttons: [{
+                extend: "excelHtml5",
+                text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
+            }],
+            initComplete: function(settings, json) {
+                let footer = $("#all_data_sos_1669_table tfoot tr");
+                $("#all_data_sos_1669_table thead").append(footer);
+            }
+        });
 
-            let sub_organization = '{{Auth::user()->sub_organization}}';
-            let month_start = document.getElementById("month").value;
-            let month_end = document.getElementById("month2").value;
-            let year = document.getElementById("year").value;
+        // Apply the search
+        $("#all_data_sos_1669_table thead").on("keyup", "input", function() {
+            table.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+        });
 
-            // console.log(month_start);
-            // console.log(month_end);
-            // console.log(year);
-            fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization + "&year=" + year + "&month_start=" + month_start + "&month_end=" + month_end)
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result)
+        let sub_organization = '{{Auth::user()->sub_organization}}';
+        let month_start = document.getElementById("month").value;
+        let month_end = document.getElementById("month2").value;
+        let year = document.getElementById("year").value;
 
+        // console.log(month_start);
+        // console.log(month_end);
+        // console.log(year);
+        fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization + "&year=" + year + "&month_start=" + month_start + "&month_end=" + month_end)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result)
+                return new Promise(resolve => {
                     table.clear().draw();
 
                     result.forEach(data => {
@@ -786,13 +786,14 @@
 
                         table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
                     });
-
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
+                    resolve();
                 });
-                resolve();
-        });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+
     }
 
     // }
