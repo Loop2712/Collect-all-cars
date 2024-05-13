@@ -755,7 +755,7 @@
 
     /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
 
-    /* .wrapper_range_volume {
+    .wrapper_range_volume {
         background-color: #05051a;
         position: relative;
         width: 100%;
@@ -817,22 +817,6 @@
         border: none;
         width: 0;
         box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
-    } */
-
-    .wrapper_range_volume {
-        /* background-color: #05051a; */
-        position: relative;
-        width: 100%;
-        height: 3rem;
-        border-radius: 10px;
-    }
-
-    .wrapper_range_volume input[type="range"]::-webkit-slider-thumb {
-        width: 20px; /* ปรับขนาดตามที่คุณต้องการ */
-        height: 20px; /* ปรับขนาดตามที่คุณต้องการ */
-        background-color: #ffffff; /* สีของตัวหมุน */
-        border-radius: 50%; /* ทำให้มันเป็นวงกลม */
-        cursor: pointer; /* เปลี่ยนเป็นตัวชี้มือ */
     }
 
 
@@ -1686,13 +1670,13 @@
                 }
                 channelParameters.remoteAudioTrack.setVolume(userVolume);
 
-                // document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
-                //     document.querySelector("#remoteAudioVolume_"+user.uid).value = evt.target.value;
-                //     console("ปรับเสียงเป็น : "+evt.target.value);
-                //     // Set the local audio volume.
-                //     channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
-                //     // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
-                // });
+                document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
+                    document.querySelector("#remoteAudioVolume_"+user.uid).value = evt.target.value;
+                    console("ปรับเสียงเป็น : "+evt.target.value);
+                    // Set the local audio volume.
+                    channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
+                    // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+                });
 
                 let localVolumeFromStorage = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
                 // ตั้งค่าเสียงในตอนที่เริ่มต้น
@@ -2312,7 +2296,7 @@
                     }
 
                 } catch (error) {
-                    console.log("โหลดหน้าล้มเหลว :" + error);
+                    console.log("==================== โหลดหน้าล้มเหลว =================== :" + error);
                     // alert("ไม่สามารถเข้าร่วมได้ ");
                     window.location.reload(); // รีเฟรชหน้าเว็บ
                 }
@@ -2966,22 +2950,6 @@
             });
         });
 
-        // ตรวจสอบอุปกรณ์ที่ใช้งาน
-        function checkDeviceType() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            // ตรวจสอบชนิดของอุปกรณ์
-            if (/android/i.test(userAgent)) {
-                return "Mobile (Android)";
-            }
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                return "Mobile (iOS)";
-            }
-
-            return "PC";
-        }
-
         //=============================================================================//
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
@@ -3137,6 +3105,10 @@
             console.log(result);
 
             let parentDiv = document.querySelector('#detail_menu_in_setting');
+            let deviceType = checkDeviceType();
+
+            console.log("Device Type:", deviceType);
+
             switch (title_menu) {
                 case "menu_sound":
                     let user_data = result['data'];
@@ -3176,9 +3148,9 @@
                             console.log(localVolume);
                             type_input = `<input style="z-index: 7;" type="range" id="localAudioVolume"
                                             min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
-                            type_input_value = ` <div class="wrapper_range_volume">
-                                                <input class="w-100" type="number" id="customVolumeInput" value="`+localVolume+`" min="0" max="100" oninput="setRemoteVolume()">
-                                            </div>`;
+                            type_input_value = `<input class="w-100 d-none" type="number" id="customVolumeInput" value="`+localVolume+`"
+                                                min="0" max="100" oninput="setRemoteVolume()">`;
+
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
                             // console.log("element.id");
@@ -3199,36 +3171,62 @@
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input class="w-100" style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100"  value="`+inputValue_remote+`"  onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
-                            type_input_value =  `<input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`"
+                            type_input_value =  `<input class="w-100 d-none" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`"
                                                     min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">`;
 
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
 
-                        let detailHTML =`
-                            <div class="col-12 row">
-                                <div class="col-3">
-                                    <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
-                                    <div class="profile-info">
-                                        `+name_profile+`
-                                    </div>
-                                </div>
-                                <div class="col-9 my-auto row">
+                        let detailHTML;
+                        if (deviceType == "Mobile (iOS)") {
+                            detailHTML =
+                                `<div class="col-12 row">
+                                        <div class="col-3">
+                                            <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
+                                            <div class="profile-info">
+                                                `+name_profile+`
+                                            </div>
+                                        </div>
+                                        <div class="col-9 my-auto row">
 
-                                    <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
-                                        <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="wrapper_range_volume">
-                                            `+type_input+`
-                                            `+type_input_value+`
-
+                                            <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
+                                                <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>
+                                            </div>
+                                            <div class="col-9 d-none">
+                                                <div class="wrapper_range_volume">
+                                                    `+type_input+`
+                                                    `+type_input_value+`
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                `;
+                        } else {
+                            detailHTML =
+                                `<div class="col-12 row">
+                                    <div class="col-3">
+                                        <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
+                                        <div class="profile-info">
+                                            `+name_profile+`
+                                        </div>
+                                    </div>
+                                    <div class="col-9 my-auto row">
 
+                                        <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
+                                            <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="wrapper_range_volume">
+                                                `+type_input+`
+                                                `+type_input_value+`
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
-                            `;
+                                `;
+                        }
+
 
 
                             create_profile_remote.innerHTML = detailHTML;
@@ -3281,7 +3279,7 @@
                     break;
             }
         } catch (error) {
-            console.log("โหลดหน้าล้มเหลว :" + error);
+            console.log("==================== โหลดหน้าล้มเหลว =================== :" + error);
         }
     }
 
@@ -3311,7 +3309,6 @@
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['_audioTrack'].setVolume(parseInt(value_slider));
-                // agoraEngine['remoteUsers'][index]['_audioTrack'].setMuted(true);
 
                 console.log("UID : "+uid_remote);
                 console.log("div_id : "+div_id);
@@ -4840,6 +4837,24 @@
 		checkchild();
 	}
 
+</script>
+
+<script>
+    // ตรวจสอบอุปกรณ์ที่ใช้งาน
+    function checkDeviceType() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // ตรวจสอบชนิดของอุปกรณ์
+        if (/android/i.test(userAgent)) {
+            return "Mobile (Android)";
+        }
+
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "Mobile (iOS)";
+        }
+
+        return "PC";
+    }
 </script>
 
 <script>
