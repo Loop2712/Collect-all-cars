@@ -2711,19 +2711,22 @@ class Sos_help_centerController extends Controller
             // จบสร้างรหัส
 
             $sos_help_center_last = "" ;
-            Sos_help_center::create($new_sos_by_joint);
+            $data_now_create = "";
+            
+            $data_now_create = Sos_help_center::create($new_sos_by_joint);
+            $newly_created_id = $data_now_create->id;
 
-            sleep(1);
-            $sos_help_center_last = Sos_help_center::latest()->first();
+            // sleep(1);
+            $sos_help_center_last = Sos_help_center::where('id',$newly_created_id)->first();
 
             $new_sos_by_joint['sos_help_center_id'] = $sos_help_center_last->id ;
             $new_sos_by_joint['be_notified'] = $data_sos_main_yellow->be_notified ;
             $new_sos_by_joint['location_sos'] = $data_sos_main_yellow->location_sos ;
             $new_sos_by_joint['idc'] = $data_sos_main_yellow->idc ;
 
-            array_push($id_of_new_sos , $sos_help_center_last->id);
-
             Sos_1669_form_yellow::create($new_sos_by_joint);
+
+            array_push($id_of_new_sos , $sos_help_center_last->id);
 
         }
 
@@ -2735,7 +2738,7 @@ class Sos_help_centerController extends Controller
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
-                        'joint_case' => $id_of_new_sos,
+                        'joint_case' => $sos_1669_id,
                     ]);
 
             $list_arr_ep = explode("-" , $list_arr[$xi]) ;
@@ -2768,7 +2771,14 @@ class Sos_help_centerController extends Controller
 
         if( !empty($sos_joint_case) ){
 
-            $arr_joint_case = json_decode($sos_joint_case, true);
+            // $arr_joint_case = json_decode($sos_joint_case, true);
+            $data_host_case = Sos_help_center::where('joint_case' , $sos_joint_case)->get();
+
+            $arr_joint_case = array();
+
+            foreach($data_host_case as $item){
+                array_push($arr_joint_case, $item->id);
+            }
 
             for ($xi = 0; $xi < count($arr_joint_case); $xi++){
 
@@ -3357,5 +3367,23 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return 'success' ;
+    }
+
+    function get_data_all_joint_case($joint_case){
+
+        $data_arr = array();
+        $data_host = sos_help_center::where('id' , $joint_case)->first();
+        // $data = sos_help_center::where('joint_case' , $joint_case)->get();
+
+        $data = DB::table('sos_help_centers')
+            ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->select('sos_help_centers.*', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc')
+            ->where('joint_case' , $joint_case)
+            ->get();
+
+        $data_arr['host'] = $data_host->operating_code;
+        $data_arr['data'] = $data;
+
+        return $data_arr ;
     }
 }
