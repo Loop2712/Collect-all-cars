@@ -605,7 +605,6 @@
 
         await loading_get_data('loading');
         await get_all_data_sos();
-        await loading_get_data('success');
     }
     // function get_data_sos() {
 
@@ -786,6 +785,9 @@
 
                         table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
                     });
+
+                    loading_get_data('success');
+                    
                     resolve();
                 });
             })
