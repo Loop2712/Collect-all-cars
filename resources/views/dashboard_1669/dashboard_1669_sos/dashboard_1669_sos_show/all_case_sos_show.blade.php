@@ -23,43 +23,42 @@
     }
 
     .svg-loader {
- width: 2em;
- transform-origin: center;
- animation: rotate4 2s linear infinite;
-}
+        width: 2em;
+        transform-origin: center;
+        animation: rotate4 2s linear infinite;
+    }
 
-.svg-loader circle {
- fill: none;
- stroke: #27a444;
- stroke-width: 4;
- stroke-dasharray: 1, 200;
- stroke-dashoffset: 0;
- stroke-linecap: round;
- animation: dash4 1.5s ease-in-out infinite;
-}
+    .svg-loader circle {
+        fill: none;
+        stroke: #27a444;
+        stroke-width: 4;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: dash4 1.5s ease-in-out infinite;
+    }
 
-@keyframes rotate4 {
- 100% {
-  transform: rotate(360deg);
- }
-}
+    @keyframes rotate4 {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 
-@keyframes dash4 {
- 0% {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
- }
+    @keyframes dash4 {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
 
- 50% {
-  stroke-dasharray: 90, 200;
-  stroke-dashoffset: -35px;
- }
+        50% {
+            stroke-dasharray: 90, 200;
+            stroke-dashoffset: -35px;
+        }
 
- 100% {
-  stroke-dashoffset: -125px;
- }
-}
-
+        100% {
+            stroke-dashoffset: -125px;
+        }
+    }
 </style>
 
 @section('content')
@@ -97,8 +96,8 @@
             <div class="col-md-8">
                 <div class="d-flex">
                     <div class="w-100">
-                        <label for="validationCustom01" class="form-label" >เดือน</label>
-                        <select class="form-control" id="month"onchange="change_get_data_sos()">
+                        <label for="validationCustom01" class="form-label">เดือน</label>
+                        <select class="form-control" id="month" onchange="change_get_data_sos()">
                             <option value="01">มกราคม</option>
                             <option value="02">กุมภาพันธ์</option>
                             <option value="03">มีนาคม</option>
@@ -118,14 +117,14 @@
                         ถึง
                     </span>
                     <div class="w-100">
-                        <label for="validationCustom01" class="form-label" >เดือน</label>
+                        <label for="validationCustom01" class="form-label">เดือน</label>
                         <select class="form-control" id="month2" onchange="change_get_data_sos('select_month_2')">
                             <!-- ตำแหน่งที่เลือกจาก select แรก และเดือนถัดไป 2 เดือน -->
                         </select>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
             <div class="mt-2 d-none" id="loading_get_data_sos">
                 <svg class="svg-loader" viewBox="25 25 50 50">
@@ -164,7 +163,7 @@
                 select_year('first');
 
                 // ตรวจสอบเดือนปัจจุบันและตั้งค่า selected เดือนปัจจุบัน
-              
+
 
             });
 
@@ -222,8 +221,8 @@
                     option.value = ('0' + i).slice(-2);
                     monthSelect.add(option);
                 }
-                
-                if(param == 'first'){
+
+                if (param == 'first') {
                     let monthSelect = document.getElementById("month");
                     let currentMonthIndex = new Date().getMonth(); // เดือนปัจจุบัน (ลำดับ)
                     monthSelect.selectedIndex = currentMonthIndex;
@@ -594,7 +593,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
-        loading_get_data();
+        get_data_sos();
     });
 
     $(document).ready(function() {
@@ -603,7 +602,7 @@
     // สมาชิกในทีมของทุกทีม
 
     async function get_data_sos() {
-        
+
         await loading_get_data('loading');
         await get_all_data_sos();
         await loading_get_data('success');
@@ -611,188 +610,189 @@
     // function get_data_sos() {
 
     function loading_get_data(status) {
+        return new Promise(resolve => {
+            if (status == 'loading') {
+                document.querySelector('#loading_get_data_sos').classList.remove('d-none');
+                document.getElementById("year").disabled = true;
+                document.getElementById("month").disabled = true;
+                document.getElementById("month2").disabled = true;
 
-        if (status == 'success') {
-            
-            document.querySelector('#loading_get_data_sos').classList.add('d-none');
-            document.getElementById("year").disabled = false;
-            document.getElementById("month").disabled = false;
-            document.getElementById("month2").disabled = false;
-        }else{
-            document.querySelector('#loading_get_data_sos').classList.remove('d-none');
-            document.getElementById("year").disabled = true;
-            document.getElementById("month").disabled = true;
-            document.getElementById("month2").disabled = true;
-
-            get_all_data_sos();
-        }
-
-    }  
-    
-    function get_all_data_sos() {
-        document.title = "ข้อมูลการขอความช่วยเหลือ";
-        // Create search inputs in footer
-        $("#all_data_sos_1669_table tfoot th").each(function() {
-            let title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-
-        // DataTable initialisation
-        let table = $("#all_data_sos_1669_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            bDestroy: true,
-            deferRender: true,
-            pageLength: 25,
-            buttons: [{
-                extend: "excelHtml5",
-                text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
-            }],
-            initComplete: function(settings, json) {
-                let footer = $("#all_data_sos_1669_table tfoot tr");
-                $("#all_data_sos_1669_table thead").append(footer);
+            } else {
+                document.querySelector('#loading_get_data_sos').classList.add('d-none');
+                document.getElementById("year").disabled = false;
+                document.getElementById("month").disabled = false;
+                document.getElementById("month2").disabled = false;
             }
+
+            resolve();
         });
+    }
 
-        // Apply the search
-        $("#all_data_sos_1669_table thead").on("keyup", "input", function() {
-            table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-        });
+    function get_all_data_sos() {
+        console.log('asdasdasd')
+        return new Promise(resolve => {
+            document.title = "ข้อมูลการขอความช่วยเหลือ";
+            // Create search inputs in footer
+            $("#all_data_sos_1669_table tfoot th").each(function() {
+                let title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
 
-        let sub_organization = '{{Auth::user()->sub_organization}}';
-        let month_start = document.getElementById("month").value;
-        let month_end = document.getElementById("month2").value;
-        let year = document.getElementById("year").value;
+            // DataTable initialisation
+            let table = $("#all_data_sos_1669_table").DataTable({
+                dom: '<"dt-buttons"Bf><"clear">lirtp',
+                paging: true,
+                autoWidth: true,
+                lengthChange: false,
+                bDestroy: true,
+                deferRender: true,
+                pageLength: 25,
+                buttons: [{
+                    extend: "excelHtml5",
+                    text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
+                }],
+                initComplete: function(settings, json) {
+                    let footer = $("#all_data_sos_1669_table tfoot tr");
+                    $("#all_data_sos_1669_table thead").append(footer);
+                }
+            });
 
-        // console.log(month_start);
-        // console.log(month_end);
-        // console.log(year);
-        fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization + "&year=" + year + "&month_start=" + month_start + "&month_end=" + month_end)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result)
+            // Apply the search
+            $("#all_data_sos_1669_table thead").on("keyup", "input", function() {
+                table.column($(this).parent().index())
+                    .search(this.value)
+                    .draw();
+            });
 
-                table.clear().draw();
+            let sub_organization = '{{Auth::user()->sub_organization}}';
+            let month_start = document.getElementById("month").value;
+            let month_end = document.getElementById("month2").value;
+            let year = document.getElementById("year").value;
 
-                result.forEach(data => {
-                    let createdAtDate = new Date(data.created_at);
-                    let created_at = createdAtDate.toLocaleDateString('th-TH', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
+            // console.log(month_start);
+            // console.log(month_end);
+            // console.log(year);
+            fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization + "&year=" + year + "&month_start=" + month_start + "&month_end=" + month_end)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result)
+
+                    table.clear().draw();
+
+                    result.forEach(data => {
+                        let createdAtDate = new Date(data.created_at);
+                        let created_at = createdAtDate.toLocaleDateString('th-TH', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                        });
+
+                        const sTimeSOSuccess = new Date(data.time_sos_success).getTime();
+                        const sTimeCommand = new Date(data.time_command).getTime();
+
+                        const sTimeDifference = Math.abs(sTimeSOSuccess - sTimeCommand) / 1000;
+
+                        if (data.time_sos_success)
+                            if (sTimeDifference >= 3600) {
+                                const sHours = Math.floor(sTimeDifference / 3600);
+                                const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
+                                const sRemainingSeconds = sTimeDifference % 60;
+
+                                sTimeUnit = `${sHours} ชั่วโมง ${sRemainingMinutes} นาที ${sRemainingSeconds} วินาที`;
+                            } else if (sTimeDifference >= 60) {
+                            const sMinutes = Math.floor(sTimeDifference / 60);
+                            const sSeconds = sTimeDifference % 60;
+
+                            sTimeUnit = `${sMinutes} นาที ${sSeconds} วินาที`;
+                        } else {
+                            sTimeUnit = `${sTimeDifference} วินาที`;
+                        } else {
+                            sTimeUnit = "--"
+                        }
+
+                        let total_km = data.km_create_sos_to_go_to_help + data.km_to_the_scene_to_leave_the_scene + data.km_hospital + data.km_operating_base;
+
+
+                        let row = [];
+                        row.push(data.operating_code ? data.operating_code : "--");
+                        row.push(data.status ? data.status : "--");
+                        row.push(data.remark_status ? data.remark_status : "--");
+                        row.push(data.created_at ? data.created_at : "--");
+                        row.push(data.lat ? data.lat : "--");
+                        row.push(data.lng ? data.lng : "--");
+                        row.push(data.address ? data.address : "--");
+                        row.push(data.location_sos ? data.location_sos : "--");
+                        row.push(data.be_notified ? data.be_notified : "--");
+                        row.push(data.name_user ? data.name_user : (result[i].name_officer_command ? data.name_officer_command + ' (เจ้าหน้าที่)' : "--"));
+                        row.push(data.phone_user ? data.phone_user.substring(0, 3) + '-' + data.phone_user.substring(3, 6) + '-' + data.phone_user.substring(6) : "--");
+                        row.push(data.name_officer_command ? data.name_officer_command : "--");
+                        row.push(data.organization_helper ? data.organization_helper : "--");
+                        row.push(data.name_helper ? data.name_helper : "--");
+                        row.push(data.vehicle_type ? data.vehicle_type : "--");
+                        row.push(data.operating_suit_type ? data.operating_suit_type : "--");
+                        row.push(data.symptom ? data.symptom : "--");
+                        row.push(data.symptom_other ? data.symptom_other : "--");
+                        row.push(data.idc ? data.idc : "--");
+                        row.push(data.rc ? data.rc : "--");
+                        row.push(data.rc_black_text ? data.rc_black_text : "--");
+                        row.push(data.remark_photo_sos ? data.remark_photo_sos : "--");
+                        row.push(data.time_command ? data.time_command : "--");
+                        row.push(data.time_go_to_help ? data.time_go_to_help : "--");
+                        row.push(data.time_to_the_scene ? data.time_to_the_scene : "--");
+                        row.push(data.time_leave_the_scene ? data.time_leave_the_scene : "--");
+                        row.push(data.time_hospital ? data.time_hospital : "--");
+                        row.push(data.time_to_the_operating_base ? data.time_to_the_operating_base : "--");
+                        row.push(sTimeUnit);
+                        row.push(data.km_create_sos_to_go_to_help ? data.km_create_sos_to_go_to_help : "--");
+                        row.push(data.km_to_the_scene_to_leave_the_scene ? data.km_to_the_scene_to_leave_the_scene : "--");
+                        row.push(data.km_hospital ? data.km_hospital : "--");
+                        row.push(data.km_operating_base ? data.km_operating_base : "--");
+                        row.push(total_km ? total_km : "--");
+                        row.push(data.treatment ? data.treatment : "--");
+                        row.push(data.sub_treatment ? data.sub_treatment : "--");
+                        row.push(data.score_impression ? data.score_impression : "--");
+                        row.push(data.score_period ? data.score_period : "--");
+                        row.push(data.score_total ? data.score_total : "--");
+                        row.push(data.comment_help ? data.comment_help : "--");
+                        row.push(data.remark_helper ? data.remark_helper : "--");
+                        row.push(data.forward_operating_form ? data.forward_operating_form : "--");
+                        row.push(data.forward_operating_to ? data.forward_operating_to : "--");
+                        row.push(data.joint_case ? data.joint_case : "--");
+                        row.push(data.patient_name_1 ? data.patient_name_1 : "--");
+                        row.push(data.patient_age_1 ? data.patient_age_1 : "--");
+                        row.push(data.patient_hn_1 ? data.patient_hn_1 : "--");
+                        row.push(data.patient_vn_1 ? data.patient_vn_1 : "--");
+                        row.push(data.delivered_province_1 ? data.delivered_province_1 : "--");
+                        row.push(data.delivered_hospital_1 ? data.delivered_hospital_1 : "--");
+                        row.push(data.patient_name_2 ? data.patient_name_2 : "--");
+                        row.push(data.patient_age_2 ? data.patient_age_2 : "--");
+                        row.push(data.patient_hn_2 ? data.patient_hn_2 : "--");
+                        row.push(data.patient_vn_2 ? data.patient_vn_2 : "--");
+                        row.push(data.delivered_province_2 ? data.delivered_province_2 : "--");
+                        row.push(data.delivered_hospital_2 ? data.delivered_hospital_2 : "--");
+                        row.push(data.patient_name_3 ? data.patient_name_3 : "--");
+                        row.push(data.patient_age_3 ? data.patient_age_3 : "--");
+                        row.push(data.patient_hn_3 ? data.patient_hn_3 : "--");
+                        row.push(data.patient_vn_3 ? data.patient_vn_3 : "--");
+                        row.push(data.delivered_province_3 ? data.delivered_province_3 : "--");
+                        row.push(data.delivered_hospital_3 ? data.delivered_hospital_3 : "--");
+                        row.push(data.submission_criteria ? data.submission_criteria : "--");
+                        row.push(data.communication_hospital ? data.communication_hospital : "--");
+                        row.push(data.registration_category ? data.registration_category : "--");
+                        row.push(data.registration_number ? data.registration_number : "--");
+                        row.push(data.registration_province ? data.registration_province : "--");
+                        row.push(data.owner_registration ? data.owner_registration : "--");
+                        row.push(data.refuse ? data.refuse : "--");
+
+                        table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
                     });
 
-                    const sTimeSOSuccess = new Date(data.time_sos_success).getTime();
-                    const sTimeCommand = new Date(data.time_command).getTime();
-
-                    const sTimeDifference = Math.abs(sTimeSOSuccess - sTimeCommand) / 1000;
-
-                    if (data.time_sos_success)
-                        if (sTimeDifference >= 3600) {
-                            const sHours = Math.floor(sTimeDifference / 3600);
-                            const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
-                            const sRemainingSeconds = sTimeDifference % 60;
-
-                            sTimeUnit = `${sHours} ชั่วโมง ${sRemainingMinutes} นาที ${sRemainingSeconds} วินาที`;
-                        } else if (sTimeDifference >= 60) {
-                        const sMinutes = Math.floor(sTimeDifference / 60);
-                        const sSeconds = sTimeDifference % 60;
-
-                        sTimeUnit = `${sMinutes} นาที ${sSeconds} วินาที`;
-                    } else {
-                        sTimeUnit = `${sTimeDifference} วินาที`;
-                    } else {
-                        sTimeUnit = "--"
-                    }
-
-                    let total_km = data.km_create_sos_to_go_to_help + data.km_to_the_scene_to_leave_the_scene + data.km_hospital + data.km_operating_base;
-
-
-                    let row = [];
-                    row.push(data.operating_code ? data.operating_code : "--");
-                    row.push(data.status ? data.status : "--");
-                    row.push(data.remark_status ? data.remark_status : "--");
-                    row.push(data.created_at ? data.created_at : "--");
-                    row.push(data.lat ? data.lat : "--");
-                    row.push(data.lng ? data.lng : "--");
-                    row.push(data.address ? data.address : "--");
-                    row.push(data.location_sos ? data.location_sos : "--");
-                    row.push(data.be_notified ? data.be_notified : "--");
-                    row.push(data.name_user ? data.name_user : (result[i].name_officer_command ? data.name_officer_command + ' (เจ้าหน้าที่)' : "--"));
-                    row.push(data.phone_user ? data.phone_user.substring(0, 3) + '-' + data.phone_user.substring(3, 6) + '-' + data.phone_user.substring(6) : "--");
-                    row.push(data.name_officer_command ? data.name_officer_command : "--");
-                    row.push(data.organization_helper ? data.organization_helper : "--");
-                    row.push(data.name_helper ? data.name_helper : "--");
-                    row.push(data.vehicle_type ? data.vehicle_type : "--");
-                    row.push(data.operating_suit_type ? data.operating_suit_type : "--");
-                    row.push(data.symptom ? data.symptom : "--");
-                    row.push(data.symptom_other ? data.symptom_other : "--");
-                    row.push(data.idc ? data.idc : "--");
-                    row.push(data.rc ? data.rc : "--");
-                    row.push(data.rc_black_text ? data.rc_black_text : "--");
-                    row.push(data.remark_photo_sos ? data.remark_photo_sos : "--");
-                    row.push(data.time_command ? data.time_command : "--");
-                    row.push(data.time_go_to_help ? data.time_go_to_help : "--");
-                    row.push(data.time_to_the_scene ? data.time_to_the_scene : "--");
-                    row.push(data.time_leave_the_scene ? data.time_leave_the_scene : "--");
-                    row.push(data.time_hospital ? data.time_hospital : "--");
-                    row.push(data.time_to_the_operating_base ? data.time_to_the_operating_base : "--");
-                    row.push(sTimeUnit);
-                    row.push(data.km_create_sos_to_go_to_help ? data.km_create_sos_to_go_to_help : "--");
-                    row.push(data.km_to_the_scene_to_leave_the_scene ? data.km_to_the_scene_to_leave_the_scene : "--");
-                    row.push(data.km_hospital ? data.km_hospital : "--");
-                    row.push(data.km_operating_base ? data.km_operating_base : "--");
-                    row.push(total_km ? total_km : "--");
-                    row.push(data.treatment ? data.treatment : "--");
-                    row.push(data.sub_treatment ? data.sub_treatment : "--");
-                    row.push(data.score_impression ? data.score_impression : "--");
-                    row.push(data.score_period ? data.score_period : "--");
-                    row.push(data.score_total ? data.score_total : "--");
-                    row.push(data.comment_help ? data.comment_help : "--");
-                    row.push(data.remark_helper ? data.remark_helper : "--");
-                    row.push(data.forward_operating_form ? data.forward_operating_form : "--");
-                    row.push(data.forward_operating_to ? data.forward_operating_to : "--");
-                    row.push(data.joint_case ? data.joint_case : "--");
-                    row.push(data.patient_name_1 ? data.patient_name_1 : "--");
-                    row.push(data.patient_age_1 ? data.patient_age_1 : "--");
-                    row.push(data.patient_hn_1 ? data.patient_hn_1 : "--");
-                    row.push(data.patient_vn_1 ? data.patient_vn_1 : "--");
-                    row.push(data.delivered_province_1 ? data.delivered_province_1 : "--");
-                    row.push(data.delivered_hospital_1 ? data.delivered_hospital_1 : "--");
-                    row.push(data.patient_name_2 ? data.patient_name_2 : "--");
-                    row.push(data.patient_age_2 ? data.patient_age_2 : "--");
-                    row.push(data.patient_hn_2 ? data.patient_hn_2 : "--");
-                    row.push(data.patient_vn_2 ? data.patient_vn_2 : "--");
-                    row.push(data.delivered_province_2 ? data.delivered_province_2 : "--");
-                    row.push(data.delivered_hospital_2 ? data.delivered_hospital_2 : "--");
-                    row.push(data.patient_name_3 ? data.patient_name_3 : "--");
-                    row.push(data.patient_age_3 ? data.patient_age_3 : "--");
-                    row.push(data.patient_hn_3 ? data.patient_hn_3 : "--");
-                    row.push(data.patient_vn_3 ? data.patient_vn_3 : "--");
-                    row.push(data.delivered_province_3 ? data.delivered_province_3 : "--");
-                    row.push(data.delivered_hospital_3 ? data.delivered_hospital_3 : "--");
-                    row.push(data.submission_criteria ? data.submission_criteria : "--");
-                    row.push(data.communication_hospital ? data.communication_hospital : "--");
-                    row.push(data.registration_category ? data.registration_category : "--");
-                    row.push(data.registration_number ? data.registration_number : "--");
-                    row.push(data.registration_province ? data.registration_province : "--");
-                    row.push(data.owner_registration ? data.owner_registration : "--");
-                    row.push(data.refuse ? data.refuse : "--");
-
-                    table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
                 });
-
-                loading_get_data('success');
-
-
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+                resolve();
+        });
     }
 
     // }
