@@ -62,11 +62,36 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row text-center mb-3">
+                                <div class="col-12">
+                                    <button id="join_btn_search_officer_by_type" onclick="join_search_by_officer('type');" type="button" class="btn btn-sm btn-info">
+                                        ค้นหาจากประเภท
+                                    </button>
+                                    <button id="join_btn_search_officer_by_name" onclick="join_search_by_officer('name');" type="button" class="btn btn-sm btn-outline-info">
+                                        ค้นหาจากชื่อ
+                                    </button>
+                                    <button id="join_btn_search_officer_by_unit" onclick="join_search_by_officer('unit');" type="button" class="btn btn-sm btn-outline-info">
+                                        ค้นหาจากหน่วย
+                                    </button>
+                                </div>
+                            </div>
+
+                            <center>
+                                <input style="width: 90%;" id="join_div_search_name_officer" type="text" class="form-control mb-3 d-none" name="" placeholder="ค้นหา.." oninput="join_search_nameofficer_delay();">
+                            </center>
+
+                            <center>
+                                <select style="width: 90%;" id="join_div_search_unit_officer" class="form-control mb-3 d-none" onchange="join_change_select_unit_offiecr();">
+                                    <option>เลือกหน่วย</option>
+                                </select>
+                            </center>
+
                             <!-- BTN Select Level -->
-                            <div class="chat-tab-menu ">
+                            <div id="join_div_carousel_level" class="chat-tab-menu ">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a class="nav-link  menu-select-lv-all" href="javascript:;" onclick="document.querySelector('#joint_sos_input_select_level').value = 'all';joint_sos_select_level();">
+                                        <a id="join_btn_select_level_all" class="nav-link  menu-select-lv-all" href="javascript:;" onclick="document.querySelector('#joint_sos_input_select_level').value = 'all';joint_sos_select_level();">
                                             <div class="font-24">ALL
                                             </div>
                                             <div><small>ทั้งหมด</small>
@@ -111,10 +136,15 @@
                             </div>
 
                             <!-- BTN Select vehicle  -->
-                            <div class="owl-carousel owl-theme owlmenu-vehicle p-3">
+                            <div id="join_div_carousel_vehicle" class="owl-carousel owl-theme owlmenu-vehicle p-3">
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-all" href="javascript:;" onclick="document.querySelector('#joint_sos_input_vehicle_type').value = 'all';joint_sos_select_level();">
+                                    <a id="join_btn_select_vehicle_all" class="btn menu-select-vehicle-all" href="javascript:;" onclick="document.querySelector('#joint_sos_input_vehicle_type').value = 'all';joint_sos_select_level();">
                                         ทั้งหมด
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-motorbike" href="javascript:;" onclick="document.querySelector('#joint_sos_input_vehicle_type').value = 'หน่วยเคลื่อนที่เร็ว';joint_sos_select_level();">
+                                        หน่วยเคลื่อนที่เร็ว
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
@@ -155,115 +185,10 @@
             
                             <div class="data-officer-new p-3 mb-3" id="joint_sos_card_data_operating">
                                 <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
-                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
-                                            </div>
-                                            <div class="ms-auto">
-                                                <div class="d-flex align-items-center p-2 cursor-pointer">
-                                                    <div class="level FR d-flex align-items-center m-2">
-                                                        <center> FR </center>
-                                                    </div>
-                                                    <div style="margin-left: 10px;">
-                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
-                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
-                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
-                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
-                                            </div>
-                                            <div class="ms-auto">
-                                                <div class="d-flex align-items-center p-2 cursor-pointer">
-                                                    <div class="level FR d-flex align-items-center m-2">
-                                                        <center> FR </center>
-                                                    </div>
-                                                    <div style="margin-left: 10px;">
-                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
-                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
-                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
-                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
-                                            </div>
-                                            <div class="ms-auto">
-                                                <div class="d-flex align-items-center p-2 cursor-pointer">
-                                                    <div class="level FR d-flex align-items-center m-2">
-                                                        <center> FR </center>
-                                                    </div>
-                                                    <div style="margin-left: 10px;">
-                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
-                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
-                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
-                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
-                                            </div>
-                                            <div class="ms-auto">
-                                                <div class="d-flex align-items-center p-2 cursor-pointer">
-                                                    <div class="level FR d-flex align-items-center m-2">
-                                                        <center> FR </center>
-                                                    </div>
-                                                    <div style="margin-left: 10px;">
-                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
-                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
-                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
-                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
-                                            <div class="d-flex align-items-center">
-                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
-                                            </div>
-                                            <div class="ms-auto">
-                                                <div class="d-flex align-items-center p-2 cursor-pointer">
-                                                    <div class="level FR d-flex align-items-center m-2">
-                                                        <center> FR </center>
-                                                    </div>
-                                                    <div style="margin-left: 10px;">
-                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
-                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
-                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
-                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                <div id="join_div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
                                     <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
                                         <div class="d-md-flex align-items-center email-message px-3 py-1">
                                             <div class="d-flex align-items-center">
@@ -964,9 +889,9 @@
         fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level + "/" + sub_organization)
             .then(response => response.json())
             .then(result => {
-                console.log('------ get_location_operating_unit -------');
-                console.log(result);
-                console.log('----------------------');
+                // console.log('------ get_location_operating_unit -------');
+                // console.log(result);
+                // console.log('----------------------');
                 let list_joint_sos_officer = document.querySelector('#list_joint_sos_officer').value;
                 list_arr = list_joint_sos_officer.split(',');
 
@@ -976,9 +901,9 @@
 
                     // add div in to joint_sos_card_data_operating
                     let div_operating = document.createElement("div");
-                    let div_operating_id = document.createAttribute("id");
-                    div_operating_id.value = "div_operating_id_" + result[i]['id'];
-                    div_operating.setAttributeNode(div_operating_id);
+                    let join_div_operating_id = document.createAttribute("id");
+                    join_div_operating_id.value = "join_div_operating_id_" + result[i]['id'];
+                    div_operating.setAttributeNode(join_div_operating_id);
                     joint_sos_card_data_operating.appendChild(div_operating);
 
                     switch (result[i]['level']) {
@@ -1033,6 +958,10 @@
                         // console.log('ไม่มีค่า '+result[i]['id']+' ในอาร์เรย์');
                     }
 
+                    div_operating.setAttribute("join_name_officer" , result[i]['name_officer']);
+                    div_operating.setAttribute("join_unit_officer" , result[i]['name']);
+                    div_operating.setAttribute("name" , 'join_data_tag_officer');
+
                     let text_data_operating = `
                         <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
                             <div class="d-md-flex align-items-center email-message px-3 py-1">
@@ -1045,8 +974,8 @@
                                             <center> ` + result[i]['level'] + ` </center>
                                         </div>
                                         <div style="margin-left: 10px;">
-                                            <h6 class="mb-1 font-14">` + result[i]['name'] + ` (` + result[i]['vehicle_type'] + `</h6>
-                                            <p class="mb-0 font-14">เจ้าหน้าที่ : ` + result[i]['name_officer'] + `</p>
+                                            <h6 class="mb-1 font-16"><b>` + result[i]['name_officer'] + `</b></h6>
+                                            <p class="mb-0 font-14">` + result[i]['name'] + ` (` + result[i]['vehicle_type'] + `)</p>
                                             <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ` + result[i]['distance'].toFixed(2) + ` กม. </p>
                                         </div>
                                     </div>
@@ -1054,14 +983,13 @@
                             </div>
                         </div>
                     `;
-                    
                                 
-                    // div_operating_id_
-                    document.querySelector('#div_operating_id_' + result[i]['id']).innerHTML = text_data_operating;
+                    // join_div_operating_id_
+                    document.querySelector('#join_div_operating_id_' + result[i]['id']).innerHTML = text_data_operating;
 
                     // ------------------------------------------
                     // add onclick to btn_marker_id_
-                    let btn_marker_id = document.querySelector('#div_operating_id_' + result[i]['id']);
+                    let btn_marker_id = document.querySelector('#join_div_operating_id_' + result[i]['id']);
                     btn_marker_id.setAttribute('onclick', "joint_sos_view_data_marker(" + result[i]['id'] + ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['lat'] + "," + result[i]['lng'] + ");");
 
                 }
@@ -1124,6 +1052,7 @@
 
         // VEHICLE TYPE
         document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-motorbike').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-car').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-aircraft').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-boat-1').classList.remove("vehicle-one-officer-active");
@@ -1137,6 +1066,9 @@
             case 'all':
                 text_vehicle_type = "all";
                 break;
+            case 'หน่วยเคลื่อนที่เร็ว':
+                text_vehicle_type = "motorbike" ;
+            break;
             case 'รถ':
                 text_vehicle_type = "car";
                 break;
@@ -1265,9 +1197,16 @@
                         document.querySelector('#btn_open_modal_show_officer_joint').click();
                         document.querySelector('#btn_send_data_joint_sos').innerHTML = 'ยืนยัน';
                         document.querySelector('#list_joint_sos_officer').value = '';
-                        document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
-                        document.querySelector('#btn_select_operating_unit').classList.add('d-none');
-                        document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
+
+                        if(document.querySelector('#btn_select_case_sos_joint')){
+                        	document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
+                        }
+                        if(document.querySelector('#btn_select_operating_unit')){
+                        	document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+                        }
+                        if(document.querySelector('#btn_show_wait_officer_joint')){
+	                        document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
+                        }
 
                         // show_wait_officer_joint();
                         
@@ -1673,6 +1612,12 @@
 	                                                </a>
 	                                            </div>
 	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-motorbike vehicle-motorbike-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'หน่วยเคลื่อนที่เร็ว';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                รถ
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
 	                                                <a class="btn menu-select-vehicle-car vehicle-car-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
 	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'รถ';new_select_officer_level('` + result[xxi]['id'] + `');">
 	                                                รถ
@@ -1915,9 +1860,9 @@
 
                     // add div in to new_select_officer_card_data_operating
                     let div_operating = document.createElement("div");
-                    let div_operating_id = document.createAttribute("id");
-                    div_operating_id.value = 'new_select_officer_sos_id_' + sos_id + '_div_operating_id_' + result[i]['id'];
-                    div_operating.setAttributeNode(div_operating_id);
+                    let join_div_operating_id = document.createAttribute("id");
+                    join_div_operating_id.value = 'new_select_officer_sos_id_' + sos_id + '_join_div_operating_id_' + result[i]['id'];
+                    div_operating.setAttributeNode(join_div_operating_id);
                     new_select_officer_card_data_operating.appendChild(div_operating);
 
                     switch (result[i]['level']) {
@@ -1995,12 +1940,12 @@
                         </div>
                     `;
 
-                    // new_select_officer_sos_id_'+sos_id+'_div_operating_id_
-                    document.querySelector('#new_select_officer_sos_id_' + sos_id + '_div_operating_id_' + result[i]['id']).innerHTML = text_data_operating;
+                    // new_select_officer_sos_id_'+sos_id+'_join_div_operating_id_
+                    document.querySelector('#new_select_officer_sos_id_' + sos_id + '_join_div_operating_id_' + result[i]['id']).innerHTML = text_data_operating;
 
                     // ------------------------------------------
                     // add onclick to btn_marker_id_
-                    let btn_marker_id = document.querySelector('#new_select_officer_sos_id_' + sos_id + '_div_operating_id_' + result[i]['id']);
+                    let btn_marker_id = document.querySelector('#new_select_officer_sos_id_' + sos_id + '_join_div_operating_id_' + result[i]['id']);
 
                     btn_marker_id.setAttribute('onclick', "new_select_officer_view_data_marker(" + result[i]['id'] + ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['lat'] + "," + result[i]['lng'] + ");");
 
@@ -2093,6 +2038,7 @@
 
         // VEHICLE TYPE
         document.querySelector('.vehicle-all-sos_id_' + sos_id).classList.remove("vehicle-all-active");
+        document.querySelector('.vehicle-motorbike-sos_id_' + sos_id).classList.remove("vehicle-motorbike-active");
         document.querySelector('.vehicle-car-sos_id_' + sos_id).classList.remove("vehicle-car-active");
         document.querySelector('.vehicle-aircraft-sos_id_' + sos_id).classList.remove("vehicle-aircraft-active");
         document.querySelector('.vehicle-boat-1-sos_id_' + sos_id).classList.remove("vehicle-boat-1-active");
@@ -2106,6 +2052,9 @@
             case 'all':
                 text_vehicle_type = "all";
                 break;
+            case 'หน่วยเคลื่อนที่เร็ว':
+                text_vehicle_type = "motorbike" ;
+            break;
             case 'รถ':
                 text_vehicle_type = "car";
                 break;
@@ -2219,6 +2168,128 @@
                     document.querySelector('#btn_send_new_select_officer_sos_id_' + sos_id).setAttribute('onclick', '');
                 }
             });
+
+    }
+</script>
+
+<script>
+	function join_search_by_officer(tag){
+
+        document.querySelector('#join_btn_search_officer_by_type').classList.remove('btn-info');
+        document.querySelector('#join_btn_search_officer_by_name').classList.remove('btn-info');
+        document.querySelector('#join_btn_search_officer_by_unit').classList.remove('btn-info');
+
+        document.querySelector('#join_btn_search_officer_by_type').classList.add('btn-outline-info');
+        document.querySelector('#join_btn_search_officer_by_name').classList.add('btn-outline-info');
+        document.querySelector('#join_btn_search_officer_by_unit').classList.add('btn-outline-info');
+
+        document.querySelector('#join_btn_search_officer_by_'+tag).classList.add('btn-info');
+        document.querySelector('#join_btn_search_officer_by_'+tag).classList.remove('btn-outline-info');
+
+        join_show_data_officer_by(tag);
+
+    }
+                       
+    function join_show_data_officer_by(tag){
+
+        let join_div_carousel_vehicle = document.querySelector('#join_div_carousel_vehicle');
+        let join_div_carousel_level = document.querySelector('#join_div_carousel_level');
+        let join_div_search_name_officer = document.querySelector('#join_div_search_name_officer');
+        let join_div_search_unit_officer = document.querySelector('#join_div_search_unit_officer');
+
+        join_div_carousel_vehicle.classList.add('d-none');
+        join_div_carousel_level.classList.add('d-none');
+        join_div_search_name_officer.classList.add('d-none');
+        join_div_search_unit_officer.classList.add('d-none');
+
+        document.querySelector('#joint_sos_card_data_operating').classList.add('d-none');
+        document.querySelector('#join_btn_select_level_all').click();
+        document.querySelector('#join_btn_select_vehicle_all').click();
+
+        setTimeout(function() {
+
+        	document.querySelector('#join_div_search_name_officer').value = '';
+            let join_div_tag_officer = document.querySelectorAll('div[name="join_data_tag_officer"]');
+                
+            if(tag == "type"){
+                join_div_tag_officer.forEach(item => {
+                    item.classList.remove('d-none');
+                })
+                join_div_carousel_vehicle.classList.remove('d-none');
+                join_div_carousel_level.classList.remove('d-none');
+            }
+            else if(tag == "name"){
+                join_div_tag_officer.forEach(item => {
+                    item.classList.add('d-none');
+                })
+                join_div_search_name_officer.classList.remove('d-none');
+            }
+            else if(tag == "unit"){
+                join_div_tag_officer.forEach(item => {
+                    item.classList.add('d-none');
+                })
+                join_div_search_unit_officer.classList.remove('d-none');
+                join_get_unit_offiecr();
+            }
+
+            document.querySelector('#joint_sos_card_data_operating').classList.remove('d-none');
+
+        }, 650);
+    }
+
+    function join_get_unit_offiecr(){
+
+        fetch("{{ url('/') }}/api/get_unit_offiecr" + "/" + "{{ Auth::user()->sub_organization }}")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let join_div_search_unit_officer = document.querySelector('#join_div_search_unit_officer');
+                    join_div_search_unit_officer.innerHTML = '';
+
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกหน่วย";
+                    option_first.value = "";
+                    join_div_search_unit_officer.add(option_first);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.name;
+                    option.value = item.name;
+                    join_div_search_unit_officer.add(option);
+                }
+            });
+
+    }
+
+    let join_delayTimer_search_nameofficer;
+    function join_search_nameofficer_delay(){
+        // Clear any pending delay timer
+        clearTimeout(join_delayTimer_search_nameofficer);
+        join_delayTimer_search_nameofficer = setTimeout(join_search_data_officer_by_name, 1500);
+    }
+
+    function join_search_data_officer_by_name(){
+        let join_input_search = document.querySelector('#join_div_search_name_officer')
+        // console.log(join_input_search.value);
+
+        let div_tag_officer = document.querySelectorAll('div[name="join_data_tag_officer"]');
+            div_tag_officer.forEach(item_1 => {
+                item_1.classList.add('d-none');
+            })
+
+        if(join_input_search.value){
+            let search_by_name = document.querySelectorAll('div[name="join_data_tag_officer"]');
+                search_by_name.forEach(item_2 => {
+                    let nameOfficerAttribute = item_2.getAttribute('join_name_officer').toLowerCase(); 
+                    let inputValue = join_input_search.value.toLowerCase();
+
+                    if (nameOfficerAttribute.includes(inputValue)) {
+                        // console.log(nameOfficerAttribute);
+                        item_2.classList.remove('d-none');
+                    }
+                })
+        }
 
     }
 </script>

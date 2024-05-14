@@ -1361,6 +1361,7 @@
 
         setTimeout(function() {
 
+            document.querySelector('#div_search_name_officer').value = '';
             let div_tag_officer = document.querySelectorAll('div[name="data_tag_officer"]');
                 
             if(tag == "type"){

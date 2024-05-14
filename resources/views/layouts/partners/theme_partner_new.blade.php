@@ -2743,7 +2743,7 @@
 
     function Theme_check_refuse_and_call(text_url_all) {
 
-		console.log('Theme_check_refuse_and_call');
+		// console.log('Theme_check_refuse_and_call');
 
 		let i_noti_refuse = document.querySelector('#i_noti_refuse');
         let i_noti_call = document.querySelector('#i_noti_call');
@@ -3651,7 +3651,7 @@
 
 					if(result['forward_operation_to']){
 
-						console.log('to');
+						// console.log('to');
 
                         fetch("{{ url('/') }}/api/get_forward_operation/" + result['forward_operation_to'] )
                             .then(response => response.json())
@@ -3668,7 +3668,7 @@
 
                     }else if(result['forward_operation_from']){
 
-						console.log('from');
+						// console.log('from');
 
                         fetch("{{ url('/') }}/api/get_forward_operation/" + result['forward_operation_from'] )
                             .then(response => response.json())
@@ -3684,7 +3684,7 @@
                             });
 
                     }else{
-						console.log('else');
+						// console.log('else');
 
                         alet_new_sos_1669(result);
                     }
