@@ -316,8 +316,9 @@
                     for (let i = 0; i < 3; i++) {
                         let nextIndex = (index + i) % months.length;
                         let nextMonth = months[nextIndex];
+                        // console.log(month);
                         if (month === "11") {
-                            if (i >= 1) {
+                            if (i > 1) {
                                 nextMonth.name += ' (' + (currentYear + 1) + ')';
                             } else {
                                 nextMonth.name += ' (' + currentYear + ')';
@@ -628,8 +629,6 @@
     }
 
     function get_all_data_sos() {
-        console.log('asdasdasd')
-
         document.title = "ข้อมูลการขอความช่วยเหลือ";
         // Create search inputs in footer
         $("#all_data_sos_1669_table tfoot th").each(function() {
@@ -787,7 +786,7 @@
                     });
 
                     loading_get_data('success');
-                    
+
                     resolve();
                 });
             })
