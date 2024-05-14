@@ -915,19 +915,6 @@
 
                                     // edit_km_car
 
-                                }else if (typecheck === "detail") {
-                                    
-                                    if (result.code_for_officer) {
-                                        console.log(result.code_for_officer);
-                                        document.querySelector('#operating_code').innerHTML = result.code_for_officer;
-                                        document.querySelector('#operating_code_model').innerHTML = result.code_for_officer;
-
-                                    }else{
-                                        console.log(result.operating_code);
-                                        document.querySelector('#operating_code').innerHTML = result.operating_code;
-                                        document.querySelector('#operating_code_model').innerHTML = result.operating_code;
-                                    }
-
                                 }else{
                                     // console.log(result);
 
@@ -937,7 +924,17 @@
 
                                     if (result.symptom_other) {
                                         document.querySelector('#textSymptomOtherDetail').innerHTML = result.symptom_other;
-                                        
+                                    }
+
+                                    if (result.code_for_officer) {
+                                        console.log(result.code_for_officer);
+                                        document.querySelector('#operating_code').innerHTML = result.code_for_officer;
+                                        document.querySelector('#operating_code_model').innerHTML = result.code_for_officer;
+
+                                    }else{
+                                        console.log(result.operating_code);
+                                        document.querySelector('#operating_code').innerHTML = result.operating_code;
+                                        document.querySelector('#operating_code_model').innerHTML = result.operating_code;
                                     }
 
                                 }
