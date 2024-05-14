@@ -2663,12 +2663,17 @@ class Sos_help_centerController extends Controller
 
         $new_sos_by_joint['notify'] = 'none - ' . $province_name ;
 
-        // สร้างเคส sos ร่วมทั้งหมด
-        $count_new_create_sos = count($list_arr) - 1 ;
-
         $id_of_new_sos = array() ;
-        array_push($id_of_new_sos , (int)$sos_1669_id);
 
+        // สร้างเคส sos ร่วมทั้งหมด
+        if( !empty($data_sos_main->joint_case) ){
+            $count_new_create_sos = count($list_arr) ;
+        }
+        else{
+            $count_new_create_sos = count($list_arr) - 1 ;
+            array_push($id_of_new_sos , (int)$sos_1669_id);
+        }
+        
         for ($i = 0; $i < (int)$count_new_create_sos; $i++){
 
             // สร้างรหัส
