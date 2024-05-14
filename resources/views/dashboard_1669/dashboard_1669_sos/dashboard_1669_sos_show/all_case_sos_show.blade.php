@@ -74,10 +74,6 @@
 
     <div id="" class="card-body">
 
-        <!-- เพิ่มตัวกรอง -->
-        <form method="GET" action="{{ url('/dashboard_1669_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-
-        </form>
         <!-- จบส่วนตัวกรอง -->
         <style>
             #all_data_sos_1669_table tr th {
@@ -132,20 +128,7 @@
                 </svg>
                 <span>กำลังโหลดข้อมูล</span>
             </div>
-            <!-- <div class="col-md-3">
-                <button class="btn btn-primary" onclick="get_data_sos()">Submit</button>
-            </div> -->
         </div>
-        <!-- <label for="month">เลือกเดือน:</label>
-           
-
-            <label for="month2">เลือกเดือน (2):</label>
-           
-
-            <label for="year">เลือกปี:</label>
-           
-
-            <button onclick="submitDate()">Submit</button> -->
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -153,18 +136,7 @@
                 let currentDate = new Date();
                 let currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2); // เดือนปัจจุบัน (ใส่ 0 ด้านหน้าหากเป็นเลขเดียว)
                 let currentYear = currentDate.getFullYear(); // ปีปัจจุบัน
-
-                // ตั้งค่าเดือนและปีให้กับ select เมื่อหน้าเว็บโหลดเสร็จสมบูรณ์
-
-                // document.getElementById("year").value = currentYear;
-                // รับรายการ select จาก ID ของ Element
-
-
                 select_year('first');
-
-                // ตรวจสอบเดือนปัจจุบันและตั้งค่า selected เดือนปัจจุบัน
-
-
             });
 
             function select_year(param) {

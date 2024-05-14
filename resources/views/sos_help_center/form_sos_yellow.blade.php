@@ -1272,8 +1272,8 @@
 						}
 
 						function alert_tool_tip(error) {
-							console.log(tooltip_lang);
-							console.log(tooltip_action);
+							// console.log(tooltip_lang);
+							// console.log(tooltip_action);
 
 							if (tooltip_lang == 'th-TH') {
 
@@ -1320,40 +1320,6 @@
 							}
 						}
 						</script>
-<!-- document.getElementById('language-select').addEventListener('change', async function() {
-									// Change recognition language
-									console.log('เข้า เปลี่ยนภาษา');
-
-									recognition.lang = this.value;
-
-									if (recognizing) {
-										console.log('เข้า if');
-										
-										recognition.start();
-										micBtn.classList.add('listening');
-										recognizing = true;
-										console.log('Listening...');
-										document.querySelector('.tooltip-speech-to-text').classList.add('tooltip-speech-to-text-active');
-										document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังรอการพูด...';
-										document.querySelector('#micBtn').classList.add('circle-btn-active');
-									}else{
-										console.log('เข้า else');
-
-
-										recognition.stop();
-										micBtn.classList.remove('listening');
-										recognizing = false;
-										console.log('Stopped listening');
-										document.querySelector('.tooltip-speech-to-text').classList.remove('tooltip-speech-to-text-active');
-										document.querySelector('.tooltip-speech-to-text').innerHTML = 'หยุดการรับเสียง';
-										document.querySelector('#micBtn').classList.remove('circle-btn-active');
-										// Wait for recognition to stop
-										await new Promise(resolve => {
-											recognition.onend = resolve;
-										});
-									}
-								});
-					 -->
 					</div>
 					<!---------------------------------- ข้อ 4  ---------------------------------->
 					<div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
