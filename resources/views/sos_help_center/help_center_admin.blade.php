@@ -1071,36 +1071,29 @@
 
                                             @php
                                                 $img_user = \App\User::find($item->user_id);
+                                                $color_be_notified = '';
 
-                                                if($item->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค'){
-                                                    $color_be_notified = 'danger' ;
-                                                }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
-                                                    $color_be_notified = 'info text-white' ;
-                                                }else if($item->form_yellow->be_notified == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า'){
-                                                    $color_be_notified = 'warning' ;
-                                                }else{
-                                                    $color_be_notified = 'secondary' ;
+                                                if( !empty($item->form_yellow->be_notified) ){
+                                                    if($item->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค'){
+                                                        $color_be_notified = 'danger' ;
+                                                    }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
+                                                        $color_be_notified = 'info text-white' ;
+                                                    }else if($item->form_yellow->be_notified == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า'){
+                                                        $color_be_notified = 'warning' ;
+                                                    }else{
+                                                        $color_be_notified = 'secondary' ;
+                                                    }
                                                 }
                                             @endphp
                                             <span class="mx-3">
                                                 <!-- อุบัติเหตุร่วม -->
-                                                @php
-                                                    if(!empty($item->joint_case)){
-                                                        $arr_joint_case = json_decode($item->joint_case, true);
-                                                        $count_joint_case = count($arr_joint_case);
-
-                                                        if($count_joint_case >= 2){
-                                                            $html_joint_case = 'อุบัติเหตุร่วม';
-                                                        }else{
-                                                            $html_joint_case = 'อุบัติเหตุหมู่';
-                                                        }
-                                                    }
-
-                                                @endphp
-
                                                 @if($item->joint_case)
                                                     <button class="btn-status-hurry btn-status main-shadow main-radius" >
-                                                        {{ $html_joint_case }}
+                                                        @if($item->joint_case == $item->id)
+                                                            อุบัติเหตุร่วม <b>(Host)</b>
+                                                        @else
+                                                            อุบัติเหตุร่วม
+                                                        @endif
                                                     </button>
                                                 @endif
 
