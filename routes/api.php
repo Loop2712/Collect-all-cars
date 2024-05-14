@@ -314,6 +314,9 @@ Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}'
 // show user
 Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_officer_go_to_help');
 
+// Join case
+Route::get('/get_data_all_joint_case/{joint_case}', 'Sos_help_centerController@get_data_all_joint_case');
+
 // จัดการรูปภาพ
 Route::get('/delete_uploaded_photos/{name_file}/{type_part}','API\PartnersController@delete_uploaded_photos');
 Route::get('/resize_img/{name_file}/{type_part}','API\PartnersController@resize_img');

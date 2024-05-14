@@ -152,6 +152,12 @@
                     <span class="nav-link-text">แจ้งเตือนเจ้าของรถ</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/add_data_car') }}">
+                    <i class="fa-solid fa-cart-circle-plus text-info"></i>
+                    <span class="nav-link-text">เพิ่มข้อมูลรถ</span>
+                  </a>
+                </li>
               </div>
             </div>
 

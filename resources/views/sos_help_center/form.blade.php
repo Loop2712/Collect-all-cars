@@ -1141,6 +1141,218 @@ color: #ff9317;
                     }
             </script>
             @endif
+
+            @if($sos_help_center->joint_case)
+            <div class="card radius-10 p-3" style="border: red 1px solid;">
+              <h4><b>อุบัติเหตุร่วม</b></h4>
+              <div id="show_content_join_case" class="mb-2">
+                <!-- data -->
+              </div>
+              <div class="btn-group p-2" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-info" onclick="document.querySelector('#card_show_join_case_all').classList.remove('d-none')">
+                    ดูทั้งหมด
+                </button>
+                @if($sos_help_center->joint_case == $sos_help_center->id)
+                <button type="button" class="btn btn-sm btn-primary" disabled>
+                    คุณอยู่ที่เคสหลัก
+                </button>
+                @else
+                <a href="{{ url('/sos_help_center') . '/' .$sos_help_center->joint_case. '/edit' }}" type="button" class="btn btn-sm btn-primary">
+                    ดูเคสหลัก
+                </a>
+                @endif
+              </div>
+            </div>
+
+            <div id="card_show_join_case_all" class="card radius-10 p-3 d-none" style="border: orange 1px solid;">
+              <button type="button" style="width:20%;" class="btn btn-sm btn-outline-secondary mb-2" onclick="document.querySelector('#card_show_join_case_all').classList.add('d-none')">
+                ปิด
+              </button>
+
+              <div id="content_show_join_case_all">
+                  <!-- Content -->
+              </div>
+            </div>
+            @endif
+
+            <script>
+              function get_data_all_joint_case(){
+                let joint_case = "{{ $sos_help_center->joint_case }}";
+
+                fetch("{{ url('/') }}/api/get_data_all_joint_case" + "/" + joint_case)
+                  .then(response => response.json())
+                  .then(result => {
+                      console.log(result);
+
+                      let show_content_join_case = document.querySelector('#show_content_join_case');
+                      let content_show_join_case_all = document.querySelector('#content_show_join_case_all');
+
+                      if (result) {
+
+                        let count_case = result['data'].length;
+
+                        let html = `
+                          <p>ปฏิบัติการร่วมทั้งหมด : `+count_case+` เคส</p>
+                          <p>เคสหลัก</p>
+                          <h5 class="text-center"><b>`+result['host']+`</b></h5>
+                        `;
+
+                        show_content_join_case.innerHTML = html ;
+
+                        for (let i = 0; i < result['data'].length; i++) {
+
+                          let officer = '';
+                          if(result['data'][i].name_helper){
+                            officer = `
+                              <span class="mt-3 mb-3" style="font-size:18px;">
+                                เจ้าหน้าที่
+                                <br>
+                                <b>`+result['data'][i].name_helper+`</b>
+                              </span>
+                              <hr>`;
+                          }
+
+                          let class_status ;
+                          if(result['data'][i].status == "รอการยืนยัน"){
+                            class_status = "btn-warning";
+                          }
+                          else if(result['data'][i].status == "ปฏิเสธ"){
+                            class_status = "btn-danger";
+                          }
+                          else if(result['data'][i].status == "รับแจ้งเหตุ"){
+                            class_status = "btn-info";
+                          }
+                          else{
+                            class_status = "btn-success";
+                          }
+
+                          let class_idc = '' ;
+                          let text_idc = '' ;
+                          if(result['data'][i].idc){
+                            text_idc = result['data'][i].idc.split('(')[0] ;
+                          }
+                          else{
+                            text_idc = '-';
+                          }
+
+                          if(text_idc == "แดง"){
+                            class_idc = 'btn-danger';
+                          }
+                          else if(text_idc == "ขาว"){
+                            class_idc = 'btn-info';
+                          }
+                          else if(text_idc == "เหลือง"){
+                            class_idc = 'btn-warning';
+                          }
+                          else if(text_idc == "ดำ"){
+                            class_idc = 'btn-dark';
+                          }
+                          else if(text_idc == "เขียว"){
+                            class_idc = 'btn-success';
+                          }
+                          else{
+                            class_idc = 'btn-secondary';
+                          }
+
+                          let class_rc = '' ;
+                          let text_rc = '' ;
+                          if(result['data'][i].rc){
+                            text_rc = result['data'][i].rc.split('(')[0] ;
+                          }
+                          else{
+                            text_rc = '-';
+                          }
+
+                          if(text_rc == "แดง"){
+                            class_rc = 'btn-danger';
+                          }
+                          else if(text_rc == "ขาว"){
+                            class_rc = 'btn-info';
+                          }
+                          else if(text_rc == "เหลือง"){
+                            class_rc = 'btn-warning';
+                          }
+                          else if(text_rc == "ดำ"){
+                            class_rc = 'btn-dark';
+                          }
+                          else if(text_rc == "เขียว"){
+                            class_rc = 'btn-success';
+                          }
+                          else{
+                            class_rc = 'btn-secondary';
+                          }
+
+                          let html_footer ;
+                          if(result['data'][i].id == "{{ $sos_help_center->id }}"){
+                            html_footer = `
+                              <button class="btn btn-outline-dark" disabled>
+                                คุณอยู่ที่เคสนี้
+                              </button>
+                            `;
+                          }
+                          else{
+
+                              let link_to_case = "{{ url('/sos_help_center') }}"+"/"+result['data'][i].id+"/edit" ;
+                              let link_video_call_4 = "{{ url('/video_call_4/before_video_call_4') }}"+"?type=sos_1669&amp;sos_id="+result['data'][i].id ;
+
+                              if(result['data'][i].name_helper){
+                                html_footer = `
+                                  <a href="`+link_to_case+`" class="btn btn-info">
+                                    ไปยังเคสนี้
+                                  </a>
+                                  <a href="`+link_video_call_4+`" target="_blank" class="btn btn-success">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                  </a>
+                                  `;
+                              }else{
+                                html_footer = `
+                                  <a href="`+link_to_case+`" class="btn btn-info">
+                                    ไปยังเคสนี้
+                                  </a>
+                                  `;
+                              }
+                          }
+
+                          let check_host = '';
+                          if(result['data'][i].joint_case == result['data'][i].id){
+                            check_host = `<span class="text-danger">(Host)</span>`;
+                          }
+
+                          let html_by_case = `
+                              <div class="card radius-10 p-3" style="background-color: #87ceeb7a;">
+                                <center>
+                                  <h5>
+                                    <b>`+result['data'][i].operating_code+` `+check_host+`</b>
+                                  </h5>
+                                  <h6>
+                                    <span class="mt-2 btn btn-sm `+class_idc+`">
+                                      <b>IDC : `+text_idc+`</b>
+                                    </span>
+                                    <span class="mt-2 btn btn-sm `+class_rc+`">
+                                      <b>RC : `+text_rc+`</b>
+                                    </span>
+                                    <br>
+                                    <span style="width:100%;" class="mt-2 btn btn-sm `+class_status+` mt-2">
+                                      <b>`+result['data'][i].status+`</b>
+                                    </span>
+                                  </h6>
+                                  <hr>
+                                  `+officer+`
+                                  <div class="btn-group p-1" role="group">
+                                    `+html_footer+`
+                                  </div>
+                                </center>
+                              </div>
+                            `;
+
+                          content_show_join_case_all.insertAdjacentHTML('beforeend', html_by_case);
+                        }
+                      }
+
+                  });
+              }
+            </script>
+
             <div class="card radius-10 p-3" >
                 <h3><b>ข้อมูลผู้แจ้งเหตุ</b></h3>
                 <span>
@@ -1248,7 +1460,11 @@ color: #ff9317;
                     }
                 </style>
 
-                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
+                <!-- <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                    <i class="fa-duotone fa-add"> </i> เพิ่มปฏิบัติการร่วม
+                </button> -->
+
+                <button id="btnVideoCall" class="btn btnVideoCall mt-2" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
             </div>
@@ -1618,7 +1834,7 @@ color: #ff9317;
                                               เดียว
                                             </a>
                                             <!-- <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
-                                              ร่วม (amend)
+                                              ร่วม
                                             </a> -->
                                             <button type="button" class="btn btn-secondary" disabled>
                                               ร่วม (pending)
@@ -1817,7 +2033,7 @@ color: #ff9317;
                                           <div id="i_text_save_success" class="d-none">
                                               <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                                   <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                                                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                                  <path class="" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                                               </svg>
                                           </div>
                                           <div id="i_text_cf" class="">
@@ -2719,6 +2935,9 @@ color: #ff9317;
         check_sos_joint_case();
         timer_minutesDiff_sos();
 
+        @if($sos_help_center->joint_case)
+          get_data_all_joint_case();
+        @endif
 
     });
 
@@ -3510,7 +3729,6 @@ color: #ff9317;
             setTimeout(() => {
                 document.querySelector('#icon_save_data').classList.add('d-none');
                 document.querySelector('#text_btn_save').innerHTML = "บันทึก";
-
             }, 1000);
 
         };
