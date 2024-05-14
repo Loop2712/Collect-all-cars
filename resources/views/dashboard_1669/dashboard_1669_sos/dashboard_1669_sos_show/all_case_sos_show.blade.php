@@ -644,7 +644,7 @@
             lengthChange: false,
             bDestroy: true,
             deferRender: true,
-            // pageLength: 25,
+            pageLength: 1500,
             buttons: [{
                 extend: "excelHtml5",
                 text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
