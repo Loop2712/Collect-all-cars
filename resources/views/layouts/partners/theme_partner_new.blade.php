@@ -1324,11 +1324,13 @@
 									</a>
 								</li>
 								<li>
+								<!-- {{ url('/edit_and_summit_form_sos') }} <-ใส่ลิงค์อันนี้นะจ๊ะ-->
 									<a href="#">
 										<i class="fa-solid fa-file-pen"></i> ปรับปรุง / ยืนยัน
 									</a>
 								</li>
 								<li>
+								<!-- {{ url('/check_withdraw_form_sos') }} <-ใส่ลิงค์อันนี้นะจ๊ะ -->
 									<a href="#">
 										<i class="fa-solid fa-money-check-dollar-pen"></i> ตรวจสอบ / ตั้งเบิก
 									</a>
