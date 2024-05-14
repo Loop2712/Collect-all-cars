@@ -1,5 +1,80 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+	.joint-case-item{
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 10px;
+	}
+	.joint-case-item.accept{
+		border:  3px solid #29cc39;
+		border-radius: 10px;
+	}
+	.joint-case-item.waiting{
+		 border:  3px solid #ffc107;
+		 border-radius: 10px;
+	}
+	.joint-case-item.reject{
+		 border:  3px solid #e62e2e;
+		 border-radius: 10px;
+	}
+</style>
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_wait_officer_join_case">
+  Launch demo modal
+</button> -->
+
+<div class="modal fade" id="modal_wait_officer_join_case" tabindex="-1" role="dialog" aria-labelledby="modal_wait_officer_join_case" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<h4 class="text-center">เคสหลัก : 0010-5523-5523 </h4>
+		<div class="d-flex">
+			<button class="btn btn-success px-2 mx-2">รับเคสแล้ว</button>
+			<button class="btn btn-warning px-2 mx-2">รอดำเนินการ</button>
+			<button class="btn btn-danger px-2 mx-2">ปฏิเสธ</button>
+		</div>
+		<div class="p-2">
+			<div class="w-100 joint-case-item accept">
+				<div>
+					<h5>เคส : 0010-5523-5524</h4>
+					<p class="m-0">นาย ABC DEF</p>
+					<p class="m-0">หน่วย วีเช็ค | รถ</p>
+				</div>
+				<div class="d-flex flex-column">
+					<button class="btn btn-success " style="font-size: 14px;">รับเคสแล้ว</button>
+				</div>
+			</div>
+			<div class="w-100 joint-case-item waiting">
+				<div>
+					<h5>เคส : 0010-5523-5524</h4>
+					<p class="m-0">นาย ABC DEF</p>
+					<p class="m-0">หน่วย วีเช็ค | รถ</p>
+				</div>
+				<div class="d-flex flex-column">
+					<button class="btn btn-warning" style="font-size: 14px;">รอดำเนินการ</button>
+					<button class="btn btn-info mt-1" style="font-size: 14px;">เลือกใหม่</button>
+				</div>
+			</div>
+			<div class="w-100 joint-case-item reject">
+				<div>
+					<h5>เคส : 0010-5523-5524</h4>
+					<p class="m-0">นาย ABC DEF</p>
+					<p class="m-0">หน่วย วีเช็ค | รถ</p>
+				</div>
+				<div class="d-flex flex-column">
+					<button class="btn btn-danger " style="font-size: 14px;">รับเคสแล้ว</button>
+					<button class="btn btn-info mt-1" style="font-size: 14px;">เลือกใหม่</button>
+				</div>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
 	<div class="col-xl-12 mx-auto">
 		

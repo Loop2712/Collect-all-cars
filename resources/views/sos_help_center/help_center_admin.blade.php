@@ -1352,6 +1352,13 @@
                                                     }
 
 
+
+                                                    $oparating_host = App\Models\Sos_help_center::where('id' , $item->joint_case)
+                                                    ->first('operating_code');
+                                                    
+                                                    $count_joint_case = App\Models\Sos_help_center::where('joint_case' , $item->joint_case)
+                                                    ->count();
+                                                    
                                                 @endphp
                                                 @if($item->status == "เสร็จสิ้น")
 
@@ -1386,6 +1393,21 @@
 
                                                 @endif
 
+                                                @if($item->joint_case)
+                                                    <div class="d-flex align-items-center mt-2">
+                                                        <div>
+                                                            <h6 class="m-0">ปฏิบัติการร่วม</h6> 
+                                                            <p class="m-0">เคสหลัก : {{$oparating_host->operating_code}}</p>
+                                                            <p class="m-0">ปฏิบัติการร่วมทั้งหมด : {{$count_joint_case}}</p>
+                                                        </div>
+                                                        <div>
+                                                            <a  href="{{ url('/sos_help_center/' . $item->joint_case . '/edit') }}" class="btn btn-warning main-shadow main-radius ms-3" >
+                                                            ไปยังเคสหลัก
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                @endif
                                             </div>
                                             <div>
                                                 {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}

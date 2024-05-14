@@ -20,7 +20,11 @@ use App\Models\Time_zone;
 use App\User;
 use App\Models\Data_1669_officer_command;
 use App\Models\Agora_chat;
+use App\Models\Sos_1669_form_green;
+use App\Models\Sos_1669_form_pink;
+use App\Models\Sos_1669_form_blue;
 
+use App\Http\Controllers\API\SosmapController;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Controllers\API\ImageController;
 use \Carbon\Carbon;
@@ -3391,4 +3395,686 @@ class Sos_help_centerController extends Controller
 
         return $data_arr ;
     }
+
+    
+    
+    
+    function case_officer(Request $request){
+        $data_user = Auth::user();
+        $data_officer = Data_1669_operating_officer::where('user_id' ,$data_user->id)->first();
+        $name_officer = $data_officer->name_officer;
+        // $data_help_officer = sos_help_center::where('helper_id', $data_officer->id)
+        // ->join('data_1669_operating_officers', 'sos_help_center.user_id', '=', 'data_1669_operating_officers.operating_unit_id')
+        // ->get();
+    
+        // $data_help_officer = Sos_help_center::where('helper_id' , $data_officer->id)->with('form_yellow', 'form_pink', 'form_blue', 'form_green')->get();
+        $data_help_officer = Sos_help_center::where('helper_id', $data_officer->id) ->get();
+    
+            // ->leftjoin('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            // ->leftJoin('users', 'sos_help_centers.user_id', '=', 'users.id')
+            // ->select('sos_help_centers.*', 'users.photo as photo_user' , 'sos_1669_form_yellows.*')
+            // ->get();
+    //  ddd($data_help_officer);
+        return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
+        
+    }
+    
+    public function officer_edit_form(Request $request,$id)
+    {
+        $sos_help_center = Sos_help_center::findOrFail($id);
+        $requestData = $request->all();
+        $form_color_id = $requestData['color_form_id'];
+        
+    
+        $data_user = Auth::user();
+    
+        $operating_id = $sos_help_center->operating_unit->id;
+        $data_test = Data_1669_operating_officer::where('user_id' , $data_user->id)->first();
+    
+    
+        // ddd($test ,$data_test->operating_unit_id);
+        // $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' ,$id)->first();
+       
+        
+        
+        // dd($form_color_id);
+        if ($data_user->id == $sos_help_center->helper_id  || $operating_id == $data_test->operating_unit_id) {
+    
+            
+            if ($sos_help_center->form_color_name == "green") {
+                // $data_color_form = Sos_1669_form_green::where('id' ,$id)->first();
+    
+                $data_form = DB::table('sos_1669_form_greens')
+                ->leftJoin('sos_help_centers', 'sos_1669_form_greens.sos_help_center_id', '=', 'sos_help_centers.id')
+                ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_greens.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_greens.*', 'sos_help_centers.created_at as help_center_created_at')
+                ->where('sos_1669_form_greens.id', $form_color_id)
+                ->first();
+                
+                $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
+                $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
+                $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
+                $time_leave_the_scene = $this->calculateTimeInterval($data_form->time_to_the_scene, $data_form->time_leave_the_scene);
+                $time_hospital = $this->calculateTimeInterval($data_form->time_leave_the_scene, $data_form->time_hospital);
+                $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
+                $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
+                $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
+    
+                return view('sos_help_officer.officer_form_green', compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
+            }elseif($sos_help_center->form_color_name == "pink"){
+    
+                $data_color_form = Sos_1669_form_pink::where('sos_help_center_id' ,$id)->first();
+    
+                $data_form = DB::table('sos_1669_form_pinks')
+                ->leftJoin('sos_help_centers', 'sos_1669_form_pinks.sos_help_center_id', '=', 'sos_help_centers.id')
+                ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_pinks.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_pinks.*', 'sos_help_centers.created_at as help_center_created_at')
+                ->where('sos_1669_form_pinks.id', $form_color_id)
+                ->first();
+    
+    
+    
+                $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
+                $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
+                $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
+                $time_leave_the_scene = $this->calculateTimeInterval($data_form->time_to_the_scene, $data_form->time_leave_the_scene);
+                $time_hospital = $this->calculateTimeInterval($data_form->time_leave_the_scene, $data_form->time_hospital);
+                $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
+                $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
+                $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
+    
+                return view('sos_help_officer.officer_form_pink',compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
+            }elseif ($sos_help_center->form_color_name == "blue") {
+                $data_color_form = Sos_1669_form_blue::where('sos_help_center_id' ,$id)->first();
+    
+                $data_form = DB::table('sos_1669_form_blues')
+                ->leftJoin('sos_help_centers', 'sos_1669_form_blues.sos_help_center_id', '=', 'sos_help_centers.id')
+                ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_blues.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_blues.*', 'sos_help_centers.created_at as help_center_created_at')
+                ->where('sos_1669_form_blues.id', $form_color_id)
+                ->first();
+    
+                $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
+                $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
+                $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
+                $time_leave_the_scene = $this->calculateTimeInterval($data_form->time_to_the_scene, $data_form->time_leave_the_scene);
+                $time_hospital = $this->calculateTimeInterval($data_form->time_leave_the_scene, $data_form->time_hospital);
+                $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
+                $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
+                $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
+    
+                return view('sos_help_officer.officer_form_blue',compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
+            }
+        }else {
+            return redirect('404');
+        }
+     
+        // ddd($data_officer->level);
+    
+    }
+    
+    // ใน Controller
+    // ใน Controller
+    public function calculateTimeInterval($startDateTimeStr, $endDateTimeStr)
+    {
+        // สร้างวัตถุ Carbon จากสตริง
+        $startDateTime = Carbon::parse($startDateTimeStr);
+        $endDateTime = Carbon::parse($endDateTimeStr);
+    
+        // คำนวณระยะห่างระหว่างช่วงเวลา
+        $interval = $startDateTime->diff($endDateTime);
+    
+        // สร้างตัวแปรสำหรับเก็บข้อความผลลัพธ์
+        $result = "";
+    
+        // ตรวจสอบและเพิ่มข้อความเมื่อหน่วยไม่เท่ากับ 0
+        if ($interval->d > 0) {
+            $result .= $interval->d . " วัน ";
+        }
+        if ($interval->h > 0) {
+            $result .= $interval->h . " ชั่วโมง ";
+        }
+        if ($interval->i > 0) {
+            $result .= $interval->i . " นาที ";
+        }
+        if ($interval->s > 0) {
+            $result .= $interval->s . " วินาที ";
+        }
+    
+        // ลบช่องว่างต่อท้ายถ้ามี
+        $result = trim($result);
+    
+        // ส่งผลลัพธ์กลับไปยังเรียกใช้ฟังก์ชันนี้
+        return $result;
+    }
+    
+    public function update_data_form_officer(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['sos_id'];
+        $idPatient = $data['idPatient'];
+        $form_color_id = $data['form_color_id'];
+        $validColumns = array_keys(Sos_1669_form_green::first()->getAttributes());
+        // dd($data);
+        
+        $dataFroUpdateColor = [];
+        $dataforUpdateYellow = [];
+        foreach ($data as $item) {
+            // ตรวจสอบว่าคอลัมน์ 'name' และ 'value' มีอยู่ใน $item
+            if (isset($item['name'])) {
+                $name = $item['name'];
+                $value = $item['value'];
+    
+                // ตรวจสอบว่า $name อยู่ในรายการคอลัมน์ที่ถูกต้อง
+                if (in_array($name, $validColumns)) {
+                    $dataFroUpdateColor[$name] = $value;
+                }else {
+                    // ถ้า $name ไม่อยู่ในรายการคอลัมน์ที่ถูกต้อง
+                    $nameWithoutSuffix = str_replace('_yellow', '', $name);
+                    $dataforUpdateYellow[$nameWithoutSuffix] = $value;
+                }
+            }
+        }
+        
+        // dd($dataFroUpdateColor , $dataforUpdateYellow);
+        $sos_help_center = Sos_help_center::findOrFail($id);
+    
+    
+       
+        if ($sos_help_center->form_color_name == "green") {           
+            Sos_1669_form_green::where('id', $form_color_id)->update($dataFroUpdateColor);
+            
+            // for ($i=0; $i < count($data); $i++) { 
+            //     DB::table('sos_1669_form_greens')
+            //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
+            //         ->update([
+            //             $data[$i]["name"] => $data[$i]["value"],
+            //     ]);
+    
+            // }
+        }elseif($sos_help_center->form_color_name == "pink"){           
+            Sos_1669_form_pink::where('id', $form_color_id)->update($dataFroUpdateColor);
+    
+            // for ($i=0; $i < count($data); $i++) { 
+            //     DB::table('sos_1669_form_pinks')
+            //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
+            //         ->update([
+            //             $data[$i]["name"] => $data[$i]["value"],
+            //     ]);
+            // }
+        }elseif ($sos_help_center->form_color_name == "blue") {      
+            Sos_1669_form_blue::where('id', $form_color_id)->update($dataFroUpdateColor);
+    
+            // for ($i=0; $i < count($data); $i++) { 
+            //     DB::table('sos_1669_form_blues')
+            //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
+            //         ->update([
+            //             $data[$i]["name"] => $data[$i]["value"],
+            //     ]);
+            // }
+        }
+        if($dataforUpdateYellow){
+    
+            $updateData = [
+                "patient_name_".$idPatient => $dataforUpdateYellow['patient_name_'.$idPatient] ?? null,
+                "patient_age_".$idPatient => $dataforUpdateYellow['patient_age_'.$idPatient] ?? null,
+                "patient_hn_".$idPatient => $dataforUpdateYellow['patient_hn_'.$idPatient] ?? null,
+                "patient_vn_".$idPatient => $dataforUpdateYellow['patient_vn_'.$idPatient] ?? null,
+                "delivered_province_".$idPatient => $dataforUpdateYellow['delivered_province_'.$idPatient] ?? null,
+                "delivered_hospital_".$idPatient => $dataforUpdateYellow['delivered_hospital_'.$idPatient] ?? null,
+                "delivered_province_3" => $dataforUpdateYellow['delivered_province_3'] ?? null,
+                "delivered_hospital_3" => $dataforUpdateYellow['delivered_hospital_3'] ?? null,
+                "registration_category" => $dataforUpdateYellow['registration_category'] ?? null,
+                "registration_number" => $dataforUpdateYellow['registration_number'] ?? null,
+                "registration_province" => $dataforUpdateYellow['registration_province'] ?? null,
+            ];
+            Sos_1669_form_yellow::where('sos_help_center_id', $sos_help_center->id)->update($updateData);
+        }
+    
+        return "ok";
+    }
+    
+    public function check_percentage_sos(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['sos_id'];
+        $idPatient = $data['idPatient'];
+        $sos_help_center = Sos_help_center::findOrFail($id);
+        // dd($sos_help_center->form_color_name);
+    
+        if ($sos_help_center->form_color_name == "green") {      
+            $data_sos = DB::table('sos_1669_form_greens')
+            ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_greens.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+            ->select(
+                'sos_1669_form_yellows.patient_name_' . $idPatient,
+                'sos_1669_form_yellows.patient_vn_' . $idPatient,
+                'sos_1669_form_yellows.delivered_hospital_' . $idPatient,
+                'sos_1669_form_yellows.patient_hn_' . $idPatient,
+                'sos_1669_form_greens.name_title',
+                'sos_1669_form_greens.treatment_rights',
+                'sos_1669_form_greens.er',
+                'sos_1669_form_greens.admitted',
+                'sos_1669_form_greens.verified_status',
+            )
+            ->where('sos_1669_form_greens.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
+            ->first();
+    
+        }elseif($sos_help_center->form_color_name == "pink"){            
+            $data_sos = DB::table('sos_1669_form_pinks')
+            ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_pinks.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+            ->select(
+                'sos_1669_form_yellows.patient_name_' . $idPatient,
+                'sos_1669_form_yellows.patient_vn_' . $idPatient,
+                'sos_1669_form_yellows.delivered_hospital_' . $idPatient,
+                'sos_1669_form_yellows.patient_hn_' . $idPatient,
+                'sos_1669_form_pinks.name_title',
+                'sos_1669_form_pinks.treatment_rights',
+                'sos_1669_form_pinks.er',
+                'sos_1669_form_pinks.admitted',
+                'sos_1669_form_pinks.verified_status',
+            )
+            ->where('sos_1669_form_pinks.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
+            ->first();
+    
+            // $data_sos = Sos_1669_form_pink::where('id', $sos_help_center->form_color_id)->first();
+        }elseif ($sos_help_center->form_color_name == "blue") {  
+            $data_sos = DB::table('sos_1669_form_blues')
+            ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_blues.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+            ->select(
+                'sos_1669_form_yellows.patient_name_' . $idPatient,
+                'sos_1669_form_yellows.patient_vn_' . $idPatient,
+                'sos_1669_form_yellows.delivered_hospital_' . $idPatient,
+                'sos_1669_form_yellows.patient_hn_' . $idPatient,
+                'sos_1669_form_blues.name_title',
+                'sos_1669_form_blues.treatment_rights',
+                'sos_1669_form_blues.er',
+                'sos_1669_form_blues.admitted',
+                'sos_1669_form_blues.verified_status',
+            )
+            ->where('sos_1669_form_blues.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
+            ->first();
+            
+            
+            // $data_sos = Sos_1669_form_blue::where('id', $sos_help_center->form_color_id)->first();
+        }
+    
+         
+        return json_encode($data_sos);
+    }
+    
+    public function edit_and_summit_form_sos(Request $request)
+    {
+        // $data_sos = Sos_help_center::get();
+        $data_sos = Sos_help_center::where('status' , 'เสร็จสิ้น')
+        ->whereNull('verified_form_color')
+        ->orwhereNull('verified_form_yellow')
+        ->groupBy('created_at')
+        ->orderBy('created_at' , 'DESC')
+        ->get();
+    
+        $monthsAndYears = [];
+    
+        foreach ($data_sos as $sos) {
+            // ใช้ Carbon เพื่อแยกเดือนและปีจากคอลัมน์ที่เก็บวันที่
+            $date = Carbon::parse($sos->created_at)->locale('th'); // แทน created_at ด้วยชื่อคอลัมน์ของคุณในตาราง
+    
+            // เก็บค่าเดือนและปีใน array
+            $monthsAndYears[] = [
+                'MONTH' => $date->format('M'), // รูปแบบ 'M' แสดงเดือน (สามตัวอักษร)
+                'month' => $date->format('m'), // รูปแบบ 'm' แสดงเดือน (ตัวเลข)
+                'year' => $date->format('Y'),  // รูปแบบ 'Y' แสดงปี
+            ];
+        }
+    
+        // dd($monthsAndYears);
+        return view('sos_help_center.edit_and_summit_form_sos', compact('data_sos' ,'monthsAndYears'));
+    
+        // return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
+    
+    }
+    
+    public function check_withdraw_form_sos(Request $request)
+    {
+    
+        // $data_sos = Sos_help_center::get();
+        $data_sos = Sos_help_center::where('status' , 'เสร็จสิ้น')
+        ->whereNotNull('verified_form_color')
+        ->whereNotNull('verified_form_yellow')
+        ->groupBy('created_at')
+        ->orderBy('created_at' , 'DESC')
+        ->get();
+    
+        $monthsAndYears = [];
+    
+        foreach ($data_sos as $sos) {
+            // ใช้ Carbon เพื่อแยกเดือนและปีจากคอลัมน์ที่เก็บวันที่
+            $date = Carbon::parse($sos->created_at)->locale('th'); // แทน created_at ด้วยชื่อคอลัมน์ของคุณในตาราง
+    
+            // เก็บค่าเดือนและปีใน array
+            $monthsAndYears[] = [
+                'MONTH' => $date->format('M'), // รูปแบบ 'M' แสดงเดือน (สามตัวอักษร)
+                'month' => $date->format('m'), // รูปแบบ 'm' แสดงเดือน (ตัวเลข)
+                'year' => $date->format('Y'),  // รูปแบบ 'Y' แสดงปี
+            ];
+        }
+    
+        return view('sos_help_center.check_withdraw_form_sos', compact('data_sos','monthsAndYears'));
+    
+        // return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
+    
+    }
+    
+    public function check_form_sos_pdf($id)
+    {   
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 12,
+        ]);
+    
+        $number_user = null;
+        $sos_help_center = Sos_help_center::findOrFail($id);
+    
+        // Render หน้า view แต่ละหน้าเป็น HTML
+        $mainpage = view('sos_help_center.check_form_sos_pdf', compact('sos_help_center'))->render();
+    
+        if ($sos_help_center->form_color_name == "green") {
+    
+            if ($sos_help_center->form_color_id_user_1) {
+                $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_1)->first();
+                $number_user = '1';
+                $page1 = view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_2) {
+                $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_2)->first();
+                $number_user = '2';
+                $page2 = view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_3) {
+                $number_user = '3';
+                $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_3)->first();
+                $page3= view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+        } elseif ($sos_help_center->form_color_name == "pink"){
+            if ($sos_help_center->form_color_id_user_1) {
+                $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_1)->first();
+                $number_user = '1';
+                $page1 = view('sos_help_center.check_form_pink_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_2) {
+                $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_2)->first();
+                $number_user = '2';
+                $page2 = view('sos_help_center.check_form_pink_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_3) {
+                $number_user = '3';
+                $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_3)->first();
+                $page3= view('sos_help_center.check_form_pink_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+        } elseif ($sos_help_center->form_color_name == "blue"){
+            if ($sos_help_center->form_color_id_user_1) {
+                $data_form = Sos_1669_form_blue::where('id' , $sos_help_center->form_color_id_user_1)->first();
+                $number_user = '1';
+                $page1 = view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_2) {
+                $data_form = Sos_1669_form_blue::where('id' , $sos_help_center->form_color_id_user_2)->first();
+                $number_user = '2';
+                $page2 = view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+    
+            if ($sos_help_center->form_color_id_user_3) {
+                $number_user = '3';
+                $data_form = Sos_1669_form_blue::where('id' , $sos_help_center->form_color_id_user_3)->first();
+                $page3= view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
+            }
+        }
+    
+    
+    
+        // เริ่มเขียน HTML ของไฟล์ PDF โดยรวม HTML ของแต่ละหน้าเข้าด้วยกัน
+        $mpdf->WriteHTML($page3);
+        $mpdf->AddPage(); 
+        $mpdf->WriteHTML($page2);
+        $mpdf->AddPage();
+        $mpdf->WriteHTML($page1);
+        $mpdf->AddPage();
+        $mpdf->SetTopMargin(0); // กำหนด margin_top เป็น 30 หน่วย (ตัวอย่างเท่านั้น คุณสามารถปรับค่าได้ตามต้องการ)
+        $mpdf->WriteHTML($mainpage);
+        $mpdf->SetTitle('แบบบันทึกการรับแจ้งเหตุและสั่งการ รหัสเคส '.$sos_help_center->operating_code);
+        // ส่งไฟล์ PDF กลับให้ผู้ใช้ดาวน์โหลด
+        return $mpdf->Output('แบบบันทึกการรับแจ้งเหตุและสั่งการ รหัสเคส '.$sos_help_center->operating_code.'.pdf', \Mpdf\Output\Destination::INLINE);
+    }
+    
+    
+    public function verified_status_form(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        $form = $data['form'];
+        if ($data['status'] == "ยืนยัน") {
+            $status = "Yes";
+        } else {
+            $status = null;
+        }
+        
+        $table_name = "Sos_1669_form_" . $form . "s";  // สร้างชื่อตารางโดยใช้ $form
+        
+        DB::table($table_name)->where('id', $id)->update(['verified_status' => $status]);
+        
+        if ($form == "yellow") {
+            Sos_help_center::where('id', $id)->update(['verified_form_yellow' => $status]);
+        } else {
+            $get_data_color =  DB::table($table_name)->where('id', $id)->first();
+            $data_form_color =  DB::table($table_name)->where('sos_help_center_id', $get_data_color->sos_help_center_id)->get();
+    
+            $isAllVerifiedNotEmpty = $data_form_color->every(function ($item) {
+                return !empty($item->verified_status);
+            });
+            
+            // ตรวจสอบค่า $isAllVerifiedNotEmpty
+            if ($isAllVerifiedNotEmpty) {
+                // dd('fsdg');
+                Sos_help_center::where('id', $get_data_color->sos_help_center_id)->update(['verified_form_color' => "Yes"]);
+            }else{
+                Sos_help_center::where('id', $get_data_color->sos_help_center_id)->update(['verified_form_color' => null]);
+    
+            }
+        }
+    
+        // return $test;
+        return response()->json($data['status']);
+        
+    }
+    
+    
+    
+    public function create_and_delete_data_patient(Request $request)
+    {
+        // รับข้อมูลจาก request
+        $data = $request->all();
+        $form = $data['form'];
+        
+            // ตรวจสอบและกำหนดค่าตัวแปร $test ตามค่าของ $form
+            switch ($form) {
+                case "green":
+                    $create_Controller = Sos_1669_form_green::class;
+                    break;
+                case "blue":
+                    $create_Controller = Sos_1669_form_blue::class;
+                    break;
+                case "pink":
+                    $create_Controller = Sos_1669_form_pink::class;
+                    break;
+                default:
+                    // Handle default case if needed
+                    break;
+            }
+            // ดึงข้อมูลโดยใช้ชื่อคลาสที่ได้จากตัวแปร $className
+            $data_form_color = $create_Controller::where('id', $data['form_color_id'])
+            ->where('sos_help_center_id', $data['sos_id'])
+            ->first();
+            // dd($data_form_color);
+    
+            if ($data['status'] == 'เพิ่ม') {
+                $dataForCreate = [] ;
+                $dataForCreate['sos_help_center_id'] = $data_form_color->sos_help_center_id;
+                $dataForCreate['sos_form_yellow_id'] = $data_form_color->sos_form_yellow_id;
+                $dataForCreate['name_helper_1'] = $data_form_color->name_helper_1;
+                $dataForCreate['name_helper_2'] = $data_form_color->name_helper_2;
+                $dataForCreate['name_helper_3'] = $data_form_color->name_helper_3;
+                $dataForCreate['name_helper_4'] = $data_form_color->name_helper_4;
+                $dataForCreate['id_helper_1'] = $data_form_color->id_helper_1;
+                $dataForCreate['id_helper_2'] = $data_form_color->id_helper_2;
+                $dataForCreate['id_helper_3'] = $data_form_color->id_helper_3;
+                $dataForCreate['id_helper_4'] = $data_form_color->id_helper_4;
+                $dataForCreate['help_result'] = $data_form_color->help_result;
+                $dataForCreate['location_sos'] = $data_form_color->location_sos;
+        
+                $dataCreate = $create_Controller::create($dataForCreate);
+        
+                $dataForUpdateSosHelpCenter = [] ;
+                $dataForUpdateSosHelpCenter['form_color_id_user_'.$data['patient_id']] = $dataCreate->id;
+            } elseif($data['status'] == 'ลบ') {
+    
+                $create_Controller::destroy($data['form_color_id']);
+                $dataForUpdateSosHelpCenter = [] ;
+                $dataForUpdateSosHelpCenter['form_color_id_user_'.$data['patient_id']] = null;
+    
+                $dataForUpdateFormYellow = [] ;
+    
+                $dataForUpdateFormYellow['patient_name_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['patient_age_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['patient_hn_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['patient_vn_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['delivered_province_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['delivered_hospital_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['delivered_province_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['delivered_hospital_'.$data['patient_id']] = null;
+                $dataForUpdateFormYellow['registration_category'] = null;
+                $dataForUpdateFormYellow['registration_number'] = null;
+                $dataForUpdateFormYellow['registration_province'] = null;
+                
+                 Sos_1669_form_yellow::where('sos_help_center_id', $data['sos_id'])->update($dataForUpdateFormYellow);
+    
+            }
+    
+            $sos_help_center = Sos_help_center::where('id' ,$data['sos_id'] )->update($dataForUpdateSosHelpCenter);
+    
+            if ($data['status'] == 'เพิ่ม') {
+                return response()->json(['status' => $data['status'], 'data' => $dataCreate], 200);
+    
+            } elseif($data['status'] == 'ลบ') {
+                $sos_help_center = Sos_help_center::where('id' ,$data['sos_id'] )->first();
+                return response()->json(['patient_id' => $data['patient_id'],'status' => $data['status'], 'sos_help_center' => $sos_help_center], 200);
+            }
+        
+    }
+    
+    public function get_data_sos_success(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $page = $data['page'];
+        $month = $data['month'];
+        $year = $data['year'];
+        
+        
+        // $data = Sos_help_center::with(['form_yellow', 'form_pink', 'form_blue', 'form_green'])->get();
+    
+        if ($page == "edit") {
+            $data = Sos_help_center::whereMonth('sos_help_centers.created_at', $month)
+            ->whereYear('sos_help_centers.created_at', $year)
+            ->whereNull('verified_form_color')
+            ->leftJoin('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->leftJoin('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
+            ->leftJoin('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
+            ->leftJoin('data_1669_officer_commands', 'sos_help_centers.command_by', '=', 'data_1669_officer_commands.user_id')
+            ->select(
+                'sos_help_centers.*', 
+                'sos_1669_form_yellows.*',  
+                'data_1669_operating_officers.level as level_officer' ,  
+                'data_1669_operating_units.name as name_operating_units',
+                'data_1669_officer_commands.name_officer_command as name_officer_command',
+                'sos_help_centers.verified_form_color as verified_form_color', 
+                'sos_help_centers.verified_form_yellow as verified_form_yellow', 
+                
+            )
+            ->get();
+        } else {
+            $data = Sos_help_center::
+            whereMonth('sos_help_centers.created_at', $month)
+            ->whereYear('sos_help_centers.created_at', $year)
+            ->whereNotNull('verified_form_color')
+            ->whereNotNull('verified_form_yellow')
+            ->leftJoin('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->leftJoin('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
+            ->leftJoin('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
+            ->leftJoin('data_1669_officer_commands', 'sos_help_centers.command_by', '=', 'data_1669_officer_commands.user_id')
+            ->select(
+                'sos_help_centers.*', 
+                'sos_1669_form_yellows.*',  
+                'data_1669_operating_officers.level as level_officer' ,  
+                'data_1669_operating_units.name as name_operating_units',
+                'data_1669_officer_commands.name_officer_command as name_officer_command',
+                'sos_help_centers.verified_form_color as verified_form_color', 
+                'sos_help_centers.verified_form_yellow as verified_form_yellow', 
+                
+            )
+            ->get();
+        }
+        
+       
+        
+        // dd($data);
+        // sos_1669_form_greens
+        // sos_1669_form_pinks
+        // sos_1669_form_blues
+    
+        // return $data;
+    
+        return response()->json($data);
+    }
+    
+    public function getDataFormColor(Request $request)
+    {
+    
+        $requestDataAll = $request->all();
+        $sos_id = $requestDataAll['sos_id'];
+        $form_color = $requestDataAll['form_color'];
+        
+        $colorTableMap = [
+            'green' => 'sos_1669_form_greens',
+            'blue' => 'sos_1669_form_blues',
+            'pink' => 'sos_1669_form_pinks',
+        ];
+        
+        $tableName = $colorTableMap[$form_color] ?? null;
+        
+        $data_form_color = DB::table($tableName)
+            ->where($tableName . '.sos_help_center_id', $sos_id)
+            ->leftJoin('sos_1669_form_yellows', $tableName . '.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
+            ->leftJoin('sos_help_centers', $tableName . '.sos_help_center_id', '=', 'sos_help_centers.id')
+            ->leftJoin('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
+            ->select(
+                $tableName . '.*', 
+                'sos_1669_form_yellows.*',
+                'sos_1669_form_yellows.id as yellow_id',
+                $tableName . '.id as color_id',
+                $tableName . '.verified_status as color_verified_status',
+                'sos_help_centers.form_color_id_user_1 as patient_id_1',
+                'sos_help_centers.form_color_id_user_2 as patient_id_2',
+                'sos_help_centers.form_color_id_user_3 as patient_id_3',
+                'data_1669_operating_officers.level as level_officer',
+            )
+            ->get();
+    
+        return response()->json($data_form_color);
+    }
+    
+}
 }
