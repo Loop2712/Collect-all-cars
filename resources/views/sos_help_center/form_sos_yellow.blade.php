@@ -1152,7 +1152,7 @@
 						}
 						</style>
 						<div class="mb-5">
-							<textarea style="position: relative;"class="form-control" id="output-container" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ"></textarea>
+							<textarea style="position: relative;"class="form-control" id="output-container" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($data_form_yellow->symptom_other) ? $data_form_yellow->symptom_other : ''}}</textarea>
 							<p style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
 							
 							<button class="circle-btn" id="micBtn">
