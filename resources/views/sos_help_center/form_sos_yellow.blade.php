@@ -1061,6 +1061,14 @@
 						.circle-btn-active{
 							background-color: #007bff !important;
 						}
+						.circle-btn-active-danger{
+							background-color: #db2d2e;
+							border: #db2d2e 4px solid;
+							color: #fff;
+						}
+						.circle-btn-active-danger .microphone-icon{
+							color: #fff;
+						}
 						.circle-btn-active .microphone-icon{
 							color: #fff !important;
 						}
@@ -1070,7 +1078,7 @@
 							color: #007bff;
 						}
 
-						.listening {
+						.circle-btn-active.listening {
 							animation: pulse 1s infinite;
 						}
 
@@ -1090,7 +1098,26 @@
 							box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
 							}
 						}
+						.circle-btn-active-danger.listening {
+							animation: pulse-danger 1s infinite;
+						}
 
+						@keyframes pulse-danger {
+							0% {
+							transform: scale(0.95);
+							box-shadow: 0 0 0 0 rgba(219, 45, 46, 0.7);
+							}
+
+							70% {
+							transform: scale(1);
+							box-shadow: 0 0 0 10px rgba(219, 45, 46, 0);
+							}
+
+							100% {
+							transform: scale(0.95);
+							box-shadow: 0 0 0 0 rgba(219, 45, 46, 0);
+							}
+						}
 						.tooltip-speech-to-text {
 							position: absolute;
 							top: -30px;
@@ -1126,13 +1153,13 @@
 						</style>
 						<div class="mb-5">
 							<textarea style="position: relative;"class="form-control" id="output-container" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ"></textarea>
-							<p class="d-none" style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
+							<p style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
 							
-							<button class="circle-btn d-none" id="micBtn">
+							<button class="circle-btn" id="micBtn">
 								<i class="fas fa-microphone microphone-icon"></i>
 								<div class="tooltip-speech-to-text"></div>
 							</button>
-							<select name="" id="language-select" class="d-none" style="color: #007bff;font-weight: bolder;width: 100px !important;padding-left: 15px;font-size: 25px;height: 60px;border: #007bff 3px solid; border-radius: 50px;position: absolute; width: 180px;bottom: 70px;right: 20px;">
+							<select name="" id="language-select" style="color: #007bff;font-weight: bolder;width: 100px !important;padding-left: 15px;font-size: 25px;height: 60px;border: #007bff 3px solid; border-radius: 50px;position: absolute; width: 180px;bottom: 70px;right: 20px;">
 								<option value="th-TH">TH</option>
 								<option value="en-US">ENG</option>
 							</select>
@@ -1143,6 +1170,8 @@
 							const outputContainer = document.getElementById('output-container');
 							let recognizing = false;
 							let recognition;
+							let tooltip_lang = 'th-TH';
+							let tooltip_action;
 
 							// Check if the browser supports Web Speech API
 							if ('webkitSpeechRecognition' in window) {
@@ -1167,13 +1196,22 @@
 									const volume = event.results[event.results.length - 1][0].volume;
 									micBtn.style.animationDuration = (1 / volume) + 's';
 									micBtn.classList.add('listening');
-									document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังฟัง...';
-
+									// document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังฟัง...';
+									tooltip_action = 'Listening';
+									alert_tool_tip();
 								};
 
 								// When an error occurs
 								recognition.onerror = function(event) {
-									outputContainer.value += 'เกิดข้อผิดพลาดในการรับเสียง: ' + event.error;
+									// outputContainer.value += 'เกิดข้อผิดพลาดในการรับเสียง: ' + event.error;
+									document.querySelector('.tooltip-speech-to-text').classList.add('tooltip-speech-to-text-active');
+
+									tooltip_action = 'error';
+									alert_tool_tip(event.error);
+
+									document.querySelector('#micBtn').classList.add('circle-btn-active-danger');
+									document.querySelector('#micBtn').classList.remove('circle-btn-active');
+
 								};
 
 								// When the start/stop button is clicked
@@ -1182,11 +1220,126 @@
 										recognition.start();
 										micBtn.classList.add('listening');
 										recognizing = true;
+										// console.log('Listening...');
+										document.querySelector('.tooltip-speech-to-text').classList.add('tooltip-speech-to-text-active');
+										tooltip_action = 'waiting';
+										alert_tool_tip();
+									document.querySelector('#micBtn').classList.remove('circle-btn-active-danger');
+
+										document.querySelector('#micBtn').classList.add('circle-btn-active');
+									} else {
+										recognition.stop();
+										micBtn.classList.remove('listening');
+										recognizing = false;
+										// console.log('Stopped listening');
+										document.querySelector('.tooltip-speech-to-text').classList.remove('tooltip-speech-to-text-active');
+										tooltip_action = 'stop';
+										alert_tool_tip();
+										document.querySelector('#micBtn').classList.remove('circle-btn-active-danger');
+										document.querySelector('#micBtn').classList.remove('circle-btn-active');
+									}
+								});
+
+								// Change recognition language when selecting a different language
+								document.getElementById('language-select').addEventListener('change', async function() {
+									// Change recognition language
+									// console.log('เข้า เปลี่ยนภาษา');
+
+									recognition.lang = this.value;
+									tooltip_lang = this.value;
+									alert_tool_tip();
+
+									if (recognizing) {
+										// console.log('เข้า บันทึกอยู่');
+										recognition.stop();
+										// Wait for recognition to stop
+										await new Promise(resolve => {
+											recognition.onend = resolve;
+										});
+										recognition.start();
+									
+									}else{
+										// console.log('เข้า ไม่มีการบันทึก');
+
+									}
+								});
+
+						} else {
+							// outputContainer.value = 'เบราว์เซอร์ของคุณไม่รองรับการแปลงคำพูดเป็นตัวอักษร';
+							tooltip_action = 'Not_supported';
+
+							alert_tool_tip();
+						}
+
+						function alert_tool_tip(error) {
+							console.log(tooltip_lang);
+							console.log(tooltip_action);
+
+							if (tooltip_lang == 'th-TH') {
+
+								if (tooltip_action == 'waiting') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังรอการพูด...';
+								}
+								
+								if (tooltip_action == 'stop') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'หยุดการรับเสียง';
+								}
+
+								if (tooltip_action == 'error') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'เกิดข้อผิดพลาดในการรับเสียง: ' + error;
+								}
+
+								if (tooltip_action == 'Listening') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังฟัง...';
+								}
+								if (tooltip_action == 'Not_supported') {
+									outputContainer.value = 'เบราว์เซอร์ของคุณไม่รองรับการแปลงคำพูดเป็นตัวอักษร';
+								}
+							}else{
+
+								if (tooltip_action == 'waiting') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'waiting to speak...';
+								}
+
+								if (tooltip_action == 'stop') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'Stop receiving sound';
+								}
+
+								if (tooltip_action == 'error') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'An error occurred while receiving sound : ' + error;
+
+								}
+
+								if (tooltip_action == 'Listening') {
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'Listening...';
+								}
+
+								if (tooltip_action == 'Not_supported') {
+									outputContainer.value = 'Your browser does not support speech-to-character translation.';
+								}
+							}
+						}
+						</script>
+<!-- document.getElementById('language-select').addEventListener('change', async function() {
+									// Change recognition language
+									console.log('เข้า เปลี่ยนภาษา');
+
+									recognition.lang = this.value;
+
+									if (recognizing) {
+										console.log('เข้า if');
+										
+										recognition.start();
+										micBtn.classList.add('listening');
+										recognizing = true;
 										console.log('Listening...');
 										document.querySelector('.tooltip-speech-to-text').classList.add('tooltip-speech-to-text-active');
 										document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังรอการพูด...';
 										document.querySelector('#micBtn').classList.add('circle-btn-active');
-									} else {
+									}else{
+										console.log('เข้า else');
+
+
 										recognition.stop();
 										micBtn.classList.remove('listening');
 										recognizing = false;
@@ -1194,33 +1347,13 @@
 										document.querySelector('.tooltip-speech-to-text').classList.remove('tooltip-speech-to-text-active');
 										document.querySelector('.tooltip-speech-to-text').innerHTML = 'หยุดการรับเสียง';
 										document.querySelector('#micBtn').classList.remove('circle-btn-active');
+										// Wait for recognition to stop
+										await new Promise(resolve => {
+											recognition.onend = resolve;
+										});
 									}
 								});
-
-								// Change recognition language when selecting a different language
-								document.getElementById('language-select').addEventListener('change', async function() {
-							// Change recognition language
-							recognition.lang = this.value;
-
-							// Stop recognition if it's currently active
-							if (recognizing) {
-								recognition.stop();
-								// Wait for recognition to stop
-								await new Promise(resolve => {
-									recognition.onend = resolve;
-								});
-							}
-
-							// Start recognition again with the new language
-							recognition.start();
-						});
-
-							} else {
-								outputContainer.value = 'เบราว์เซอร์ของคุณไม่รองรับการแปลงคำพูดเป็นตัวอักษร';
-							}
-						</script>
-
-					
+					 -->
 					</div>
 					<!---------------------------------- ข้อ 4  ---------------------------------->
 					<div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
