@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "redeem_code",
+            "type": "string"
+        },
+        {
+            "name": "privilege_id",
+            "type": "integer"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "time_update_status",
+            "type": "datetime"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "fields": [
+        {
+            "name": "partner_id",
+            "type": "integer"
+        },
+        {
+            "name": "titel",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "longtext"
+        },
+        {
+            "name": "img_cover",
+            "type": "file"
+        },
+        {
+            "name": "img_content",
+            "type": "file"
+        },
+        {
+            "name": "type",
+            "type": "string"
+        },
+        {
+            "name": "redeem_type",
+            "type": "string"
+        },
+        {
+            "name": "amount_privilege",
+            "type": "string"
+        },
+        {
+            "name": "start_privilege",
+            "type": "string"
+        },
+        {
+            "name": "expire_privilege",
+            "type": "string"
+        },
+        {
+            "name": "user_view",
+            "type": "string"
+        },
+        {
+            "name": "user_click_redeem",
+            "type": "string"
+        }
+    ]
+}

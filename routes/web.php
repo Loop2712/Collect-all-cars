@@ -628,3 +628,5 @@ Route::resource('phone_niems', 'Phone_niemsController');
 Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
 
 Route::resource('sos_by_organization', 'Sos_by_organizationController');
+Route::resource('privilege', 'PrivilegeController');
+Route::resource('redeem_code', 'Redeem_codeController');
