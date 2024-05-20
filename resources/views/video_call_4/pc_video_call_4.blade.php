@@ -1187,11 +1187,11 @@
                                     <i class="fa-sharp fa-solid fa-angle-up"></i>
                                 </button>
                             </div>
-
-                            <div class="btn btnSpecial btn_leave d-no" id="addButton">
-                                <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                            </div>
-
+                            @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429 || Auth::user()->id == 11003473)
+                                <div class="btn btnSpecial btn_leave d-none" id="addButton">
+                                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                                </div>
+                            @endif
                             <div class="btn btnSpecial btn_leave" id="leave">
                                 <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
                             </div>

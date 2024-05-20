@@ -387,7 +387,6 @@
 		opacity: 0;
 		transition: opacity 0.5s, max-height 0.5s;
         background-color: #3f3e3e;
-        border-radius: 5px;
         overflow-y: auto; /* เพื่อให้มีการเลื่อนลงไปดูได้ */
 	}
 
@@ -736,7 +735,7 @@
         margin: 5px;
         top: 0; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
         left: 0;
-        border:#fff 1px solid;
+        border:#000000 1px solid;
     }
 
     .profile-info {
@@ -753,10 +752,15 @@
         white-space: nowrap;
     }
 
+    .vertical-divider {
+        border-left: 1px solid black; /* เส้นแบ่งสีดำ */
+        height: 100%; /* ปรับให้เส้นแบ่งเต็มความสูงของคอลัมน์ */
+    }
+
     /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
 
     .wrapper_range_volume {
-        background-color: #05051a;
+        background-color: #4d4c4c;
         position: relative;
         width: 100%;
         height: 5rem;
@@ -802,7 +806,7 @@
 
         &[step]{
             background-color: transparent;
-            background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
+            background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #4d4c4c 12.5%);
         }
 
     }
@@ -817,6 +821,19 @@
         border: none;
         width: 0;
         box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+    }
+
+    .icon-wrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color:#3f3e3e78;
+        border-radius: 50%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
     }
 
 
@@ -903,13 +920,12 @@
 
                 <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
                 <div id="div_for_AudioButton" class="btn btnSpecial">
-                    @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429)
+                    @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429 || Auth::user()->id == 11003473)
                         {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
                             <button class="smallCircle" id="btn_switchMicrophone">
                         <i class="fa-sharp fa-solid fa-angle-up"></i>
                     </button>
                     @endif
-
                 </div>
 
                 <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
@@ -969,7 +985,7 @@
             <span id="title_menu_in_setting" class="h1 font-weight-bold text-white"></span>
         </div>
 
-        <div id="detail_menu_in_setting" class="card m-4"></div>
+        <div id="detail_menu_in_setting" class="m-4"></div>
     </div>
 
     <!-- Modal -->
@@ -1662,24 +1678,29 @@
                 channelParameters.remoteAudioTrack.play();
 
                 // channelParameters.remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
-                let deviceType = checkDeviceType();
+
                 let userVolume;
+                if (array_remoteVolumeAudio[user.uid]) {
+                    userVolume = parseInt(array_remoteVolumeAudio[user.uid]);
+                }else{
+                    userVolume = 70; // หรือค่าที่ต้องการ
+                }
+
+                let deviceType = checkDeviceType();
                 if (deviceType == "Mobile (iOS)") {
-                    userVolume = parseInt(array_remoteVolumeAudio[user.uid]) ?? 70;
                     if (userVolume == 0) {
                         channelParameters.remoteAudioTrack.stop();
                     } else {
                         channelParameters.remoteAudioTrack.play();
                     }
                 } else {
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(userVolume));
+                    if (userVolume) {
+                        channelParameters.remoteAudioTrack.setVolume(parseInt(userVolume));
+                    } else {
+                        channelParameters.remoteAudioTrack.setVolume(70);
+                    }
                 }
 
-                // if (array_remoteVolumeAudio[user.uid]) {
-                //     userVolume = parseInt(array_remoteVolumeAudio[user.uid]);
-                // }else{
-                //     userVolume = 70; // หรือค่าที่ต้องการ
-                // }
                 // channelParameters.remoteAudioTrack.setVolume(userVolume);
 
                 // document.querySelector("#remoteAudioVolume_"+user.uid).addEventListener("change", function (evt) {
@@ -1890,24 +1911,26 @@
                                             volume_indicator_remote(dummy_remote.uid);
                                         }
 
-                                        // let userVolume;
-                                        // if (array_remoteVolumeAudio[dummy_remote.uid]) {
-                                        //     userVolume = parseInt(array_remoteVolumeAudio[dummy_remote.uid]);
-                                        // }else{
-                                        //     userVolume = 70; // หรือค่าที่ต้องการ
-                                        // }
+                                        let userVolume;
+                                        if (array_remoteVolumeAudio[dummy_remote.uid]) {
+                                            userVolume = parseInt(array_remoteVolumeAudio[dummy_remote.uid]);
+                                        }else{
+                                            userVolume = 70; // หรือค่าที่ต้องการ
+                                        }
                                         // agoraEngine['remoteUsers'][c_uid]['audioTrack'].setVolume(userVolume);
                                         let deviceType = checkDeviceType();
-                                        let userVolume;
                                         if (deviceType == "Mobile (iOS)") {
-                                            userVolume = parseInt(array_remoteVolumeAudio[dummy_remote.uid]) ?? 70;
                                             if (userVolume == 0) {
                                                 agoraEngine['remoteUsers'][c_uid]['audioTrack'].stop();
                                             } else {
                                                 agoraEngine['remoteUsers'][c_uid]['audioTrack'].play();
                                             }
                                         } else {
-                                            agoraEngine['remoteUsers'][c_uid]['audioTrack'].setVolume(parseInt(userVolume));
+                                            if (userVolume) {
+                                                agoraEngine['remoteUsers'][c_uid]['audioTrack'].setVolume(parseInt(userVolume));
+                                            } else {
+                                                agoraEngine['remoteUsers'][c_uid]['audioTrack'].setVolume(70);
+                                            }
                                         }
                                     }
 
@@ -2631,10 +2654,10 @@
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
 
-                console.log('------------ newVideoTrack ------------');
-                console.log(newVideoTrack);
-                console.log('------------ channelParameters.localVideoTrack ------------');
-                console.log(channelParameters.localVideoTrack);
+                // console.log('------------ newVideoTrack ------------');
+                // console.log(newVideoTrack);
+                // console.log('------------ channelParameters.localVideoTrack ------------');
+                // console.log(channelParameters.localVideoTrack);
                 // console.log('------------ localPlayerContainer ------------');
                 // console.log(localPlayerContainer);
 
@@ -2739,8 +2762,7 @@
             // console.log('activeVideoDeviceId');
             // console.log(activeVideoDeviceId);
 
-            // disable ปุ่มเปิด-ปิดกล้อง
-            document.querySelector('#div_for_VideoButton').classList.add('disabled');
+
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
             let deviceType = checkDeviceType();
@@ -2760,10 +2782,15 @@
 
             let videoDevices = cachedVideoDevices; // สามารถใช้ cachedVideoDevices ได้ทุกครั้งที่ต้องการ
 
-            console.log('------- videoDevices -------');
-            console.log(videoDevices);
-            console.log('length ==>> ' + videoDevices.length);
-            console.log('------- ------- -------');
+            if (videoDevices.length > 1) {
+                // disable ปุ่มเปิด-ปิดกล้อง
+                document.querySelector('#div_for_VideoButton').classList.add('disabled');
+            }
+
+            // console.log('------- videoDevices -------');
+            // console.log(videoDevices);
+            // console.log('length ==>> ' + videoDevices.length);
+            // console.log('------- ------- -------');
 
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let videoDeviceList = document.getElementById('video-device-list');
@@ -2812,8 +2839,6 @@
             if(deviceType !== 'PC') {
                 console.log("switch_mobile");
                 let check_videoDevices = document.getElementsByName('video-device');
-                console.log("check_videoDevices");
-                console.log(check_videoDevices);
                 if (now_Mobile_Devices == 1){
                     // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
                     // console.log(check_videoDevices[1].id);
@@ -3130,8 +3155,8 @@
                         console.log(element.id);
                         let create_profile_remote = document.createElement("div");
                             create_profile_remote.id = "profile_"+element.id;
-                            create_profile_remote.classList.add('row');
-
+                            create_profile_remote.setAttribute('class','row mt-2');
+                            create_profile_remote.setAttribute('style','background-color:3f3e3e');
                         //รูปโปรไฟล์
                         if(element.photo){
                             profile_user = "{{ url('/storage') }}" + "/" + element.photo;
@@ -3181,19 +3206,19 @@
                         let detailHTML;
                         if (deviceType == "Mobile (iOS)") {
                             detailHTML =
-                                `<div class="col-12 row">
+                                `<div style="background-color:#676565; border-radius:15px;" class="col-12 py-3 mx-auto row">
                                         <div class="col-3">
                                             <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
                                             <div class="profile-info">
                                                 `+name_profile+`
                                             </div>
                                         </div>
-                                        <div class="col-9 my-auto row">
+                                        <div class="col-9 my-auto vertical-divider row">
 
                                             <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
 
                                             </div>
-                                            <div class="col-9 d-none">
+                                            <div class="col-9 my-auto d-none ">
                                                 <div class="wrapper_range_volume">
                                                     `+type_input+`
                                                 </div>
@@ -3203,19 +3228,19 @@
                                 `;
                         } else {
                             detailHTML =
-                                `<div class="col-12 row">
+                                `<div style="background-color:#676565; border-radius:15px;" class="col-12 py-3 mx-auto row">
                                     <div class="col-3">
                                         <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
                                         <div class="profile-info">
                                             `+name_profile+`
                                         </div>
                                     </div>
-                                    <div class="col-9 my-auto row">
+                                    <div class="col-9 my-auto vertical-divider row">
 
                                         <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
 
                                         </div>
-                                        <div class="col-9">
+                                        <div class="col-9 my-auto ">
                                             <div class="wrapper_range_volume">
                                                 `+type_input+`
                                             </div>
@@ -4665,8 +4690,13 @@
         let type_mode;
         if (value == 0) {
             type_mode = "mute";
-            document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
-            style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+            document.querySelector("#icon_mic_local_in_sidebar").innerHTML =
+            `<div class="icon-wrapper">
+                <i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
+                style="--fa-primary-color: #fff; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"
+                onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>
+            </div>
+            `;
 
             // document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
             // style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
@@ -4674,10 +4704,14 @@
             type_mode = "unmute";
 
             if (!agoraEngine['localTracks'][1]['enabled']) {
-                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-duotone fa-microphone-slash"
-                style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
-            } else {
-                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `
+                <div class="icon-wrapper">
+                    <i class="fa-duotone fa-microphone-slash"
+                    style="--fa-primary-color: #e60000; --fa-secondary-color: #fff; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>
+                </div>`;
+
+                } else {
+                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<div class="icon-wrapper"><i class="fa-solid fa-microphone" style="color: #fff; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i></div>`;
             }
         }
     }
@@ -4688,17 +4722,20 @@
         if (value == 0) { // ถ้า value ตัวปรับเสียง ของ remote คนนี้ เป็น 0
             type_mode = "mute";
 
-            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
-            style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"
-            onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `
+            <div class="icon-wrapper">
+                <i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
+                style="--fa-primary-color: #fff; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"
+                onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>
+            </div>`;
 
         } else {
             type_mode = "unmute";
 
             if (type == "open") {
-                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
+                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<div class="icon-wrapper"><i class="fa-solid fa-microphone" style="color: #fff; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i></div>`;
             } else {
-                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
+                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<div class="icon-wrapper"><i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #fff; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i></div>`;
             }
         }
     }
@@ -4719,8 +4756,8 @@
                     channelParameters.localAudioTrack.setVolume(parseInt(value_slider));
                 }
 
-                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
-                style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<div class="icon-wrapper"><i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
+                style="--fa-primary-color: #fff; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i></div>`;
 
             } else {
                 document.querySelector('#localAudioVolume').value = 100;
@@ -4732,13 +4769,13 @@
 
                     localStorage.setItem('local_sos_1669_rangeValue', value_slider);
 
-                    document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-duotone fa-microphone-slash"
-                    style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+                    document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<div class="icon-wrapper"><i class="fa-duotone fa-microphone-slash"
+                    style="--fa-primary-color: #e60000; --fa-secondary-color: #fff; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i></div>`;
                 } else {
 
                     channelParameters.localAudioTrack.setVolume(parseInt(value_slider));
 
-                    document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+                    document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<div class="icon-wrapper"><i class="fa-solid fa-microphone" style="color: #fff; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i></div>`;
                 }
             }
 

@@ -2838,8 +2838,8 @@
             fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
                 .then(response => response.json())
                 .then(result => {
-                    console.log("real_time_check_refuse_and_call");
-                    console.log(result);
+                    // console.log("real_time_check_refuse_and_call");
+                    // console.log(result);
                     // console.log('--------------------------------');
 
                     // let result_room_id = result['room_id'].split(",");
@@ -2856,23 +2856,15 @@
                     }
 
                     if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
-
-                        if (result_call[0] != "ไม่มีข้อมูล") {
-                            i_noti_menu.classList.remove('d-none');
-                            i_noti_call.classList.remove('d-none');
-                        } else {
-                            i_noti_call.classList.add('d-none');
-                        }
-
+                        i_noti_menu.classList.remove('d-none');
+                        i_noti_call.classList.remove('d-none');
                     }else{
-
                         if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
                             i_noti_menu.classList.remove('d-none');
                             i_noti_call.classList.remove('d-none');
                         }else{
                             i_noti_call.classList.add('d-none');
                         }
-
                     }
 
                     if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล' && result_meet[0] == 'ไม่มีข้อมูล'){
@@ -2891,7 +2883,7 @@
                     // Call 1v1
                     for (let bbb = 0; bbb < result_call.length; bbb++) {
                         if(result_call[bbb] == text_url_all[6]){
-                                if (result_call.length == 1){
+                            if (result_call.length == 1){
                                 i_noti_call.classList.add('d-none');
                             }
                         }
