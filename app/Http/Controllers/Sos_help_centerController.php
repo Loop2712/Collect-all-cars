@@ -215,7 +215,7 @@ class Sos_help_centerController extends Controller
         }else{
             return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
         }
-        
+
         // if (!empty($requestData['photo_sos_by_officers']) or !empty($requestData['photo_succeed'])) {
         //     return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
         // }else{
@@ -237,10 +237,10 @@ class Sos_help_centerController extends Controller
     }
 
     public function help_center_admin(Request $request)
-    {   
+    {
         $keyword = $request->get('search');
         $perPage = 20;
-        
+
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization;
         $organization = $data_user->organization;
@@ -263,7 +263,7 @@ class Sos_help_centerController extends Controller
                 ->get();
 
         }else{
-             
+
             $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")
                 ->select('created_at', 'lat' , 'lng')
                 ->orderBy('created_at' , 'DESC')
@@ -280,7 +280,7 @@ class Sos_help_centerController extends Controller
                 ->where('province_name' , $sub_organization)
                 ->get();
         }
-        
+
         return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','show_data_sos','polygon_provinces','color_theme'));
 
     }
@@ -324,7 +324,7 @@ class Sos_help_centerController extends Controller
         // $data_sos = Sos_help_center::where('notify', 'LIKE', "%$province_name%")
         //     ->orderBy('created_at' , 'DESC')
         //     ->get();
-        
+
         $data_sos = DB::table('sos_help_centers')
             ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
             ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
@@ -345,7 +345,7 @@ class Sos_help_centerController extends Controller
             $redirectTo = 'officers/switch_standby/' ;
         }
 
-        
+
         if(Auth::check()){
             return redirect($redirectTo);
         }else{
@@ -382,7 +382,7 @@ class Sos_help_centerController extends Controller
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         $requestData['command_by'] = $data_officer_command->id;
-        
+
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
@@ -398,7 +398,7 @@ class Sos_help_centerController extends Controller
         // จบรหัส
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_help_center_last->id],
                 ])
             ->update([
@@ -406,13 +406,13 @@ class Sos_help_centerController extends Controller
                 ]);
 
         DB::table('data_1669_officer_commands')
-            ->where([ 
+            ->where([
                     ['id', $data_officer_command->id],
                 ])
             ->update([
                     'status' => 'Helping',
                 ]);
-        
+
         return $sos_help_center_last->id ;
     }
 
@@ -466,14 +466,14 @@ class Sos_help_centerController extends Controller
         }else{
             $requestData['notify'] = '0 - '.$province_name;
         }
-        
+
         $requestData['create_by'] = "user - " . $requestData['user_id'];
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
 
-        
-        
+
+
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
@@ -510,7 +510,7 @@ class Sos_help_centerController extends Controller
         $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
 
          DB::table('sos_1669_province_codes')
-            ->where([ 
+            ->where([
                     ['district_code', $province_code],
                 ])
             ->update([
@@ -522,7 +522,7 @@ class Sos_help_centerController extends Controller
         // จบรหัส
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_help_center_last->id],
                 ])
             ->update([
@@ -546,7 +546,7 @@ class Sos_help_centerController extends Controller
 
         if(!empty($data_old_count_sos)){
             DB::table('sos_1669_province_codes')
-                ->where([ 
+                ->where([
                         ['id', $data_old_count_sos->id],
                     ])
                 ->update([
@@ -594,7 +594,7 @@ class Sos_help_centerController extends Controller
         }else{
             $sos_ask_mores = "ไม่มีข้อมูล" ;
         }
-        
+
         if ($check_data) {
 
             $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$check_data->id)->first();
@@ -652,7 +652,7 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_id],
                 ])
             ->update([
@@ -678,7 +678,7 @@ class Sos_help_centerController extends Controller
         }
 
         DB::table('data_1669_officer_commands')
-            ->where([ 
+            ->where([
                     ['user_id', $officer_command_id],
                     ['area', $sub_organization],
                 ])
@@ -717,14 +717,14 @@ class Sos_help_centerController extends Controller
             $delete_count_sos = (int)$old_count_sos - 1 ;
 
             DB::table('sos_1669_province_codes')
-                ->where([ 
+                ->where([
                         ['id', $old_province_codes->id],
                     ])
                 ->update([
                         'count_sos' => $delete_count_sos,
                     ]);
         }
-        
+
         //// สร้าง operating_code และ count_sos ใหม่ // //
 
         $changwat_exp = explode("จังหวัด",$requestData['changwat']);
@@ -777,7 +777,7 @@ class Sos_help_centerController extends Controller
 
         $sum_count_sos_area = $count_sos_area + 1 ;
         // $sum_for_gen_code = $count_for_gen_code + 1 ;
-        
+
         // เช็คว่าถ้ายังอยู่ที่อำเภอเดิม เลขรันไม่ต้องเปลี่ยน
         if ($code_2 == $province_code) {
             $id_code = $code_3 ;
@@ -788,7 +788,7 @@ class Sos_help_centerController extends Controller
         }
 
         DB::table('sos_1669_province_codes')
-            ->where([ 
+            ->where([
                     ['district_code', $province_code],
                 ])
             ->update([
@@ -799,7 +799,7 @@ class Sos_help_centerController extends Controller
         // จบรหัส
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $data_sos->id],
                 ])
             ->update([
@@ -817,7 +817,7 @@ class Sos_help_centerController extends Controller
         $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
         DB::table('sos_1669_province_codes')
-            ->where([ 
+            ->where([
                     ['id', $data_old_count_sos->id],
                 ])
             ->update([
@@ -836,7 +836,7 @@ class Sos_help_centerController extends Controller
             $data_officer_command = DB::table('data_1669_officer_commands')->where('id' , $data_sos->command_by)->first();
             $data_sos['name_officer_command'] = $data_officer_command->name_officer_command;
         }
-        
+
         return $data_sos ;
     }
 
@@ -1007,7 +1007,7 @@ class Sos_help_centerController extends Controller
                             $data_change['page_6'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
                             $data_change['page_6'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
-                        
+
                         }else{
                             $data_change['page_6'][$key] = $value ;
                         }
@@ -1032,7 +1032,7 @@ class Sos_help_centerController extends Controller
                             $data_change['page_7'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
                             $data_change['page_7'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
-                        
+
                         }else{
                             $data_change['page_7'][$key] = $value ;
                         }
@@ -1057,7 +1057,7 @@ class Sos_help_centerController extends Controller
                             $data_change['page_8'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
                             $data_change['page_8'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
-                        
+
                         }else{
                             $data_change['page_8'][$key] = $value ;
                         }
@@ -1082,7 +1082,7 @@ class Sos_help_centerController extends Controller
                             $data_change['page_9'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
                             $data_change['page_9'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
-                        
+
                         }else{
                             $data_change['page_9'][$key] = $value ;
                         }
@@ -1094,7 +1094,7 @@ class Sos_help_centerController extends Controller
 
 
         }
-        
+
 
         if($data_change['check_data_change'] == "Yes"){
 
@@ -1133,7 +1133,7 @@ class Sos_help_centerController extends Controller
 
             $data_change['check_data_change'] == "No" ;
             $data_change['date'] = "OK";
-            
+
             return $data_change ;
         }
     }
@@ -1141,13 +1141,13 @@ class Sos_help_centerController extends Controller
     function save_data_change_form_yellow(Request $request)
     {
         $requestData = $request->all();
-        
+
         foreach ($requestData as $key => $value) {
             if ($value === 'null') {
                 $requestData[$key] = null;
             }
         }
-        
+
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
 
         $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
@@ -1216,7 +1216,7 @@ class Sos_help_centerController extends Controller
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
                 ->leftJoin('users', 'sos_help_centers.user_id', '=', 'users.id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','users.photo as photo_user');
-        
+
         if ($id) {
             $data->where('sos_help_centers.operating_code','LIKE', "%$id%");
             $keyword = null;
@@ -1224,7 +1224,7 @@ class Sos_help_centerController extends Controller
         if ($name) {
             $data->where('sos_help_centers.name_user','LIKE', "%$name%");
             $keyword = null;
-        }  
+        }
         if ($helper) {
             $data->where('sos_help_centers.name_helper','LIKE', "%$helper%");
             $keyword = null;
@@ -1235,7 +1235,7 @@ class Sos_help_centerController extends Controller
             $data->whereDate('sos_help_centers.created_at', $date);
             $keyword = null;
         }
-        
+
         if ($time1 || $time2) {
             $data->whereTime('sos_help_centers.created_at', '>=', $time_search_1)->whereTime('sos_help_centers.created_at', '<=', $time_search_2);
             $keyword = null;
@@ -1251,7 +1251,7 @@ class Sos_help_centerController extends Controller
             $rangeOne = $data_rangeOne_officer_rating ;
             $rangeTwo = $data_rangeTwo_officer_rating ;
         }
-          
+
         if ( $data_rangeOne_officer_rating || $data_rangeTwo_officer_rating){
             $data->whereBetween('sos_help_centers.score_total', [$rangeOne, $rangeTwo] );
             $keyword = null;
@@ -1259,35 +1259,35 @@ class Sos_help_centerController extends Controller
         if ($data_search_be_notified) {
             $data->where('sos_1669_form_yellows.be_notified', $data_search_be_notified);
             $keyword = null;
-        } 
+        }
         if ($data_search_status) {
             $data->where('sos_help_centers.status', $data_search_status);
             $keyword = null;
-        } 
+        }
         if ($data_search_phone_sos) {
             $data->where('sos_help_centers.phone_user','LIKE', "%$data_search_phone_sos%");
             $keyword = null;
-        } 
+        }
         if ($search_P) {
             $data->where('sos_help_centers.address','LIKE', "%$search_P%");
             $keyword = null;
-        } 
+        }
         if ($search_A) {
             $data->where('sos_help_centers.address','LIKE', "%$search_A%");
             $keyword = null;
-        } 
+        }
         if ($search_T) {
             $data->where('sos_help_centers.address','LIKE', "%$search_T%");
             $keyword = null;
-        } 
+        }
         if ($data_search_idc) {
             $data->where('sos_1669_form_yellows.idc','LIKE', "%$data_search_idc%");
             $keyword = null;
-        } 
+        }
         if ($data_search_rc) {
             $data->where('sos_1669_form_yellows.rc','LIKE', "%$data_search_rc%");
             $keyword = null;
-        } 
+        }
 
         // ค้นหาเฉาะรหัส
         $data_not_empty_keyword = DB::table('sos_help_centers');
@@ -1317,7 +1317,7 @@ class Sos_help_centerController extends Controller
             // ค้นหาขั้นสูง
             $data_sos = $data->latest()->get();
         }
-        
+
         return $data_sos ;
     }
 
@@ -1402,7 +1402,7 @@ class Sos_help_centerController extends Controller
                 ->get();
             }
         }
-        
+
         return $locations ;
     }
 
@@ -1420,7 +1420,7 @@ class Sos_help_centerController extends Controller
         $time_now = date("H:i:s");
         $text_at = '@' ;
 
-        $template_path = storage_path('../public/json/flex-sos-1669/send_sos_center.json');   
+        $template_path = storage_path('../public/json/flex-sos-1669/send_sos_center.json');
         $string_json = file_get_contents($template_path);
 
         // แปลภาษา
@@ -1452,7 +1452,7 @@ class Sos_help_centerController extends Controller
         }
 
         $time_ex = explode(":",$data_form_yellow->time_create_sos);
-        
+
         // วัน เวลา ระยะห่าง
         $string_json = str_replace("distance",$distance ." กม.",$string_json);
         $string_json = str_replace("_date_",$date_now,$string_json);
@@ -1484,7 +1484,7 @@ class Sos_help_centerController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -1498,7 +1498,7 @@ class Sos_help_centerController extends Controller
         MyLog::create($data);
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $data_sos->id],
                 ])
             ->update([
@@ -1508,7 +1508,7 @@ class Sos_help_centerController extends Controller
             ]);
 
         DB::table('sos_1669_form_yellows')
-            ->where([ 
+            ->where([
                     ['sos_help_center_id', $data_sos->id],
                 ])
             ->update([
@@ -1529,7 +1529,7 @@ class Sos_help_centerController extends Controller
         return $data_sos ;
     }
 
-    
+
 
     function reply_select($sos_id , Request $request)
     {
@@ -1551,7 +1551,7 @@ class Sos_help_centerController extends Controller
         $data_user = Auth::user();
 
         return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
-        
+
     }
 
     public function show_case_sos($id)
@@ -1564,7 +1564,7 @@ class Sos_help_centerController extends Controller
         }else{
             return redirect('404');
         }
-        
+
     }
 
     public function show_user_sos($id)
@@ -1576,7 +1576,7 @@ class Sos_help_centerController extends Controller
     }
 
     public function data_officer_go_to_help($sosid)
-    {   
+    {
         $data_sos = Sos_help_center::findOrFail($sosid);
         if ($data_sos->joint_case) {
             $data_sos_new = Sos_help_center::join('users', 'sos_help_centers.helper_id', '=', 'users.id')
@@ -1622,7 +1622,7 @@ class Sos_help_centerController extends Controller
     function check_status_officer($sos_id)
     {
         $data_sos = Sos_help_center::findOrFail($sos_id);
-        
+
         return $data_sos ;
     }
 
@@ -1686,7 +1686,7 @@ class Sos_help_centerController extends Controller
         $operating_unit_id =  $data_sos->operating_unit_id ;
 
         DB::table('data_1669_operating_officers')
-            ->where([ 
+            ->where([
                     ['user_id', $officer_id],
                     ['operating_unit_id', $operating_unit_id],
                 ])
@@ -1769,7 +1769,7 @@ class Sos_help_centerController extends Controller
             }
 
         }
-        
+
         return "Updated >> ". $status . " successfully" ;
 
     }
@@ -1804,7 +1804,7 @@ class Sos_help_centerController extends Controller
         if ($level != 'rc_black_text') {
 
             DB::table('sos_1669_form_yellows')
-                ->where([ 
+                ->where([
                         ['sos_help_center_id', $sos_id],
                     ])
                 ->update([
@@ -1813,14 +1813,14 @@ class Sos_help_centerController extends Controller
                     ]);
         }else{
             DB::table('sos_1669_form_yellows')
-                ->where([ 
+                ->where([
                         ['sos_help_center_id', $sos_id],
                     ])
                 ->update([
                         'rc_black_text' => $rc_black_text,
                     ]);
         }
-        
+
 
         return "Updated successfully" ;
     }
@@ -1829,7 +1829,7 @@ class Sos_help_centerController extends Controller
 
 
         DB::table('data_1669_operating_officers')
-            ->where([ 
+            ->where([
                     ['user_id', $officer_id],
                 ])
             ->update([
@@ -1841,11 +1841,11 @@ class Sos_help_centerController extends Controller
         return "Updated successfully" ;
 
     }
-    
+
     function update_mileage_officer($sos_id , $mileage , $location){
 
         DB::table('sos_1669_form_yellows')
-            ->where([ 
+            ->where([
                     ['sos_help_center_id', $sos_id],
                 ])
             ->update([
@@ -1869,7 +1869,7 @@ class Sos_help_centerController extends Controller
             $requestData['photo_officer'] = $path ;
 
             DB::table('users')
-            ->where([ 
+            ->where([
                     ['id', $requestData['id']],
                 ])
             ->update([
@@ -1878,7 +1878,7 @@ class Sos_help_centerController extends Controller
         }
 
         DB::table('data_1669_operating_officers')
-        ->where([ 
+        ->where([
                 ['user_id', $requestData['id']],
             ])
         ->update([
@@ -1886,10 +1886,10 @@ class Sos_help_centerController extends Controller
                 'level' => $requestData['level_officer'],
                 'vehicle_type' => $requestData['vehicle_type'],
             ]);
-        
+
         return $requestData;
     }
-    
+
     public function sos_help_officer_yellow($id)
     {
         $sos_help_center = Sos_help_center::where('id' ,  $id)->first();
@@ -1901,7 +1901,7 @@ class Sos_help_centerController extends Controller
         // }else{
         //     return redirect('404');
         // }
-        
+
     }
 
     function add_new_officers($operating_unit_id){
@@ -1965,7 +1965,7 @@ class Sos_help_centerController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        
+
     $area_user = User::where("organization", $organization)
             ->groupBy('sub_organization')
             ->get();
@@ -1987,7 +1987,7 @@ class Sos_help_centerController extends Controller
                 $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, number ASC")
                     ->latest()->paginate($perPage);
             }
-            
+
 
         }else{
 
@@ -2043,7 +2043,7 @@ class Sos_help_centerController extends Controller
         ]);
 
         return 'OK' ;
-        
+
     }
 
     function rate_case($sos_id){
@@ -2059,12 +2059,12 @@ class Sos_help_centerController extends Controller
     }
 
     function give_rate_case($sos_id){
-        
+
         $data_user = Auth::user();
         $data_sos_help_center = Sos_help_center::where('id' , $sos_id)->first();
 
         if (!empty($data_sos_help_center->score_impression)) {
-            $score = "Yes" ; 
+            $score = "Yes" ;
         }else{
             $score = "No" ;
         }
@@ -2098,14 +2098,14 @@ class Sos_help_centerController extends Controller
         $data_user_sos = User::where('id' ,$data_sos->user_id)->first();
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
 
-        $template_path = storage_path('../public/json/flex-sos-1669/flex_help_complete.json');   
+        $template_path = storage_path('../public/json/flex-sos-1669/flex_help_complete.json');
         $string_json = file_get_contents($template_path);
 
         $date_now = date("Y-m-d");
         $time_now = date("H:i:s");
 
         $time_ex = explode(":",$data_form_yellow->time_create_sos);
-        
+
         // วัน เวลา
         $string_json = str_replace("xx มกราคม xxxx",$date_now,$string_json);
         $string_json = str_replace("xx:xx",$time_ex[0].":".$time_ex[1],$string_json);
@@ -2121,10 +2121,10 @@ class Sos_help_centerController extends Controller
 
         $img_partner = $Random_logo->Random_logo_partner(5) ;
 
-        $string_json = str_replace("IMGPARTNER_1",$img_partner[0],$string_json);   
-        $string_json = str_replace("IMGPARTNER_2",$img_partner[1],$string_json);   
-        $string_json = str_replace("IMGPARTNER_3",$img_partner[2],$string_json);   
-        $string_json = str_replace("IMGPARTNER_4",$img_partner[3],$string_json);   
+        $string_json = str_replace("IMGPARTNER_1",$img_partner[0],$string_json);
+        $string_json = str_replace("IMGPARTNER_2",$img_partner[1],$string_json);
+        $string_json = str_replace("IMGPARTNER_3",$img_partner[2],$string_json);
+        $string_json = str_replace("IMGPARTNER_4",$img_partner[3],$string_json);
         $string_json = str_replace("IMGPARTNER_5",$img_partner[4],$string_json);
 
         $messages = [ json_decode($string_json, true) ];
@@ -2143,7 +2143,7 @@ class Sos_help_centerController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -2193,14 +2193,14 @@ class Sos_help_centerController extends Controller
         $requestData['notify'] = $data_sos_help_center->command_by .' - '. $province_name;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
-        
+
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
 
         // Update ตัวเก่าว่าส่งต่อปฏิบัติการไปที่ใด
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $data_sos_help_center->id],
                 ])
             ->update([
@@ -2248,7 +2248,7 @@ class Sos_help_centerController extends Controller
         $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
 
          DB::table('sos_1669_province_codes')
-            ->where([ 
+            ->where([
                     ['district_code', $province_code],
                 ])
             ->update([
@@ -2260,7 +2260,7 @@ class Sos_help_centerController extends Controller
         // จบรหัส
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_help_center_last->id],
                 ])
             ->update([
@@ -2277,7 +2277,7 @@ class Sos_help_centerController extends Controller
         // $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
         DB::table('sos_1669_province_codes')
-            ->where([ 
+            ->where([
                     ['id', $data_old_count_sos->id],
                 ])
             ->update([
@@ -2316,9 +2316,9 @@ class Sos_help_centerController extends Controller
     function Forward_notify($officer_command_id , $sos_id){
 
         $data_officer_command = Data_1669_officer_command::where('id',$officer_command_id)->first();
-        
+
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_id],
                 ])
             ->update([
@@ -2342,7 +2342,7 @@ class Sos_help_centerController extends Controller
             ->first();
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_id],
                 ])
             ->update([
@@ -2350,7 +2350,7 @@ class Sos_help_centerController extends Controller
                 ]);
 
         DB::table('data_1669_officer_commands')
-            ->where([ 
+            ->where([
                     ['user_id', $admin_id],
                     ['area', $area],
                 ])
@@ -2382,13 +2382,13 @@ class Sos_help_centerController extends Controller
         if ($data_user->sub_organization == "ศูนย์ใหญ่"){
 
             // $data = User::where('organization', $name_partner);
-            
+
             $data = DB::table('data_1669_officer_commands')
                 ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
                 ->leftJoin('users as creator', 'data_1669_officer_commands.creator', '=', 'creator.id')
                 ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name'  ,'creator.photo as creator_photo')
                 ->where('users.organization', $name_partner);
-            
+
 
             if (!empty($keyword)) {
                 $data->where(function ($query) use ($keyword) {
@@ -2397,7 +2397,7 @@ class Sos_help_centerController extends Controller
                           ->orWhere('data_1669_officer_commands.status', 'like', '%'.$keyword.'%')
                           ->orWhere('data_1669_officer_commands.area', 'like', '%'.$keyword.'%');
                 });
-                
+
             }
 
             if ( !empty($data_search_area) ){
@@ -2409,13 +2409,13 @@ class Sos_help_centerController extends Controller
                     $query->where('data_1669_officer_commands.officer_role', $data_search_status);
                 });
             }
-            
-           
+
+
             $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.number ASC")->latest('users.created_at')->get();
 
-        
+
         } else {
-        
+
             // $data = Data_1669_officer_command::where('area', '=', $data_search_area);
 
             $data = DB::table('data_1669_officer_commands')
@@ -2424,7 +2424,7 @@ class Sos_help_centerController extends Controller
                 ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name'  ,'creator.photo as creator_photo')
                 ->where('data_1669_officer_commands.area', $data_search_area);
 
-        
+
             if (!empty($keyword)) {
                 $data->where(function ($query) use ($keyword) {
                     $query->where('data_1669_officer_commands.officer_role', 'like', '%'.$keyword.'%')
@@ -2438,11 +2438,11 @@ class Sos_help_centerController extends Controller
                     $query->where('data_1669_officer_commands.officer_role', $data_search_status);
                 });
             }
-        
+
             $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.number ASC")->latest()->get();
         }
-        
-        return $search_all_user; 
+
+        return $search_all_user;
 
     }
 
@@ -2459,7 +2459,7 @@ class Sos_help_centerController extends Controller
 
         $data_sos_main = Sos_help_center::where('id', $sos_1669_id)->first();
         $data_sos_main_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_1669_id)->first();
-        
+
         $new_sos_by_joint = [] ;
         $new_sos_by_joint['lat'] = $data_sos_main->lat ;
         $new_sos_by_joint['lng'] = $data_sos_main->lng ;
@@ -2484,7 +2484,7 @@ class Sos_help_centerController extends Controller
         // echo "<pre>";
         // print_r($list_arr);
         // echo "<pre>";
-        
+
         // echo "<br>";
 
         // echo "<pre>";
@@ -2531,7 +2531,7 @@ class Sos_help_centerController extends Controller
             $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
 
             DB::table('sos_1669_province_codes')
-                ->where([ 
+                ->where([
                         ['district_code', $province_code],
                     ])
                 ->update([
@@ -2573,10 +2573,10 @@ class Sos_help_centerController extends Controller
 
         // ตรวจสอบ ถ้ามีเคส join อยู่แล้วให้อัพเดทเคสเดิมทั้งหมด
         if(!empty($data_sos_main->joint_case)){
-            for ($i_case_old=0; $i_case_old < count($joint_case_old) ; $i_case_old++) { 
+            for ($i_case_old=0; $i_case_old < count($joint_case_old) ; $i_case_old++) {
                 // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
                 DB::table('sos_help_centers')
-                    ->where([ 
+                    ->where([
                             [ 'id', $joint_case_old[$i_case_old] ],
                         ])
                     ->update([
@@ -2586,7 +2586,7 @@ class Sos_help_centerController extends Controller
         }else{
             // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
             DB::table('sos_help_centers')
-                ->where([ 
+                ->where([
                         [ 'id', $sos_1669_id ],
                     ])
                 ->update([
@@ -2598,7 +2598,7 @@ class Sos_help_centerController extends Controller
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
 
             DB::table('sos_help_centers')
-                ->where([ 
+                ->where([
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
@@ -2617,12 +2617,12 @@ class Sos_help_centerController extends Controller
                 // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยปฏิบัติการเข้า sos_help_center
                 $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
             }
-            
+
         }
 
         // update success sos_1669_officer_ask_mores เป็น success
         DB::table('sos_1669_officer_ask_mores')
-            ->where([ 
+            ->where([
                     [ 'sos_id', $sos_1669_id ],
                 ])
             ->update([
@@ -2645,7 +2645,7 @@ class Sos_help_centerController extends Controller
 
         $data_sos_main = Sos_help_center::where('id', $sos_1669_id)->first();
         $data_sos_main_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_1669_id)->first();
-        
+
         $new_sos_by_joint = [] ;
         $new_sos_by_joint['lat'] = $data_sos_main->lat ;
         $new_sos_by_joint['lng'] = $data_sos_main->lng ;
@@ -2677,7 +2677,7 @@ class Sos_help_centerController extends Controller
             $count_new_create_sos = count($list_arr) - 1 ;
             array_push($id_of_new_sos , (int)$sos_1669_id);
         }
-        
+
         for ($i = 0; $i < (int)$count_new_create_sos; $i++){
 
             // สร้างรหัส
@@ -2706,7 +2706,7 @@ class Sos_help_centerController extends Controller
             $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
 
             DB::table('sos_1669_province_codes')
-                ->where([ 
+                ->where([
                         ['district_code', $province_code],
                     ])
                 ->update([
@@ -2721,7 +2721,7 @@ class Sos_help_centerController extends Controller
 
             $sos_help_center_last = "" ;
             $data_now_create = "";
-            
+
             $data_now_create = Sos_help_center::create($new_sos_by_joint);
             $newly_created_id = $data_now_create->id;
 
@@ -2743,7 +2743,7 @@ class Sos_help_centerController extends Controller
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
 
             DB::table('sos_help_centers')
-                ->where([ 
+                ->where([
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
@@ -2759,7 +2759,7 @@ class Sos_help_centerController extends Controller
 
             // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยปฏิบัติการเข้า sos_help_center
             $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
-            
+
         }
 
         return "OK";
@@ -2801,7 +2801,7 @@ class Sos_help_centerController extends Controller
                 $arr_by_case['time_command'] = $sos_by_case->time_command;
                 $arr_by_case['joint_case'] = $sos_by_case->joint_case;
                 $arr_by_case['helper_id'] = $sos_by_case->helper_id;
-                
+
                 if ($arr_by_case['status'] == "ปฏิเสธ"){
 
                     $arr_refuse = $sos_by_case->refuse;
@@ -2809,7 +2809,7 @@ class Sos_help_centerController extends Controller
                     $refuse_last = $refuse_ep[count($refuse_ep)-1];
 
                     $data_officer = Data_1669_operating_officer::where('user_id' , $refuse_last)->first();
-                    
+
                 }else if($arr_by_case['status'] == "รอการยืนยัน"){
 
                     $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->wait)->first();
@@ -2828,7 +2828,7 @@ class Sos_help_centerController extends Controller
                 $arr_by_case['name_wait_level'] = $data_officer->level;
                 $arr_by_case['name_wait_vehicle_type'] = $data_officer->vehicle_type;
                 $arr_by_case['name_wait_operating'] = $data_operating->name;
-                
+
 
                 $Data_arr[$xi] = $arr_by_case ;
 
@@ -2879,11 +2879,164 @@ class Sos_help_centerController extends Controller
         return $check_officer_command ;
     }
 
+    // function real_time_check_refuse_and_call(Request $request){
+
+    //     $data = [];
+    //     $data['refuse'] = '' ;
+    //     $data['call'] = '' ;
+    //     $data['meet'] = '' ;
+
+    //     $requestData = $request->all();
+
+    //     $data_user = User::where('id',$requestData['user_id'])->first();
+    //     $area = $data_user->sub_organization ;
+
+    //     $data_sos = Sos_help_center::where('status' , 'ปฏิเสธ')
+    //         ->where('notify', 'LIKE', "%$area%")
+    //         ->get();
+
+    //     if( !empty($data_sos) ){
+    //         foreach ($data_sos as $item_sos){
+
+    //             if ( empty($data['refuse']) ){
+    //                 $data['refuse'] = (string)$item_sos->id ;
+    //             }else{
+    //                 $data['refuse'] = $data['refuse'] . ',' . (string)$item_sos->id ;
+    //             }
+
+    //         }
+    //     }else{
+    //         $data['refuse'] = 'ไม่มีข้อมูล';
+    //     }
+
+    //     $data_agora_chat = DB::table('sos_help_centers')
+    //         ->join('agora_chats', 'sos_help_centers.id', '=', 'agora_chats.sos_id')
+    //         ->select('sos_help_centers.*' , 'agora_chats.*')
+    //         ->where("agora_chats.member_in_room" , '!=', null)
+    //         ->where("sos_help_centers.notify" , 'LIKE', "%$area%")
+    //         ->get();
+
+    //     if( !empty($data_agora_chat) ){
+
+    //         foreach ($data_agora_chat as $item_agora){
+
+    //             if($item_agora->room_for == "user_sos_1669"){ // 1 ต่อ 1
+
+    //                 $data_member_in_room = $item_agora->member_in_room;
+
+    //                 $data_array = json_decode($data_member_in_room, true);
+    //                 $check_user = $data_array['user'];
+
+    //                 if( !empty($check_user) ){
+    //                     if ( empty($data['call']) ){
+    //                         $data['call'] = (string)$item_agora->sos_id ;
+    //                     }else{
+    //                         $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+    //                     }
+    //                 }
+
+    //             }else if($item_agora->room_for == "meet_operating_1669"){ // meet 4 คน
+
+    //                 $status_member = [];
+
+    //                 if (!empty($item_agora->member_in_room)) {
+
+    //                     $member_array = json_decode($item_agora->member_in_room, true);
+
+    //                     foreach ($member_array as $user_id) {
+    //                         $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+
+    //                         if(!empty($data_command)){
+    //                             $status_member[] = "command";
+    //                         }else{
+    //                             $status_member[] = "not_command";
+    //                         }
+    //                     }
+
+    //                 }else {
+    //                     $status_member = null;
+    //                 }
+
+    //                 if (!empty($status_member)) {
+    //                     $has_officer = in_array("command", $status_member);
+    //                     $has_not_officer = in_array("not_command", $status_member);
+
+    //                     if ($has_officer && $has_not_officer) {
+    //                         $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
+    //                     } elseif ($has_officer) {
+    //                         $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
+    //                     } elseif ($has_not_officer) {
+    //                         $result = "do";
+    //                         if ( empty($data['meet']) ){
+    //                         $data['meet'] = (string)$item_agora->sos_id ;
+    //                             }else{
+    //                                 $data['meet'] = $data['meet'] . ',' . (string)$item_agora->sos_id ;
+    //                             }
+    //                     } else {
+    //                         $result = "else";
+    //                     }
+    //                 }else{
+    //                     $result = "ไม่มีใครอยู่ในห้องสนทนา";
+    //                 }
+
+    //             }
+
+    //         }
+
+    //     }else{
+    //         $data['call'] = 'ไม่มีข้อมูล';
+    //         $data['meet'] = 'ไม่มีข้อมูล';
+    //     }
+
+    //     // $data_agora_chat = Agora_chat::where('member_in_room' , '!=', null)->get();
+
+    //     // if( !empty($data_agora_chat) ){
+
+    //     //     foreach ($data_agora_chat as $item_agora){
+
+    //     //         // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
+    //     //         $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
+
+    //     //         if (str_contains($data_for_loop->notify, $area)) {
+    //     //             $data_member_in_room = $item_agora->member_in_room;
+
+    //     //             $data_array = json_decode($data_member_in_room, true);
+    //     //             $check_user = $data_array['user'];
+
+    //     //             if( !empty($check_user) ){
+    //     //                 if ( empty($data['call']) ){
+    //     //                     $data['call'] = (string)$item_agora->sos_id ;
+    //     //                 }else{
+    //     //                     $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+    //     //                 }
+    //     //             }
+    //     //         }
+    //     //     }
+
+    //     // }else{
+    //     //     $data['call'] = 'ไม่มีข้อมูล';
+    //     // }
+
+    //     if ( empty($data['call']) ){
+    //         $data['call'] = 'ไม่มีข้อมูล';
+    //     }
+
+    //     if ( empty($data['meet']) ){
+    //         $data['meet'] = 'ไม่มีข้อมูล';
+    //     }
+
+    //     return $data ;
+
+    // }
+
     function real_time_check_refuse_and_call(Request $request){
 
         $data = [];
+        // $data['room_id'] = '' ;
         $data['refuse'] = '' ;
         $data['call'] = '' ;
+        $data['call_sos_id'] = '';
+        $data['call_sos_id_4'] = '';
         $data['meet'] = '' ;
 
         $requestData = $request->all();
@@ -2897,13 +3050,11 @@ class Sos_help_centerController extends Controller
 
         if( !empty($data_sos) ){
             foreach ($data_sos as $item_sos){
-
                 if ( empty($data['refuse']) ){
                     $data['refuse'] = (string)$item_sos->id ;
                 }else{
                     $data['refuse'] = $data['refuse'] . ',' . (string)$item_sos->id ;
                 }
-
             }
         }else{
             $data['refuse'] = 'ไม่มีข้อมูล';
@@ -2919,20 +3070,35 @@ class Sos_help_centerController extends Controller
         if( !empty($data_agora_chat) ){
 
             foreach ($data_agora_chat as $item_agora){
+                // $data['room_id'] = $item_agora->id;
 
                 if($item_agora->room_for == "user_sos_1669"){ // 1 ต่อ 1
 
                     $data_member_in_room = $item_agora->member_in_room;
 
-                    $data_array = json_decode($data_member_in_room, true);
-                    $check_user = $data_array['user'];
+                    if( !empty($data_member_in_room) ){
 
-                    if( !empty($check_user) ){
-                        if ( empty($data['call']) ){
-                            $data['call'] = (string)$item_agora->sos_id ;
+                        $data_array = json_decode($data_member_in_room, true);
+                        $check_user = $data_array;
+                        $data_command = Data_1669_officer_command::where('user_id',$check_user)->first(); //หาว่าใช่ศูนย์สั่งการหรือไม่
+
+                        if(count($check_user) == 1) // มีคนในห้อง 1 คน
+                        {
+                            if( !empty($data_command) ){ // มีศูนย์สั่งการ == ไม่แจ้งเตือน
+                                $call_result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว"; // 1 คนเป็นศสก -->ไม่แจ้งเตือน
+                            }else{
+                                $call_result = "แจ้งเตือน"; // 1 คนเป็นผู้ขอความช่วยเหลือ --> แจ้งเตือน
+                                if ( empty($data['call']) ){
+                                    $data['call'] = (string)$item_agora->sos_id ;
+                                }else{
+                                    $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+                                }
+                            }
                         }else{
-                            $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+                            $call_result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับผู้ขอความช่วยเหลือ"; // 2 คน --> ไม่แจ้งเตือน
                         }
+                    }else {
+                        $call_result = "ไม่มีข้อมูล"; // ว่าง --> ไม่แจ้งเตือน
                     }
 
                 }else if($item_agora->room_for == "meet_operating_1669"){ // meet 4 คน
@@ -2940,20 +3106,19 @@ class Sos_help_centerController extends Controller
                     $status_member = [];
 
                     if (!empty($item_agora->member_in_room)) {
-                        
                         $member_array = json_decode($item_agora->member_in_room, true);
 
-                        foreach ($member_array as $user_id) {
+                        foreach ($member_array as $user_id) { // นำสมาชิกในห้องมาใส่ใน array ว่าเป็น command or not_command
                             $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+                            // $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
 
                             if(!empty($data_command)){
                                 $status_member[] = "command";
                             }else{
                                 $status_member[] = "not_command";
                             }
-                        }
-
-                    }else {
+                        }  // ตัวอย่าง array ที่ได้ถ้ามีคนในห้อง 4 คน เป็น command 1 คน ที่เหลือไม่ใช่ ==> [command , not_command , not_command , not_command]
+                    } else {
                         $status_member = null;
                     }
 
@@ -2963,20 +3128,24 @@ class Sos_help_centerController extends Controller
 
                         if ($has_officer && $has_not_officer) {
                             $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
+                            // $data['check_call'.$item_agora->id] = "yes";
                         } elseif ($has_officer) {
                             $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
+                            // $data['check_call'.$item_agora->id] = "no";
                         } elseif ($has_not_officer) {
                             $result = "do";
                             if ( empty($data['meet']) ){
-                            $data['meet'] = (string)$item_agora->sos_id ;
-                                }else{
-                                    $data['meet'] = $data['meet'] . ',' . (string)$item_agora->sos_id ;
-                                }
+                                $data['meet'] = (string)$item_agora->sos_id ;
+                            }else{
+                                $data['meet'] = $data['meet'] . ',' . (string)$item_agora->sos_id ;
+                            }
                         } else {
-                            $result = "else";
+                            $result = "ไม่มีข้อมูล else";
+                            // $data['check_call'.$item_agora->id] = "no";
                         }
                     }else{
-                        $result = "ไม่มีใครอยู่ในห้องสนทนา";
+                        $result = "ไม่มีข้อมูล";
+                        // $data['check_call'.$item_agora->id] = "no";
                     }
 
                 }
@@ -2997,7 +3166,7 @@ class Sos_help_centerController extends Controller
         //         // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
         //         $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
 
-        //         if (str_contains($data_for_loop->notify, $area)) { 
+        //         if (str_contains($data_for_loop->notify, $area)) {
         //             $data_member_in_room = $item_agora->member_in_room;
 
         //             $data_array = json_decode($data_member_in_room, true);
@@ -3028,6 +3197,7 @@ class Sos_help_centerController extends Controller
         return $data ;
 
     }
+
     function check_data_form_yellow_show_case(Request $request)
     {
         $requestData = $request->all();
@@ -3056,18 +3226,18 @@ class Sos_help_centerController extends Controller
             $sub_treatment = implode(',', array_unique($requestData['sub_treatment']));
             $requestData['sub_treatment'] = $sub_treatment;
         }
-        
+
         if ( !empty($requestData['submission_criteria'])) {
             $submission_criteria = implode(',', array_unique($requestData['submission_criteria']));
         $requestData['submission_criteria'] = $submission_criteria;
         }
-       
-       
+
+
         if ( !empty($requestData['communication_hospital'])) {
             $communication_hospital = implode(',', array_unique($requestData['communication_hospital']));
             $requestData['communication_hospital'] = $communication_hospital;
         }
-        
+
         $data_form_yellow->update($requestData);
 
         return $sos_id;
@@ -3094,7 +3264,7 @@ class Sos_help_centerController extends Controller
             }
 
             $data_sos_help_center = Sos_help_center::where('id', $sos_id)->first();
-            
+
             $data_officer_command = Data_1669_officer_command::where('id',$data_sos_help_center->command_by)->first();
 
             if ($data_officer_command->status != "Standby") {
@@ -3102,7 +3272,7 @@ class Sos_help_centerController extends Controller
                 $data_officer_command_not_standby = Data_1669_officer_command::where('area',$data_officer_command->area)
                 ->where('status' , 'Standby')
                 ->orderBy('number' , 'ASC')->first();
-        
+
                 if (empty($data_askMore['noti_to'])) {
                     if(empty($data_officer_command_not_standby)){
                         $data_askMore['noti_to'] =  $data_officer_command->user_id;
@@ -3111,7 +3281,7 @@ class Sos_help_centerController extends Controller
                     }
                 }
 
-                
+
 
             }else {
                 // $test = "Standby";
@@ -3151,7 +3321,7 @@ class Sos_help_centerController extends Controller
     function update_noti_ask_mores($ask_mores_id){
 
         DB::table('sos_1669_officer_ask_mores')
-            ->where([ 
+            ->where([
                     [ 'id', $ask_mores_id ],
                 ])
             ->update([
@@ -3169,32 +3339,32 @@ class Sos_help_centerController extends Controller
         $ask_more_id = $requestData['ask_more_id'];
         $ask_more_level = $requestData['ask_more_level'];
         $ask_more_vehicle_type = $requestData['ask_more_vehicle_type'];
-       
+
 
         $data_sos_ask_more = Sos_1669_officer_ask_more::where('id' , $ask_more_id)->first();
         $data_sos_help_center = Sos_help_center::where('id' , $data_sos_ask_more->sos_id)->first();
         $data_1669_operating_officers = Data_1669_operating_officer::where('user_id' , $data_sos_help_center->helper_id)->first();
- 
+
         $latitude = (float)$data_sos_help_center->lat;
         $longitude = (float)$data_sos_help_center->lng;
-        
+
         $data_officer_ask_more = Data_1669_operating_officer::where('operating_unit_id', $data_1669_operating_officers->operating_unit_id)
         ->join('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
         // ->select('data_1669_operating_units.*', 'data_1669_operating_officers.name as name_opating_uint')
         ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
         ->where('status', 'Standby')
         ->orderBy("distance");
-    
+
         if ($ask_more_level !== "ALL") {
             $data_officer_ask_more = $data_officer_ask_more->where('level', $ask_more_level);
         }
-        
+
         if ($ask_more_vehicle_type !== "all") {
             $data_officer_ask_more = $data_officer_ask_more->where('vehicle_type', $ask_more_vehicle_type);
         }
-        
+
         $data_officer_ask_more = $data_officer_ask_more->get();
-    
+
         return $data_officer_ask_more;
 
     }
@@ -3208,7 +3378,7 @@ class Sos_help_centerController extends Controller
 
         foreach ($data_sos_help_center as $item) {
             DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $item->id],
                 ])
             ->update([
@@ -3220,7 +3390,7 @@ class Sos_help_centerController extends Controller
 
         foreach ($data_sos_help_center as $item) {
             DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $item->id],
                 ])
             ->update([
@@ -3308,7 +3478,7 @@ class Sos_help_centerController extends Controller
 
                 $min_1_to_sec = $zone1_Time_min * 60 ;
                 $all_time[$count_success] = $min_1_to_sec + $zone1_Time_Seconds ;
-            } 
+            }
 
 
         }
@@ -3335,7 +3505,7 @@ class Sos_help_centerController extends Controller
         }
         $text_all_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
         $text_all_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
-          
+
         $show_min_average_per_case = $text_all_time;
 
         // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
@@ -3368,7 +3538,7 @@ class Sos_help_centerController extends Controller
     function update_code_for_officer($id , $input_code){
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $id],
                 ])
             ->update([
@@ -3396,9 +3566,9 @@ class Sos_help_centerController extends Controller
         return $data_arr ;
     }
 
-    
-    
-    
+
+
+
     function case_officer(Request $request){
         $data_user = Auth::user();
         $data_officer = Data_1669_operating_officer::where('user_id' ,$data_user->id)->first();
@@ -3406,51 +3576,51 @@ class Sos_help_centerController extends Controller
         // $data_help_officer = sos_help_center::where('helper_id', $data_officer->id)
         // ->join('data_1669_operating_officers', 'sos_help_center.user_id', '=', 'data_1669_operating_officers.operating_unit_id')
         // ->get();
-    
+
         // $data_help_officer = Sos_help_center::where('helper_id' , $data_officer->id)->with('form_yellow', 'form_pink', 'form_blue', 'form_green')->get();
         $data_help_officer = Sos_help_center::where('helper_id', $data_officer->id) ->get();
-    
+
             // ->leftjoin('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
             // ->leftJoin('users', 'sos_help_centers.user_id', '=', 'users.id')
             // ->select('sos_help_centers.*', 'users.photo as photo_user' , 'sos_1669_form_yellows.*')
             // ->get();
     //  ddd($data_help_officer);
         return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
-        
+
     }
-    
+
     public function officer_edit_form(Request $request,$id)
     {
         $sos_help_center = Sos_help_center::findOrFail($id);
         $requestData = $request->all();
         $form_color_id = $requestData['color_form_id'];
-        
-    
+
+
         $data_user = Auth::user();
-    
+
         $operating_id = $sos_help_center->operating_unit->id;
         $data_test = Data_1669_operating_officer::where('user_id' , $data_user->id)->first();
-    
-    
+
+
         // ddd($test ,$data_test->operating_unit_id);
         // $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' ,$id)->first();
-       
-        
-        
+
+
+
         // dd($form_color_id);
         if ($data_user->id == $sos_help_center->helper_id  || $operating_id == $data_test->operating_unit_id) {
-    
-            
+
+
             if ($sos_help_center->form_color_name == "green") {
                 // $data_color_form = Sos_1669_form_green::where('id' ,$id)->first();
-    
+
                 $data_form = DB::table('sos_1669_form_greens')
                 ->leftJoin('sos_help_centers', 'sos_1669_form_greens.sos_help_center_id', '=', 'sos_help_centers.id')
                 ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_greens.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_greens.*', 'sos_help_centers.created_at as help_center_created_at')
                 ->where('sos_1669_form_greens.id', $form_color_id)
                 ->first();
-                
+
                 $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
                 $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
                 $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
@@ -3459,21 +3629,21 @@ class Sos_help_centerController extends Controller
                 $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
                 $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
                 $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
-    
+
                 return view('sos_help_officer.officer_form_green', compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
             }elseif($sos_help_center->form_color_name == "pink"){
-    
+
                 $data_color_form = Sos_1669_form_pink::where('sos_help_center_id' ,$id)->first();
-    
+
                 $data_form = DB::table('sos_1669_form_pinks')
                 ->leftJoin('sos_help_centers', 'sos_1669_form_pinks.sos_help_center_id', '=', 'sos_help_centers.id')
                 ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_pinks.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_pinks.*', 'sos_help_centers.created_at as help_center_created_at')
                 ->where('sos_1669_form_pinks.id', $form_color_id)
                 ->first();
-    
-    
-    
+
+
+
                 $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
                 $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
                 $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
@@ -3482,18 +3652,18 @@ class Sos_help_centerController extends Controller
                 $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
                 $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
                 $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
-    
+
                 return view('sos_help_officer.officer_form_pink',compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
             }elseif ($sos_help_center->form_color_name == "blue") {
                 $data_color_form = Sos_1669_form_blue::where('sos_help_center_id' ,$id)->first();
-    
+
                 $data_form = DB::table('sos_1669_form_blues')
                 ->leftJoin('sos_help_centers', 'sos_1669_form_blues.sos_help_center_id', '=', 'sos_help_centers.id')
                 ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_blues.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.*', 'sos_1669_form_blues.*', 'sos_help_centers.created_at as help_center_created_at')
                 ->where('sos_1669_form_blues.id', $form_color_id)
                 ->first();
-    
+
                 $time_command = $this->calculateTimeInterval($data_form->time_create_sos,$data_form->time_command);
                 $time_go_to_help = $this->calculateTimeInterval($data_form->time_command, $data_form->time_go_to_help);
                 $time_to_the_scene = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_scene);
@@ -3502,17 +3672,17 @@ class Sos_help_centerController extends Controller
                 $time_to_the_operating_base = $this->calculateTimeInterval($data_form->time_hospital, $data_form->time_to_the_operating_base);
                 $time_officer_help = $this->calculateTimeInterval($data_form->time_go_to_help, $data_form->time_to_the_operating_base);
                 $time_all = $this->calculateTimeInterval($data_form->time_create_sos, $data_form->time_to_the_operating_base);
-    
+
                 return view('sos_help_officer.officer_form_blue',compact('data_form' ,'time_command' ,'time_go_to_help' ,'time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base' ,'time_officer_help','time_all'));
             }
         }else {
             return redirect('404');
         }
-     
+
         // ddd($data_officer->level);
-    
+
     }
-    
+
     // ใน Controller
     // ใน Controller
     public function calculateTimeInterval($startDateTimeStr, $endDateTimeStr)
@@ -3520,13 +3690,13 @@ class Sos_help_centerController extends Controller
         // สร้างวัตถุ Carbon จากสตริง
         $startDateTime = Carbon::parse($startDateTimeStr);
         $endDateTime = Carbon::parse($endDateTimeStr);
-    
+
         // คำนวณระยะห่างระหว่างช่วงเวลา
         $interval = $startDateTime->diff($endDateTime);
-    
+
         // สร้างตัวแปรสำหรับเก็บข้อความผลลัพธ์
         $result = "";
-    
+
         // ตรวจสอบและเพิ่มข้อความเมื่อหน่วยไม่เท่ากับ 0
         if ($interval->d > 0) {
             $result .= $interval->d . " วัน ";
@@ -3540,14 +3710,14 @@ class Sos_help_centerController extends Controller
         if ($interval->s > 0) {
             $result .= $interval->s . " วินาที ";
         }
-    
+
         // ลบช่องว่างต่อท้ายถ้ามี
         $result = trim($result);
-    
+
         // ส่งผลลัพธ์กลับไปยังเรียกใช้ฟังก์ชันนี้
         return $result;
     }
-    
+
     public function update_data_form_officer(Request $request)
     {
         $data = $request->all();
@@ -3556,7 +3726,7 @@ class Sos_help_centerController extends Controller
         $form_color_id = $data['form_color_id'];
         $validColumns = array_keys(Sos_1669_form_green::first()->getAttributes());
         // dd($data);
-        
+
         $dataFroUpdateColor = [];
         $dataforUpdateYellow = [];
         foreach ($data as $item) {
@@ -3564,7 +3734,7 @@ class Sos_help_centerController extends Controller
             if (isset($item['name'])) {
                 $name = $item['name'];
                 $value = $item['value'];
-    
+
                 // ตรวจสอบว่า $name อยู่ในรายการคอลัมน์ที่ถูกต้อง
                 if (in_array($name, $validColumns)) {
                     $dataFroUpdateColor[$name] = $value;
@@ -3575,37 +3745,37 @@ class Sos_help_centerController extends Controller
                 }
             }
         }
-        
+
         // dd($dataFroUpdateColor , $dataforUpdateYellow);
         $sos_help_center = Sos_help_center::findOrFail($id);
-    
-    
-       
-        if ($sos_help_center->form_color_name == "green") {           
+
+
+
+        if ($sos_help_center->form_color_name == "green") {
             Sos_1669_form_green::where('id', $form_color_id)->update($dataFroUpdateColor);
-            
-            // for ($i=0; $i < count($data); $i++) { 
+
+            // for ($i=0; $i < count($data); $i++) {
             //     DB::table('sos_1669_form_greens')
             //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
             //         ->update([
             //             $data[$i]["name"] => $data[$i]["value"],
             //     ]);
-    
+
             // }
-        }elseif($sos_help_center->form_color_name == "pink"){           
+        }elseif($sos_help_center->form_color_name == "pink"){
             Sos_1669_form_pink::where('id', $form_color_id)->update($dataFroUpdateColor);
-    
-            // for ($i=0; $i < count($data); $i++) { 
+
+            // for ($i=0; $i < count($data); $i++) {
             //     DB::table('sos_1669_form_pinks')
             //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
             //         ->update([
             //             $data[$i]["name"] => $data[$i]["value"],
             //     ]);
             // }
-        }elseif ($sos_help_center->form_color_name == "blue") {      
+        }elseif ($sos_help_center->form_color_name == "blue") {
             Sos_1669_form_blue::where('id', $form_color_id)->update($dataFroUpdateColor);
-    
-            // for ($i=0; $i < count($data); $i++) { 
+
+            // for ($i=0; $i < count($data); $i++) {
             //     DB::table('sos_1669_form_blues')
             //         ->where('id', $sos_help_center->form_color_id) // เงื่อนไขสำหรับการอัปเดตข้อมูล
             //         ->update([
@@ -3614,7 +3784,7 @@ class Sos_help_centerController extends Controller
             // }
         }
         if($dataforUpdateYellow){
-    
+
             $updateData = [
                 "patient_name_".$idPatient => $dataforUpdateYellow['patient_name_'.$idPatient] ?? null,
                 "patient_age_".$idPatient => $dataforUpdateYellow['patient_age_'.$idPatient] ?? null,
@@ -3630,10 +3800,10 @@ class Sos_help_centerController extends Controller
             ];
             Sos_1669_form_yellow::where('sos_help_center_id', $sos_help_center->id)->update($updateData);
         }
-    
+
         return "ok";
     }
-    
+
     public function check_percentage_sos(Request $request)
     {
         $data = $request->all();
@@ -3641,8 +3811,8 @@ class Sos_help_centerController extends Controller
         $idPatient = $data['idPatient'];
         $sos_help_center = Sos_help_center::findOrFail($id);
         // dd($sos_help_center->form_color_name);
-    
-        if ($sos_help_center->form_color_name == "green") {      
+
+        if ($sos_help_center->form_color_name == "green") {
             $data_sos = DB::table('sos_1669_form_greens')
             ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_greens.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
             ->select(
@@ -3658,8 +3828,8 @@ class Sos_help_centerController extends Controller
             )
             ->where('sos_1669_form_greens.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
             ->first();
-    
-        }elseif($sos_help_center->form_color_name == "pink"){            
+
+        }elseif($sos_help_center->form_color_name == "pink"){
             $data_sos = DB::table('sos_1669_form_pinks')
             ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_pinks.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
             ->select(
@@ -3675,9 +3845,9 @@ class Sos_help_centerController extends Controller
             )
             ->where('sos_1669_form_pinks.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
             ->first();
-    
+
             // $data_sos = Sos_1669_form_pink::where('id', $sos_help_center->form_color_id)->first();
-        }elseif ($sos_help_center->form_color_name == "blue") {  
+        }elseif ($sos_help_center->form_color_name == "blue") {
             $data_sos = DB::table('sos_1669_form_blues')
             ->leftJoin('sos_1669_form_yellows', 'sos_1669_form_blues.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
             ->select(
@@ -3693,15 +3863,15 @@ class Sos_help_centerController extends Controller
             )
             ->where('sos_1669_form_blues.id',$sos_help_center->{'form_color_id_user_' . $idPatient})
             ->first();
-            
-            
+
+
             // $data_sos = Sos_1669_form_blue::where('id', $sos_help_center->form_color_id)->first();
         }
-    
-         
+
+
         return json_encode($data_sos);
     }
-    
+
     public function edit_and_summit_form_sos(Request $request)
     {
         // $data_sos = Sos_help_center::get();
@@ -3711,13 +3881,13 @@ class Sos_help_centerController extends Controller
         ->groupBy('created_at')
         ->orderBy('created_at' , 'DESC')
         ->get();
-    
+
         $monthsAndYears = [];
-    
+
         foreach ($data_sos as $sos) {
             // ใช้ Carbon เพื่อแยกเดือนและปีจากคอลัมน์ที่เก็บวันที่
             $date = Carbon::parse($sos->created_at)->locale('th'); // แทน created_at ด้วยชื่อคอลัมน์ของคุณในตาราง
-    
+
             // เก็บค่าเดือนและปีใน array
             $monthsAndYears[] = [
                 'MONTH' => $date->format('M'), // รูปแบบ 'M' แสดงเดือน (สามตัวอักษร)
@@ -3725,17 +3895,17 @@ class Sos_help_centerController extends Controller
                 'year' => $date->format('Y'),  // รูปแบบ 'Y' แสดงปี
             ];
         }
-    
+
         // dd($monthsAndYears);
         return view('sos_help_center.edit_and_summit_form_sos', compact('data_sos' ,'monthsAndYears'));
-    
+
         // return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
-    
+
     }
-    
+
     public function check_withdraw_form_sos(Request $request)
     {
-    
+
         // $data_sos = Sos_help_center::get();
         $data_sos = Sos_help_center::where('status' , 'เสร็จสิ้น')
         ->whereNotNull('verified_form_color')
@@ -3743,13 +3913,13 @@ class Sos_help_centerController extends Controller
         ->groupBy('created_at')
         ->orderBy('created_at' , 'DESC')
         ->get();
-    
+
         $monthsAndYears = [];
-    
+
         foreach ($data_sos as $sos) {
             // ใช้ Carbon เพื่อแยกเดือนและปีจากคอลัมน์ที่เก็บวันที่
             $date = Carbon::parse($sos->created_at)->locale('th'); // แทน created_at ด้วยชื่อคอลัมน์ของคุณในตาราง
-    
+
             // เก็บค่าเดือนและปีใน array
             $monthsAndYears[] = [
                 'MONTH' => $date->format('M'), // รูปแบบ 'M' แสดงเดือน (สามตัวอักษร)
@@ -3757,58 +3927,58 @@ class Sos_help_centerController extends Controller
                 'year' => $date->format('Y'),  // รูปแบบ 'Y' แสดงปี
             ];
         }
-    
+
         return view('sos_help_center.check_withdraw_form_sos', compact('data_sos','monthsAndYears'));
-    
+
         // return view('sos_help_officer.case_officer', compact('data_help_officer','name_officer'));
-    
+
     }
-    
+
     public function check_form_sos_pdf($id)
-    {   
+    {
         $mpdf = new \Mpdf\Mpdf([
             'default_font_size' => 12,
         ]);
-    
+
         $number_user = null;
         $sos_help_center = Sos_help_center::findOrFail($id);
-    
+
         // Render หน้า view แต่ละหน้าเป็น HTML
         $mainpage = view('sos_help_center.check_form_sos_pdf', compact('sos_help_center'))->render();
-    
+
         if ($sos_help_center->form_color_name == "green") {
-    
+
             if ($sos_help_center->form_color_id_user_1) {
                 $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_1)->first();
                 $number_user = '1';
                 $page1 = view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_2) {
                 $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_2)->first();
                 $number_user = '2';
                 $page2 = view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_3) {
                 $number_user = '3';
                 $data_form = Sos_1669_form_green::where('id' , $sos_help_center->form_color_id_user_3)->first();
                 $page3= view('sos_help_center.check_form_green_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
         } elseif ($sos_help_center->form_color_name == "pink"){
             if ($sos_help_center->form_color_id_user_1) {
                 $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_1)->first();
                 $number_user = '1';
                 $page1 = view('sos_help_center.check_form_pink_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_2) {
                 $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_2)->first();
                 $number_user = '2';
                 $page2 = view('sos_help_center.check_form_pink_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_3) {
                 $number_user = '3';
                 $data_form = Sos_1669_form_pink::where('id' , $sos_help_center->form_color_id_user_3)->first();
@@ -3820,25 +3990,25 @@ class Sos_help_centerController extends Controller
                 $number_user = '1';
                 $page1 = view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_2) {
                 $data_form = Sos_1669_form_blue::where('id' , $sos_help_center->form_color_id_user_2)->first();
                 $number_user = '2';
                 $page2 = view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
-    
+
             if ($sos_help_center->form_color_id_user_3) {
                 $number_user = '3';
                 $data_form = Sos_1669_form_blue::where('id' , $sos_help_center->form_color_id_user_3)->first();
                 $page3= view('sos_help_center.check_form_blue_sos_pdf', compact('sos_help_center' ,'data_form','number_user'))->render();
             }
         }
-    
-    
-    
+
+
+
         // เริ่มเขียน HTML ของไฟล์ PDF โดยรวม HTML ของแต่ละหน้าเข้าด้วยกัน
         $mpdf->WriteHTML($page3);
-        $mpdf->AddPage(); 
+        $mpdf->AddPage();
         $mpdf->WriteHTML($page2);
         $mpdf->AddPage();
         $mpdf->WriteHTML($page1);
@@ -3849,8 +4019,8 @@ class Sos_help_centerController extends Controller
         // ส่งไฟล์ PDF กลับให้ผู้ใช้ดาวน์โหลด
         return $mpdf->Output('แบบบันทึกการรับแจ้งเหตุและสั่งการ รหัสเคส '.$sos_help_center->operating_code.'.pdf', \Mpdf\Output\Destination::INLINE);
     }
-    
-    
+
+
     public function verified_status_form(Request $request)
     {
         $data = $request->all();
@@ -3861,44 +4031,44 @@ class Sos_help_centerController extends Controller
         } else {
             $status = null;
         }
-        
+
         $table_name = "Sos_1669_form_" . $form . "s";  // สร้างชื่อตารางโดยใช้ $form
-        
+
         DB::table($table_name)->where('id', $id)->update(['verified_status' => $status]);
-        
+
         if ($form == "yellow") {
             Sos_help_center::where('id', $id)->update(['verified_form_yellow' => $status]);
         } else {
             $get_data_color =  DB::table($table_name)->where('id', $id)->first();
             $data_form_color =  DB::table($table_name)->where('sos_help_center_id', $get_data_color->sos_help_center_id)->get();
-    
+
             $isAllVerifiedNotEmpty = $data_form_color->every(function ($item) {
                 return !empty($item->verified_status);
             });
-            
+
             // ตรวจสอบค่า $isAllVerifiedNotEmpty
             if ($isAllVerifiedNotEmpty) {
                 // dd('fsdg');
                 Sos_help_center::where('id', $get_data_color->sos_help_center_id)->update(['verified_form_color' => "Yes"]);
             }else{
                 Sos_help_center::where('id', $get_data_color->sos_help_center_id)->update(['verified_form_color' => null]);
-    
+
             }
         }
-    
+
         // return $test;
         return response()->json($data['status']);
-        
+
     }
-    
-    
-    
+
+
+
     public function create_and_delete_data_patient(Request $request)
     {
         // รับข้อมูลจาก request
         $data = $request->all();
         $form = $data['form'];
-        
+
             // ตรวจสอบและกำหนดค่าตัวแปร $test ตามค่าของ $form
             switch ($form) {
                 case "green":
@@ -3919,7 +4089,7 @@ class Sos_help_centerController extends Controller
             ->where('sos_help_center_id', $data['sos_id'])
             ->first();
             // dd($data_form_color);
-    
+
             if ($data['status'] == 'เพิ่ม') {
                 $dataForCreate = [] ;
                 $dataForCreate['sos_help_center_id'] = $data_form_color->sos_help_center_id;
@@ -3934,19 +4104,19 @@ class Sos_help_centerController extends Controller
                 $dataForCreate['id_helper_4'] = $data_form_color->id_helper_4;
                 $dataForCreate['help_result'] = $data_form_color->help_result;
                 $dataForCreate['location_sos'] = $data_form_color->location_sos;
-        
+
                 $dataCreate = $create_Controller::create($dataForCreate);
-        
+
                 $dataForUpdateSosHelpCenter = [] ;
                 $dataForUpdateSosHelpCenter['form_color_id_user_'.$data['patient_id']] = $dataCreate->id;
             } elseif($data['status'] == 'ลบ') {
-    
+
                 $create_Controller::destroy($data['form_color_id']);
                 $dataForUpdateSosHelpCenter = [] ;
                 $dataForUpdateSosHelpCenter['form_color_id_user_'.$data['patient_id']] = null;
-    
+
                 $dataForUpdateFormYellow = [] ;
-    
+
                 $dataForUpdateFormYellow['patient_name_'.$data['patient_id']] = null;
                 $dataForUpdateFormYellow['patient_age_'.$data['patient_id']] = null;
                 $dataForUpdateFormYellow['patient_hn_'.$data['patient_id']] = null;
@@ -3958,23 +4128,23 @@ class Sos_help_centerController extends Controller
                 $dataForUpdateFormYellow['registration_category'] = null;
                 $dataForUpdateFormYellow['registration_number'] = null;
                 $dataForUpdateFormYellow['registration_province'] = null;
-                
+
                  Sos_1669_form_yellow::where('sos_help_center_id', $data['sos_id'])->update($dataForUpdateFormYellow);
-    
+
             }
-    
+
             $sos_help_center = Sos_help_center::where('id' ,$data['sos_id'] )->update($dataForUpdateSosHelpCenter);
-    
+
             if ($data['status'] == 'เพิ่ม') {
                 return response()->json(['status' => $data['status'], 'data' => $dataCreate], 200);
-    
+
             } elseif($data['status'] == 'ลบ') {
                 $sos_help_center = Sos_help_center::where('id' ,$data['sos_id'] )->first();
                 return response()->json(['patient_id' => $data['patient_id'],'status' => $data['status'], 'sos_help_center' => $sos_help_center], 200);
             }
-        
+
     }
-    
+
     public function get_data_sos_success(Request $request)
     {
         $data = $request->all();
@@ -3982,10 +4152,10 @@ class Sos_help_centerController extends Controller
         $page = $data['page'];
         $month = $data['month'];
         $year = $data['year'];
-        
-        
+
+
         // $data = Sos_help_center::with(['form_yellow', 'form_pink', 'form_blue', 'form_green'])->get();
-    
+
         if ($page == "edit") {
             $data = Sos_help_center::whereMonth('sos_help_centers.created_at', $month)
             ->whereYear('sos_help_centers.created_at', $year)
@@ -3995,14 +4165,14 @@ class Sos_help_centerController extends Controller
             ->leftJoin('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
             ->leftJoin('data_1669_officer_commands', 'sos_help_centers.command_by', '=', 'data_1669_officer_commands.user_id')
             ->select(
-                'sos_help_centers.*', 
-                'sos_1669_form_yellows.*',  
-                'data_1669_operating_officers.level as level_officer' ,  
+                'sos_help_centers.*',
+                'sos_1669_form_yellows.*',
+                'data_1669_operating_officers.level as level_officer' ,
                 'data_1669_operating_units.name as name_operating_units',
                 'data_1669_officer_commands.name_officer_command as name_officer_command',
-                'sos_help_centers.verified_form_color as verified_form_color', 
-                'sos_help_centers.verified_form_yellow as verified_form_yellow', 
-                
+                'sos_help_centers.verified_form_color as verified_form_color',
+                'sos_help_centers.verified_form_yellow as verified_form_yellow',
+
             )
             ->get();
         } else {
@@ -4016,52 +4186,52 @@ class Sos_help_centerController extends Controller
             ->leftJoin('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
             ->leftJoin('data_1669_officer_commands', 'sos_help_centers.command_by', '=', 'data_1669_officer_commands.user_id')
             ->select(
-                'sos_help_centers.*', 
-                'sos_1669_form_yellows.*',  
-                'data_1669_operating_officers.level as level_officer' ,  
+                'sos_help_centers.*',
+                'sos_1669_form_yellows.*',
+                'data_1669_operating_officers.level as level_officer' ,
                 'data_1669_operating_units.name as name_operating_units',
                 'data_1669_officer_commands.name_officer_command as name_officer_command',
-                'sos_help_centers.verified_form_color as verified_form_color', 
-                'sos_help_centers.verified_form_yellow as verified_form_yellow', 
-                
+                'sos_help_centers.verified_form_color as verified_form_color',
+                'sos_help_centers.verified_form_yellow as verified_form_yellow',
+
             )
             ->get();
         }
-        
-       
-        
+
+
+
         // dd($data);
         // sos_1669_form_greens
         // sos_1669_form_pinks
         // sos_1669_form_blues
-    
+
         // return $data;
-    
+
         return response()->json($data);
     }
-    
+
     public function getDataFormColor(Request $request)
     {
-    
+
         $requestDataAll = $request->all();
         $sos_id = $requestDataAll['sos_id'];
         $form_color = $requestDataAll['form_color'];
-        
+
         $colorTableMap = [
             'green' => 'sos_1669_form_greens',
             'blue' => 'sos_1669_form_blues',
             'pink' => 'sos_1669_form_pinks',
         ];
-        
+
         $tableName = $colorTableMap[$form_color] ?? null;
-        
+
         $data_form_color = DB::table($tableName)
             ->where($tableName . '.sos_help_center_id', $sos_id)
             ->leftJoin('sos_1669_form_yellows', $tableName . '.sos_form_yellow_id', '=', 'sos_1669_form_yellows.id')
             ->leftJoin('sos_help_centers', $tableName . '.sos_help_center_id', '=', 'sos_help_centers.id')
             ->leftJoin('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
             ->select(
-                $tableName . '.*', 
+                $tableName . '.*',
                 'sos_1669_form_yellows.*',
                 'sos_1669_form_yellows.id as yellow_id',
                 $tableName . '.id as color_id',
@@ -4072,8 +4242,8 @@ class Sos_help_centerController extends Controller
                 'data_1669_operating_officers.level as level_officer',
             )
             ->get();
-    
+
         return response()->json($data_form_color);
     }
-    
+
 }

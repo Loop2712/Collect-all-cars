@@ -2735,7 +2735,7 @@
 			    	// หน้าไหนเมนูบาร์ไม่กางออกส่งไปคลิกได้ที่นี่เลย
 			    	open_menu_bar(text_url_all);
 			    	// เช็ควิดีโอคอลและการปฏิเสธ
-			    	// Theme_check_refuse_and_call(text_url_all);
+			    	Theme_check_refuse_and_call(text_url_all);
 			    }
 
 			@endif
@@ -2743,44 +2743,127 @@
 
     });
 
+    // function Theme_check_refuse_and_call(text_url_all) {
+
+	// 	// console.log('Theme_check_refuse_and_call');
+
+	// 	let i_noti_refuse = document.querySelector('#i_noti_refuse');
+    //     let i_noti_call = document.querySelector('#i_noti_call');
+	// 	let i_noti_menu = document.querySelector('#i_noti_menu');
+
+	//     setInterval(function() {
+	//     	fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
+    //             .then(response => response.json())
+    //             .then(result => {
+    //                 console.log("real_time_check_refuse_and_call");
+    //                 console.log(result);
+    //                 // console.log('--------------------------------');
+
+    //                 let result_refuse = result['refuse'].split(",");
+    //                 let result_call = result['call'].split(",");
+    //                 let result_meet = result['meet'].split(",");
+    //                     // console.log('result_refuse >> ');
+    //                     // console.log(result_refuse);
+    //                     // console.log('result_call >> ');
+    //                     // console.log(result_call);
+
+    //                     // console.log('result_refuse[0] >> ' + result_refuse[0]);
+    //                     // console.log('result_call[0] >> ' + result_call[0]);
+
+    //                 // ตรวจสอบเงื่อนไขการแสดงผลไอคอนแจ้งเตือนหาก url ไม่ใช่ help_center_admin
+    //                 if(result_refuse[0] && result_refuse[0] != 'ไม่มีข้อมูล'){
+    //                 	i_noti_menu.classList.remove('d-none');
+    //                 	i_noti_refuse.classList.remove('d-none');
+    //                 }else{
+    //                 	i_noti_refuse.classList.add('d-none');
+    //                 }
+
+    //                 if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
+    //                 	i_noti_menu.classList.remove('d-none');
+    //                 	i_noti_call.classList.remove('d-none');
+    //                 }else{
+
+    //                     if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
+    //                         i_noti_menu.classList.remove('d-none');
+    //                         i_noti_call.classList.remove('d-none');
+    //                     }else{
+    //                         i_noti_call.classList.add('d-none');
+    //                     }
+
+    //                 }
+
+
+    //                 if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล' && result_meet[0] == 'ไม่มีข้อมูล'){
+    //                 	i_noti_menu.classList.add('d-none');
+    //                 	i_noti_refuse.classList.add('d-none');
+    //                     i_noti_call.classList.add('d-none');
+    //                 }
+
+    //                 // ตรวจสอบถ้าอยู่ในหน้า EDIT ของเคสนั้นๆ แล้วไม่มีการโทรหรือปฏิเสธจากเคสอื่นให้ซ่อน icon แจ้งเตือน
+    //                 if (result_refuse.length == 1){
+    //                 	if(result_refuse[0] == text_url_all[6] || result_refuse[0] == ""){
+    //                 		i_noti_refuse.classList.add('d-none');
+    //                 	}
+    //                 }
+
+    //                 if (result_call.length == 1){
+    //                 	if(result_call[0] == text_url_all[6] || result_call[0] == ""){
+    //                 		i_noti_call.classList.add('d-none');
+    //                 	}
+    //                 }
+
+    //                 if (result_refuse.length == 1 && result_call.length == 1){
+    //                 	if( (result_refuse[0] == text_url_all[6] || result_refuse[0] == "") && (result_call[0] == text_url_all[6] || result_call[0] == "") ){
+    //                 		i_noti_menu.classList.add('d-none');
+    //                 		i_noti_refuse.classList.add('d-none');
+    //                 		i_noti_call.classList.add('d-none');
+    //                 	}
+    //                 }
+
+    //             });
+	//     },  5000);
+	// }
+    var already_join_call = "no";
+    var already_join_meet = "no";
     function Theme_check_refuse_and_call(text_url_all) {
 
-		// console.log('Theme_check_refuse_and_call');
-
-		let i_noti_refuse = document.querySelector('#i_noti_refuse');
+        // console.log('Theme_check_refuse_and_call');
+        // console.log('text_url_all');
+        // console.log(text_url_all[6]);
+        let i_noti_refuse = document.querySelector('#i_noti_refuse');
         let i_noti_call = document.querySelector('#i_noti_call');
-		let i_noti_menu = document.querySelector('#i_noti_menu');
+        let i_noti_menu = document.querySelector('#i_noti_menu');
 
-	    setInterval(function() {
-	    	fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
+        setInterval(function() {
+            fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
                 .then(response => response.json())
                 .then(result => {
-                    // console.log("real_time_check_refuse_and_call");
-                    // console.log(result);
+                    console.log("real_time_check_refuse_and_call");
+                    console.log(result);
                     // console.log('--------------------------------');
 
+                    // let result_room_id = result['room_id'].split(",");
                     let result_refuse = result['refuse'].split(",");
                     let result_call = result['call'].split(",");
                     let result_meet = result['meet'].split(",");
-                        // console.log('result_refuse >> ');
-                        // console.log(result_refuse);
-                        // console.log('result_call >> ');
-                        // console.log(result_call);
-
-                        // console.log('result_refuse[0] >> ' + result_refuse[0]);
-                        // console.log('result_call[0] >> ' + result_call[0]);
 
                     // ตรวจสอบเงื่อนไขการแสดงผลไอคอนแจ้งเตือนหาก url ไม่ใช่ help_center_admin
                     if(result_refuse[0] && result_refuse[0] != 'ไม่มีข้อมูล'){
-                    	i_noti_menu.classList.remove('d-none');
-                    	i_noti_refuse.classList.remove('d-none');
+                        i_noti_menu.classList.remove('d-none');
+                        i_noti_refuse.classList.remove('d-none');
                     }else{
-                    	i_noti_refuse.classList.add('d-none');
+                        i_noti_refuse.classList.add('d-none');
                     }
 
                     if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
-                    	i_noti_menu.classList.remove('d-none');
-                    	i_noti_call.classList.remove('d-none');
+
+                        if (result_call[0] != "ไม่มีข้อมูล") {
+                            i_noti_menu.classList.remove('d-none');
+                            i_noti_call.classList.remove('d-none');
+                        } else {
+                            i_noti_call.classList.add('d-none');
+                        }
+
                     }else{
 
                         if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
@@ -2792,37 +2875,64 @@
 
                     }
 
-
                     if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล' && result_meet[0] == 'ไม่มีข้อมูล'){
-                    	i_noti_menu.classList.add('d-none');
-                    	i_noti_refuse.classList.add('d-none');
+                        i_noti_menu.classList.add('d-none');
+                        i_noti_refuse.classList.add('d-none');
                         i_noti_call.classList.add('d-none');
                     }
 
                     // ตรวจสอบถ้าอยู่ในหน้า EDIT ของเคสนั้นๆ แล้วไม่มีการโทรหรือปฏิเสธจากเคสอื่นให้ซ่อน icon แจ้งเตือน
                     if (result_refuse.length == 1){
-                    	if(result_refuse[0] == text_url_all[6] || result_refuse[0] == ""){
-                    		i_noti_refuse.classList.add('d-none');
-                    	}
+                        if(result_refuse[0] == text_url_all[6] || result_refuse[0] == ""){
+                            i_noti_refuse.classList.add('d-none');
+                        }
                     }
 
-                    if (result_call.length == 1){
-                    	if(result_call[0] == text_url_all[6] || result_call[0] == ""){
-                    		i_noti_call.classList.add('d-none');
-                    	}
+                    // Call 1v1
+                    for (let bbb = 0; bbb < result_call.length; bbb++) {
+                        if(result_call[bbb] == text_url_all[6]){
+                                if (result_call.length == 1){
+                                i_noti_call.classList.add('d-none');
+                            }
+                        }
+
+                        if( (result_refuse[0] == text_url_all[6] || result_refuse[0] == "") && (result_call[bbb] == text_url_all[6]) ){
+                            if (result_refuse.length == 1 && result_call.length == 1){
+                                i_noti_menu.classList.add('d-none');
+                                i_noti_refuse.classList.add('d-none');
+                                i_noti_call.classList.add('d-none');
+                            }
+                        }
                     }
 
-                    if (result_refuse.length == 1 && result_call.length == 1){
-                    	if( (result_refuse[0] == text_url_all[6] || result_refuse[0] == "") && (result_call[0] == text_url_all[6] || result_call[0] == "") ){
-                    		i_noti_menu.classList.add('d-none');
-                    		i_noti_refuse.classList.add('d-none');
-                    		i_noti_call.classList.add('d-none');
-                    	}
+                    // Call 4
+                    for (let ccc = 0; ccc < result_meet.length; ccc++) {
+                        if(result_meet[ccc] == text_url_all[6]){
+                            // console.log("i_noti_call.classList.add('d-none');");
+                            if (result_meet.length == 1){
+                                i_noti_call.classList.add('d-none');
+                            }
+                        }
+
+                        if( (result_refuse[0] == text_url_all[6] || result_refuse[0] == "") && (result_meet[ccc] == text_url_all[6]) ){
+                                if (result_refuse.length == 1 && result_meet.length == 1){
+                                // console.log(" result_refuse & result_meet");
+                                i_noti_menu.classList.add('d-none');
+                                i_noti_refuse.classList.add('d-none');
+                                i_noti_call.classList.add('d-none');
+                            }
+                        }
+                    }
+
+                    if (i_noti_refuse.classList.contains('d-none') && i_noti_call.classList.contains('d-none')) {
+                        i_noti_menu.classList.add('d-none');
                     }
 
                 });
-	    },  5000);
-	}
+        },  5000);
+        }
+
+
 
 	function open_menu_bar(text_url_all){
 
@@ -5081,7 +5191,7 @@
                     <i class="fa-solid fa-location-arrow fa-beat"></i> สั่งการ
                 </span>
             `;
-            
+
         }
 
         new_div_data_sos.querySelector('[mock_up_mark="date_time"]').insertAdjacentHTML('beforeend', html_btn_command);

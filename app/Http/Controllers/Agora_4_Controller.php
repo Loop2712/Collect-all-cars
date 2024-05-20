@@ -1141,20 +1141,6 @@ class Agora_4_Controller extends Controller
 
         $user_in_room['data_agora'] = $agora_chat;
 
-        // if( !empty($agora_chat->member_in_room) ){
-        //     $data_member_in_room = $agora_chat->member_in_room;
-        //     $data_member_in_room_exp = explode(",",$data_member_in_room);
-
-        //     if( !empty($data_member_in_room_exp) ){
-        //         $data_users = [];
-        //         for ($ii=0; $ii < count($data_member_in_room_exp); $ii++) {
-        //             $data_users[] = User::where('id' , $data_member_in_room_exp[$ii])->first();
-        //         }
-        //         $user_in_room['data'] = $data_users;
-        //     }
-
-        // }
-
         if( !empty($agora_chat->member_in_room) ){
             $data_member_in_room = $agora_chat->member_in_room;
             $check_array_user = json_decode($data_member_in_room, true);

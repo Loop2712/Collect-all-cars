@@ -4141,10 +4141,10 @@
             fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_id + "&type=user_sos_1669")
                 .then(response => response.json())
                 .then(result => {
-                    console.log('check_user_in_room');
-                    console.log(result);
-                    console.log(result['status']);
-                    console.log('-------------------------------------');
+                    // console.log('check_user_in_room');
+                    // console.log(result);
+                    // console.log(result['status']);
+                    // console.log('-------------------------------------');
 
                     if (result['status'] == "2_people") {
                         first_meet_success = true;

@@ -1355,10 +1355,10 @@
 
                                                     $oparating_host = App\Models\Sos_help_center::where('id' , $item->joint_case)
                                                     ->first('operating_code');
-                                                    
+
                                                     $count_joint_case = App\Models\Sos_help_center::where('joint_case' , $item->joint_case)
                                                     ->count();
-                                                    
+
                                                 @endphp
                                                 @if($item->status == "เสร็จสิ้น")
 
@@ -1396,7 +1396,7 @@
                                                 @if($item->joint_case)
                                                     <div class="d-flex align-items-center mt-2">
                                                         <div>
-                                                            <h6 class="m-0">ปฏิบัติการร่วม</h6> 
+                                                            <h6 class="m-0">ปฏิบัติการร่วม</h6>
                                                             <p class="m-0">เคสหลัก : {{$oparating_host->operating_code}}</p>
                                                             <p class="m-0">ปฏิบัติการร่วมทั้งหมด : {{$count_joint_case}}</p>
                                                         </div>
@@ -1406,7 +1406,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                  
+
                                                 @endif
                                             </div>
                                             <div>
@@ -2168,7 +2168,7 @@
             show_location_A();
         }
 
-        fist_real_time_check_refuse_and_call();
+        first_real_time_check_refuse_and_call();
 
     });
 
@@ -2996,7 +2996,9 @@
         }
     }
 
-    function fist_real_time_check_refuse_and_call(){
+    var already_join_call = "no";
+    var already_join_meet = "no";
+    function first_real_time_check_refuse_and_call(){
 
         // console.log('real_time_check_refuse_and_call');
 
@@ -3030,7 +3032,9 @@
 
                 let result_refuse = result['refuse'].split(",");
                 let result_call = result['call'].split(",");
+                let result_call_sos_id = result['call_sos_id'].split(",");
                 let result_meet = result['meet'].split(",");
+                let result_meet_sos_id = result['call_sos_id_4'].split(",");
                     // console.log('result_refuse >> ' + result_refuse);
                     // console.log('result_call >> ' + result_call);
                     // console.log('result_refuse[0] >> ' + result_refuse[0]);
@@ -3045,19 +3049,41 @@
                     }
                 }
 
+                // Call 1v1
+                if (result['status'] == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับผู้ขอความช่วยเหลือ") {
+                    already_join_call = "yes";
+                }
+                if(result['status'] == "ไม่มีข้อมูล"){
+                    already_join_call == "no"
+                }
                 if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
-                    for(let xx = 0; xx < result_call.length; xx++){
-                        document.querySelector('#notification_call_sos_id_'+result_call[xx]).classList.remove('d-none');
-                        let div_card_call = document.querySelector('.card_sos_id_'+result_call[xx]);
-                            div_card_call.classList.add('border-color-change-color');
+                    if (already_join_call == "no") {
+                        if (result_call[0] == "แจ้งเตือน") {
+                            for(let xx = 0; xx < result_call_sos_id.length; xx++){
+                                document.querySelector('#notification_call_sos_id_'+result_call_sos_id[xx]).classList.remove('d-none');
+                                let div_card_call = document.querySelector('.card_sos_id_'+result_call_sos_id[xx]);
+                                    div_card_call.classList.add('border-color-change-color');
+                            }
+                        }
                     }
                 }
 
+                // Call 4
+                if(result_meet[0] == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
+                    already_join_meet = "yes";
+                }
+                if (result_meet[0] == "ไม่มีข้อมูล") {
+                    already_join_meet = "no";
+                };
                 if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
-                    for(let xx = 0; xx < result_meet.length; xx++){
-                        document.querySelector('#notification_meet_sos_id_'+result_meet[xx]).classList.remove('d-none');
-                        let div_card_meet = document.querySelector('.card_sos_id_'+result_meet[xx]);
-                            div_card_meet.classList.add('border-color-change-color');
+                    if (already_join_meet == "no") {
+                        if (result_meet[0] == "do") {
+                            for(let xx = 0; xx < result_meet_sos_id.length; xx++){
+                                document.querySelector('#notification_meet_sos_id_'+result_meet_sos_id[xx]).classList.remove('d-none');
+                                let div_card_meet = document.querySelector('.card_sos_id_'+result_meet_sos_id[xx]);
+                                    div_card_meet.classList.add('border-color-change-color');
+                            }
+                        }
                     }
                 }
 
@@ -3108,6 +3134,7 @@
                         // console.log('result_refuse[0] >> ' + result_refuse[0]);
                         // console.log('result_call[0] >> ' + result_call[0]);
 
+
                     if(result_refuse[0] && result_refuse[0] != 'ไม่มีข้อมูล'){
                         for(let ii = 0; ii < result_refuse.length; ii++){
                             document.querySelector('#notification_refuse_sos_id_'+result_refuse[ii]).classList.remove('d-none');
@@ -3125,6 +3152,7 @@
                         }
                     }
 
+                    // Call 4
                     if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
                         for(let xx = 0; xx < result_meet.length; xx++){
                             document.querySelector('#notification_meet_sos_id_'+result_meet[xx]).classList.remove('d-none');
@@ -3132,7 +3160,6 @@
                                 div_card_meet.classList.add('border-color-change-color');
                         }
                     }
-
                 });
 
         }, 6000);

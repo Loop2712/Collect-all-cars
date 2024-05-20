@@ -3226,8 +3226,6 @@
                                 `;
                         }
 
-
-
                             create_profile_remote.innerHTML = detailHTML;
 
                             // ตรวจสอบว่าเจอ div เดิมหรือไม่
@@ -3243,7 +3241,7 @@
                                 }
                             }
 
-                            waitForElement_in_sidebar(type_of_microphone_remote_icon_in_setting , element.id);
+                            waitForElement_in_sidebar(type_of_microphone_remote_icon_in_setting , element.id); //สำหรับสร้าง icon ให้ตรงกับสถานะไมค์ของ remote
 
                             if (element.id == me_id) {
 
