@@ -1527,9 +1527,9 @@ color: #ff9317;
                     }
                 </style>
 
-                <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                <!-- <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                     <i class="fa-duotone fa-add"> </i> เพิ่มปฏิบัติการร่วม
-                </button>
+                </button> -->
 
                 <button id="btnVideoCall" class="btn btnVideoCall mt-2" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
