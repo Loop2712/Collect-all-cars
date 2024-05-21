@@ -117,7 +117,7 @@
                             yellows_phone_user = result[i].yellows_phone_user;
                         }
 
-                        let photo_sos = `<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/37.2.png" style="width: 80%;">`;
+                        let photo_sos = `<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" style="width: 80%;">`;
                         if(result[i].photo_sos){
                             photo_sos = `<img src="{{ url('/storage') }}/`+result[i].photo_sos+`" style="width: 80%;">`; 
                         }

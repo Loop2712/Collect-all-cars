@@ -1088,11 +1088,84 @@ color: #ff9317;
 
 /* set button(top and bottom of the scrollbar) */
 .sticky::-webkit-scrollbar-button {display:none}
+
+.btn_show_all_joint_case{
+  border-radius: 60px;
+  background: rgb(255,87,87);
+  background: linear-gradient(90deg, rgba(255,87,87,1) 0%, rgba(140,82,255,1) 100%);
+  color: #fff;
+  padding: 5px 15px 8px 18px;
+  transition: all .15s ease-in-out;
+} .btn_show_all_joint_case:hover ,.btn_go_to_main_case:hover ,.btn_video_call_joint_case:hover{
+  color: #fff;
+}
+.btn_show_all_joint_case i{
+  font-size: 18px !important;
+  transition: all .15s ease-in-out;
+
+}
+.btn_go_to_main_case{
+  width: calc(100% - 65px);
+  background-color: #0F72AC;
+  color: #fff;
+  border-radius: 60px;
+  margin-right: 5px;
+}
+.card_join_case{
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.card_join_case.waiting_join{
+    background-color: #dba502cc;
+}
+.card_join_case.success_join{
+    background-color: #039311c7;
+}
+.card_join_case.reject_join{
+    background-color: #eb0001bf;
+}
+.card_join_case.incident_join{
+    background-color: #43C3FE;
+}
+.group_status_joint_case span{
+    border-radius: 50px;
+    border: #fff 1px solid;
+}
+.btn_go_to_case{
+    width: 100%;
+    margin-right: 5px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 60px;
+
+}
+.btn_video_call_joint_case{
+    border-radius: 60px;
+    border: #fff 1px solid;
+    background-color: #29CC39;
+    color: #fff;
+    padding: 5px 15px 8px 18px;
+}
 </style>
 
 <div class="row" >
-
     <div class="col-12 col-md-3 col-lg-3" >
+
+        <div class="card radius-10 p-0" >
+          <div class="col-12 menu-header bg-transparent d-inline" style="padding:15px 0px 15px 15px;">
+              <h6 class=" font-weight-bold m-0 p-0">
+                รหัสปฏิบัติการ
+              </h6>
+              <h4>
+                <b><u id="text_u_operating_code">
+                  {{ $sos_help_center->operating_code }}
+                </u></b>
+              </h4>
+          </div>
+        </div>
+
         <div class="sticky" style="overflow: auto;height: 100%;">
             @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
             @php
@@ -1148,26 +1221,23 @@ color: #ff9317;
               <div id="show_content_join_case" class="mb-2">
                 <!-- data -->
               </div>
-              <div class="btn-group p-2" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-sm btn-info" onclick="document.querySelector('#card_show_join_case_all').classList.remove('d-none')">
-                    ดูทั้งหมด
-                </button>
-                @if($sos_help_center->joint_case == $sos_help_center->id)
-                <button type="button" class="btn btn-sm btn-primary" disabled>
-                    คุณอยู่ที่เคสหลัก
-                </button>
-                @else
-                <a href="{{ url('/sos_help_center') . '/' .$sos_help_center->joint_case. '/edit' }}" type="button" class="btn btn-sm btn-primary">
-                    ดูเคสหลัก
-                </a>
-                @endif
+              <div class="w-100 d-flex">
+                  @if($sos_help_center->joint_case == $sos_help_center->id)
+                    <button type="button" class="btn btn_go_to_main_case" disabled>
+                        คุณอยู่ที่เคสหลัก
+                    </button>
+                  @else
+                    <a href="{{ url('/sos_help_center') . '/' .$sos_help_center->joint_case. '/edit' }}" type="button" class="btn btn_go_to_main_case">
+                        ไปยังเคสหลัก
+                    </a>
+                  @endif
+                  <button type="button" class="btn btn_show_all_joint_case" id="" onclick="document.querySelector('#card_show_join_case_all').classList.toggle('d-none'); document.querySelector('#icon_show_all_joint_case').classList.toggle('fa-rotate-180');">
+                      <i id="icon_show_all_joint_case" class="fa-solid fa-triangle fa-rotate-180"></i>
+                  </button>
               </div>
             </div>
 
             <div id="card_show_join_case_all" class="card radius-10 p-3 d-none" style="border: orange 1px solid;">
-              <button type="button" style="width:20%;" class="btn btn-sm btn-outline-secondary mb-2" onclick="document.querySelector('#card_show_join_case_all').classList.add('d-none')">
-                ปิด
-              </button>
 
               <div id="content_show_join_case_all">
                   <!-- Content -->
@@ -1182,7 +1252,7 @@ color: #ff9317;
                 fetch("{{ url('/') }}/api/get_data_all_joint_case" + "/" + joint_case)
                   .then(response => response.json())
                   .then(result => {
-                      console.log(result);
+                      // console.log(result);
 
                       let show_content_join_case = document.querySelector('#show_content_join_case');
                       let content_show_join_case_all = document.querySelector('#content_show_join_case_all');
@@ -1192,9 +1262,8 @@ color: #ff9317;
                         let count_case = result['data'].length;
 
                         let html = `
-                          <p>ปฏิบัติการร่วมทั้งหมด : `+count_case+` เคส</p>
-                          <p>เคสหลัก</p>
-                          <h5 class="text-center"><b>`+result['host']+`</b></h5>
+                          <h5 class="mb-1">เคสหลัก : `+result['host']+`</h5>
+                          <p>ปฎิบัติการร่วมทั้งหมด : `+count_case+` เคส</p>
                         `;
 
                         show_content_join_case.innerHTML = html ;
@@ -1204,26 +1273,23 @@ color: #ff9317;
                           let officer = '';
                           if(result['data'][i].name_helper){
                             officer = `
-                              <span class="mt-3 mb-3" style="font-size:18px;">
-                                เจ้าหน้าที่
-                                <br>
-                                <b>`+result['data'][i].name_helper+`</b>
-                              </span>
-                              <hr>`;
+                              <span class="text-dark font-18">เจ้าหน้าที่ : </span>
+                              <span class="text-white font-18">`+result['data'][i].name_helper+`</span>
+                              `;
                           }
 
                           let class_status ;
                           if(result['data'][i].status == "รอการยืนยัน"){
-                            class_status = "btn-warning";
+                            class_status = "waiting_join";
                           }
                           else if(result['data'][i].status == "ปฏิเสธ"){
-                            class_status = "btn-danger";
+                            class_status = "reject_join";
                           }
                           else if(result['data'][i].status == "รับแจ้งเหตุ"){
-                            class_status = "btn-info";
+                            class_status = "incident_join";
                           }
                           else{
-                            class_status = "btn-success";
+                            class_status = "success_join";
                           }
 
                           let class_idc = '' ;
@@ -1285,9 +1351,9 @@ color: #ff9317;
                           let html_footer ;
                           if(result['data'][i].id == "{{ $sos_help_center->id }}"){
                             html_footer = `
-                              <button class="btn btn-outline-dark" disabled>
-                                คุณอยู่ที่เคสนี้
-                              </button>
+                              <div class="d-flex justify-content-center align-items-center mt-3 mb-2">
+                                  <i class="fa-solid fa-location-dot me-2 font-18 text-dark"></i> <span class="text-dark font-16">คุณอยู่ที่เคสนี้</span>
+                              </div>
                             `;
                           }
                           else{
@@ -1297,51 +1363,52 @@ color: #ff9317;
 
                               if(result['data'][i].name_helper){
                                 html_footer = `
-                                  <a href="`+link_to_case+`" class="btn btn-info">
-                                    ไปยังเคสนี้
-                                  </a>
-                                  <a href="`+link_video_call_4+`" target="_blank" class="btn btn-success">
-                                    <i class="fa-solid fa-phone-volume"></i>
-                                  </a>
+                                  <div class="d-flex justify-content-center align-items-center mt-3 mb-2">
+                                      <a href="`+link_to_case+`" class="btn btn_go_to_case">ไปยังเคสนี้</a>
+                                      <a href="`+link_video_call_4+`" target="_blank"  class="btn btn_video_call_joint_case">
+                                          <i class="fa-solid fa-phone-volume"></i>
+                                      </a>
+                                  </div>
                                   `;
                               }else{
                                 html_footer = `
-                                  <a href="`+link_to_case+`" class="btn btn-info">
-                                    ไปยังเคสนี้
-                                  </a>
+                                  <div class="d-flex justify-content-center align-items-center mt-3 mb-2">
+                                      <a href="`+link_to_case+`" class="btn btn_go_to_case">ไปยังเคสนี้</a>
+                                  </div>
                                   `;
                               }
                           }
 
                           let check_host = '';
                           if(result['data'][i].joint_case == result['data'][i].id){
-                            check_host = `<span class="text-danger">(Host)</span>`;
+                            check_host = `
+                              <span style="font-size:18px;" class="text-danger">
+                                <b>(Host)</b>
+                              </span>`;
                           }
 
                           let html_by_case = `
-                              <div class="card radius-10 p-3" style="background-color: #87ceeb7a;">
-                                <center>
-                                  <h5>
-                                    <b>`+result['data'][i].operating_code+` `+check_host+`</b>
-                                  </h5>
-                                  <h6>
+                              <div class="card_join_case `+class_status+`">
+                                <h6 class="font-weight-bold mb-2 mb-lg-0">รหัสปฏิบัติการ</h6>
+                                <h3 class="text-white">
+                                  `+result['data'][i].operating_code+` `+check_host+`
+                                </h3>
+                                <div>
+                                    `+officer+`
+                                </div>
+                                <div>
+                                    <span class="text-dark font-18">สถานะ : </span>
+                                    <span class="text-white font-18">`+result['data'][i].status+`</span>
+                                </div>
+                                <div class="group_status_joint_case">
                                     <span class="mt-2 btn btn-sm `+class_idc+`">
                                       <b>IDC : `+text_idc+`</b>
                                     </span>
                                     <span class="mt-2 btn btn-sm `+class_rc+`">
                                       <b>RC : `+text_rc+`</b>
                                     </span>
-                                    <br>
-                                    <span style="width:100%;" class="mt-2 btn btn-sm `+class_status+` mt-2">
-                                      <b>`+result['data'][i].status+`</b>
-                                    </span>
-                                  </h6>
-                                  <hr>
-                                  `+officer+`
-                                  <div class="btn-group p-1" role="group">
-                                    `+html_footer+`
-                                  </div>
-                                </center>
+                                </div>
+                                `+html_footer+`
                               </div>
                             `;
 
@@ -1460,9 +1527,9 @@ color: #ff9317;
                     }
                 </style>
 
-                <!-- <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                     <i class="fa-duotone fa-add"> </i> เพิ่มปฏิบัติการร่วม
-                </button> -->
+                </button>
 
                 <button id="btnVideoCall" class="btn btnVideoCall mt-2" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
@@ -1735,11 +1802,8 @@ color: #ff9317;
 
             <div class="card radius-10">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-md-6 col-lg-4 col-12  menu-header bg-transparent d-inline">
-                        <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
-                        <h3><b><u id="text_u_operating_code">{{ $sos_help_center->operating_code }}</u></b></h3>
-                    </div>
-                    <div class="col-md-6 col-lg-8 col-12  d-flex justify-content-end">
+                    
+                    <div class="col-12  d-flex justify-content-end">
                         <div class="d-flex align-items-center">
                             <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
                                 <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
@@ -1758,7 +1822,7 @@ color: #ff9317;
                             </button> -->
                             <ul class="nav nav-pills m-3" role="tablist">
                                 <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null,null);reface_map_go_to_help();Stop_reface_check_form_yellow();update_page_before_click_button('other');">
+                                    <a id="tag_a_operation" class="nav-link btn-sm btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null,null);reface_map_go_to_help();Stop_reface_check_form_yellow();update_page_before_click_button('other');">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
@@ -1767,7 +1831,7 @@ color: #ff9317;
                                     </a>
                                 </li>
                                 <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');update_page_before_click_button('yellow');">
+                                    <a class="nav-link btn-sm btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');update_page_before_click_button('yellow');">
                                       <!-- document.querySelector('#form_data_1').click(); -->
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
@@ -1829,7 +1893,7 @@ color: #ff9317;
                                 <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
                                     <div class="btnGroupOperating">
                                         <div class="btn-group btnGroupOperating">
-                                            <button type="button" class="btn btn-white btnOperating">เลือกหน่วยปฏิบัติการ</button>
+                                            <button type="button" class="btn btn-sm btn-white btnOperating">เลือกหน่วยปฏิบัติการ</button>
                                             <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();update_page_before_click_button('other');">
                                               เดียว
                                             </a>
@@ -1893,7 +1957,8 @@ color: #ff9317;
                                   }
                                 </style>
                                 <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="document.querySelector('#btn_save').click();show_wait_officer_joint();">
-                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;">
+                                    <!-- <a  class="nav-link btn-sm btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;"> -->
+                                    <a  class="nav-link btn-sm btn-outline-info btn" data-toggle="modal" data-target="#modal_wait_officer_join_case" style="position: relative;">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-duotone fa-spinner fa-spin-pulse"></i>
@@ -2062,7 +2127,7 @@ color: #ff9317;
 
                           function cf_code_for_officer(){
                             let input_code = document.querySelector('#operating_code_for_officer');
-                            console.log(input_code.value);
+                            // console.log(input_code.value);
 
                             fetch("{{ url('/') }}/api/update_code_for_officer" + "/" + "{{ $sos_help_center->id }}" + "/" + input_code.value)
                               .then(response => response.text())

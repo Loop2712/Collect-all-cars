@@ -2669,13 +2669,16 @@ class Sos_help_centerController extends Controller
 
         $id_of_new_sos = array() ;
 
+        $case_host = '' ;
         // สร้างเคส sos ร่วมทั้งหมด
         if( !empty($data_sos_main->joint_case) ){
             $count_new_create_sos = count($list_arr) ;
+            $case_host = $data_sos_main->joint_case ;
         }
         else{
             $count_new_create_sos = count($list_arr) - 1 ;
             array_push($id_of_new_sos , (int)$sos_1669_id);
+            $case_host = $sos_1669_id ;
         }
 
         for ($i = 0; $i < (int)$count_new_create_sos; $i++){
@@ -2747,7 +2750,7 @@ class Sos_help_centerController extends Controller
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
-                        'joint_case' => $sos_1669_id,
+                        'joint_case' => $case_host,
                     ]);
 
             $list_arr_ep = explode("-" , $list_arr[$xi]) ;

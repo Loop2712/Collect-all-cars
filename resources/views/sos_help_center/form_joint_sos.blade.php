@@ -493,53 +493,9 @@
 	<div class="modal-dialog modalWaitofficer modal-xl">
 		<div class="modal-content">
 			<div class="modal-body">
-				<button type="button" id="btn_close_modal_show_officer_joint" class="btnCloseModalOfficer btn" onclick="window.location.reload();"><i class="fa-solid fa-xmark"></i></button>
-				<div class="row d-flex justify-content-center d-none">
-					<div class="row d-flex justify-content-center">
-						<div class="colOfficer">
-							<div class="card cardWaitOfficer">
-								<span class="countTimeWaitOfficer">รอการยืนยัน 10 นาที</span>
-								<div class="headerWaitOfficer">
-									<img src="{{ asset('/img/stickerline/PNG/1.png') }}">
-									<div class="dataHeaderOfficer">
-										<h4 class="m-0">LUCKY</h4>
-										<p class="m-0">2305-2601-007</p>
-									</div>
-								</div>
-								<div class="bodyWaitOfficer">
-									<span><b>ข้อมูล</b> </span>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-solid fa-phone text-primary"></i>
-										<span>081-234-5678</span>
-									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-car-building text-success"></i>
-										<span>กู้ภัยสว่าง</span>
-									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-siren-on text-danger"></i>
-										<span>FR</span>
-									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-truck-medical text-orange"></i>
-										<span>รถยนต์</span>
-									</div>
-									<hr>
-									<button class="btn btnSelectOfficerAgain">
-										เลือกใหม่
-									</button>
-								</div>
-								<div class="card-description officer-success">
-									<p class="text-title">
-										<i class="fa-sharp fa-solid fa-circle-check"></i>
-									</p>
-									<p class="text-body">เจ้าหน้าที่รับเคสแล้ว</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
+				<button type="button" id="btn_close_modal_show_officer_joint" class="btnCloseModalOfficer btn" > <!-- onclick="window.location.reload();" -->
+					<i class="fa-solid fa-xmark"></i>
+				</button>
                 <div id="show_officer_joint_content" class="row d-flex justify-content-center">
                     <!-- Modal แสดงเจ้าหน้าที่ ที่เลือก -->
                 </div>
@@ -547,68 +503,6 @@
 		</div>
 	</div>
 </div>
-
- 
-<!-- <div class="modal fade" id="modal_show_officer_joint" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_show_officer_joint" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <button id="btn_close_modal_show_officer_joint" type="button" class="close d-none" data-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div class="row d-none">
-                    <div id="mock_up_test">
-                        <div class="col-4">
-                            <div class="card" style="background-color: #ffbfc3;transition: 0.5;">
-                                <div class="card-body">
-                                    <h4 class="card-title text-center">
-                                        <b>2305-1406-0000</b>
-                                    </h4>
-                                    <div class="row mt-3">
-                                        <div class="col-12 text-center">
-                                            <h5>
-                                                <i class="fa-duotone fa-spinner fa-spin-pulse"></i> รอการยืนยัน จากหน่วยปฏิบัติการ
-                                            </h5>
-                                        </div>
-                                        <hr class="mt-3">
-                                        <div class="col-3">
-                                            <img src="assets/images/products/01.png" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-9">
-                                            <b>เจ้าหน้าที่ : </b>
-                                            <br>
-                                            <b>หน่วยปฏิบัติการ : </b>
-                                            <br>
-                                            <b>ระดับ : </b>
-                                            <br>
-                                            <b>ประเภท : </b>
-                                        </div>
-                                        <hr class="mt-3">
-                                    </div>
-                                    <div class="mt-3">
-                                        <center>
-                                            โปรดรอสักครู่... (<span id="timer_wait_officer_id_1"></span>)
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                        </div>
-                        <div class="col-4">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="show_officer_joint_content" class="row">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- //////////////////// END Modal แสดงเจ้าหน้าที่ ที่เลือก //////////////////// -->
-
 
 <!-- //////////////////// Modal new select officer of id sos //////////////////// -->
 <!-- Button trigger modal -->
@@ -788,6 +682,60 @@
 </div>
 
 <!-- //////////////////// END Modal new select officer of id sos //////////////////// -->
+
+<!-- Modal รอเจ้าหน้าที่ อุบัติเหตุร่วม -->
+<button id="btn_modal_wait_officer_join_case" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_wait_officer_join_case">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="modal_wait_officer_join_case" tabindex="-1" role="dialog" aria-labelledby="modal_wait_officer_join_case" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+    <h4 class="text-center">เคสหลัก : 0010-5523-5523 </h4>
+    <div class="d-flex">
+      <button class="btn btn-success px-2 mx-2">รับเคสแล้ว</button>
+      <button class="btn btn-warning px-2 mx-2">รอดำเนินการ</button>
+      <button class="btn btn-danger px-2 mx-2">ปฏิเสธ</button>
+    </div>
+    <div class="p-2">
+      <div class="w-100 joint-case-item accept">
+        <div>
+          <h5>เคส : 0010-5523-5524</h4>
+          <p class="m-0">นาย ABC DEF</p>
+          <p class="m-0">หน่วย วีเช็ค | รถ</p>
+        </div>
+        <div class="d-flex flex-column">
+          <button class="btn btn-success " style="font-size: 14px;">รับเคสแล้ว</button>
+        </div>
+      </div>
+      <div class="w-100 joint-case-item waiting">
+        <div>
+          <h5>เคส : 0010-5523-5524</h4>
+          <p class="m-0">นาย ABC DEF</p>
+          <p class="m-0">หน่วย วีเช็ค | รถ</p>
+        </div>
+        <div class="d-flex flex-column">
+          <button class="btn btn-warning" style="font-size: 14px;">รอดำเนินการ</button>
+          <button class="btn btn-info mt-1" style="font-size: 14px;">เลือกใหม่</button>
+        </div>
+      </div>
+      <div class="w-100 joint-case-item reject">
+        <div>
+          <h5>เคส : 0010-5523-5524</h4>
+          <p class="m-0">นาย ABC DEF</p>
+          <p class="m-0">หน่วย วีเช็ค | รถ</p>
+        </div>
+        <div class="d-flex flex-column">
+          <button class="btn btn-danger " style="font-size: 14px;">รับเคสแล้ว</button>
+          <button class="btn btn-info mt-1" style="font-size: 14px;">เลือกใหม่</button>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     const image_sos_joint_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
@@ -1443,7 +1391,7 @@
     function select_new_officer_sos_id(data , click_id) {
 
         // console.log('*******************************************************');
-        // console.log('select_new_officer_sos_id');
+        console.log('select_new_officer_sos_id');
         // console.log('click_id >> '+ click_id);
         // console.log(data);
 
@@ -1702,7 +1650,7 @@
 	                    }
 
 	                    if(result[xxi]['id'] == click_id){
-		                    data_by_js_new_select_officer.insertAdjacentHTML('afterbegin', html_of_old_officer); // แทรกล่างสุด
+		                    data_by_js_new_select_officer.insertAdjacentHTML('afterbegin', html_of_old_officer); // แทรกบนสุด
 	                    }else{
 		                    data_by_js_new_select_officer.insertAdjacentHTML('beforeend', html_of_old_officer); // แทรกล่างสุด
 	                    }
