@@ -1897,12 +1897,12 @@ color: #ff9317;
                                             <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();update_page_before_click_button('other');">
                                               เดียว
                                             </a>
-                                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                                            <!-- <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                                               ร่วม
-                                            </a>
-                                            <!-- <button type="button" class="btn btn-secondary" disabled>
+                                            </a> -->
+                                            <button type="button" class="btn btn-secondary" disabled>
                                               ร่วม (pending)
-                                            </button> -->
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
