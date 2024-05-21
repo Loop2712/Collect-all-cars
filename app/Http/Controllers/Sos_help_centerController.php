@@ -143,10 +143,6 @@ class Sos_help_centerController extends Controller
 
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$id)->first();
 
-        $all_provinces = DB::table('districts')
-            ->orderBy('province' , 'ASC')
-            ->get();
-
         $sos_1669_id = $id ;
 
         $appID = env('AGORA_APP_ID');
@@ -154,7 +150,7 @@ class Sos_help_centerController extends Controller
 
         $agora_chat = Agora_chat::where('sos_id' , $sos_1669_id)->where('room_for' , 'user_sos_1669')->first();
 
-        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow','sos_1669_id','agora_chat','appID','appCertificate'));
+        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','data_form_yellow','sos_1669_id','agora_chat','appID','appCertificate'));
     }
 
     /**

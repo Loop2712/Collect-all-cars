@@ -410,10 +410,9 @@
                             <div class="row d-none" id="div_search_by_district">
                                 <div class="col-4">
                                     <select name="location_P" id="location_P" class="form-control" onchange="show_amphoe();">
-                                        <option class="location_P_start" value="" selected > - เลือกจังหวัด - </option>
-                                        @foreach($all_provinces as $item)
-                                            <option value="{{ $item->province }}">{{ $item->province }}</option>
-                                        @endforeach
+                                        <option class="location_P_start" value="{{ Auth::user()->sub_organization }}" selected >
+                                          {{ Auth::user()->sub_organization }}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-4">
