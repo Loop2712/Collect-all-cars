@@ -2067,7 +2067,7 @@ color: #ff9317;
                                 <i class="fa-duotone fa-images"></i>รูปภาพ
                             </span>
 
-                            @if(Auth::user()->id == "1" or Auth::user()->id == "4" or Auth::user()->id == "64" or Auth::user()->id == "2")
+                            @if( in_array(Auth::user()->id, ["1","4","64","2"]) )
 
                             <span class="btn btn-sm btn-success"  style="position: absolute;top: 4rem;left: 1.3rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#show_hospital" onclick="open_map_show_hospital();">
                                 <i class="fa-solid fa-hospital"></i>ค้นหาโรงพยาบาล
