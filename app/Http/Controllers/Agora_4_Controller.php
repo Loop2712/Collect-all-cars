@@ -13,6 +13,7 @@ use App\Models\Agora_chat;
 use Intervention\Image\ImageManagerStatic as Image;
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
+use App\Models\Data_1669_officer_hospital;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Group_line;
 use App\Models\Partner;
@@ -909,6 +910,7 @@ class Agora_4_Controller extends Controller
         if($type == 'sos_1669'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+            $data_hospital_officer = Data_1669_officer_hospital::where('user_id',$user_id)->first();
 
             if(!empty($data_command->name_officer_command)){
                 $data['user_type'] = "ศูนย์อำนวยการ";
@@ -918,6 +920,9 @@ class Agora_4_Controller extends Controller
                 $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
                 $data['name_user'] = $data_officer->name_officer;
                 // $data['unit'] = $data_officer->operating_unit->name;
+            }elseif(!empty($data_hospital_officer->name_officer_hospital)){
+                $data['user_type'] = "เจ้าหน้าที่ห้อง ER";
+                $data['name_user'] = $data_hospital_officer->name_officer_hospital;
             }else{
                 $data['user_type'] = "--";
                 $data['name_user'] = $local_data->name;
@@ -938,7 +943,24 @@ class Agora_4_Controller extends Controller
                 $data['user_type'] = "ผู้ขอความช่วยเหลือ";
                 $data['name_user'] = $local_data->name;
             }
-        }else{
+        }else if($type == 'sos_personal_assistant'){
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+            if(!empty($data_command->name_officer_command)){
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
+                // $data['unit'] = '';
+            }elseif(!empty($data_officer->name_officer)){
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
+            }
+        }
+        else{
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
@@ -1021,6 +1043,7 @@ class Agora_4_Controller extends Controller
         if($type == 'sos_1669'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+            $data_hospital_officer = Data_1669_officer_hospital::where('user_id',$user_id)->first();
 
             if(!empty($data_command->name_officer_command)){
                 $data['user_type'] = "ศูนย์อำนวยการ";
@@ -1030,8 +1053,27 @@ class Agora_4_Controller extends Controller
                 $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
                 $data['name_user'] = $data_officer->name_officer;
                 // $data['unit'] = $data_officer->operating_unit->name;
+            }elseif(!empty($data_hospital_officer->name_officer_hospital)){
+                $data['user_type'] = "เจ้าหน้าที่ห้อง ER";
+                $data['name_user'] = $data_hospital_officer->name_officer_hospital;
             }else{
                 $data['user_type'] = "--";
+                $data['name_user'] = $remote_data->name;
+            }
+        }else if($type == 'user_sos_1669'){
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+            if(!empty($data_command->name_officer_command)){
+                $data['user_type'] = "ศูนย์อำนวยการ";
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }else if(!empty($data_officer->name_officer)){
+                $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                $data['user_type'] = "ผู้ขอความช่วยเหลือ";
                 $data['name_user'] = $remote_data->name;
             }
         }else if($type == 'sos_personal_assistant'){
@@ -1051,7 +1093,7 @@ class Agora_4_Controller extends Controller
                 $data['name_user'] = "ทดสอบ";
             }
         }
-        else{
+        else {
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 

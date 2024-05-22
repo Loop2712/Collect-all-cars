@@ -1459,6 +1459,8 @@
         fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
+                // console.log("result get_local_data_4");
+                // console.log(result);
                 bg_local = result.hexcolor;
                 name_local = result.name_user;
                 type_local = result.user_type;
@@ -2315,6 +2317,8 @@
                                             window.history.back();
                                         } else if(type_user_sos == "หน่วยแพทย์ฉุกเฉิน"){
                                             window.location.href = type_url;
+                                        }else if(type_user_sos == "เจ้าหน้าที่ห้อง ER"){
+                                            window.history.back();
                                         }else{
                                             window.history.back();
                                         }

@@ -47,8 +47,8 @@
         fetch("{{ url('/') }}/api/start_get_data_sos_hospital" + "/" + '{{ Auth::user()->id }}')
             .then(response => response.json())
             .then(result => {
+                console.log("result");
                 console.log(result);
-
                 if(result){
 
                     document.querySelector('#count_case_select').innerHTML = result.length ;
@@ -119,7 +119,7 @@
 
                         let photo_sos = `<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" style="width: 80%;">`;
                         if(result[i].photo_sos){
-                            photo_sos = `<img src="{{ url('/storage') }}/`+result[i].photo_sos+`" style="width: 80%;">`; 
+                            photo_sos = `<img src="{{ url('/storage') }}/`+result[i].photo_sos+`" style="width: 80%;">`;
                         }
 
                         let btn_idc = `
@@ -210,7 +210,6 @@
                             }
                         }
 
-
                         let html = `
                             <div div_data_case="div_data_case" div_id="`+result[i].id+`" div_status="`+result[i].status+`" class="card border-top border-0 border-4 border-`+class_status+` main-shadow main-radius">
                                 <div class="card-body px-5 py-3">
@@ -228,7 +227,7 @@
                                                     <div class="col">
                                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                                             <button type="button" class="btn btn-sm btn-`+class_status+`">
-                                                                <span class="mx-4">`+result[i].status+`</span> 
+                                                                <span class="mx-4">`+result[i].status+`</span>
                                                             </button>
                                                             <div class="btn-group" role="group">
                                                                 <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -298,12 +297,12 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-12 mt-4">
-                                                    <button class="btn btn-info px-5 radius-10">
+                                                    <a class="btn btn-info px-5 radius-10">
                                                         <i class="fa-sharp fa-solid fa-eye mr-1"></i> ดูข้อมูล
-                                                    </button>
-                                                    <button class="btn btn-success px-5 radius-10">
+                                                    </a>
+                                                    <a class="btn btn-success px-5 radius-10" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id=`+result[i].sos_help_center_id+`" target="_blank">
                                                         <i class="fa-solid fa-video mr-1"></i> สนทนาทางวิดีโอ
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

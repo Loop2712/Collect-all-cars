@@ -2392,6 +2392,8 @@
                                             window.history.back();
                                         } else if(type_user_sos == "หน่วยแพทย์ฉุกเฉิน"){
                                             window.location.href = type_url;
+                                        }else if(type_user_sos == "เจ้าหน้าที่ห้อง ER"){
+                                            window.history.back();
                                         }else{
                                             window.history.back();
                                         }
@@ -3376,10 +3378,6 @@
 		return div.parentElement === document.querySelector(".user-video-call-bar");
 	}
 
-
-
-
-
 	// ย้าย div ไปยัง .user-video-call-bar หากไม่อยู่ในนั้นและสลับ div
 	function moveDivsToUserVideoCallBar(clickedDiv) {
 		let container = document.getElementById("container_user_video_call");
@@ -3677,10 +3675,9 @@
                 }
             }
         }
-
     }
 
-    // สำหรับ Div ต่างๆของ Local
+    // สำหรับ Div ต่างๆของ bLocal
     function create_element_localvideo_call(localPlayerContainer ,name_local ,type_local ,profile_local, bg_local) {
         if(localPlayerContainer.id){
             // console.log("name_local here");
