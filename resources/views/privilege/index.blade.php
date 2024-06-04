@@ -8,6 +8,7 @@
            max-width: 300px;           
            min-width: 300px;
            border-radius: 10px;
+           aspect-ratio: 16/9;
         }
         .logo_cover{
             width: 300px;
@@ -18,6 +19,7 @@
            max-width: 400px;           
            min-width: 400px;
            border-radius: 10px;
+           aspect-ratio: 16/9;
         }
         .logo_cover{
             width: 400px;
@@ -56,23 +58,22 @@
     }
     .card {
         border: none !important;
-    }
+    }  
 </style>
 <div class="container " style="padding-top: 150px;">
     <div class="row">
 
         <div class="col-12">
-
             <div class="card border-none">
                 <div>
                     <h4>Partner</h4>
                     <div class="owl-carousel owl-theme owl-carousel-partner">
                         <div class="item">
-                            <a href="" class="text-white">ทั้งหมด</a>
+                            <a href="{{url('privilege_partner')}}" class="text-white">ทั้งหมด</a>
                         </div>
                         @foreach($privilege_partner as $item)
                         <div class="item">
-                            <a href="">
+                            <a href="{{url('privilege_partner?partner_id=')}}{{$item->partner->id}}">
                                 @if(!empty($item->partner->logo))
                                 <img src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
                                 @else

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Privilege;
+use App\Models\Redeem_code;
+use App\Models\Partner;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PrivilegeController extends Controller
 {
@@ -38,9 +41,62 @@ class PrivilegeController extends Controller
             $privilege = Privilege::latest()->paginate($perPage);
         }
 
-        return view('privilege.index', compact('privilege'));
-    }
+        $privilege_partner = Privilege::groupBy('partner_id')->get();
+        $privilege_hot = Privilege::orderBy('user_click_redeem', 'desc')->limit(10)->get();
 
+
+        $sevendays = Carbon::now()->addDays(7);
+        $privilege_seven_day_expire = Privilege::where('expire_privilege', '<', $sevendays)->get();
+
+
+        return view('privilege.index', compact('privilege', 'privilege_partner', 'privilege_hot', 'privilege_seven_day_expire'));
+    }
+    public function seach_partner(Request $request)
+    {
+        $id = $request->get('partner_id');
+
+        // $perPage = 25;
+
+        if (!empty($id)) {
+            $privilege = Privilege::where('privileges.partner_id', $id)
+                ->leftjoin('partners', 'privileges.partner_id', '=', 'partners.id')
+                ->select(
+                    'privileges.id',
+                    'privileges.titel',
+                    'privileges.img_cover',
+                    'privileges.user_click_redeem',
+                    'privileges.expire_privilege',
+                    'partners.logo',
+                    'partners.name'
+                )
+                ->get();
+
+            $name_partner = Partner::where('id', $id)->first('name');
+            return view('privilege.privilege_partner', compact('privilege', 'name_partner'));
+        } else {
+            $privilege = Privilege::join('partners', 'privileges.partner_id', '=', 'partners.id')
+                ->select(
+                    'privileges.id',
+                    'privileges.titel',
+                    'privileges.img_cover',
+                    'privileges.user_click_redeem',
+                    'privileges.expire_privilege',
+                    'partners.logo',
+                    'partners.name'
+                )
+                ->get();
+            return view('privilege.privilege_partner', compact('privilege'));
+        }
+
+        // $privilege_partner = Privilege::groupBy('partner_id')->get();
+        // $privilege_hot = Privilege::orderBy('user_click_redeem', 'desc')->limit(10)->get();
+
+
+        // $sevendays = Carbon::now()->addDays(7);
+        // $privilege_seven_day_expire = Privilege::where('expire_privilege', '<', $sevendays)->get();
+
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -60,9 +116,9 @@ class PrivilegeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-                if ($request->hasFile('img_cover')) {
+        if ($request->hasFile('img_cover')) {
             $requestData['img_cover'] = $request->file('img_cover')
                 ->store('uploads', 'public');
         }
@@ -114,9 +170,9 @@ class PrivilegeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-                if ($request->hasFile('img_cover')) {
+        if ($request->hasFile('img_cover')) {
             $requestData['img_cover'] = $request->file('img_cover')
                 ->store('uploads', 'public');
         }
@@ -143,5 +199,81 @@ class PrivilegeController extends Controller
         Privilege::destroy($id);
 
         return redirect('privilege')->with('flash_message', 'Privilege deleted!');
+    }
+
+    public function get_code_redeem(Request $request)
+    {
+        $requestData = $request->all();
+
+
+        $privilege = Privilege::leftjoin('redeem_codes', 'privileges.id', '=', 'redeem_codes.privilege_id')
+            ->join('partners', 'privileges.partner_id', '=', 'partners.id')
+            ->where('privileges.id', $requestData['privilege_id'])
+            ->where('redeem_codes.user_id', $requestData['user_id'])
+            ->select(
+                'privileges.titel',
+                'privileges.img_cover',
+                'privileges.user_click_redeem',
+                'redeem_codes.redeem_code',
+                'privileges.expire_privilege',
+                'redeem_codes.status',
+                'redeem_codes.user_id',
+                'redeem_codes.id as redeem_codes_id',
+                'redeem_codes.time_update_status',
+                'partners.logo'
+            )
+            ->first();
+
+        if (!$privilege) {
+            $privilege = Privilege::join('redeem_codes', 'privileges.id', '=', 'redeem_codes.privilege_id')
+                ->join('partners', 'privileges.partner_id', '=', 'partners.id')
+                ->WhereNull('redeem_codes.status')
+                ->WhereNull('redeem_codes.user_id')
+                ->where('privileges.id', $requestData['privilege_id'])
+                ->select(
+                    'privileges.titel',
+                    'privileges.img_cover',
+                    'privileges.user_click_redeem',
+                    'privileges.expire_privilege',
+                    'redeem_codes.redeem_code',
+                    'redeem_codes.status',
+                    'redeem_codes.id as redeem_codes_id',
+                    'redeem_codes.time_update_status',
+                    'partners.logo'
+                )
+                ->first();
+        }
+
+        // หากยังไม่พบข้อมูล ให้ใช้ query แบบที่สาม
+        if (!$privilege) {
+            $privilege = Privilege::join('partners', 'privileges.partner_id', '=', 'partners.id')
+                ->where('privileges.id', $requestData['privilege_id'])
+                ->select(
+                    'privileges.titel',
+                    'privileges.img_cover',
+                    'privileges.user_click_redeem',
+                    'privileges.expire_privilege',
+                    'partners.logo'
+                )
+                ->first();
+        }
+
+
+        if ($privilege) {
+            // อัพเดตสถานะและเวลาอัพเดตของ redeem_codes
+            Redeem_code::where('id', $privilege->redeem_codes_id)->whereNull('status')->update([
+                'status' => 'pending',
+                'time_update_status' => now(),
+                'user_id' => $requestData['privilege_id']
+            ]);
+
+            Privilege::where('id', $requestData['privilege_id'])->update([
+                'user_click_redeem' => $privilege->user_click_redeem + 1
+            ]);
+        }
+
+
+
+        return response()->json($privilege);
     }
 }

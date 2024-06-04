@@ -610,6 +610,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('video_call/sos_map', 'AgoraController@index_sos_map');
 	// END SOS COMPANY //
 Route::resource('problem_report', 'Problem_reportController')->except(['show','edit']);;
+
+Route::resource('privilege', 'PrivilegeController');
+Route::get('privilege_partner', 'PrivilegeController@seach_partner');
+Route::resource('redeem_code', 'Redeem_codeController');
 });
 
 Route::resource('agora_chat', 'Agora_chatController');
@@ -628,5 +632,3 @@ Route::resource('phone_niems', 'Phone_niemsController');
 Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
 
 Route::resource('sos_by_organization', 'Sos_by_organizationController');
-Route::resource('privilege', 'PrivilegeController');
-Route::resource('redeem_code', 'Redeem_codeController');

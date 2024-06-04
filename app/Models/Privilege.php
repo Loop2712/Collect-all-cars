@@ -27,5 +27,7 @@ class Privilege extends Model
      */
     protected $fillable = ['partner_id', 'titel', 'detail', 'img_cover', 'img_content', 'type', 'redeem_type', 'amount_privilege', 'start_privilege', 'expire_privilege', 'user_view', 'user_click_redeem'];
 
-    
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'partner_id' , 'id'); 
+    }
 }

@@ -49,13 +49,18 @@
     .main-shadow {
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
     }
-
+    footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+}
     .main-radius {
       border-radius: 5px;
     }
 
     body {
       top: 0px !important;
+      padding-bottom:200px;
     }
 
     .goog-logo-link {
@@ -1301,7 +1306,7 @@
   <!-- Js Plugins -->
 
   <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script  src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

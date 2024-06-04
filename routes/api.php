@@ -420,3 +420,7 @@ Route::get('/get_data_btn_organizations', 'Sos_mapController@get_data_btn_organi
 Route::get('/get_unit_offiecr/{sub_organization}', 'Sos_help_centerController@get_unit_offiecr');
 
 
+// Privilege
+Route::get('/get_code_redeem', 'PrivilegeController@get_code_redeem');
+
+
