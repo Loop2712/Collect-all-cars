@@ -2777,6 +2777,9 @@ class Sos_help_centerController extends Controller
 
         $sos_joint_case = $sos_help_center->joint_case ;
 
+        $data_host = Sos_help_center::where('id' , $sos_joint_case)->first();
+        $code_of_host = $data_host->operating_code;
+
         if( !empty($sos_joint_case) ){
 
             // $arr_joint_case = json_decode($sos_joint_case, true);
@@ -2800,6 +2803,7 @@ class Sos_help_centerController extends Controller
                 $arr_by_case['time_command'] = $sos_by_case->time_command;
                 $arr_by_case['joint_case'] = $sos_by_case->joint_case;
                 $arr_by_case['helper_id'] = $sos_by_case->helper_id;
+                $arr_by_case['code_of_host'] = $code_of_host;
 
                 if ($arr_by_case['status'] == "ปฏิเสธ"){
 

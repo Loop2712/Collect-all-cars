@@ -1418,9 +1418,9 @@
     function select_new_officer_sos_id(data , click_id) {
 
         // console.log('*******************************************************');
-        console.log('select_new_officer_sos_id');
+        // console.log('select_new_officer_sos_id');
         // console.log('click_id >> '+ click_id);
-        console.log(data);
+        // console.log(data);
 
         // $("#modal_wait_officer_join_case").modal("hide");
         document.querySelector('#btn_close_modal_wait_officer_join_case').click();
@@ -1438,7 +1438,7 @@
         fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + data)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 // console.log(result.length);
 
                 if(result.length != 0){
@@ -1539,33 +1539,33 @@
                             <hr>
                             <div class="row text-center mb-3 mt-2">
                                 <div class="col-12">
-                                    <button id="select_new_join_btn_search_officer_by_type" onclick="select_new_join_search_by_officer('type');" type="button" class="btn btn-sm btn-info">
+                                    <button id="select_new_join_btn_search_officer_by_type_id_`+result[xxi]['id']+`" onclick="select_new_join_search_by_officer('type' , '`+result[xxi]['id']+`');" type="button" class="btn btn-sm btn-info">
                                         ค้นหาจากประเภท
                                     </button>
-                                    <button id="select_new_join_btn_search_officer_by_name" onclick="select_new_join_search_by_officer('name');" type="button" class="btn btn-sm btn-outline-info">
+                                    <button id="select_new_join_btn_search_officer_by_name_id_`+result[xxi]['id']+`" onclick="select_new_join_search_by_officer('name' , '`+result[xxi]['id']+`');" type="button" class="btn btn-sm btn-outline-info">
                                         ค้นหาจากชื่อ
                                     </button>
-                                    <button id="select_new_join_btn_search_officer_by_unit" onclick="select_new_join_search_by_officer('unit');" type="button" class="btn btn-sm btn-outline-info">
+                                    <button id="select_new_join_btn_search_officer_by_unit_id_`+result[xxi]['id']+`" onclick="select_new_join_search_by_officer('unit' , '`+result[xxi]['id']+`');" type="button" class="btn btn-sm btn-outline-info">
                                         ค้นหาจากหน่วย
                                     </button>
                                 </div>
                             </div>
 
                             <center>
-                                <input style="width: 90%;" id="select_new_join_div_search_name_officer" type="text" class="form-control mb-3 d-none" name="" placeholder="ค้นหา.." oninput="select_new_join_search_nameofficer_delay();">
+                                <input style="width: 90%;" id="select_new_join_div_search_name_officer_id_`+result[xxi]['id']+`" type="text" class="form-control mb-3 d-none" name="" placeholder="ค้นหา.." oninput="select_new_join_search_nameofficer_delay('`+result[xxi]['id']+`');">
                             </center>
 
                             <center>
-                                <select style="width: 90%;" id="select_new_join_div_search_unit_officer" class="form-control mb-3 d-none" onchange="select_new_join_change_select_unit_offiecr();">
+                                <select style="width: 90%;" id="select_new_join_div_search_unit_officer_id_`+result[xxi]['id']+`" class="form-control mb-3 d-none" onchange="select_new_join_change_select_unit_offiecr('`+result[xxi]['id']+`');">
                                     <option>เลือกหน่วย</option>
                                 </select>
                             </center>
 
                             <!-- BTN Select Level -->
-                            <div id="select_new_join_div_carousel_level" class="chat-tab-menu ">
+                            <div id="select_new_join_div_carousel_level_id_`+result[xxi]['id']+`" class="chat-tab-menu ">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a id="select_new_join_btn_select_level_all" class="nav-link  menu-select-lv-all all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
+                                        <a id="select_new_join_btn_select_level_all_id_`+result[xxi]['id']+`" class="nav-link  menu-select-lv-all all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
                                             <div class="font-24">ALL
                                             </div>
                                             <div><small>ทั้งหมด</small>
@@ -1610,9 +1610,9 @@
                             </div>
 
                             <!-- BTN Select vehicle  -->
-                            <div id="select_new_join_div_carousel_vehicle" class="owl-carousel owl-theme owlmenu-vehicle-new_select_officer p-3">
+                            <div id="select_new_join_div_carousel_vehicle_id_`+result[xxi]['id']+`" class="owl-carousel owl-theme owlmenu-vehicle-new_select_officer p-3">
                                 <div class="item" style="width:100%">
-                                    <a id="select_new_join_btn_select_vehicle_all" class="btn menu-select-vehicle-all vehicle-all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
+                                    <a id="select_new_join_btn_select_vehicle_all_id_`+result[xxi]['id']+`" class="btn menu-select-vehicle-all vehicle-all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
                                         ทั้งหมด
                                     </a>
                                 </div>
@@ -1916,6 +1916,10 @@
                     } else {
                         html_check_input = '';
                     }
+
+                    div_operating.setAttribute("join_name_officer" , result[i]['name_officer']);
+                    div_operating.setAttribute("join_unit_officer" , result[i]['name']);
+                    div_operating.setAttribute("name" , 'select_new_join_data_tag_officer_id_' + sos_id);
  
                     let text_data_operating = `
                         <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
@@ -2263,6 +2267,24 @@
 
     }
 
+    function join_change_select_unit_offiecr(){
+
+        let div_search_unit_officer = document.querySelector('#join_div_search_unit_officer');
+        let unit_officer = div_search_unit_officer.value ;
+        // console.log("unit_officer > " + unit_officer);
+
+        let div_tag_officer = document.querySelectorAll('div[name="join_data_tag_officer"]');
+            div_tag_officer.forEach(item_1 => {
+                item_1.classList.add('d-none');
+            })
+
+        let div_unit_officer = document.querySelectorAll('div[join_unit_officer="'+unit_officer+'"]');
+            div_unit_officer.forEach(item_2 => {
+                item_2.classList.remove('d-none');
+            })
+
+    }
+
     let join_delayTimer_search_nameofficer;
     function join_search_nameofficer_delay(){
         // Clear any pending delay timer
@@ -2294,40 +2316,44 @@
 
     }
 
-    function select_new_join_search_by_officer(tag){
-        document.querySelector('#select_new_join_btn_search_officer_by_type').classList.remove('btn-info');
-        document.querySelector('#select_new_join_btn_search_officer_by_name').classList.remove('btn-info');
-        document.querySelector('#select_new_join_btn_search_officer_by_unit').classList.remove('btn-info');
+    function select_new_join_search_by_officer(tag , sos_id){
+        document.querySelector('#select_new_join_btn_search_officer_by_type_id_'+sos_id).classList.remove('btn-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_name_id_'+sos_id).classList.remove('btn-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_unit_id_'+sos_id).classList.remove('btn-info');
 
-        document.querySelector('#select_new_join_btn_search_officer_by_type').classList.add('btn-outline-info');
-        document.querySelector('#select_new_join_btn_search_officer_by_name').classList.add('btn-outline-info');
-        document.querySelector('#select_new_join_btn_search_officer_by_unit').classList.add('btn-outline-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_type_id_'+sos_id).classList.add('btn-outline-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_name_id_'+sos_id).classList.add('btn-outline-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_unit_id_'+sos_id).classList.add('btn-outline-info');
 
-        document.querySelector('#select_new_join_btn_search_officer_by_'+tag).classList.add('btn-info');
-        document.querySelector('#select_new_join_btn_search_officer_by_'+tag).classList.remove('btn-outline-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_'+tag+'_id_'+sos_id).classList.add('btn-info');
+        document.querySelector('#select_new_join_btn_search_officer_by_'+tag+'_id_'+sos_id).classList.remove('btn-outline-info');
 
-        select_new_join_show_data_officer_by(tag);
+        select_new_join_show_data_officer_by(tag , sos_id);
     }
 
-    function select_new_join_show_data_officer_by(tag){
-        let select_new_join_div_carousel_vehicle = document.querySelector('#select_new_join_div_carousel_vehicle');
-        let select_new_join_div_carousel_level = document.querySelector('#select_new_join_div_carousel_level');
-        let select_new_join_div_search_name_officer = document.querySelector('#select_new_join_div_search_name_officer');
-        let select_new_join_div_search_unit_officer = document.querySelector('#select_new_join_div_search_unit_officer');
+    // new_select_officer_card_data_operating_id
+
+    function select_new_join_show_data_officer_by(tag , sos_id){
+        let select_new_join_div_carousel_vehicle = document.querySelector('#select_new_join_div_carousel_vehicle_id_'+sos_id);
+        let select_new_join_div_carousel_level = document.querySelector('#select_new_join_div_carousel_level_id_'+sos_id);
+        let select_new_join_div_search_name_officer = document.querySelector('#select_new_join_div_search_name_officer_id_'+sos_id);
+        let select_new_join_div_search_unit_officer = document.querySelector('#select_new_join_div_search_unit_officer_id_'+sos_id);
 
         select_new_join_div_carousel_vehicle.classList.add('d-none');
         select_new_join_div_carousel_level.classList.add('d-none');
         select_new_join_div_search_name_officer.classList.add('d-none');
         select_new_join_div_search_unit_officer.classList.add('d-none');
 
-        document.querySelector('#select_new_joint_sos_card_data_operating').classList.add('d-none');
-        document.querySelector('#select_new_join_btn_select_level_all').click();
-        document.querySelector('#select_new_join_btn_select_vehicle_all').click();
+        document.querySelector('#select_new_join_btn_select_level_all_id_'+sos_id).click();
+        document.querySelector('#select_new_join_btn_select_vehicle_all_id_'+sos_id).click();
+
+        document.querySelector('#new_select_officer_card_data_operating_id_' + sos_id).classList.add('d-none');
 
         setTimeout(function() {
 
-            document.querySelector('#select_new_join_div_search_name_officer').value = '';
-            let select_new_join_div_tag_officer = document.querySelectorAll('div[name="select_new_join_data_tag_officer"]');
+            document.querySelector('#select_new_join_div_search_name_officer_id_'+sos_id).value = '';
+
+            let select_new_join_div_tag_officer = document.querySelectorAll('div[name="select_new_join_data_tag_officer_id_' + sos_id+'"]');
                 
             if(tag == "type"){
                 select_new_join_div_tag_officer.forEach(item => {
@@ -2347,32 +2373,35 @@
                     item.classList.add('d-none');
                 })
                 select_new_join_div_search_unit_officer.classList.remove('d-none');
-                select_new_join_get_unit_offiecr();
+                select_new_join_get_unit_offiecr(sos_id);
             }
 
-            document.querySelector('#select_new_joint_sos_card_data_operating').classList.remove('d-none');
+            document.querySelector('#new_select_officer_card_data_operating_id_' + sos_id).classList.remove('d-none');
 
         }, 650);
     }
 
-    let select_new_join_delayTimer_search_nameofficer;
-    function select_new_join_search_nameofficer_delay(){
+    let select_new_join_delayTimer_search_nameofficer = [];
+    function select_new_join_search_nameofficer_delay(sos_id){
         // Clear any pending delay timer
         clearTimeout(select_new_join_delayTimer_search_nameofficer);
-        select_new_join_delayTimer_search_nameofficer = setTimeout(select_new_join_search_data_officer_by_name, 1500);
+
+        select_new_join_delayTimer_search_nameofficer[sos_id] = setTimeout(function() {
+            select_new_join_search_data_officer_by_name(sos_id);
+        }, 1500);
     }
 
-    function select_new_join_search_data_officer_by_name(){
-        let select_new_join_input_search = document.querySelector('#select_new_join_div_search_name_officer')
-        // console.log(join_input_search.value);
+    function select_new_join_search_data_officer_by_name(sos_id){
+        let select_new_join_input_search = document.querySelector('#select_new_join_div_search_name_officer_id_'+sos_id)
+        // console.log(select_new_join_input_search.value);
 
-        let select_new_div_tag_officer = document.querySelectorAll('div[name="select_new_join_data_tag_officer"]');
+        let select_new_div_tag_officer = document.querySelectorAll('div[name="select_new_join_data_tag_officer_id_' + sos_id+'"]');
             select_new_div_tag_officer.forEach(item_1 => {
                 item_1.classList.add('d-none');
             })
 
         if(select_new_join_input_search.value){
-            let select_new_search_by_name = document.querySelectorAll('div[name="select_new_join_data_tag_officer"]');
+            let select_new_search_by_name = document.querySelectorAll('div[name="select_new_join_data_tag_officer_id_' + sos_id+'"]');
                 select_new_search_by_name.forEach(item_2 => {
                     let nameOfficerAttribute = item_2.getAttribute('join_name_officer').toLowerCase(); 
                     let inputValue = select_new_join_input_search.value.toLowerCase();
@@ -2386,14 +2415,14 @@
 
     }
 
-    function select_new_join_get_unit_offiecr(){
+    function select_new_join_get_unit_offiecr(sos_id){
 
         fetch("{{ url('/') }}/api/get_unit_offiecr" + "/" + "{{ Auth::user()->sub_organization }}")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
-                let select_new_join_div_search_unit_officer = document.querySelector('#select_new_join_div_search_unit_officer');
+                let select_new_join_div_search_unit_officer = document.querySelector('#select_new_join_div_search_unit_officer_id_'+sos_id);
                     select_new_join_div_search_unit_officer.innerHTML = '';
 
                 let option_first = document.createElement("option");
@@ -2408,6 +2437,24 @@
                     select_new_join_div_search_unit_officer.add(option);
                 }
             });
+
+    }
+
+    function select_new_join_change_select_unit_offiecr(sos_id){
+
+        let div_search_unit_officer = document.querySelector('#select_new_join_div_search_unit_officer_id_'+sos_id);
+        let unit_officer = div_search_unit_officer.value ;
+        // console.log("unit_officer > " + unit_officer);
+
+        let div_tag_officer = document.querySelectorAll('div[name="select_new_join_data_tag_officer_id_'+sos_id+'"]');
+            div_tag_officer.forEach(item_1 => {
+                item_1.classList.add('d-none');
+            })
+
+        let div_unit_officer = document.querySelectorAll('div[join_unit_officer="'+unit_officer+'"]');
+            div_unit_officer.forEach(item_2 => {
+                item_2.classList.remove('d-none');
+            })
 
     }
 </script>
