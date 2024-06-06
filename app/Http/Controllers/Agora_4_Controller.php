@@ -923,6 +923,7 @@ class Agora_4_Controller extends Controller
             }elseif(!empty($data_hospital_officer->name_officer_hospital)){
                 $data['user_type'] = "เจ้าหน้าที่ห้อง ER";
                 $data['name_user'] = $data_hospital_officer->name_officer_hospital;
+                // $data['name_user'] = $data_hospital_officer->user->name;
             }else{
                 $data['user_type'] = "--";
                 $data['name_user'] = $local_data->name;
@@ -1056,6 +1057,7 @@ class Agora_4_Controller extends Controller
             }elseif(!empty($data_hospital_officer->name_officer_hospital)){
                 $data['user_type'] = "เจ้าหน้าที่ห้อง ER";
                 $data['name_user'] = $data_hospital_officer->name_officer_hospital;
+                // $data['name_user'] = $data_hospital_officer->user->name;
             }else{
                 $data['user_type'] = "--";
                 $data['name_user'] = $remote_data->name;

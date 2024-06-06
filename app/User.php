@@ -81,6 +81,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Data_1669_officer_command', 'creator' ,'id');
     }
 
+    public function officer_hospital(){
+        return $this->hasMany('App\Models\Data_1669_officer_hospital', 'id' ,'user_id');
+    }
+
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'user_id');
     // }

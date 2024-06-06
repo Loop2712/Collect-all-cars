@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Data_1669_officer_hospital extends Model
+class Hospital_office_department extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'data_1669_officer_hospitals';
+    protected $table = 'hospital_offices_department';
 
     /**
     * The database primary key value.
@@ -25,9 +25,5 @@ class Data_1669_officer_hospital extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_officer_hospital', 'user_id', 'hospital_offices_id', 'area', 'creator', 'status'];
-
-    public function user(){
-        return $this->belongsTo('App\User', 'user_id', 'id');
-    }
+    protected $fillable = ['name'];
 }

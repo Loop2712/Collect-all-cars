@@ -413,7 +413,8 @@ Route::get('/get_data_hospital/{province}', 'Hospital_officeController@get_data_
 Route::get('/create_account_hospital/{area}/{id}/{creator}', 'Hospital_officeController@create_account_hospital');
 Route::get('/create_1669_to_hospitals/{hospital_id}/{sos_1669_id}/{command_id}', 'Hospital_officeController@create_1669_to_hospitals');
 Route::get('/start_get_data_sos_hospital/{user_id}', 'Sos_1669_to_hospitalController@start_get_data_sos_hospital');
-
+Route::get('/update_status_case_hospital', 'Sos_1669_to_hospitalController@update_status_case_hospital');
+Route::get('/hospital_dropdown_data', 'Hospital_officeController@dropdown_data');
 
 Route::get('/get_data_btn_organizations', 'Sos_mapController@get_data_btn_organizations');
 

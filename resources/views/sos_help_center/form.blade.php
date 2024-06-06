@@ -1541,7 +1541,7 @@ color: #ff9317;
                     </div>
                     <div class="col w-100 p-0 m-0">
                         <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                        <i class="fa-duotone fa-images"></i>รูปภาพ
+                            <i class="fa-duotone fa-images"></i>รูปภาพ
                         </span>
                     </div>
                 </div>
@@ -1801,7 +1801,7 @@ color: #ff9317;
 
             <div class="card radius-10">
                 <div class="row d-flex justify-content-between">
-                    
+
                     <div class="col-12  d-flex justify-content-end">
                         <div class="d-flex align-items-center">
                             <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">

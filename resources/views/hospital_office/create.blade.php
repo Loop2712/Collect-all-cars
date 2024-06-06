@@ -22,7 +22,7 @@
                         <form method="POST" action="{{ url('/hospital_office') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('hospital_office.form', ['formMode' => 'create'])
+                            {{-- @include ('hospital_office.form', ['formMode' => 'create']) --}}
 
                         </form>
 

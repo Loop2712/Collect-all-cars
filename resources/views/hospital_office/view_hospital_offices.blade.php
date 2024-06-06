@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-    
+
 .InputContainer {
   width: 310px;
   height: 40px;
@@ -37,8 +37,11 @@
 <div class="card radius-10 d-none d-lg-block">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="row mt-2">
-            <div class="col-3">
+            <div class="col-3 ">
                 <h3 class="">รายชื่อโรงพยาบาล</h3>
+                <a href="{{ url('/create_hospital') }}" class="btn btn-sm btn-success" style="width: 40%;">
+                    เพิ่ม
+                </a>
             </div>
             <div class="col-9">
                 <div class="float-end">
@@ -81,7 +84,7 @@
 </div>
 
 <script>
-    
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_data_hospital();
@@ -143,7 +146,7 @@
                                 <span><b>lat :</b> `+result[i].lat+` <b>Long:</b> `+result[i].lng+`</span> <br>
                                 <center>
                                     `+html_active+`
-                                </center>   
+                                </center>
                             </div>
                         `;
 

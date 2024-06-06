@@ -53,9 +53,9 @@
 
                     document.querySelector('#count_case_select').innerHTML = result.length ;
 
-                    let div_content = document.querySelector('#div_content');
-                        div_content.innerHTML = '' ;
-
+                    // let div_content = document.querySelector('#div_content');
+                    //     div_content.innerHTML = '' ;
+                    document.querySelector('#div_content').innerHTML = '' ;
                     for (let i = 0; i < result.length; i++) {
 
                         let centers_status = `` ;
@@ -123,7 +123,7 @@
                         }
 
                         let btn_idc = `
-                            <button style="width: 120px;" class="btn btn-sm btn-outline-dark px-3">
+                            <button style="min-width: 120px; max-width:150px;" class="btn btn-sm btn-outline-dark px-3">
                                 IDC
                                 <br>
                                 (ไม่ได้ระบุ)
@@ -152,7 +152,7 @@
                             }
 
                             btn_idc = `
-                                <button style="width: 120px;" class="btn btn-sm `+class_idc+` px-3">
+                                <button style="min-width: 120px; max-width:150px;" class="btn btn-sm `+class_idc+` px-3">
                                     IDC
                                     <br>
                                     `+text_idc+`
@@ -161,7 +161,7 @@
                         }
 
                         let btn_rc = `
-                            <button style="width: 120px;" class="btn btn-sm btn-outline-dark px-3">
+                            <button style="min-width: 120px; max-width:150px;" class="btn btn-sm btn-outline-dark px-3">
                                 RC
                                 <br>
                                 (ไม่ได้ระบุ)
@@ -189,7 +189,7 @@
                             }
 
                             btn_rc = `
-                                <button style="width: 120px;" class="btn btn-sm `+class_rc+` px-3">
+                                <button style="min-width: 120px; max-width:150px;" class="btn btn-sm `+class_rc+` px-3">
                                     RC
                                     <br>
                                     `+text_rc+`
@@ -209,7 +209,8 @@
                                 class_status = `success`;
                             }
                         }
-
+                        console.log("current status");
+                        console.log(result[i].status);
                         let html = `
                             <div div_data_case="div_data_case" div_id="`+result[i].id+`" div_status="`+result[i].status+`" class="card border-top border-0 border-4 border-`+class_status+` main-shadow main-radius">
                                 <div class="card-body px-5 py-3">
@@ -235,15 +236,15 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu" style="margin: 0px;">
                                                                     <li>
-                                                                        <a class="text-danger dropdown-item" href="#">รอดำเนินการ
+                                                                        <a class="text-danger dropdown-item" onclick="update_status_case('`+result[i].id+`','wait')" href="#">รอดำเนินการ
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="text-warning dropdown-item" href="#">กำลังดำเนินการ
+                                                                        <a class="text-warning dropdown-item" onclick="update_status_case('`+result[i].id+`','progress')" href="#">กำลังดำเนินการ
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="text-success dropdown-item" href="#">เสร็จสิ้น
+                                                                        <a class="text-success dropdown-item" onclick="update_status_case('`+result[i].id+`','success')" href="#">เสร็จสิ้น
                                                                         </a>
                                                                     </li>
                                                                 </ul>
@@ -297,7 +298,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-12 mt-4">
-                                                    <a class="btn btn-info px-5 radius-10">
+                                                    <a class="btn btn-info px-5 radius-10" href="{{ url('/sos_1669_to_hospital') }}/`+result[i].id+`">
                                                         <i class="fa-sharp fa-solid fa-eye mr-1"></i> ดูข้อมูล
                                                     </a>
                                                     <a class="btn btn-success px-5 radius-10" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id=`+result[i].sos_help_center_id+`" target="_blank">
@@ -312,7 +313,7 @@
                         `;
 
                         div_content.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
-
+                        change_select_view(current_type);
                     }
 
                 }
@@ -320,6 +321,20 @@
             });
     }
 
+    function update_status_case(case_id , type){
+        console.log("case_id :"+case_id);
+        console.log("type :"+type);
+        fetch("{{ url('/') }}/api/update_status_case_hospital" + "?case_id=" + case_id + "&type=" + type)
+        .then(response => response.json())
+        .then(result => {
+            console.log("result update_status_case");
+            console.log(result);
+            start_get_data_sos_hospital();
+
+        });
+    }
+
+    var current_type = "all";
     function change_select_view(type){
 
         let div_data_case = document.querySelectorAll('[div_data_case="div_data_case"]');
@@ -340,6 +355,7 @@
         let count = 0 ;
 
         if(type == "all"){
+            current_type = "all"; //สถานะ ดูเคสทั้งหมด
             document.querySelector('#btn_select_all').classList.remove('btn-outline-info');
             document.querySelector('#btn_select_all').classList.add('btn-info');
 
@@ -350,6 +366,7 @@
             });
         }
         else if(type == "wait"){
+            current_type = "wait"; //สถานะ ดูเคส wait อย่างเดียว
             document.querySelector('#btn_select_wait').classList.remove('btn-outline-danger');
             document.querySelector('#btn_select_wait').classList.add('btn-danger');
 
@@ -360,6 +377,7 @@
             });
         }
         else if(type == "progress"){
+            current_type = "progress"; //สถานะ ดูเคส progress อย่างเดียว
             document.querySelector('#btn_select_progress').classList.remove('btn-outline-warning');
             document.querySelector('#btn_select_progress').classList.add('btn-warning');
 
@@ -370,6 +388,7 @@
             });
         }
         else if(type == "success"){
+            current_type= "success"; //สถานะ ดูเคส success อย่างเดียว
             document.querySelector('#btn_select_success').classList.remove('btn-outline-success');
             document.querySelector('#btn_select_success').classList.add('btn-success');
 
@@ -382,6 +401,8 @@
 
         document.querySelector('#count_case_select').innerHTML = count ;
     }
+
+
 </script>
 
 @endsection

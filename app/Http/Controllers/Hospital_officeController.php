@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SeedsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
@@ -9,13 +10,17 @@ use App\Models\Hospital_office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Models\Data_1669_officer_hospital;
+use App\Models\Hospital_office_affiliation;
+use App\Models\Hospital_office_department;
 use App\Models\Sos_1669_to_hospital;
 use App\Models\Sos_help_center;
 use App\Models\Sos_1669_form_yellow;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Hospital_officeController extends Controller
 {
@@ -44,7 +49,7 @@ class Hospital_officeController extends Controller
         //         'key' => $apiKey,
         //         'input' => $placeName,
         //         'inputtype' => 'textquery',
-        //         'fields' => 'formatted_address,name,rating,opening_hours,geometry', 
+        //         'fields' => 'formatted_address,name,rating,opening_hours,geometry',
         //         'locationbias' => 'point:latitude,longitude', // เปลี่ยน latitude และ longitude ตามที่คุณต้องการ
         //     ]);
 
@@ -78,14 +83,14 @@ class Hospital_officeController extends Controller
         //         echo "<br>";
 
         //         DB::table('hospital_offices')
-        //             ->where([ 
+        //             ->where([
         //                     ['name', $placeName],
         //                 ])
         //             ->update([
         //                     'address' => $data_arr[0]['formatted_address'],
         //                     'lat' => $data_arr[0]['lat'],
         //                     'lng' => $data_arr[0]['lng'],
-        //                 ]);      
+        //                 ]);
 
         //     }
 
@@ -113,6 +118,11 @@ class Hospital_officeController extends Controller
         return view('hospital_office.hospital_offices_index', compact('data_hospital'));
     }
 
+    public function create_hospital()
+    {
+        return view('hospital_office.create_hospital');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -120,6 +130,7 @@ class Hospital_officeController extends Controller
      */
     public function create()
     {
+
         return view('hospital_office.create');
     }
 
@@ -132,12 +143,12 @@ class Hospital_officeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Hospital_office::create($requestData);
 
-        return redirect('hospital_office')->with('flash_message', 'Hospital_office added!');
+        return redirect('view_hospital_offices')->with('flash_message', 'Hospital_office added!');
     }
 
     /**
@@ -178,14 +189,14 @@ class Hospital_officeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
 
         // echo "<pre>";
         // print_r($requestData);
         // echo "<pre>";
         // exit();
-        
+
         $hospital_office = Hospital_office::findOrFail($id);
         $hospital_office->update($requestData);
 
@@ -215,16 +226,82 @@ class Hospital_officeController extends Controller
         foreach ($requestData as $item) {
 
             foreach ($item as $key => $value) {
-                $data_arr[$key] = $value;
+                switch ($key) {
+                    case 'รหัส 9 หลัก':
+                        $data_arr['code_9_digit'] = $value;
+                        break;
+                    case 'รหัส 5 หลัก':
+                        $data_arr['code_5_digit'] = $value;
+                        break;
+                    case 'เลขอนุญาตให้ประกอบสถานบริการสุขภาพ 11 หลัก':
+                        $data_arr['code_11_digit'] = $value;
+                        break;
+                    case 'ชื่อ':
+                        $data_arr['name'] = $value;
+                        break;
+                    case 'ประเภทองค์กร':
+                        $data_arr['organization_type'] = $value;
+                        break;
+                    case 'ประเภทหน่วยบริการสุขภาพ':
+                        $data_arr['health_type'] = $value;
+                        break;
+                    case 'สังกัด':
+                        $data_arr['affiliation'] = $value;
+                        break;
+                    case 'แผนก/กรม':
+                        $data_arr['department'] = $value;
+                        break;
+                    case 'เตียงที่ใช้จริง':
+                        $data_arr['actual_bed'] = $value;
+                        break;
+                    case 'สถานะการใช้งาน':
+                        $data_arr['usage_status'] = $value;
+                        break;
+                    case 'เขตบริการ':
+                        $data_arr['service_area'] = $value;
+                        break;
+                    case 'ที่อยู่':
+                        $data_arr['address'] = $value;
+                        break;
+                    case 'จังหวัด':
+                        $data_arr['province'] = $value;
+                        break;
+                    case 'อำเภอ/เขต':
+                        $data_arr['district'] = $value;
+                        break;
+                    case 'ตำบล/แขวง':
+                        $data_arr['sub_district'] = $value;
+                        break;
+                    case 'หมู่':
+                        $data_arr['village'] = $value;
+                        break;
+                    case 'รหัสไปรษณีย์':
+                        $data_arr['zip_code'] = $value;
+                        break;
+                    case 'แม่ข่าย':
+                        $data_arr['server'] = $value;
+                        break;
+                    case 'วันที่ก่อตั้ง':
+                        $data_arr['founding_date'] = $value;
+                        break;
+                    case 'วันที่ปิดบริการ':
+                        $data_arr['closing_date'] = $value;
+                        break;
+                    case 'อัพเดตล่าสุด':
+                        $data_arr['latest_update'] = $value;
+                        break;
+                    case 'lat':
+                        $data_arr['lat'] = $value;
+                        break;
+                    case 'lng':
+                        $data_arr['lng'] = $value;
+                        break;
+                    default:
+                        $data_arr[$key] = $value;
+                        break;
+                }
             }
 
-            // $check_old_data = Hospital_office::where('code_9_digit',$data_arr['code_9_digit'])->first();
-
-            // if( !empty($check_old_data->id) ){
-            //     // 
-            // }else{
-            //     // 
-            // }
 
             Hospital_office::create($data_arr);
         }
@@ -295,7 +372,7 @@ class Hospital_officeController extends Controller
         $officer_hospital->save();
 
         DB::table('hospital_offices')
-            ->where([ 
+            ->where([
                     ['id', $id],
                 ])
             ->update([
@@ -327,7 +404,7 @@ class Hospital_officeController extends Controller
         $last_data = Sos_1669_to_hospital::latest()->first();
 
         DB::table('sos_help_centers')
-            ->where([ 
+            ->where([
                     ['id', $sos_1669_id],
                 ])
             ->update([
@@ -343,7 +420,16 @@ class Hospital_officeController extends Controller
         $data_hospital = Data_1669_officer_hospital::where('user_id', $data_user->id)->first();
         $hospital_offices = Hospital_office::where('id', $data_hospital->hospital_offices_id)->first();
 
-        return view('hospital_office.edit_my_hospital', compact('hospital_offices')); 
+        return view('hospital_office.edit_my_hospital', compact('hospital_offices'));
 
     }
+
+    function dropdown_data(){
+        $data_arr = [];
+        $data_arr['affiliation'] = Hospital_office_affiliation::groupBy('name')->get();
+        $data_arr['department'] = Hospital_office_department::groupBy('name')->get();
+
+        return $data_arr;
+    }
+
 }
