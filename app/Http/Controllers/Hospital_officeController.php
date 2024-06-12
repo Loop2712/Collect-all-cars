@@ -16,9 +16,12 @@ use App\User;
 use App\Models\Data_1669_officer_hospital;
 use App\Models\Hospital_office_affiliation;
 use App\Models\Hospital_office_department;
+use App\Models\Hospital_office_health_type;
+use App\Models\Hospital_office_service_area;
 use App\Models\Sos_1669_to_hospital;
 use App\Models\Sos_help_center;
 use App\Models\Sos_1669_form_yellow;
+use DateTime;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -146,6 +149,34 @@ class Hospital_officeController extends Controller
 
         $requestData = $request->all();
 
+        if (!empty($requestData['affiliation'])) {
+            $affiliation = ['name' => trim($requestData['affiliation'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+            Hospital_office_affiliation::firstOrCreate($affiliation);
+        }
+
+        if (!empty($requestData['department'])) {
+            $department = ['name' => trim($requestData['department'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+            Hospital_office_department::firstOrCreate($department);
+        }
+
+        if (!empty($requestData['health_type'])) {
+            $health_type = ['name' => trim($requestData['health_type'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+            Hospital_office_health_type::firstOrCreate($health_type);
+        }
+
+        if (!empty($requestData['service_area'])) {
+            $service_area = ['name' => trim($requestData['service_area'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+            Hospital_office_service_area::firstOrCreate($service_area);
+        }
+
+        $date1 = DateTime::createFromFormat('Y-m-d', $requestData['founding_date']);
+        $requestData['founding_date'] = $date1->format('d/m/Y');
+
+        $date2 = DateTime::createFromFormat('Y-m-d', $requestData['closing_date']);
+        $requestData['closing_date'] = $date2->format('d/m/Y');
+
+        $requestData['latest_update'] = date('d/m/Y H:i:s');
+
         Hospital_office::create($requestData);
 
         return redirect('view_hospital_offices')->with('flash_message', 'Hospital_office added!');
@@ -198,10 +229,19 @@ class Hospital_officeController extends Controller
         // exit();
 
         $hospital_office = Hospital_office::findOrFail($id);
+
+        $date1 = DateTime::createFromFormat('Y-m-d', $requestData['founding_date']);
+        $requestData['founding_date'] = $date1->format('d/m/Y');
+
+        $date2 = DateTime::createFromFormat('Y-m-d', $requestData['closing_date']);
+        $requestData['closing_date'] = $date2->format('d/m/Y');
+
+        $requestData['latest_update'] = date('d/m/Y H:i:s');
+
         $hospital_office->update($requestData);
 
         // return redirect('hospital_office')->with('flash_message', 'Hospital_office updated!');
-        return redirect('/edit_my_hospital');
+        return redirect('/view_hospital_offices');
     }
 
     /**
@@ -221,9 +261,9 @@ class Hospital_officeController extends Controller
     function create_hospital_office(Request $request)
     {
         $requestData = $request->all();
-        $data_arr = [];
 
         foreach ($requestData as $item) {
+            $data_arr = [];
 
             foreach ($item as $key => $value) {
                 switch ($key) {
@@ -244,12 +284,15 @@ class Hospital_officeController extends Controller
                         break;
                     case 'ประเภทหน่วยบริการสุขภาพ':
                         $data_arr['health_type'] = $value;
+
                         break;
                     case 'สังกัด':
                         $data_arr['affiliation'] = $value;
+
                         break;
                     case 'แผนก/กรม':
                         $data_arr['department'] = $value;
+
                         break;
                     case 'เตียงที่ใช้จริง':
                         $data_arr['actual_bed'] = $value;
@@ -259,6 +302,7 @@ class Hospital_officeController extends Controller
                         break;
                     case 'เขตบริการ':
                         $data_arr['service_area'] = $value;
+
                         break;
                     case 'ที่อยู่':
                         $data_arr['address'] = $value;
@@ -302,8 +346,33 @@ class Hospital_officeController extends Controller
                 }
             }
 
+            if (!empty($data_arr['affiliation'])) {
+                $affiliation = ['name' => trim($data_arr['affiliation'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+                Hospital_office_affiliation::firstOrCreate($affiliation);
+            }
 
+            if (!empty($data_arr['department'])) {
+                $department = ['name' => trim($data_arr['department'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+                Hospital_office_department::firstOrCreate($department);
+            }
+
+            if (!empty($data_arr['health_type'])) {
+                $health_type = ['name' => trim($data_arr['health_type'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+                Hospital_office_health_type::firstOrCreate($health_type);
+            }
+
+            if (!empty($data_arr['service_area'])) {
+                $service_area = ['name' => trim($data_arr['service_area'])]; // ใช้ trim() เพื่อลบช่องว่างด้านหน้าและด้านหลังของข้อมูล
+                Hospital_office_service_area::firstOrCreate($service_area);
+            }
+
+            if (empty($data_arr['latest_update'])) {
+                $data_arr['latest_update'] = date('d/m/Y H:i:s');
+            }
+
+            // สร้างข้อมูลในตาราง Hospital_office
             Hospital_office::create($data_arr);
+
         }
 
         return "success" ;
@@ -414,13 +483,15 @@ class Hospital_officeController extends Controller
         return "success" ;
     }
 
-    function edit_my_hospital(){
+    function edit_my_hospital($id){
 
-        $data_user = Auth::user();
-        $data_hospital = Data_1669_officer_hospital::where('user_id', $data_user->id)->first();
-        $hospital_offices = Hospital_office::where('id', $data_hospital->hospital_offices_id)->first();
+        // $data_user = Auth::user();
+        // $data_hospital = Data_1669_officer_hospital::where('user_id', $data_user->id)->first();
+        // $hospital_offices = Hospital_office::where('id', $data_hospital->hospital_offices_id)->first();
 
-        return view('hospital_office.edit_my_hospital', compact('hospital_offices'));
+        $hospital_office = Hospital_office::where('id', $id)->first();
+
+        return view('hospital_office.edit_my_hospital', compact('hospital_office'));
 
     }
 
@@ -428,6 +499,8 @@ class Hospital_officeController extends Controller
         $data_arr = [];
         $data_arr['affiliation'] = Hospital_office_affiliation::groupBy('name')->get();
         $data_arr['department'] = Hospital_office_department::groupBy('name')->get();
+        $data_arr['health_type'] = Hospital_office_health_type::groupBy('name')->get();
+        $data_arr['service_area'] = Hospital_office_service_area::groupBy('name')->get();
 
         return $data_arr;
     }

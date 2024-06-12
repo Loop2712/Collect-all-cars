@@ -59,17 +59,20 @@
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-input" role="tabpanel" aria-labelledby="pills-input-tab" tabindex="0">
-                    <div class="card p-3">
-                        <div class="card-body">
-                            @include ('hospital_office.form', ['formMode' => 'create'])
+                    <div class="card border-top border-0 border-4 border-primary">
+                        <div class="card-body p-5">
+                            <form class="row g-3" method="POST" action="{{ url('/hospital_office') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                @include ('hospital_office.form', ['formMode' => 'create'])
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-excel" role="tabpanel" aria-labelledby="pills-excel-tab" tabindex="0">
-                    <div class="card p-3">
-                        <div class="card-body">
+                    <div class="card border-top border-0 border-4 border-primary">
+                        <div class="card-body p-5">
                             <a href="{{ url('/') }}/storage/templates/hospital_offices_template.xlsx" download id="excel_template_download" class="btn btn-info float-end" >ดาวน์โหลด Template <i style="font-size: 14px;" class="fa-regular fa-file"></i></a>
-                            <br>
+                            <br><br>
                             <h6>excel file</h6>
                             <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_div_success();">
                         </div>
@@ -184,6 +187,8 @@
             clearFileInput('excel');
         }, 2000);
     }
+
+
 
 </script>
 

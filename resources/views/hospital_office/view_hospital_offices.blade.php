@@ -137,7 +137,17 @@
 
                         let html = `
                             <div `+html_data+` class="card col-6 my-3 px-3 py-4 main-shadow div_of_data">
-                                <h5><b>`+result[i].name+`</b></h5>
+                                <div class="d-flex justify-content-between">
+                                    <div class="h5"><b>`+result[i].name+`</b></div>
+                                    <div class="dropdown">
+                                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bx bx-dots-horizontal-rounded"></i>
+                                        </div>
+                                        <div class="text-center dropdown-menu dropdown-menu-right" style="margin: 0px;">
+                                            <a style="font-weight:bold;" class="dropdown-item" href="{{ url('/edit_my_hospital') }}/`+result[i].id+`" "><i style="font-weight:bold;" class="fa-regular fa-pen-to-square"></i> แก้ไข</a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <span><b>`+result[i].health_type+`</b></span> <br>
                                 <span>
                                     <b>อำเภอ/เขต :</b> `+result[i].district+` &nbsp;&nbsp;&nbsp; <b>ตำบล/แขวง :</b> `+result[i].sub_district+`
@@ -150,7 +160,7 @@
                             </div>
                         `;
 
-                        content.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        content.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
 
                     }
 

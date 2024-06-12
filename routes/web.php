@@ -216,7 +216,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('hospital_offices_index', 'Hospital_officeController@hospital_offices_index');
 	Route::get('view_hospital_offices', 'Hospital_officeController@view_hospital_offices');
 	Route::get('open_active_hospital/{id}', 'Hospital_officeController@open_active_hospital');
-	Route::get('edit_my_hospital', 'Hospital_officeController@edit_my_hospital');
+	Route::get('edit_my_hospital/{id}', 'Hospital_officeController@edit_my_hospital');
     Route::get('create_hospital', 'Hospital_officeController@create_hospital');
 
 	// BROADCAST

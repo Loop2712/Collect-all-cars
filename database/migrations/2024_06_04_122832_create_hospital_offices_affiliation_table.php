@@ -16,6 +16,7 @@ class CreateHospitalOfficesAffiliationTable extends Migration
         Schema::create('hospital_offices_affiliation', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->timestamps();
         });
     }
 
