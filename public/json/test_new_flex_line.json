@@ -64,7 +64,8 @@
                       "weight": "bold"
                     }
                   ],
-                  "wrap": false
+                  "wrap": false,
+                  "align": "center"
                 }
               ],
               "width": "50%",
