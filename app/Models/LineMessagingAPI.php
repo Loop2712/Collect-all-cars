@@ -2177,13 +2177,10 @@ class LineMessagingAPI extends Model
 
                 $date = $time_zone_explode[0] ;
                 $time = $time_zone_explode[1] ;
-                $utc = $time_zone_explode[3] ;
 
                 $template_path = storage_path('../public/json/test_new_flex_line.json');
                 $string_json = file_get_contents($template_path);
-                $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
-                $string_json = str_replace("date",$date,$string_json);
-                $string_json = str_replace("time",$time,$string_json);
+
 
                 $messages = [ json_decode($string_json, true) ];
 
