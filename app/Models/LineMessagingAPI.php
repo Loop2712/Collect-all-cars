@@ -2162,7 +2162,8 @@ class LineMessagingAPI extends Model
 
     }
 
-    public function test_new_flex($data, $event, $message_type){
+    public function test_new_flex($data, $event, $message_type)
+    {
 
         //SAVE LOG
         $data22 = [
@@ -2182,7 +2183,7 @@ class LineMessagingAPI extends Model
         // $date = $time_zone_explode[0] ;
         // $time = $time_zone_explode[1] ;
 
-        $template_path = storage_path('../public/json/test_new_flex_line.json');
+        $template_path = storage_path('../public/json/flex_select_car.json');
         $string_json = file_get_contents($template_path);
         // $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
         // $string_json = str_replace("date",$date,$string_json);
