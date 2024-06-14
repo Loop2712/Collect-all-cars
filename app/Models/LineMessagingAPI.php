@@ -2162,7 +2162,7 @@ class LineMessagingAPI extends Model
 
     }
 
-    function test_new_flex($data, $event, $message_type){
+    public function test_new_flex($data, $event, $message_type){
 
         // $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
         // TIME ZONE LINE
