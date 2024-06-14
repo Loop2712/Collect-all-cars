@@ -280,7 +280,7 @@ class LineApiController extends Controller
                 case "peddyhub" :
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
-                case "testnew" :
+                case "ทดสอบ" :
                     $line->test_new_flex(null, $event, "test_new_flex");
                     break;
                 // case "language" :

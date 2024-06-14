@@ -2164,6 +2164,13 @@ class LineMessagingAPI extends Model
 
     public function test_new_flex($data, $event, $message_type){
 
+        //SAVE LOG
+        $data22 = [
+            "title" => "test_new_flex",
+            "content" => "เข้ามาละ",
+        ];
+        MyLog::create($data22);
+
         // $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
         // TIME ZONE LINE
         // $API_Time_zone = new API_Time_zone();
