@@ -2164,65 +2164,60 @@ class LineMessagingAPI extends Model
 
     function test_new_flex($data, $event, $message_type){
 
-        switch($message_type)
-        {
-            case 'test_new_flex':
-                //SAVE LOG
-                $data2 = [
-                    "title" => "test_new_flex",
-                    "content" => "เข้ามาแล้ว"
-                ];
+        //SAVE LOG
+        $data2 = [
+            "title" => "test_new_flex",
+            "content" => "เข้ามาแล้ว",
+        ];
 
-                MyLog::create($data2);
+        MyLog::create($data2);
 
-                $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
-                // TIME ZONE LINE
-                $API_Time_zone = new API_Time_zone();
-                $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
+        $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
+        // TIME ZONE LINE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
 
-                // datetime
-                $time_zone_explode = explode(" ",$time_zone);
+        // datetime
+        $time_zone_explode = explode(" ",$time_zone);
 
-                $date = $time_zone_explode[0] ;
-                $time = $time_zone_explode[1] ;
+        $date = $time_zone_explode[0] ;
+        $time = $time_zone_explode[1] ;
 
-                $template_path = storage_path('../public/json/test_new_flex_line.json');
-                $string_json = file_get_contents($template_path);
-                $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
-                $string_json = str_replace("date",$date,$string_json);
-                $string_json = str_replace("time",$time,$string_json);
+        $template_path = storage_path('../public/json/test_new_flex_line.json');
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
+        $string_json = str_replace("date",$date,$string_json);
+        $string_json = str_replace("time",$time,$string_json);
 
-                $messages = [ json_decode($string_json, true) ];
+        $messages = [ json_decode($string_json, true) ];
 
-                $body = [
-                    "to" => $to_user,
-                    "messages" => $messages,
-                ];
+        $body = [
+            "to" => $to_user,
+            "messages" => $messages,
+        ];
 
-                $opts = [
-                    'http' =>[
-                        'method'  => 'POST',
-                        'header'  => "Content-Type: application/json \r\n".
-                                    'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                        //'timeout' => 60
-                    ]
-                ];
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
 
-                $context  = stream_context_create($opts);
-                $url = "https://api.line.me/v2/bot/message/push";
-                $result = file_get_contents($url, false, $context);
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
 
-                //SAVE LOG
-                $data = [
-                    "title" => "https://api.line.me/v2/bot/message/push",
-                    "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
-                ];
+        //SAVE LOG
+        $data = [
+            "title" => "https://api.line.me/v2/bot/message/push",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        ];
 
-                MyLog::create($data);
-                return $result;
-            break;
-        }
+        MyLog::create($data);
+
     }
 
 
