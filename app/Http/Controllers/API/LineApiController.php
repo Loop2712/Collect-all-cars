@@ -281,7 +281,7 @@ class LineApiController extends Controller
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
                 case "ทดสอบ" :
-                    $line->test_new_flex(null, $event, "test_new_flex");
+                    $line->replyToUser(null, $event, "test_new_flex");
                     break;
                 // case "language" :
                 //     $line->replyToUser(null, $event, "language");
