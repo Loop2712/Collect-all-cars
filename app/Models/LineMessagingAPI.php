@@ -2205,8 +2205,8 @@ class LineMessagingAPI extends Model
         $string_json = file_get_contents($template_path);
 
         $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user",$photo_profile,$string_json);
-        // $string_json = str_replace("name_user",$api_array_data['firstname']." ".$api_array_data['lastname'],$string_json);
-        $string_json = str_replace("name_user",$data_user->username,$string_json);
+        $string_json = str_replace("name_user",$api_array_data['firstname']." ".$api_array_data['lastname'],$string_json);
+        // $string_json = str_replace("name_user",$data_user->username,$string_json);
 
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
