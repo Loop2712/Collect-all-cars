@@ -37,7 +37,7 @@
                     "contents": [
                         {
                             "type": "image",
-                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                            "url": "https://www.viicheck.com/storage/photo_profile_user",
                             "aspectMode": "cover",
                             "size": "full"
                         }
@@ -66,13 +66,13 @@
                             ]
                         }
                     ],
-                    "width": "55%",
+                    "width": "50%",
                     "height": "5%",
                     "position": "absolute",
-                    "offsetTop": "64%",
-                    "offsetStart": "27.5%",
+                    "offsetTop": "63.7%",
+                    "offsetStart": "29.5%",
                     "justifyContent": "center",
-                    "alignItems": "center",
+                    "alignItems": "flex-start",
                     "cornerRadius": "100px"
                 },
                 {
@@ -82,7 +82,7 @@
                         {
                             "type": "text",
                             "text": "date",
-                            "size": "md",
+                            "size": "sm",
                             "contents": [
                                 {
                                     "type": "span",
@@ -107,7 +107,7 @@
                         {
                             "type": "text",
                             "text": "date",
-                            "size": "md",
+                            "size": "sm",
                             "contents": [
                                 {
                                     "type": "span",
