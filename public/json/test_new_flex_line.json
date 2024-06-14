@@ -5,148 +5,150 @@
         "type": "bubble",
         "size": "giga",
         "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "image",
-              "url": "https://i.ibb.co/HVbTy9f/LUCKY-2500-3080px.png",
-              "size": "full",
-              "aspectRatio": "2500:3200",
-              "aspectMode": "cover"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [],
-              "width": "40%",
-              "height": "6.2%",
-              "offsetTop": "28%",
-              "offsetStart": "30.5%",
-              "action": {
-                "type": "uri",
-                "label": "action",
-                "uri": "tel:1669"
-              },
-              "position": "absolute",
-              "cornerRadius": "35px"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
                 {
-                  "type": "image",
-                  "url": "https://www.viicheck.com/storage/photo_profile_user",
-                  "aspectMode": "cover",
-                  "size": "full"
-                }
-              ],
-              "cornerRadius": "100px",
-              "width": "13.8%",
-              "height": "10.8%",
-              "offsetTop": "59.2%",
-              "offsetStart": "13.1%",
-              "position": "absolute"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
+                    "type": "image",
+                    "url": "https://i.ibb.co/HVbTy9f/LUCKY-2500-3080px.png",
+                    "size": "full",
+                    "aspectRatio": "2500:3200",
+                    "aspectMode": "cover"
+                },
                 {
-                  "type": "text",
-                  "size": "lg",
-                  "contents": [
-                    {
-                      "type": "span",
-                      "text": "name_user",
-                      "color": "#ffffff",
-                      "weight": "bold"
-                    }
-                  ],
-                  "wrap": false,
-                  "align": "center"
-                }
-              ],
-              "width": "50%",
-              "height": "5%",
-              "position": "absolute",
-              "offsetTop": "64%",
-              "offsetStart": "27.5%",
-              "justifyContent": "center",
-              "alignItems": "center"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "40%",
+                    "height": "6.2%",
+                    "offsetTop": "28%",
+                    "offsetStart": "30.5%",
+                    "action": {
+                        "type": "uri",
+                        "label": "action",
+                        "uri": "tel:1669"
+                    },
+                    "position": "absolute",
+                    "cornerRadius": "35px"
+                },
                 {
-                  "type": "text",
-                  "text": "date",
-                  "size": "sm",
-                  "contents": [
-                    {
-                      "type": "span",
-                      "text": "date",
-                      "weight": "bold",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "wrap": false
-                }
-              ],
-              "width": "22.5%",
-              "position": "absolute",
-              "offsetStart": "26.5%",
-              "offsetTop": "81%",
-              "alignItems": "center",
-              "justifyContent": "center"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://www.viicheck.com/storage/photo_profile_user",
+                            "aspectMode": "cover",
+                            "size": "full"
+                        }
+                    ],
+                    "cornerRadius": "100px",
+                    "width": "13.8%",
+                    "height": "10.8%",
+                    "offsetTop": "59.2%",
+                    "offsetStart": "13.1%",
+                    "position": "absolute"
+                },
                 {
-                  "type": "text",
-                  "text": "date",
-                  "size": "sm",
-                  "contents": [
-                    {
-                      "type": "span",
-                      "text": "time",
-                      "weight": "bold",
-                      "color": "#ffffff"
-                    }
-                  ],
-                  "wrap": false
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "size": "lg",
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "name_user",
+                                    "color": "#ffffff",
+                                    "weight": "bold"
+                                }
+                            ],
+                            "wrap": false,
+                            "align": "center"
+                        }
+                    ],
+                    "width": "50%",
+                    "height": "5%",
+                    "position": "absolute",
+                    "offsetTop": "64%",
+                    "offsetStart": "27.5%",
+                    "justifyContent": "center",
+                    "alignItems": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "date",
+                            "size": "sm",
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "date",
+                                    "weight": "bold",
+                                    "color": "#ffffff"
+                                }
+                            ],
+                            "wrap": false,
+                            "align": "center"
+                        }
+                    ],
+                    "width": "22.5%",
+                    "position": "absolute",
+                    "offsetStart": "26.5%",
+                    "offsetTop": "81%",
+                    "alignItems": "center",
+                    "justifyContent": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "date",
+                            "size": "sm",
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "time",
+                                    "weight": "bold",
+                                    "color": "#ffffff"
+                                }
+                            ],
+                            "wrap": false,
+                            "align": "center"
+                        }
+                    ],
+                    "width": "22.5%",
+                    "position": "absolute",
+                    "offsetStart": "52.5%",
+                    "offsetTop": "81%",
+                    "alignItems": "center",
+                    "justifyContent": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "width": "72%",
+                    "position": "absolute",
+                    "offsetStart": "13.5%",
+                    "offsetTop": "88%",
+                    "alignItems": "center",
+                    "action": {
+                        "type": "uri",
+                        "uri": "https://www.viicheck.com/?openExternalBrowser=1&case_id=case_id"
+                    },
+                    "height": "7.5%",
+                    "cornerRadius": "250px"
                 }
-              ],
-              "width": "22.5%",
-              "position": "absolute",
-              "offsetStart": "52.5%",
-              "offsetTop": "81%",
-              "alignItems": "center",
-              "justifyContent": "center"
-            },
-            {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [],
-              "width": "72%",
-              "position": "absolute",
-              "offsetStart": "13.5%",
-              "offsetTop": "88%",
-              "alignItems": "center",
-              "action": {
-                "type": "uri",
-                "uri": "https://www.viicheck.com/?openExternalBrowser=1&case_id=case_id"
-              },
-              "height": "7.5%",
-              "cornerRadius": "250px"
-            }
-          ],
-          "position": "relative",
-          "paddingAll": "0px"
+            ],
+            "position": "relative",
+            "paddingAll": "0px"
         }
-      }
+    }
 }
