@@ -1693,34 +1693,6 @@ class LineMessagingAPI extends Model
 
                 $messages = [ json_decode($string_json, true) ];
                 break;
-
-                case "test_new_flex":
-                    //SAVE LOG
-                    $data22 = [
-                        "title" => "test_new_flex",
-                        "content" => "เข้ามาละ",
-                    ];
-                    MyLog::create($data22);
-
-                    // $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
-                    // TIME ZONE LINE
-                    // $API_Time_zone = new API_Time_zone();
-                    // $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
-
-                    // // datetime
-                    // $time_zone_explode = explode(" ",$time_zone);
-
-                    // $date = $time_zone_explode[0] ;
-                    // $time = $time_zone_explode[1] ;
-
-                    $template_path = storage_path('../public/json/test_new_flex_line.json');
-                    $string_json = file_get_contents($template_path);
-                    // $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
-                    // $string_json = str_replace("date",$date,$string_json);
-                    // $string_json = str_replace("time",$time,$string_json);
-
-                    $messages = [ json_decode($string_json, true) ];
-                break;
         }
 
         $body = [
@@ -2211,7 +2183,7 @@ class LineMessagingAPI extends Model
         // $date = $time_zone_explode[0] ;
         // $time = $time_zone_explode[1] ;
 
-        $template_path = storage_path('../public/json/flex_select_car.json');
+        $template_path = storage_path('../public/json/test_new_flex_line.json');
         $string_json = file_get_contents($template_path);
         // $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
         // $string_json = str_replace("date",$date,$string_json);
