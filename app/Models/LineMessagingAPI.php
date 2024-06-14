@@ -2167,6 +2167,14 @@ class LineMessagingAPI extends Model
         switch($message_type)
         {
             case 'test_new_flex':
+                //SAVE LOG
+                $data2 = [
+                    "title" => "test_new_flex",
+                    "content" => "เข้ามาแล้ว"
+                ];
+
+                MyLog::create($data2);
+
                 $to_user = 'Ua561f9244840375d1d97d7550d22fb68';
                 // TIME ZONE LINE
                 $API_Time_zone = new API_Time_zone();
@@ -2180,7 +2188,9 @@ class LineMessagingAPI extends Model
 
                 $template_path = storage_path('../public/json/test_new_flex_line.json');
                 $string_json = file_get_contents($template_path);
-
+                $string_json = str_replace("name_user",'นายกขค กขค',$string_json);
+                $string_json = str_replace("date",$date,$string_json);
+                $string_json = str_replace("time",$time,$string_json);
 
                 $messages = [ json_decode($string_json, true) ];
 
