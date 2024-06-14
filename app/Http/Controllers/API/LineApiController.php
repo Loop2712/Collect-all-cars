@@ -199,16 +199,12 @@ class LineApiController extends Controller
     {
         $line = new LineMessagingAPI();
 
-        $data12345 = [
-            "title" => "ทดสอบ",
-            "content" => "เข้าจุดนี้",
-        ];
-        MyLog::create($data12345);
-
         if ($event["message"]["text"] == "ติดต่อ ViiCHECK") {
             $line->replyToUser(null, $event, "contact_viiCHECK");
         }else if($event["message"]["text"] == "language"){
             $line->replyToUser(null, $event, "language");
+        }else if($event["message"]["text"] == "ทดสอบ"){
+            $line->test_new_flex(null, $event, "test_new_flex");
         }else {
 
             $data_users = DB::table('users')
@@ -285,10 +281,6 @@ class LineApiController extends Controller
                     break;
                 case "peddyhub" :
                     $line->replyToUser(null, $event, "peddyhub");
-                    break;
-                case "ทดสอบ" :
-
-                    $line->test_new_flex(null, $event, "test_new_flex");
                     break;
                 // case "language" :
                 //     $line->replyToUser(null, $event, "language");
