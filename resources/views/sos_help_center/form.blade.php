@@ -2011,7 +2011,7 @@ color: #ff9317;
                                 }
                             @endphp
                             <div class="row">
-                                <h4>
+                                <h4 id="show_status_header>
                                     <span class="{{ $class_span_status }}">
                                         สถานะ :  <b><span id="show_status" class=""></span></b>
                                         <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
@@ -2019,6 +2019,10 @@ color: #ff9317;
 
                                     @if($sos_help_center->status != 'เสร็จสิ้น')
                                     <span id="text_duration" class="text-warning"></span> (<span id="show_distance" ></span>) ● <span id="text_arrivalTime"></span>
+                                    <br>
+                                    @if ($sos_help_center->hospital_office_id)
+                                        <span class="d-block h6 " id="name_referral_hospital" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">ส่งต่อไปยัง : <b>{{ $sos_help_center->hospital_office->name }}</b></span>
+                                    @endif
                                         <!-- <span id="h4_show_distance" class="">
                                             <i class="fa-duotone fa-road"></i> ระยะทาง :  <b><span id="show_distance" class="text-warning"></span></b>
                                         </span>

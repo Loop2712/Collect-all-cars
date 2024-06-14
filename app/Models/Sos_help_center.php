@@ -32,19 +32,23 @@ class Sos_help_center extends Model
     }
 
     public function operating_unit(){
-        return $this->belongsTo('App\Models\Data_1669_operating_unit', 'operating_unit_id' , 'id'); 
+        return $this->belongsTo('App\Models\Data_1669_operating_unit', 'operating_unit_id' , 'id');
     }
 
     public function operating_officer(){
-        return $this->belongsTo('App\Models\Data_1669_operating_officer', 'helper_id' , 'user_id'); 
+        return $this->belongsTo('App\Models\Data_1669_operating_officer', 'helper_id' , 'user_id');
     }
 
     public function officers_user(){
-        return $this->belongsTo('App\User', 'helper_id' , 'id'); 
+        return $this->belongsTo('App\User', 'helper_id' , 'id');
     }
 
     public function officers_command_by(){
-        return $this->belongsTo('App\Models\Data_1669_officer_command', 'command_by' , 'id'); 
+        return $this->belongsTo('App\Models\Data_1669_officer_command', 'command_by' , 'id');
+    }
+
+    public function hospital_office(){
+        return $this->belongsTo('App\Models\Hospital_office', 'hospital_office_id' , 'id');
     }
 
 

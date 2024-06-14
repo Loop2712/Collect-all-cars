@@ -175,8 +175,20 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
+
         dropdown_data();
         show_location_A();
+
+        var foundingDateInput = document.getElementById('founding_date');
+        var closingDateInput = document.getElementById('closing_date');
+
+        document.getElementById('founding_date').addEventListener('click', function() {
+            this.showPicker();
+        });
+
+        document.getElementById('closing_date').addEventListener('click', function() {
+            this.showPicker();
+        });
     });
 
     function show_location_A(){
@@ -331,17 +343,3 @@
     };
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var foundingDateInput = document.getElementById('founding_date');
-        var closingDateInput = document.getElementById('closing_date');
-
-        foundingDateInput.addEventListener('focus', function() {
-            foundingDateInput.showPicker();
-        });
-
-        closingDateInput.addEventListener('focus', function() {
-            closingDateInput.showPicker();
-        });
-    });
-</script>

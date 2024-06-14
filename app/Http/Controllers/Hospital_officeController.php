@@ -379,9 +379,17 @@ class Hospital_officeController extends Controller
 
     }
 
-    function get_hospital_offices($province){
+    function get_hospital_offices($m_lat ,$m_lng ,$province){
 
-        $data = Hospital_office::where('province', $province)->where('active' , 'Yes')->where('lat' , '!=' , NULL)->get();
+        $latitude = (float)$m_lat;
+        $longitude = (float)$m_lng;
+
+        $data = Hospital_office::where('province', $province)
+        ->where('active', 'Yes')
+        ->whereNotNull('lat')
+        ->selectRaw("*, (3959 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance", [$latitude, $longitude, $latitude])
+        ->orderBy('distance')
+        ->get();
 
         return $data ;
 
@@ -480,7 +488,7 @@ class Hospital_officeController extends Controller
                     'hospital_office_id' => $last_data->hospital_office_id,
                 ]);
 
-        return "success" ;
+        return $data_hospital ;
     }
 
     function edit_my_hospital($id){

@@ -1,6 +1,6 @@
 
 <style>
-  
+
   #map_show_hospital {
       height: calc(86vh);
     }
@@ -21,7 +21,7 @@
         height: 110px;
         background-color: #fff;
         position: absolute;
-    } 
+    }
     .hospital-open {
       animation: slide-hospital-open 1s ease 0s 1 normal forwards;
     }
@@ -50,7 +50,7 @@
     }
     #content_name_hospital .div_health_type:hover{
       background-color: #f7f8f8;
-      
+
     }.btn-hospital{
       padding: 5px 5px;
       border: 1px solid #8833ff!important;
@@ -160,14 +160,17 @@
 <div class="modal fade" id="modal_cf_select_hospital" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="z-index:999999!important;">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius: 15px;">
+        <button id="close_modal_cf_select_hospital" type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <!-- <div class="modal-header">
           <h5 class="modal-title" id="Label_cf_select_hospital">โปรดยืนยัน</h5>
         </div> -->
-      <div id="content_modal_cf_hospital" class="modal-body"> 
+      <div id="content_modal_cf_hospital" class="modal-body">
         <!--  -->
       </div>
 
-      <div id="success_modal_cf_hospital" class="modal-body d-none"> 
+      <div id="success_modal_cf_hospital" class="modal-body d-none">
         <div class="loading-container">
             <div class="loading-spinner"></div>
 
@@ -190,15 +193,18 @@
 <div class="modal fade" id="show_hospital" tabindex="-1" aria-labelledby="show_hospitalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-fullscreen p-5" style="position: relative;">
     <div class="modal-content" >
+        <button id="close_modal_show_hospital" type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
       <div class="modal-body"style="overflow: hidden;">
 
           <div class="col-12 row">
               <div class="col-9"></div>
               <div id="testt" class="card border-top border-0 border-4 border-primary hospital-open" style="width: 380px;position: absolute;top: 1%;right: 2%;z-index: 999999!important;height: calc(86vh);">
-                <button class="btn switcher-btn-sos mt-2 ml-2" onclick="hide_data_hospital()"> 
+                <button class="btn switcher-btn-sos mt-2 ml-2" onclick="hide_data_hospital()">
                   <i class="fa-solid fa-chevron-right hide-data-sos"></i>
                 </button>
-                
+
                 <div class="card-body p-3" style="overflow: auto;">
                   <div class="card-title d-flex align-items-center">
                     <div>
@@ -237,7 +243,7 @@
                         <option value="โรงพยาบาลเอกชน">โรงพยาบาลเอกชน</option>
                       </datalist> -->
                     </div>
-                    
+
                     <hr>
 
                     <!-- content name hospital -->
@@ -260,7 +266,7 @@
                   <div id="have_to_hospital_id" class="row g-3 d-none">
                     <div class="col-12">
                         <h5><b>คุณส่งต่อข้อมูลแล้ว</b></h5>
-                        <p><b>ส่งข้อมูลยังไป..</b></p>
+                        <p><b>ส่งข้อมูลไปยัง..</b></p>
                         <hr>
                     </div>
                     <div id="content_have_to_hospital_id" class="col-12">
@@ -282,10 +288,11 @@
           document.querySelector('#testt').classList.toggle('hospital-close');
           document.querySelector('.hide-data-sos').classList.toggle('rotate');
       }
-      
+
   </script>
 <script>
-  
+    var sos_marker_hospital;
+    var sos_hospital_id = "{{ $sos_help_center->hospital_office_id }}";
   function open_map_show_hospital(){
 
       let sos_lat = document.querySelector('#lat');
@@ -303,11 +310,11 @@
       });
 
       if (sos_lat.value && sos_lng.value) {
-          if (sos_go_to_help_marker) {
-              sos_go_to_help_marker.setMap(null);
+          if (sos_marker_hospital) {
+              sos_marker_hospital.setMap(null);
           }
 
-          sos_go_to_help_marker = new google.maps.Marker({
+          sos_marker_hospital = new google.maps.Marker({
               position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
               map: map_show_hospital,
               icon: image_sos,
@@ -316,9 +323,10 @@
 
       console.log("{{ Auth::user()->sub_organization }}");
 
-      fetch("{{ url('/') }}/api/get_hospital_offices/"+ "{{ Auth::user()->sub_organization }}")
+      fetch("{{ url('/') }}/api/get_hospital_offices" + "/" + m_lat + "/" + m_lng + "/" + "{{ Auth::user()->sub_organization }}")
         .then(response => response.json())
         .then(result => {
+            console.log("result get_hospital_offices");
             console.log(result);
 
             let content_name_hospital = document.querySelector('#content_name_hospital');
@@ -366,77 +374,76 @@
 
               let html ;
 
-              if("{{ $sos_help_center->hospital_office_id }}"){
+                if(sos_hospital_id){
 
-                if("{{ $sos_help_center->hospital_office_id }}" == result[i].id){
+                    if(sos_hospital_id == result[i].id){
 
-                  html = `
-                      <div class="have_data_hospital_id">
-                      <div class="d-flex align-items-top mb-2">
-                        <div class="ps-2">
-                          <h5 class="mb-1 font-weight-bold">
-                            `+result[i].name+`
-                          </h5>
-                          <p class="font-14">
-                            <span class="text-primary"><b>`+result[i].health_type+`</b></span>
-                            <br>
-                            <span class="mb-2">
-                              <b>อำเภอ</b> : `+result[i].district+` <b>ตำบล</b> : `+result[i].sub_district+`
-                            </span>
-                            <br>
-                            <span><b>ที่อยู่</b> : `+result[i].address+`</span>
-                            <br>
-                            <div class="col-12 row mt-2">
-                              <span class="col-6 text-primary float-start font-13">.. กม.</span>
-                              <span class="col-6 text-primary float-end font-13"></span>
+                    html = `
+                        <div class="have_data_hospital_id">
+                        <div class="d-flex align-items-top mb-2">
+                            <div class="ps-2">
+                            <h5 class="mb-1 font-weight-bold">
+                                `+result[i].name+`
+                            </h5>
+                            <p class="font-14">
+                                <span class="text-primary"><b>`+result[i].health_type+`</b></span>
+                                <br>
+                                <span class="mb-2">
+                                <b>อำเภอ</b> : `+result[i].district+` <b>ตำบล</b> : `+result[i].sub_district+`
+                                </span>
+                                <br>
+                                <span><b>ที่อยู่</b> : `+result[i].address+`</span>
+                                <br>
+                                <div class="col-12 row mt-2">
+                                <span class="col-6 text-primary float-end font-13"></span>
+                                </div>
+                            </p>
                             </div>
-                          </p>
                         </div>
-                      </div>
-                      <hr>
-                      </div>
-                  `;
+                        <hr>
+                        </div>
+                    `;
 
-                  content_have_to_hospital_id.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                  document.querySelector('#no_to_hospital_id').classList.add('d-none');
-                  document.querySelector('#have_to_hospital_id').classList.remove('d-none');
+                    content_have_to_hospital_id.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                    document.querySelector('#no_to_hospital_id').classList.add('d-none');
+                    document.querySelector('#have_to_hospital_id').classList.remove('d-none');
+                    }
+
                 }
+                else{
 
-              }
-              else{
+                    html = `
+                        <div health_type="`+result[i].health_type+`" class="div_health_type">
+                        <div class="d-flex align-items-top py-2">
+                        <div class="ps-2">
+                            <h6 class="mb-1 font-weight-bold">
+                                `+result[i].name+`
+                            </h6>
+                            <p class="font-14">
+                                <span class="text-primary"><b>`+result[i].health_type+`</b></span>
+                                <span>·</span>
 
-                html = `
-                    <div health_type="`+result[i].health_type+`" class="div_health_type">
-                    <div class="d-flex align-items-top py-2">
-                      <div class="ps-2">
-                          <h6 class="mb-1 font-weight-bold">
-                            `+result[i].name+`
-                          </h6>
-                          <p class="font-14">
-                            <span class="text-primary"><b>`+result[i].health_type+`</b></span>
-                            <span>·</span>
-                           
-                            <span>`+result[i].address+`</span>
-                            <br>
-                            <div class="d-flex justify-content-between align-items-center  mt-2">
-                            <span class="col-6 text-primary" style="font-size:18px">56 กม.</span>
+                                <span>`+result[i].address+`</span>
+                                <br>
+                                <div class="d-flex justify-content-between align-items-center  mt-2">
+                                <span class="col-6 text-primary" style="font-size:18px">`+result[i].distance.toFixed(2)+` กม.</span>
 
-                            <span class="col-6 float-end btn btn-hospital" onclick="click_select_hospital('`+result[i].id+`','`+result[i].name+`');">
-                              เลือก
-                            </span>
-                          </div>
-                        </p>
-                      </div>
-                    </div>
-                    <hr class="m-0">
-                    </div>
-                `;
+                                <span class="col-6 float-end btn btn-hospital" onclick="click_select_hospital('`+result[i].id+`','`+result[i].name+`');">
+                                เลือก
+                                </span>
+                            </div>
+                            </p>
+                        </div>
+                        </div>
+                        <hr class="m-0">
+                        </div>
+                    `;
 
-                content_name_hospital.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                document.querySelector('#no_to_hospital_id').classList.remove('d-none');
-                document.querySelector('#have_to_hospital_id').classList.add('d-none');
+                    content_name_hospital.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                    document.querySelector('#no_to_hospital_id').classList.remove('d-none');
+                    document.querySelector('#have_to_hospital_id').classList.add('d-none');
 
-              }
+                }
 
 
             }
@@ -477,6 +484,7 @@
   }
 
   function click_select_hospital(hospital_id , hospital_name){
+    console.log("click_select_hospital hospital_id");
     console.log(hospital_id);
 
     let content_modal_cf_hospital = document.querySelector('#content_modal_cf_hospital')
@@ -496,33 +504,88 @@
         <button type="button" class="btn btn-primary" onclick="cf_select_hospital('`+hospital_id+`')">ยืนยัน</button>
       </div>
     `;
-    
+
     content_modal_cf_hospital.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-    
+
     document.querySelector('#btn_open_modal_cf_select_hospital').click();
 
   }
 
   function cf_select_hospital(hospital_id){
-
+    console.log("cf_select_hospital");
     let sos_1669_id = "{{ $sos_help_center->id }}";
 
     document.querySelector('#content_modal_cf_hospital').classList.toggle('d-none');
     document.querySelector('#success_modal_cf_hospital').classList.toggle('d-none');
 
     fetch("{{ url('/') }}/api/create_1669_to_hospitals/" + hospital_id + "/" + sos_1669_id + "/{{ Auth::user()->id }}")
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
+            console.log("result create_1669_to_hospitals");
             console.log(result);
 
             setTimeout(() => {
-              
-              document.querySelector('.loading-spinner').classList.toggle('d-none'); 
-              document.querySelector('.contrainerCheckmark').classList.toggle('d-none'); 
-            }, 1500);
+                console.log("result setTimeout");
 
-    });
+                document.querySelector('#content_name_hospital').innerHTML = '';
+                document.querySelector('#content_have_to_hospital_id').innerHTML = '';
 
-  }
+                let html_success = `
+                    <div class="have_data_hospital_id">
+                        <div class="d-flex align-items-top mb-2">
+                            <div class="ps-2">
+                                <h5 class="mb-1 font-weight-bold">
+                                    `+result.name+`
+                                </h5>
+                                <p class="font-14">
+                                    <span class="text-primary"><b>`+result.health_type+`</b></span>
+                                    <br>
+                                    <span class="mb-2">
+                                        <b>อำเภอ</b> : `+result.district+` <b>ตำบล</b> : `+result.sub_district+`
+                                    </span>
+                                    <br>
+                                    <span><b>ที่อยู่</b> : `+result.address+`</span>
+                                    <br>
+
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                  `;
+
+                console.log("html_success :"+html_success);
+                content_have_to_hospital_id.insertAdjacentHTML('beforeend', html_success); // แทรกล่างสุด
+                console.log("html_success created");
+
+                document.querySelector('#no_to_hospital_id').classList.add('d-none');
+                document.querySelector('#have_to_hospital_id').classList.remove('d-none');
+
+                let show_status_header = document.querySelector('#show_status_header');
+                let result_name_html = `<span class="d-block h6" id="name_referral_hospital" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                            ส่งต่อไปยัง : <b>`+result.name+`</b>
+                                        </span>`;
+                if (show_status_header) {
+                    show_status_header.insertAdjacentHTML('beforeend', result_name_html); // แทรกล่างสุด
+                } else {
+                    console.error("Element with id 'show_status_header' not found.");
+                }
+
+                document.querySelector('#close_modal_cf_select_hospital').click();
+                document.querySelector('#close_modal_show_hospital').click();
+
+                document.querySelector('.loading-spinner').classList.toggle('d-none');
+                document.querySelector('.contrainerCheckmark').classList.toggle('d-none');
+
+                sos_hospital_id = result.id;
+            }, 1500)
+
+        }).catch(function(error){
+            console.error("error cf_select_hospital");
+            console.error(error);
+        });
+
+    }
+
 
 </script>
