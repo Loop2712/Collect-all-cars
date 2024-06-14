@@ -2509,11 +2509,36 @@
 	                                    </div>
 	                                </div>
 	                            </div>
+
+                                <div class="row text-center mb-3">
+                                    <div class="col-12">
+                                        <button id="btn_search_officer_by_type_ask_more" onclick="search_by_officer_ask_more('type');" type="button" class="btn btn-sm btn-info">
+                                            ค้นหาจากประเภท
+                                        </button>
+                                        <button id="btn_search_officer_by_name_ask_more" onclick="search_by_officer_ask_more('name');" type="button" class="btn btn-sm btn-outline-info">
+                                            ค้นหาจากชื่อ
+                                        </button>
+                                        <button id="btn_search_officer_by_unit_ask_more" onclick="search_by_officer_ask_more('unit');" type="button" class="btn btn-sm btn-outline-info">
+                                            ค้นหาจากหน่วย
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <input style="width: 90%;" id="div_search_name_officer_ask_more" type="text" class="form-control mb-3 d-none" name="" placeholder="ค้นหา.." oninput="search_nameofficer_delay_ask_more();">
+                                </center>
+
+                                <center>
+                                    <select style="width: 90%;" id="div_search_unit_officer_ask_more" class="form-control mb-3 d-none" onchange="change_select_unit_offiecr_ask_more();">
+                                        <option>เลือกหน่วย</option>
+                                    </select>
+                                </center>
+
 	                            <!-- BTN Select Level -->
-	                            <div class="chat-tab-menu ">
+	                            <div id="div_carousel_vehicle_ask_more" class="chat-tab-menu ">
 	                                <ul class="nav nav-pills nav-justified">
 	                                    <li class="nav-item">
-	                                        <a class="nav-link  menu-select-lv-all ask_more-select-lv-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'all';select_officer_ask_more_btn_menu_select();">
+	                                        <a id="btn_select_level_all_ask_more" class="nav-link  menu-select-lv-all ask_more-select-lv-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'all';select_officer_ask_more_btn_menu_select();">
 	                                            <div class="font-24">ALL
 	                                            </div>
 	                                            <div><small>ทั้งหมด</small>
@@ -2558,9 +2583,9 @@
 	                            </div>
 
 	                            <!-- BTN Select vehicle  -->
-	                            <div class="owl-carousel owl-theme owlmenu-vehicle-ask_more p-3">
+	                            <div id="div_carousel_level_ask_more" class="owl-carousel owl-theme owlmenu-vehicle-ask_more p-3">
 	                                <div class="item" style="width:100%">
-	                                    <a class="btn menu-select-vehicle-all ask_more-select-vehicle-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'all';select_officer_ask_more_btn_menu_select();">
+	                                    <a id="btn_select_vehicle_all_ask_more" class="btn menu-select-vehicle-all ask_more-select-vehicle-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'all';select_officer_ask_more_btn_menu_select();">
 	                                        ทั้งหมด
 	                                    </a>
 	                                </div>
@@ -2611,7 +2636,7 @@
 	                            </div>
 
                                 <!-- div tag a เพื่อไปสู่เคสหลัก -->
-                                <div id="div_tag_a_to_case_main" class="d-none"></div>
+                                <div id="div_tag_a_to_case_main" class="d-"></div>
 
 	                            <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
 	                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
@@ -4339,6 +4364,9 @@
             case 'all':
                 text_vehicle_type = "all";
                 break;
+            case 'หน่วยเคลื่อนที่เร็ว':
+                text_vehicle_type = "motorbike";
+                break;
             case 'รถ':
                 text_vehicle_type = "car";
                 break;
@@ -4395,8 +4423,12 @@
                             // console.log('ไม่มีค่า '+result[xxi]['id']+' ในอาร์เรย์');
                         }
 
+                        let name_officer_ask_more = result[xxi]['name_officer'];
+                        let unit_officer_ask_more = result[xxi]['name'];
+                        let data_tag_officer_ask_more = 'data_tag_officer_ask_more';
+
 						html_ask_more_card_data_operating += `
-						<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer" onclick="view_data_marker_ask_more(` + result[xxi]['id'] + `,'` + result[xxi]['name'] + `',` + result[xxi]['distance'].toFixed(2) + `,'` + result[xxi]['level'] + `',` + result[xxi]['lat'] + `,` + result[xxi]['lng'] + `);">
+						<div name_officer_ask_more='`+name_officer_ask_more+`' unit_officer_ask_more="`+unit_officer_ask_more+`" name="`+data_tag_officer_ask_more+`" class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer" onclick="view_data_marker_ask_more(` + result[xxi]['id'] + `,'` + result[xxi]['name'] + `',` + result[xxi]['distance'].toFixed(2) + `,'` + result[xxi]['level'] + `',` + result[xxi]['lat'] + `,` + result[xxi]['lng'] + `);">
                             <div class="d-md-flex align-items-center email-message px-3 py-1">
                                 <div class="d-flex align-items-center">
                                     <input class="form-check-input" type="checkbox" ` + checked_ask_more + ` name="select_joint_sos_officer_ask_more" id="select_joint_sos_officer_ask_more_id_` + result[xxi]['id'] + `_user_id_` + result[xxi]['user_id'] + `" onclick="select_joint_sos_officer_ask_more('` + result[xxi]['user_id'] + `','` + result[xxi]['distance'].toFixed(2) + `','` + result[xxi]['operating_unit_id'] + `','` + result[xxi]['id'] + `');">
@@ -4406,10 +4438,10 @@
                                         <div class="level ` + result[xxi]['level'] + ` d-flex align-items-center m-2"">
                                             <center> ` + result[xxi]['level'] + ` </center>
                                         </div>
-                                        <div style="margin-left: 10px;">
-                                            <h6 class="mb-1 font-14">` + result[xxi]['name'] + ` (` + result[xxi]['vehicle_type'] + `)</h6>
-                                            <p class="mb-0 font-14">เจ้าหน้าที่ : ` + result[xxi]['name_officer'] + `</p>
-											<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ` + result[xxi]['distance'].toFixed(2) + ` กม. </p>
+                                        <div class="ms-2">
+                                            <h6 class="mb-1 font-16"><b>`+result[xxi]['name_officer']+`</b></h6>
+                                            <p class="mb-0 font-14">`+result[xxi]['name']+`' (`+result[xxi]['vehicle_type']+`)</p>
+                                            <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ `+result[xxi]['distance'].toFixed(2)+` กม.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -5709,6 +5741,145 @@ document.querySelectorAll('.btn').forEach(function(button) {
 <a id="tag_a_go_to_map" class="d-none" target="bank"></a>
 <a id="tag_a_tel_user_1669" class="d-none"></a>
 
+<script>
+    function search_by_officer_ask_more(tag){
+
+        document.querySelector('#btn_search_officer_by_type_ask_more').classList.remove('btn-info');
+        document.querySelector('#btn_search_officer_by_name_ask_more').classList.remove('btn-info');
+        document.querySelector('#btn_search_officer_by_unit_ask_more').classList.remove('btn-info');
+
+        document.querySelector('#btn_search_officer_by_type_ask_more').classList.add('btn-outline-info');
+        document.querySelector('#btn_search_officer_by_name_ask_more').classList.add('btn-outline-info');
+        document.querySelector('#btn_search_officer_by_unit_ask_more').classList.add('btn-outline-info');
+
+        document.querySelector('#btn_search_officer_by_'+tag+'_ask_more').classList.add('btn-info');
+        document.querySelector('#btn_search_officer_by_'+tag+'_ask_more').classList.remove('btn-outline-info');
+
+        show_data_officer_by_ask_more(tag);
+
+    }
+
+    function show_data_officer_by_ask_more(tag){
+
+        let div_carousel_vehicle = document.querySelector('#div_carousel_vehicle_ask_more');
+        let div_carousel_level = document.querySelector('#div_carousel_level_ask_more');
+        let div_search_name_officer = document.querySelector('#div_search_name_officer_ask_more');
+        let div_search_unit_officer = document.querySelector('#div_search_unit_officer_ask_more');
+
+        div_carousel_vehicle.classList.add('d-none');
+        div_carousel_level.classList.add('d-none');
+        div_search_name_officer.classList.add('d-none');
+        div_search_unit_officer.classList.add('d-none');
+
+        document.querySelector('#select_officer_ask_more_card_data_operating').classList.add('d-none');
+        document.querySelector('#btn_select_level_all_ask_more').click();
+        document.querySelector('#btn_select_vehicle_all_ask_more').click();
+
+        setTimeout(function() {
+
+            document.querySelector('#div_search_name_officer_ask_more').value = '';
+            let div_tag_officer = document.querySelectorAll('div[name="data_tag_officer_ask_more"]');
+                
+            if(tag == "type"){
+                div_tag_officer.forEach(item => {
+                    item.classList.remove('d-none');
+                })
+                div_carousel_vehicle.classList.remove('d-none');
+                div_carousel_level.classList.remove('d-none');
+            }
+            else if(tag == "name"){
+                div_tag_officer.forEach(item => {
+                    item.classList.add('d-none');
+                })
+                div_search_name_officer.classList.remove('d-none');
+            }
+            else if(tag == "unit"){
+                div_tag_officer.forEach(item => {
+                    item.classList.add('d-none');
+                })
+                div_search_unit_officer.classList.remove('d-none');
+                get_unit_offiecr_ask_more();
+            }
+
+            document.querySelector('#select_officer_ask_more_card_data_operating').classList.remove('d-none');
+
+        }, 650);
+    }
+
+    function get_unit_offiecr_ask_more(){
+
+        fetch("{{ url('/') }}/api/get_unit_offiecr" + "/" + "{{ Auth::user()->sub_organization }}")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let div_search_unit_officer = document.querySelector('#div_search_unit_officer_ask_more');
+                    div_search_unit_officer.innerHTML = '';
+
+                let option_first = document.createElement("option");
+                    option_first.text = "เลือกหน่วย";
+                    option_first.value = "";
+                    div_search_unit_officer.add(option_first);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.name;
+                    option.value = item.name;
+                    div_search_unit_officer.add(option);
+                }
+            });
+
+    }
+
+    function change_select_unit_offiecr_ask_more(){
+
+        let div_search_unit_officer = document.querySelector('#div_search_unit_officer_ask_more');
+        let unit_officer = div_search_unit_officer.value ;
+        // console.log("unit_officer > " + unit_officer);
+
+        let div_tag_officer = document.querySelectorAll('div[name="data_tag_officer_ask_more"]');
+            div_tag_officer.forEach(item_1 => {
+                item_1.classList.add('d-none');
+            })
+
+        let div_unit_officer = document.querySelectorAll('div[unit_officer_ask_more="'+unit_officer+'"]');
+            div_unit_officer.forEach(item_2 => {
+                item_2.classList.remove('d-none');
+            })
+
+    }
+
+    let delayTimer_search_nameofficer_ask_more;
+    function search_nameofficer_delay_ask_more(){
+        // Clear any pending delay timer
+        clearTimeout(delayTimer_search_nameofficer_ask_more);
+        delayTimer_search_nameofficer_ask_more = setTimeout(search_data_officer_by_name_ask_more, 1500);
+    }
+
+    function search_data_officer_by_name_ask_more(){
+        let input_search = document.querySelector('#div_search_name_officer_ask_more')
+        // console.log(input_search.value);
+
+        let div_tag_officer = document.querySelectorAll('div[name="data_tag_officer_ask_more"]');
+            div_tag_officer.forEach(item_1 => {
+                item_1.classList.add('d-none');
+            })
+
+        if(input_search.value){
+            let search_by_name = document.querySelectorAll('div[name="data_tag_officer_ask_more"]');
+                search_by_name.forEach(item_2 => {
+                    let nameOfficerAttribute = item_2.getAttribute('name_officer_ask_more').toLowerCase(); 
+                    let inputValue = input_search.value.toLowerCase();
+
+                    if (nameOfficerAttribute.includes(inputValue)) {
+                        // console.log(nameOfficerAttribute);
+                        item_2.classList.remove('d-none');
+                    }
+                })
+        }
+
+    }
+</script>
 <!-- END SOS 1669 -->
 
 

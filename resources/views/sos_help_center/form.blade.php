@@ -1526,9 +1526,9 @@ color: #ff9317;
                     }
                 </style>
 
-                <!-- <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                <button id="" class="btn" style="background-color: orange;" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                     <i class="fa-duotone fa-add"> </i> เพิ่มปฏิบัติการร่วม
-                </button> -->
+                </button>
 
                 <button id="btnVideoCall" class="btn btnVideoCall mt-2" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
@@ -1896,12 +1896,12 @@ color: #ff9317;
                                             <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();update_page_before_click_button('other');">
                                               เดียว
                                             </a>
-                                            <!-- <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                                               ร่วม
-                                            </a> -->
-                                            <button type="button" class="btn btn-secondary" disabled>
+                                            </a>
+                                            <!-- <button type="button" class="btn btn-secondary" disabled>
                                               ร่วม (pending)
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </div>
                                 </li>
@@ -1956,7 +1956,6 @@ color: #ff9317;
                                   }
                                 </style>
                                 <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="document.querySelector('#btn_save').click();show_wait_officer_joint();">
-                                    <!-- <a  class="nav-link btn-sm btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;"> -->
                                     <a  class="nav-link btn-sm btn-outline-info btn" data-toggle="modal" data-target="#modal_wait_officer_join_case" style="position: relative;">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -2996,7 +2995,9 @@ color: #ff9317;
             document.querySelector('#form_data_1').click();
         }, 1000);
 
-        check_sos_joint_case();
+        if("{{ $sos_help_center->joint_case }}"){
+          check_sos_joint_case();
+        }
         timer_minutesDiff_sos();
 
         @if($sos_help_center->joint_case)

@@ -2495,8 +2495,11 @@ class Sos_help_centerController extends Controller
 
         if(!empty($data_sos_main->joint_case)){
             $joint_case_old = $data_sos_main->joint_case ;
-            $joint_case_old = json_decode($joint_case_old);
+            // $joint_case_old = json_decode($joint_case_old);
             $joint_case_all = $joint_case_old;
+        }
+        else{
+            $joint_case_all = $sos_1669_id ;
         }
 
         for ($i = 0; $i < (int)$count_new_create_sos; $i++){
@@ -2553,42 +2556,44 @@ class Sos_help_centerController extends Controller
 
             array_push($id_of_new_sos , $sos_help_center_last->id);
 
-            if(!empty($data_sos_main->joint_case)){
-                array_push($joint_case_all , $sos_help_center_last->id);
-            }
+            // if(!empty($data_sos_main->joint_case)){
+            //     array_push($joint_case_all , $sos_help_center_last->id);
+            // }
 
             Sos_1669_form_yellow::create($new_sos_by_joint);
 
         }
 
-        if(!empty($data_sos_main->joint_case)){
-            $id_joint_case = $joint_case_all;
-        }else{
-            $id_joint_case = $id_of_new_sos;
-        }
+        // if(!empty($data_sos_main->joint_case)){
+        //     $id_joint_case = $joint_case_all;
+        // }else{
+        //     $id_joint_case = $joint_case_all;
+        // }
+
+        $id_joint_case = $joint_case_all;
 
         // ตรวจสอบ ถ้ามีเคส join อยู่แล้วให้อัพเดทเคสเดิมทั้งหมด
-        if(!empty($data_sos_main->joint_case)){
-            for ($i_case_old=0; $i_case_old < count($joint_case_old) ; $i_case_old++) {
-                // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
-                DB::table('sos_help_centers')
-                    ->where([
-                            [ 'id', $joint_case_old[$i_case_old] ],
-                        ])
-                    ->update([
-                            'joint_case' => $id_joint_case,
-                        ]);
-            }
-        }else{
-            // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
-            DB::table('sos_help_centers')
-                ->where([
-                        [ 'id', $sos_1669_id ],
-                    ])
-                ->update([
-                        'joint_case' => $id_joint_case,
-                    ]);
-        }
+        // if(!empty($data_sos_main->joint_case)){
+        //     for ($i_case_old=0; $i_case_old < count($joint_case_old) ; $i_case_old++) {
+        //         // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
+        //         DB::table('sos_help_centers')
+        //             ->where([
+        //                     [ 'id', $joint_case_old[$i_case_old] ],
+        //                 ])
+        //             ->update([
+        //                     'joint_case' => $id_joint_case,
+        //                 ]);
+        //     }
+        // }else{
+        //     // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
+        //     DB::table('sos_help_centers')
+        //         ->where([
+        //                 [ 'id', $sos_1669_id ],
+        //             ])
+        //         ->update([
+        //                 'joint_case' => $id_joint_case,
+        //             ]);
+        // }
 
         // ดำเนินการส่งข้อมูลให้หน่วยปฏิบัติการตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){

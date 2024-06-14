@@ -857,7 +857,7 @@ input:focus {
             </menu>
 
             <menu class="col-12 " >
-                <button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" data-toggle="modal" data-target="#modalAskMore" disabled>
+                <button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" data-toggle="modal" data-target="#modalAskMore">
                     ปฎิบัติการร่วม / หมู่ (pending)
                 </button>
             </menu>

@@ -1318,11 +1318,13 @@
         
     }
 
-    let interval_check_status_officer = setInterval(() => {
-        // console.log("count>>>" + count_status_officer);
-        // console.log("all>>" + all_officer_wait_status);
-        show_wait_officer_joint();
-    }, 6000);
+    if("{{ $sos_help_center->joint_case }}"){
+        let interval_check_status_officer = setInterval(() => {
+            // console.log("count>>>" + count_status_officer);
+            // console.log("all>>" + all_officer_wait_status);
+            show_wait_officer_joint();
+        }, 6000);
+    }
 
     // Function to start the timer
     function startTimer_wait_officer_joint(arr_sos_id_count_time) {
