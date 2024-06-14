@@ -281,6 +281,11 @@ class LineApiController extends Controller
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
                 case "ทดสอบ" :
+                    $data12345 = [
+                        "title" => "ทดสอบ",
+                        "content" => "ทดสอบ case",
+                    ];
+                    MyLog::create($data12345);
                     $line->test_new_flex(null, $event, "test_new_flex");
                     break;
                 // case "language" :

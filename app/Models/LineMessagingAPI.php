@@ -2164,7 +2164,6 @@ class LineMessagingAPI extends Model
 
     public function test_new_flex($data, $event, $message_type)
     {
-
         //SAVE LOG
         $data22 = [
             "title" => "test_new_flex",
