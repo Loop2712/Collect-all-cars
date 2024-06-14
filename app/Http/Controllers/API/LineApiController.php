@@ -30,18 +30,18 @@ class LineApiController extends Controller
             "title" => "Line",
             "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
         ];
-        MyLog::create($data);  
+        MyLog::create($data);
 
         //GET ONLY FIRST EVENT
         $event = $requestData["events"][0];
 
         switch($event["type"]){
-            case "message" : 
+            case "message" :
                 $this->Loading_Animation($event);
                 sleep(0.5);
                 $this->messageHandler($event);
                 break;
-            case "postback" : 
+            case "postback" :
                 $this->Loading_Animation($event);
                 sleep(0.5);
                 $this->postbackHandler($event);
@@ -55,10 +55,10 @@ class LineApiController extends Controller
             case "follow" :
                 $this->user_follow_line($event);
                 DB::table('users')
-                    ->where([ 
+                    ->where([
                             ['type', 'line'],
                             ['provider_id', $event['source']['userId']],
-                            ['status', "active"] 
+                            ['status', "active"]
                         ])
                     ->update(['add_line' => 'Yes']);
                 break;
@@ -94,58 +94,58 @@ class LineApiController extends Controller
         if ($event["source"]["type"] == "user") {
 
             switch($event["message"]["type"]){
-                case "text" : 
+                case "text" :
                     $this->textHandler($event);
                     break;
-            }   
+            }
 
         }elseif ($event["source"]["type"] == "group"){
 
             switch($event["message"]["type"]){
-                case "text" : 
+                case "text" :
                     $this->textHandler_group($event);
                     break;
-            } 
+            }
 
         }
-        
+
 
     }
 
     public function postbackHandler($event)
     {
         $line = new LineMessagingAPI();
-    	
+
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
 
         switch($data_postback){
-            case "thx" : 
+            case "thx" :
                 $line->_pushguestLine(null, $event, "thx");
                 $line->reply_success($event , $data_postback);
                 break;
-            case "wait" : 
+            case "wait" :
                 $line->_pushguestLine(null, $event, "wait");
                 $line->reply_success($event , $data_postback);
                 break;
-            case "การตอบกลับ" : 
+            case "การตอบกลับ" :
                 $line->select_reply(null, $event, "reply");
                 break;
             case "help_complete" :
                 $this->check_help_complete_by_helper($event, $data_postback, $data_postback_explode[1]);
                 break;
-            case "sos" : 
+            case "sos" :
                 $this->sos_helper($data_postback_explode[1] , $event["source"]["userId"] , $event);
                 break;
-            case "Chinese" : 
+            case "Chinese" :
                 $line->replyToUser(null, $event, "Chinese");
                 break;
-            case "sos_1669" : 
+            case "sos_1669" :
                 // SOS_ID/go_to_help/_UNIT_ID_/_OFFICER_ID_
                 // sos_1669?SOS_ID/refuse/_UNIT_ID_/_OFFICER_ID_
                 $this->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
                 break;
-        }   
+        }
 
     }
 
@@ -163,7 +163,7 @@ class LineApiController extends Controller
         $this->help_complete($id_sos_map);
     }
 
-    
+
 
     function check_help_complete_by_helper($event, $data_postback, $id_sos_map){
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
@@ -223,7 +223,7 @@ class LineApiController extends Controller
                     $user_language = 'en' ;
                 }
             }
-            
+
             $text_topic = DB::table('text_topics')
                 ->select('th')
                 ->where($user_language, $event["message"]["text"])
@@ -232,58 +232,61 @@ class LineApiController extends Controller
             foreach ($text_topic as $item) {
                 $text_th = $item->th ;
             }
-        
+
             switch( strtolower($text_th) )
-            {     
-                case "อื่นๆ" :  
+            {
+                case "อื่นๆ" :
                     $line->replyToUser(null, $event, "other");
                     break;
-                case "สพฉ" :  
+                case "สพฉ" :
                     $line->replyToUser(null, $event, "niems");
                     break;
-                case "ข่าวสาร" :  
+                case "ข่าวสาร" :
                     $line->replyToUser(null, $event, "vnews");
                     break;
-                // case "vmarket" :  
+                // case "vmarket" :
                 //     $line->replyToUser(null, $event, "vmarket");
                 //     break;
-                case "รถของฉัน" :  
+                case "รถของฉัน" :
                     $line->replyToUser(null, $event, "myvehicle");
                     break;
-                case "ข้อมูลของคุณ" :  
+                case "ข้อมูลของคุณ" :
                     $line->replyToUser(null, $event, "profile");
                     break;
-                case "รถยนต์" : 
+                case "รถยนต์" :
                     $line->replyToUser(null, $event, "mycar");
                     break;
-                case "จักรยานยนต์" : 
+                case "จักรยานยนต์" :
                     $line->replyToUser(null, $event, "mymotorcycles");
                     break;
-                case "รถอื่นๆ" : 
+                case "รถอื่นๆ" :
                     $line->replyToUser(null, $event, "mycarother");
                     break;
-                case "ใบอนุญาตขับรถ" : 
+                case "ใบอนุญาตขับรถ" :
                     $line->replyToUser(null, $event, "driver_license");
                     break;
-                case "ติดต่อ" :  
+                case "ติดต่อ" :
                     $line->replyToUser(null, $event, "contact");
                     break;
-                case "โปรโมชั่น" :  
+                case "โปรโมชั่น" :
                     $line->replyToUser(null, $event, "promotion");
                     break;
-                case "โปรโมชั่นรถยนต์" :  
+                case "โปรโมชั่นรถยนต์" :
                     $line->replyToUser(null, $event, "promotion_car");
                     break;
-                case "โปรโมชั่นรถจักรยานยนต์" :  
+                case "โปรโมชั่นรถจักรยานยนต์" :
                     $line->replyToUser(null, $event, "promotion_motorcycle");
                     break;
-                case "peddyhub" :  
+                case "peddyhub" :
                     $line->replyToUser(null, $event, "peddyhub");
                     break;
-                // case "language" :  
+                case "testnew" :
+                    $line->test_new_flex(null, $event, "test_new_flex");
+                    break;
+                // case "language" :
                 //     $line->replyToUser(null, $event, "language");
                 //     break;
-            }   
+            }
         }
     }
 
@@ -294,7 +297,7 @@ class LineApiController extends Controller
         $data_user = User::where('provider_id',$event["source"]["userId"])->first();
 
         if ( $event["message"]["text"] == "น้องวี")  {
-            
+
             $template_path = storage_path('../public/json/text_done.json');
             $string_json = file_get_contents($template_path);
 
@@ -318,15 +321,15 @@ class LineApiController extends Controller
                     //'timeout' => 60
                 ]
             ];
-                                
+
             $context  = stream_context_create($opts);
             //https://api-data.line.me/v2/bot/message/11914912908139/content
             $url = "https://api.line.me/v2/bot/message/reply";
             $result = file_get_contents($url, false, $context);
         }
-        
+
         // $event["message"]["text"] == "ติดต่อ ViiCHECK" ;
-        
+
     }
 
     public function save_group_line($event)
@@ -354,7 +357,7 @@ class LineApiController extends Controller
             "time_zone" => "Asia/Bangkok",
             "language" => "en",
         ];
-        
+
         Group_line::firstOrCreate($save_name_group);
 
         $data = [
@@ -425,7 +428,7 @@ class LineApiController extends Controller
                         //'timeout' => 60
                     ]
                 ];
-                                    
+
                 $context  = stream_context_create($opts);
                 $url = "https://api.line.me/v2/bot/message/push";
                 $result = file_get_contents($url, false, $context);
@@ -440,7 +443,7 @@ class LineApiController extends Controller
 
         }
 
-        
+
     }
 
     public function user_follow_line($event)
@@ -454,7 +457,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
 
         $url = "https://api.line.me/v2/bot/profile/".$provider_id;
@@ -527,7 +530,7 @@ class LineApiController extends Controller
                 $richMenuId_start = "richmenu-b006e6d2d30e49b0a68d8936e61084e4" ;
                 break;
 
-            
+
             default:
                 // en
                 $richMenuId_start = "richmenu-889d55423c76bfc75ae480d3578399ba" ;
@@ -556,7 +559,7 @@ class LineApiController extends Controller
         }
 
         if (empty($user_language)) {
-            // DF ริชเมนู EN 
+            // DF ริชเมนู EN
             $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
         }else {
             switch ($user_language) {
@@ -606,7 +609,7 @@ class LineApiController extends Controller
         }
 
         $this->set_richmanu_language($provider_id , $richMenuId , $user_language);
-        
+
     }
 
     public function set_richmanu_language($provider_id , $richMenuId , $user_language)
@@ -691,7 +694,7 @@ class LineApiController extends Controller
                                 'role' => 'partner',
                         ]);
                     }
-                    
+
                     // ตรวจสอบรายชื่อคนช่วยเหลือ
                     if (!empty($data_sos_map->helper)) {
 
@@ -706,7 +709,7 @@ class LineApiController extends Controller
                             }
 
                         }
-                        
+
                         if ($helper_double != "Yes") {
                             DB::table('sos_maps')
                                 ->where('id', $id_sos_map)
@@ -735,7 +738,7 @@ class LineApiController extends Controller
                         ]);
 
                         $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
-                        
+
                     }
 
                 }
@@ -745,7 +748,7 @@ class LineApiController extends Controller
                 $this->_send_register_to_groupline($data_partner_helpers);
             }
         }
-        
+
     }
 
     protected function _send_register_to_groupline($data_partner_helpers)
@@ -769,7 +772,7 @@ class LineApiController extends Controller
                     "กรุณาลงทะเบียนเพื่อเริ่มใช้งาน",
                 ];
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+        for ($xi=0; $xi < count($data_topic); $xi++) {
 
             $text_topic = DB::table('text_topics')
                     ->select($group_language)
@@ -803,7 +806,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -846,9 +849,9 @@ class LineApiController extends Controller
                     "การช่วยเหลือนี้เสร็จสิ้นแล้ว",
                 ];
         }
-        
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+        for ($xi=0; $xi < count($data_topic); $xi++) {
 
             $text_topic = DB::table('text_topics')
                     ->select($group_language)
@@ -882,7 +885,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
@@ -896,7 +899,7 @@ class LineApiController extends Controller
     }
 
     protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id, $condo_id)
-    {   
+    {
         $data_line_group = DB::table('group_lines')
                     ->where('groupName', $data_partner_helpers->line_group)
                     ->get();
@@ -937,7 +940,7 @@ class LineApiController extends Controller
 
         // datetime
         $time_zone_explode = explode(" ",$time_zone);
-        
+
         $date = $time_zone_explode[0] ;
         $time = $time_zone_explode[1] ;
         $utc = $time_zone_explode[3] ;
@@ -949,7 +952,7 @@ class LineApiController extends Controller
                     "กำลังไปช่วยเหลือ",
                 ];
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+        for ($xi=0; $xi < count($data_topic); $xi++) {
 
             $text_topic = DB::table('text_topics')
                     ->select($group_language)
@@ -964,7 +967,7 @@ class LineApiController extends Controller
 
         $template_path = storage_path('../public/json/helper_to_groupline.json');
         $string_json = file_get_contents($template_path);
-           
+
         $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
 
         $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
@@ -978,13 +981,13 @@ class LineApiController extends Controller
         // helper
         $string_json = str_replace("name_helper",$name_helper,$string_json);
         $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
-    
+
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
         $string_json = str_replace("groupId",$groupId,$string_json);
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
         $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
-        
+
 
         $messages = [ json_decode($string_json, true) ];
 
@@ -1002,7 +1005,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -1043,7 +1046,7 @@ class LineApiController extends Controller
 
             // datetime
             $time_zone_explode = explode(" ",$time_zone);
-            
+
             $date = $time_zone_explode[0] ;
             // $time = $time_zone_explode[1] ;
             $time = date("H:i") ;
@@ -1058,7 +1061,7 @@ class LineApiController extends Controller
                         "ดูตำแหน่งเจ้าหน้าที่",
                     ];
 
-            for ($xi=0; $xi < count($data_topic); $xi++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) {
 
                 $text_topic = DB::table('text_topics')
                         ->select($user_language)
@@ -1073,7 +1076,7 @@ class LineApiController extends Controller
 
             $template_path = storage_path('../public/json/helper_to_user.json');
             $string_json = file_get_contents($template_path);
-               
+
             $string_json = str_replace("ตัวอย่าง",$data_topic[1],$string_json);
             $string_json = str_replace("date",$date,$string_json);
             $string_json = str_replace("time",$time,$string_json);
@@ -1094,7 +1097,7 @@ class LineApiController extends Controller
                 if (empty($data_helper->photo)) {
                     $photo_helper = $data_helper->avatar ;
                 }
-                
+
                 $name_helper = $data_helper->name ;
 
             }
@@ -1108,7 +1111,7 @@ class LineApiController extends Controller
 
             // LOGO PARTNER
             $string_json = str_replace("LOGO_PARTNER",$data_partner->logo,$string_json);
-            
+
             $messages = [ json_decode($string_json, true) ];
 
             $body = [
@@ -1125,7 +1128,7 @@ class LineApiController extends Controller
                     //'timeout' => 60
                 ]
             ];
-                                
+
             $context  = stream_context_create($opts);
             $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
@@ -1141,7 +1144,7 @@ class LineApiController extends Controller
     }
 
     protected function help_complete($id_sos_map)
-    {   
+    {
         $data_sos_map = Sos_map::findOrFail($id_sos_map);
 
         if (!empty($data_sos_map->condo_id)) {
@@ -1161,7 +1164,7 @@ class LineApiController extends Controller
         $date_now = date('Y-m-d\TH:i:s');
 
         if ($data_sos_map->help_complete != 'Yes') {
-            
+
             DB::table('sos_maps')
                 ->where('id', $id_sos_map)
                 ->update([
@@ -1177,11 +1180,11 @@ class LineApiController extends Controller
 
             // datetime
             $time_zone_explode = explode(" ",$time_zone);
-            
+
             $date = $time_zone_explode[0] ;
             $time = $time_zone_explode[1] ;
             $utc = $time_zone_explode[3] ;
-            
+
             $data_topic = [
                         "บอกให้เรารู้",
                         "การช่วยเหลือเป็นอย่างไรบ้าง",
@@ -1189,7 +1192,7 @@ class LineApiController extends Controller
                         "ให้คะแนน",
                     ];
 
-            for ($xi=0; $xi < count($data_topic); $xi++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) {
 
                 $text_topic = DB::table('text_topics')
                         ->select($user_language)
@@ -1206,7 +1209,7 @@ class LineApiController extends Controller
                 ->where('name_area', "=", null)
                 ->get();
 
-             
+
              foreach ($data_helpers as $data_helper) {
 
                 if (!empty($data_helper->logo)) {
@@ -1220,7 +1223,7 @@ class LineApiController extends Controller
 
             $template_path = storage_path('../public/json/rate_help.json');
             $string_json = file_get_contents($template_path);
-               
+
             $string_json = str_replace("ตัวอย่าง",$data_topic[3],$string_json);
             $string_json = str_replace("date",$date,$string_json);
             $string_json = str_replace("time",$time,$string_json);
@@ -1250,7 +1253,7 @@ class LineApiController extends Controller
                     //'timeout' => 60
                 ]
             ];
-                                
+
             $context  = stream_context_create($opts);
             $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
@@ -1289,7 +1292,7 @@ class LineApiController extends Controller
 
         $data_time_help = $data_sos_map->time_go_to_help;
         $date_time_help = strtotime($data_time_help);
-        
+
         $date_help = date('d/m/Y', $date_time_help);
         $time_help = date('g:i:sa', $date_time_help);
 
@@ -1323,7 +1326,7 @@ class LineApiController extends Controller
                     "เจ้าหน้าที่",
                 ];
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+        for ($xi=0; $xi < count($data_topic); $xi++) {
 
             $text_topic = DB::table('text_topics')
                     ->select($group_language)
@@ -1336,7 +1339,7 @@ class LineApiController extends Controller
             }
         }
 
-        $template_path = storage_path('../public/json/sos_map_success_by_command.json');   
+        $template_path = storage_path('../public/json/sos_map_success_by_command.json');
 
         $string_json = file_get_contents($template_path);
 
@@ -1369,7 +1372,7 @@ class LineApiController extends Controller
         $string_json = str_replace("ศูนย์ควบคุม",$data_topic[8],$string_json);
         $string_json = str_replace("เจ้าหน้าที่",$data_topic[9],$string_json);
 
-        
+
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
@@ -1387,7 +1390,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -1427,7 +1430,7 @@ class LineApiController extends Controller
 
         $data_time_help = $data_sos_map->time_go_to_help;
         $date_time_help = strtotime($data_time_help);
-        
+
         $date_help = date('d/m/Y', $date_time_help);
         $time_help = date('g:i:sa', $date_time_help);
 
@@ -1465,7 +1468,7 @@ class LineApiController extends Controller
                         "ใช้เวลา",
                     ];
 
-            for ($xi=0; $xi < count($data_topic); $xi++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) {
 
                 $text_topic = DB::table('text_topics')
                         ->select($group_language)
@@ -1478,7 +1481,7 @@ class LineApiController extends Controller
                 }
             }
 
-            $template_path = storage_path('../public/json/sos_map_success.json');   
+            $template_path = storage_path('../public/json/sos_map_success.json');
 
             $string_json = file_get_contents($template_path);
 
@@ -1512,7 +1515,7 @@ class LineApiController extends Controller
             $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
             $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
 
-            
+
             $messages = [ json_decode($string_json, true) ];
 
             // --- ตัวเก่าที่ กดเสร็จสิ้น จากกลุ่มไลน์ ---
@@ -1530,7 +1533,7 @@ class LineApiController extends Controller
             //         //'timeout' => 60
             //     ]
             // ];
-                                
+
             // $context  = stream_context_create($opts);
             // //https://api-data.line.me/v2/bot/message/11914912908139/content
             // $url = "https://api.line.me/v2/bot/message/reply";
@@ -1552,7 +1555,7 @@ class LineApiController extends Controller
                     //'timeout' => 60
                 ]
             ];
-                                
+
             $context  = stream_context_create($opts);
             $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
@@ -1572,7 +1575,7 @@ class LineApiController extends Controller
                         "ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",
                     ];
 
-            for ($xi=0; $xi < count($data_topic); $xi++) { 
+            for ($xi=0; $xi < count($data_topic); $xi++) {
 
                 $text_topic = DB::table('text_topics')
                         ->select($group_language)
@@ -1585,7 +1588,7 @@ class LineApiController extends Controller
                 }
             }
 
-            $template_path = storage_path('../public/json/text_done.json');   
+            $template_path = storage_path('../public/json/text_done.json');
 
             $string_json = file_get_contents($template_path);
 
@@ -1609,7 +1612,7 @@ class LineApiController extends Controller
             //         //'timeout' => 60
             //     ]
             // ];
-                                
+
             // $context  = stream_context_create($opts);
             // //https://api-data.line.me/v2/bot/message/11914912908139/content
             // $url = "https://api.line.me/v2/bot/message/reply";
@@ -1631,7 +1634,7 @@ class LineApiController extends Controller
                     //'timeout' => 60
                 ]
             ];
-                                
+
             $context  = stream_context_create($opts);
             $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
@@ -1659,7 +1662,7 @@ class LineApiController extends Controller
             $provider_id = $key->provider_id;
 
             if (empty($user_language)) {
-                // DF ริชเมนู EN 
+                // DF ริชเมนู EN
                 $richMenuId = "richmenu-995ba378f3ad783b679dab18b9cb981e" ;
             }else {
                 switch ($user_language) {
@@ -1711,7 +1714,7 @@ class LineApiController extends Controller
             $this->set_richmanu_language($provider_id , $richMenuId , $user_language);
 
         }
-        
+
         return "OK KUB" ;
     }
 
@@ -1790,7 +1793,7 @@ class LineApiController extends Controller
                         'role' => 'partner',
                 ]);
             }
-            
+
             // ตรวจสอบรายชื่อคนช่วยเหลือ
             if (!empty($data_sos_map->helper)) {
 
@@ -1805,7 +1808,7 @@ class LineApiController extends Controller
                     }
 
                 }
-                
+
                 if ($helper_double != "Yes") {
                     DB::table('sos_maps')
                         ->where('id', $id_sos_map)
@@ -1833,11 +1836,11 @@ class LineApiController extends Controller
                 ]);
 
                 $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
-                
+
             }
 
             return "OK" ;
-        }   
+        }
 
     }
 
@@ -1877,7 +1880,7 @@ class LineApiController extends Controller
 
         $data_time_help = $data_sos_map->time_go_to_help;
         $date_time_help = strtotime($data_time_help);
-        
+
         $date_help = date('d/m/Y', $date_time_help);
         $time_help = date('g:i:sa', $date_time_help);
 
@@ -1911,7 +1914,7 @@ class LineApiController extends Controller
                     "ใช้เวลา",
                 ];
 
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
+        for ($xi=0; $xi < count($data_topic); $xi++) {
 
             $text_topic = DB::table('text_topics')
                     ->select($group_language)
@@ -1924,7 +1927,7 @@ class LineApiController extends Controller
             }
         }
 
-        $template_path = storage_path('../public/json/sos_map_success.json');   
+        $template_path = storage_path('../public/json/sos_map_success.json');
 
         $string_json = file_get_contents($template_path);
 
@@ -1957,7 +1960,7 @@ class LineApiController extends Controller
         $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
         $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
 
-        
+
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
@@ -1974,7 +1977,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/push";
         $result = file_get_contents($url, false, $context);
@@ -2016,7 +2019,7 @@ class LineApiController extends Controller
         if( $data_sos->status == 'รอการยืนยัน' && $data_sos->wait == $officer_id ){
 
             if ($answer == 'go_to_help') {
-                $template_path = storage_path('../public/json/flex-sos-1669/send_view_data_sos.json');   
+                $template_path = storage_path('../public/json/flex-sos-1669/send_view_data_sos.json');
                 $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("ตัวอย่าง","ยืนยันการดำเนินการ",$string_json);
@@ -2037,7 +2040,7 @@ class LineApiController extends Controller
                 $string_json = str_replace("TIME_SOS_HELP_CENTER",$time_ex[0].":".$time_ex[1],$string_json);
 
                 $string_json = str_replace("NAME_OFFICER",$data_officers->name_officer,$string_json);
-                
+
                 // ข้อมูลผู้ขอความช่วยเหลือ
                 if ( !empty($data_sos->name_user) ) {
                     $string_json = str_replace("NAME_USER_SOS",$data_sos->name_user,$string_json);
@@ -2053,7 +2056,7 @@ class LineApiController extends Controller
                 $string_json = str_replace("SOS_ID",$id_sos_1669,$string_json);
                 $string_json = str_replace("_UNIT_ID_",$unit_id,$string_json);
             }else{
-                $template_path = storage_path('../public/json/text_success.json');   
+                $template_path = storage_path('../public/json/text_success.json');
                 $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ปฏิเสธเรียบร้อยแล้ว",$string_json);
@@ -2064,7 +2067,7 @@ class LineApiController extends Controller
 
                 // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
                 DB::table('sos_help_centers')
-                ->where([ 
+                ->where([
                         ['id', $id_sos_1669],
                     ])
                 ->update([
@@ -2079,7 +2082,7 @@ class LineApiController extends Controller
 
                 // UPDATE sos_1669_form_yellows
                 DB::table('sos_1669_form_yellows')
-                ->where([ 
+                ->where([
                         ['sos_help_center_id', $id_sos_1669],
                     ])
                 ->update([
@@ -2091,13 +2094,13 @@ class LineApiController extends Controller
                     ]);
 
                 // ------------------------------------------------------------------
-                
+
                 $sum_go_to_help = 0 ;
                 $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
 
                 // อัพเดทสถานะ ใน data_1669_operating_officers
                 DB::table('data_1669_operating_officers')
-                ->where([ 
+                ->where([
                         ['user_id', $data_user->id],
                         ['operating_unit_id', $data_unit->id],
                     ])
@@ -2116,7 +2119,7 @@ class LineApiController extends Controller
 
                 // อัพเดทสถานะ ใน data_1669_operating_officers
                 DB::table('data_1669_operating_officers')
-                ->where([ 
+                ->where([
                         ['user_id', $data_user->id],
                         ['operating_unit_id', $data_unit->id],
                     ])
@@ -2129,9 +2132,9 @@ class LineApiController extends Controller
                 }else{
                     $update_refuse = $data_user->id ;
                 }
-                
+
                 DB::table('sos_help_centers')
-                    ->where([ 
+                    ->where([
                             ['id', $id_sos_1669],
                         ])
                     ->update([
@@ -2144,7 +2147,7 @@ class LineApiController extends Controller
 
         }else{
 
-            $template_path = storage_path('../public/json/text_success.json');   
+            $template_path = storage_path('../public/json/text_success.json');
             $string_json = file_get_contents($template_path);
 
             $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้มีการดำเนินการแล้ว",$string_json);
@@ -2166,7 +2169,7 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-                            
+
         $context  = stream_context_create($opts);
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
@@ -2178,7 +2181,7 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);
 
-        
+
     }
 
 }
