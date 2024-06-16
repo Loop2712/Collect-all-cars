@@ -368,6 +368,22 @@
                                 #map_1669_api {
                                   height: calc(25vh);
                                 }
+
+                                .gm-style-mtc-bbw{
+                                    display: none!important;
+                                }
+
+                                .gm-fullscreen-control{
+                                    display: none!important;
+                                }
+
+                                .gm-svpc{
+                                    display: none!important;
+                                }
+
+                                .gmnoprint{
+                                    display: none!important;
+                                }
                             </style>
 
                             <!-- Modal SOS 1669 API-->
