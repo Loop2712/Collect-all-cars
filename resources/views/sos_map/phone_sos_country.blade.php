@@ -1140,8 +1140,11 @@
         }; 
 
         let full_name = firstname + " " + lastname ;
+        // "{{ url('/') }}/api/send_data_sos_api"
 
-        fetch("{{ url('/') }}/api/send_data_sos_api", {
+        let url_api = "https://uat-emergencymed.one.th/management/api/v1/case";
+
+        fetch(url_api, {
             method: 'post',
             body: JSON.stringify(data_arr),
             headers: {
@@ -1229,7 +1232,7 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                // alert(result);
+                alert(result);
                 if (result) {
                     document.querySelector("#btn_" + phone_sos).click();
                     document.querySelector("#btn_submit").click();
