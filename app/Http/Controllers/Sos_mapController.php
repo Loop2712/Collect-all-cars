@@ -226,6 +226,7 @@ class Sos_mapController extends Controller
 
         $sos_map_latests = Sos_map::latest()->first();
         $tag_sos_or_repair = $sos_map_latests->tag_sos_or_repair;
+        $sos_name_content = $sos_map_latests->content;
 
         if ($tag_sos_or_repair == "tag_repair") {
             
@@ -293,7 +294,7 @@ class Sos_mapController extends Controller
                 }
 
                 // return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
-                return view('sos_map.sos_thank_area', compact('link_line_oa' , 'id_sos_map' , 'tag_sos_or_repair'));
+                return view('sos_map.sos_thank_area', compact('link_line_oa' , 'id_sos_map' , 'tag_sos_or_repair','sos_name_content'));
 
             }else{
                 return redirect('/sos_thank')->with('flash_message', 'Sos_map added!');
