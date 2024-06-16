@@ -37,7 +37,7 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/storage/photo_profile_user",
+            "url": "photo_profile_user",
             "aspectMode": "cover",
             "size": "full"
           }
