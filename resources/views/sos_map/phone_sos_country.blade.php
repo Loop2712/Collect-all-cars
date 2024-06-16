@@ -1106,8 +1106,8 @@
         let informer = 'self';
         let symptom = 'รถชน';
         let cid = '2390787778323';
-        let firstname = 'สมชาย';
-        let lastname = 'ใจดี';
+        let firstname = 'Thanakorn';
+        let lastname = 'Tungkasopa';
         let gender = 'ชาย';
         let age = '20';
         let phone = '0981234567';
@@ -1167,8 +1167,8 @@
         let informer = 'self';
         let symptom = 'รถชน';
         let cid = '2390787778323';
-        let firstname = 'สมชาย';
-        let lastname = 'ใจดี';
+        let firstname = 'Tungkasopa';
+        let lastname = 'Tungkasopa';
         let gender = 'ชาย';
         let age = '20';
         let phone = '0981234567';
