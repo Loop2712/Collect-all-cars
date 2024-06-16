@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Test api 1669
 Route::post('/send_data_sos_api', 'Sos_mapController@send_data_sos_api');
-Route::post('/send_data_sos_api_to_line/{user_id}/{full_name}/{case_id}', 'Sos_mapController@send_data_sos_api_to_line');
+Route::get('/send_data_sos_api_to_line/{user_id}/{full_name}/{case_id}', 'Sos_mapController@send_data_sos_api_to_line');
 
 
 Route::post('/create_data_car/excel', 'Middle_price_carController@create_data_car');
