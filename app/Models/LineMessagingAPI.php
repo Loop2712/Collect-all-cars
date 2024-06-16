@@ -2331,6 +2331,8 @@ class LineMessagingAPI extends Model
 
         MyLog::create($data);
 
+        return "success";
+
     }
 
 

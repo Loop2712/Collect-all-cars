@@ -1229,9 +1229,10 @@
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
+                alert(result);
                 if (result) {
-                    document.querySelector("#btn_" + phone_sos).click();
-                    document.querySelector("#btn_submit").click();
+                    // document.querySelector("#btn_" + phone_sos).click();
+                    // document.querySelector("#btn_submit").click();
                 }
             });
     }
