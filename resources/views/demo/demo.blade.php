@@ -24,7 +24,7 @@
     #map_show_user {
         position: relative;
         width: 100% !important;
-        height: 100% !important;
+        height: 70% !important;
 
     }
 
@@ -225,6 +225,10 @@
 </style>
 
 <style>
+    #Searching_officer{
+        position: absolute;
+    }
+
     .pl {
         display: block;
         width: 5.375em;
@@ -364,7 +368,7 @@
     </div>
 </div>
 
-{{-- <div class="bordertest"></div> --}}
+<div class="bordertest"></div>
 
 
 <style>
@@ -512,6 +516,16 @@
         <span style="bottom: -20%;border-radius:10px" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius p-2" onclick="window.location.reload(true);">
             <i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
         </span>
+    </div>
+</div>
+
+<!-- กำลังค้นหาเจ้าหน้าที่ -->
+<div id="Searching_officer" class="container bg-white officer-arrive w-100 d-non">
+    <div class="w-100 text-center mt-4">
+        <img src="{{ asset('/img/stickerline/Flex/2.png') }}" width="120" alt="">
+        <br>
+        <h5 class="mb-0 mt-4 notranslate mt-1" style="color: #808080;">กำลังค้นหาเจ้าหน้าที่ที่ใกล้คุณ</h5>
+        <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
     </div>
 </div>
 
