@@ -1090,9 +1090,149 @@
 
         btn_tel.appendChild(tag_a);
 
-        document.querySelector("#btn_" + phone_sos).click();
-        document.querySelector("#btn_submit").click();
+        if(type_content == 'สพฉ'){
+            // 
+            console.log('สพฉ 1669');
+            send_data_sos_api(phone_sos);
+        }
+        else{
+            document.querySelector("#btn_" + phone_sos).click();
+            document.querySelector("#btn_submit").click();
+        }
+    }
 
+    function send_data_sos_api(phone_sos){
 
+        let informer = 'self';
+        let symptom = 'รถชน';
+        let cid = '2390787778323';
+        let firstname = 'สมชาย';
+        let lastname = 'ใจดี';
+        let gender = 'ชาย';
+        let age = '20';
+        let phone = '0981234567';
+        let symptom_detail = 'คนขับหมดสติ';
+        let victim_number = '1';
+        let risk_of_recurrence = 'false';
+        let location = '1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย';
+        let longitude = '100.56730535399781';
+        let latitude = '13.747591710132115';
+        let platform = 'android';
+        let remark = 'ตรงสี่แยก ใกล้กับเซเว่น';
+
+        data_arr = {
+            "informer" : informer,
+            "symptom" : symptom,
+            "cid" : cid,
+            "firstname" : firstname,
+            "lastname" : lastname,
+            "gender" : gender,
+            "age" : age,
+            "phone" : phone,
+            "symptom_detail" : symptom_detail,
+            "victim_number" : victim_number,
+            "risk_of_recurrence" : risk_of_recurrence,
+            "location" : location,
+            "longitude" : longitude,
+            "latitude" : latitude,
+            "platform" : platform,
+            "remark" : remark,
+        }; 
+
+        let full_name = firstname + " " + lastname ;
+
+        fetch("{{ url('/') }}/api/send_data_sos_api", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(data){
+            // console.log(data);
+            if(data.status_code == 201){
+                // console.log(data.status_code);
+                send_data_sos_api_to_line(data.data.case_id, phone_sos , full_name);
+            }
+        }).catch(function(error){
+            // console.error(error);
+            send_data_sos_api_viicheck(phone_sos);
+        });
+
+    }
+
+    function send_data_sos_api_viicheck(phone_sos){
+
+        let informer = 'self';
+        let symptom = 'รถชน';
+        let cid = '2390787778323';
+        let firstname = 'สมชาย';
+        let lastname = 'ใจดี';
+        let gender = 'ชาย';
+        let age = '20';
+        let phone = '0981234567';
+        let symptom_detail = 'คนขับหมดสติ';
+        let victim_number = '1';
+        let risk_of_recurrence = 'false';
+        let location = '1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย';
+        let longitude = '100.56730535399781';
+        let latitude = '13.747591710132115';
+        let platform = 'android';
+        let remark = 'ตรงสี่แยก ใกล้กับเซเว่น';
+
+        data_arr = {
+            "informer" : informer,
+            "symptom" : symptom,
+            "cid" : cid,
+            "firstname" : firstname,
+            "lastname" : lastname,
+            "gender" : gender,
+            "age" : age,
+            "phone" : phone,
+            "symptom_detail" : symptom_detail,
+            "victim_number" : victim_number,
+            "risk_of_recurrence" : risk_of_recurrence,
+            "location" : location,
+            "longitude" : longitude,
+            "latitude" : latitude,
+            "platform" : platform,
+            "remark" : remark,
+        }; 
+
+        let full_name = firstname + " " + lastname ;
+
+        fetch("{{ url('/') }}/api/send_data_sos_api", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(data){
+            // console.log(data);
+            if(data.status_code == 201){
+                // console.log(data.status_code);
+                send_data_sos_api_to_line(data.data.case_id, phone_sos, full_name);
+            }
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+    }
+
+    function send_data_sos_api_to_line(case_id, phone_sos, full_name){
+        console.log(case_id);
+
+        fetch("{{ url('/') }}/api/send_data_sos_api_to_line/" + "{{ Auth::user()->id }}" + "/"+full_name+"/"+case_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if (result) {
+                    document.querySelector("#btn_" + phone_sos).click();
+                    document.querySelector("#btn_submit").click();
+                }
+            });
     }
 </script>

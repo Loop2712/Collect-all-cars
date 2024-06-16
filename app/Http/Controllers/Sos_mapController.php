@@ -1405,4 +1405,27 @@ class Sos_mapController extends Controller
 
     }
 
+    function send_data_sos_api(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data = [];
+
+        $data['status_code'] = 201;
+        $data['result'] = 'Created';
+        $data['data']['case_id'] = '972ef179-fb33-4039-91ba-c7da0d5be06c';
+        $data['message'] = null;
+
+        return $data ;
+
+    }
+
+    function send_data_sos_api_to_line($user_id){
+
+        $line = new LineMessagingAPI();
+        $line->_send_data_sos_api_to_line($user_id);
+
+        return 'success';
+    }
+
 }

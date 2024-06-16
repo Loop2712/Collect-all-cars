@@ -2270,6 +2270,69 @@ class LineMessagingAPI extends Model
 
     }
 
+    function _send_data_sos_api_to_line($user_id , $full_name , $case_id){
+
+        $data_user = User::where('id' , $user_id)->first();
+
+        // TIME ZONE LINE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
+
+        // datetime
+        $time_zone_explode = explode(" ",$time_zone);
+
+        $date = $time_zone_explode[0] ;
+        $time = $time_zone_explode[1] ;
+
+        if (!empty($data_user->photo)) {
+            $photo_profile = "https://www.viicheck.com/storage/".$data_user->photo ;
+        }else{
+            $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+        }
+
+        $template_path = storage_path('../public/json/flex-sos-1669/sos_by_api.json');
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","ติดตามสถานะ..",$string_json);
+
+        $string_json = str_replace("name_user",$full_name,$string_json);
+        $string_json = str_replace("photo_profile_user",$photo_profile,$string_json);
+        $string_json = str_replace("date",$date,$string_json);
+        $string_json = str_replace("time",$time,$string_json);
+        // $string_json = str_replace("tag_case_id",$case_id);
+        $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&case_id=tag_case_id","https://www.viicheck.com/demo_sos_1669_api/?openExternalBrowser=1");
+
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_user->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "https://api.line.me/v2/bot/message/push",
+            "content" => json_encode($result, JSON_UNESCAPED_UNICODE),
+        ];
+
+        MyLog::create($data);
+
+    }
+
 
 
 }

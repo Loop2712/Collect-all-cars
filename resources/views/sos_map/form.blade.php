@@ -103,7 +103,7 @@
 
                         @if(Auth::user()->nationalitie == 'Thai' || empty(Auth::user()->nationalitie))
                                 <!-- /////// BTN SOS 1669 /////// -->
-                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block mb-2 d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
@@ -123,6 +123,62 @@
                                 </div>
                             </span>
                             <!-- /////// END BTN SOS 1669 /////// -->
+
+                            <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#Modal_ask_to_tel_1669">
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block" style="color: #ffffff;">Emergency Medical Services</span>
+                                                <span class="d-block" style="color: #ffffff;"><i class="fa-solid fa-phone me-2"></i> 1669</span>
+                                            </b>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal_ask_to_tel_1669" tabindex="-1" aria-labelledby="Label_ask_to_tel_1669" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="Label_ask_to_tel_1669">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    ...
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a class="mail-shadow btn btn-md btn-block"  onclick="save_sos_content('สพฉ','1669');"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
+                                        <div class="d-flex">
+                                            <div class="col-3 p-0 d-flex align-items-center">
+                                                <div class="justify-content-center col-12 p-0">
+                                                    <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center col-9 text-center">
+                                                <div class="justify-content-center col-12">
+                                                    <b>
+                                                        <span class="d-block" style="color: #ffffff;">Emergency Medical Services</span>
+                                                        <span class="d-block" style="color: #ffffff;"><i class="fa-solid fa-phone me-2"></i> 1669</span>
+                                                    </b>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
                             <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                                 <div class="d-flex">
@@ -170,25 +226,7 @@
                                 </div>
                             </span>
                             <!-- ////////////////////////////////// BTN nationalitie /////////////////////////////////////// -->
-                        @endif                        
-                        <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none"  onclick="save_sos_content('1669','1669');"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
-                            <div class="d-flex">
-                                <div class="col-3 p-0 d-flex align-items-center">
-                                    <div class="justify-content-center col-12 p-0">
-                                        <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center col-9 text-center">
-                                    <div class="justify-content-center col-12">
-                                        <b>
-                                            <span class="d-block" style="color: #ffffff;">Emergency Medical Services</span>
-                                            <span class="d-block" style="color: #ffffff;">📞 1669</span>
-                                        </b>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        @endif    
                     </div>
                 </div>
             </div>
@@ -1729,25 +1767,25 @@
                     }else{
 
                         // alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
-                        // document.querySelector('#btn_tel_1669').classList.remove('d-none');
+                        document.querySelector('#btn_tel_1669').classList.remove('d-none');
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
-                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') {
-                            btn_ask_1669.classList.remove('d-none');
-                            break;
-                        }else{
-                            btn_ask_1669.classList.add('d-none');
-                        }
+                        // if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') {
+                        //     btn_ask_1669.classList.remove('d-none');
+                        //     break;
+                        // }else{
+                        //     btn_ask_1669.classList.add('d-none');
+                        // }
 
-                        if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
-                            btn_ask_1669.classList.remove('d-none');
-                            break;
-                        }else{
-                            btn_ask_1669.classList.add('d-none');
-                        }
+                        // if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
+                        //     btn_ask_1669.classList.remove('d-none');
+                        //     break;
+                        // }else{
+                        //     btn_ask_1669.classList.add('d-none');
+                        // }
 
                     }
                 }
