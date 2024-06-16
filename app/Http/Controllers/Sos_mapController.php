@@ -1420,10 +1420,10 @@ class Sos_mapController extends Controller
 
     }
 
-    function send_data_sos_api_to_line($user_id){
+    function send_data_sos_api_to_line($user_id , $full_name , $case_id){
 
         $line = new LineMessagingAPI();
-        $line->_send_data_sos_api_to_line($user_id);
+        $line->_send_data_sos_api_to_line($user_id , $full_name , $case_id);
 
         return 'success';
     }
