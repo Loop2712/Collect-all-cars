@@ -4254,4 +4254,35 @@ class Sos_help_centerController extends Controller
         return response()->json($data_form_color);
     }
 
+
+    public function demo(Request $request){
+
+        $requestData = $request->all();
+
+        if (!empty($requestData['latitude'])) {
+            $data_sos = $requestData;
+        } else {
+            $data_sos = [
+                "informer" => "self",
+                "symptom" => "รถชน",
+                "cid" => "2390787778323",
+                "firstname" => "สมชาย",
+                "lastname" => "ใจดี",
+                "gender" => "ชาย",
+                "age" => "24",
+                "phone" => "0981234567",
+                "symptom_detail" => "คนขับหมดสติ",
+                "victim_number" => "1",
+                "risk_of_recurrence" => false,
+                "location" => "1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย",
+                "longitude" => "100.56730535399781",
+                "latitude" => "13.747591710132115",
+                "platform" => "ios",
+                "remark" => "ตรงสี่แยก ใกล้กับเซเว่น"
+            ];
+        }
+
+        return view('demo.demo',compact('data_sos'));
+    }
+
 }

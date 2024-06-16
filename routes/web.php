@@ -13,7 +13,8 @@ use App\Http\Controllers\QrCodeGeneratorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//DEMO
+Route::get('/demo', 'Sos_help_centerController@demo');
 // VIICHECK.COM
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
