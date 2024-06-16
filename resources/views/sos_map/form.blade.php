@@ -124,7 +124,7 @@
                             </span>
                             <!-- /////// END BTN SOS 1669 /////// -->
 
-                            <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#Modal_ask_to_tel_1669">
+                            <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#Modal_ask_to_tel_1669" onclick="open_content_1669_api();">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
@@ -142,43 +142,690 @@
                                     </div>
                                 </div>
                             </a>
+                            <!-- SOS 1669 API -->
+                            <style>
+                                .header__btn {
+                                    transition-property: all;
+                                    transition-duration: 0.2s;
+                                    transition-timing-function: linear;
+                                    transition-delay: 0s;
+                                    padding: 10px 20px;
+                                    display: inline-block;
+                                    margin-right: 10px;
+                                    background-color: #fff;
+                                    border: 1px solid #2c2c2c;
+                                    border-radius: 3px;
+                                    cursor: pointer;
+                                    outline: none;
+                                }
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="Modal_ask_to_tel_1669" tabindex="-1" aria-labelledby="Label_ask_to_tel_1669" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="Label_ask_to_tel_1669">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    ...
-                                  </div>
-                                  <div class="modal-footer">
-                                    <a class="mail-shadow btn btn-md btn-block"  onclick="save_sos_content('สพฉ','1669');"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
-                                        <div class="d-flex">
-                                            <div class="col-3 p-0 d-flex align-items-center">
-                                                <div class="justify-content-center col-12 p-0">
-                                                    <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                .header__btn:last-child {
+                                    margin-right: 0;
+                                }
+
+                                .header__btn:hover,
+                                .header__btn.js-active {
+                                    color: #fff;
+                                    background-color: #2c2c2c;
+                                }
+
+                                .header {
+                                    max-width: 600px;
+                                    margin: 50px auto;
+                                    text-align: center;
+                                }
+
+                                .header__title {
+                                    margin-bottom: 30px;
+                                    font-size: 2.1rem;
+                                }
+
+                                .content {
+                                    width: 95%;
+                                    margin: 0 auto 50px;
+                                }
+
+                                .content__title {
+                                    margin-bottom: 40px;
+                                    font-size: 20px;
+                                    text-align: center;
+                                }
+
+                                .content__title--m-sm {
+                                    margin-bottom: 10px;
+                                }
+
+                                .multisteps-form__progress {
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+                                }
+
+                                .multisteps-form__progress-btn {
+                                    transition-property: all;
+                                    transition-duration: 0.15s;
+                                    transition-timing-function: linear;
+                                    transition-delay: 0s;
+                                    position: relative;
+                                    padding-top: 20px;
+                                    color: rgba(108, 117, 125, 0.7);
+                                    text-indent: -9999px;
+                                    border: none;
+                                    background-color: transparent;
+                                    outline: none !important;
+                                    cursor: pointer;
+                                }
+
+                                @media (min-width: 303px) {
+                                    .multisteps-form__progress-btn {
+                                        text-indent: 0;
+                                    }
+                                }
+
+                                .multisteps-form__progress-btn:before {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 50%;
+                                    display: block;
+                                    width: 13px;
+                                    height: 13px;
+                                    content: '';
+                                    -webkit-transform: translateX(-50%);
+                                    transform: translateX(-50%);
+                                    transition: all 0.15s linear 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+                                    transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+                                    transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+                                    border: 2px solid currentColor;
+                                    border-radius: 50%;
+                                    background-color: #fff;
+                                    box-sizing: border-box;
+                                    z-index: 3;
+                                }
+
+                                .multisteps-form__progress-btn:after {
+                                    position: absolute;
+                                    top: 5px;
+                                    left: calc(-50% - 13px / 2);
+                                    transition-property: all;
+                                    transition-duration: 0.15s;
+                                    transition-timing-function: linear;
+                                    transition-delay: 0s;
+                                    display: block;
+                                    width: 100%;
+                                    height: 2px;
+                                    content: '';
+                                    background-color: currentColor;
+                                    z-index: 1;
+                                }
+
+                                .multisteps-form__progress-btn:first-child:after {
+                                    display: none;
+                                }
+
+                                .multisteps-form__progress-btn.js-active {
+                                    color: #007bff;
+                                }
+
+                                .multisteps-form__progress-btn.js-active:before {
+                                    -webkit-transform: translateX(-50%) scale(1.2);
+                                    transform: translateX(-50%) scale(1.2);
+                                    background-color: currentColor;
+                                }
+
+                                .multisteps-form__form {
+                                    position: relative;
+                                }
+
+                                .multisteps-form__panel {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 0;
+                                    opacity: 0;
+                                    visibility: hidden;
+                                }
+
+                                .multisteps-form__panel.js-active {
+                                    height: auto;
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+
+                                .multisteps-form__panel[data-animation="slideHorz"] {
+                                    left: 50px;
+                                }
+
+                                .multisteps-form__panel[data-animation="slideHorz"].js-active {
+                                    transition-property: all;
+                                    transition-duration: 0.25s;
+                                    transition-timing-function: cubic-bezier(0.2, 1.13, 0.38, 1.43);
+                                    transition-delay: 0s;
+                                    left: 0;
+                                }
+
+                                .mydict *:focus {
+                                    outline: 0;
+                                    border-color: #2260ff;
+                                    -webkit-box-shadow: 0 0 0 4px #b5c9fc;
+                                    box-shadow: 0 0 0 4px #b5c9fc;
+                                }
+
+                                .mydict div {
+                                    display: -webkit-box;
+                                    display: -ms-flexbox;
+                                    display: flex;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
+                                    margin-top: 0.5rem;
+                                    -webkit-box-pack: center;
+                                    -ms-flex-pack: center;
+                                    justify-content: center;
+                                }
+
+                                .mydict input[type="radio"] {
+                                    clip: rect(0 0 0 0);
+                                    -webkit-clip-path: inset(100%);
+                                    clip-path: inset(100%);
+                                    height: 1px;
+                                    overflow: hidden;
+                                    position: absolute;
+                                    white-space: nowrap;
+                                    width: 1px;
+                                }
+
+                                .mydict input[type="radio"]:checked+span {
+                                    -webkit-box-shadow: 0 0 0 0.0625em #0043ed;
+                                    box-shadow: 0 0 0 0.0625em #0043ed;
+                                    background-color: #dee7ff;
+                                    z-index: 1;
+                                    color: #0043ed;
+                                }
+
+                                .mydict label span {
+                                    display: block;
+                                    cursor: pointer;
+                                    background-color: #fff;
+                                    padding: 0.375em .75em;
+                                    position: relative;
+                                    margin-left: .0625em;
+                                    -webkit-box-shadow: 0 0 0 0.0625em #b5bfd9;
+                                    box-shadow: 0 0 0 0.0625em #b5bfd9;
+                                    letter-spacing: .05em;
+                                    color: #3e4963;
+                                    text-align: center;
+                                    -webkit-transition: background-color .5s ease;
+                                    transition: background-color .5s ease;
+                                }
+
+                                .mydict label:first-child span {
+                                    border-radius: .375em 0 0 .375em;
+                                }
+
+                                .mydict label:last-child span {
+                                    border-radius: 0 .375em .375em 0;
+                                }
+
+                                #map_1669_api {
+                                  height: calc(25vh);
+                                }
+                            </style>
+
+                            <!-- Modal SOS 1669 API-->
+<div class="modal fade notranslate" id="Modal_ask_to_tel_1669" tabindex="-1" aria-labelledby="Label_ask_to_tel_1669" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body shadow rounded">
+                <!--PEN CONTENT     -->
+                <div class="">
+                    <!--content inner-->
+                    <div class="content__inner">
+                        <div class="container">
+                            <!--animations form-->
+                            <div class="pick-animation my-4 d-none">
+                            </div>
+                        </div>
+                        <div class="overflow-y-auto">
+                            <!--multisteps-form-->
+                            <div class="multisteps-form">
+                                <!--progress bar-->
+                                <div class="row">
+                                    <div class="col-12 ml-auto mr-auto mt-3 mb-4">
+                                        <div class="multisteps-form__progress">
+                                            <button class="multisteps-form__progress-btn js-active" type="button" title="ผู้เกิดเหตุ" id="btn_user_info">ผู้เกิดเหตุ</button>
+                                            <button class="multisteps-form__progress-btn" type="button" title="อาการเบื้องต้น" id="btn_symptom">อาการ</button>
+                                            <button class="multisteps-form__progress-btn" type="button" title="สถานที่เกิดเหตุ">สถานที่</button>
+                                            <!-- <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments </button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--form panels-->
+                                <div class="row pt-0">
+                                    <div class="w-100">
+                                        <div class="multisteps-form__form">
+                                            <!--single form panel-->
+                                            <div class="multisteps-form__panel pt-0 px-4  bg-white js-active" style="min-height: 243px;" data-animation="slideHorz">
+                                                <h3 class="multisteps-form__title">ข้อมูลแจ้งเกิดเหตุ</h3>
+                                                <div class="multisteps-form__content">
+                                                    <div class="mydict mt-4">
+                                                        <div>
+                                                            <label class="w-50">
+                                                                <input type="radio" name="informer" checked="" value="self">
+                                                                <span>ตัวฉัน</span>
+                                                            </label>
+                                                            <label class="w-50">
+                                                                <input type="radio" name="informer" value="other">
+                                                                <span>อื่นๆ</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mt-1">
+                                                        <div class="col-12 col-sm-6  mt-4">
+                                                            <input class="multisteps-form__input form-control" type="text" name="cid" placeholder="เลขบัตรประชาชน" />
+                                                        </div>
+                                                        <div class="col-12 col-sm-6  mt-4">
+                                                            <input class="multisteps-form__input form-control" type="text" name="firstname" placeholder="ชื่อจริง" />
+                                                        </div>
+                                                        <div class="col-12 col-sm-6  mt-4">
+                                                            <input class="multisteps-form__input form-control" type="text" name="lastname" placeholder="นามสกุล" />
+                                                        </div>
+                                                        <div class="col-12 col-sm-6  mt-4">
+                                                            <input class="multisteps-form__input form-control" type="text" name="phone" value="{{ isset(Auth::user()->phone) ? Auth::user()->phone : ''}}" placeholder="เบอร์ติดต่อ" />
+                                                        </div>
+                                                        <div class="mydict mt-4 col-6">
+                                                            <div class="mt-0">
+                                                                <label class="w-50">
+                                                                    <input type="radio" name="gender" checked="" value="ชาย">
+                                                                    <span>ชาย</span>
+                                                                </label>
+                                                                <label class="w-50">
+                                                                    <input type="radio" name="gender" value="หญิง">
+                                                                    <span>หญิง</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 mt-4 ">
+                                                            <input class="multisteps-form__input form-control" type="text" name="age" placeholder="อายุ" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-row d-flex mt-4 mb-3">
+                                                        <button class="btn btn-primary ml-auto js-btn-next w-100" type="button" title="Next">ต่อไป</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="d-flex align-items-center col-9 text-center">
-                                                <div class="justify-content-center col-12">
-                                                    <b>
-                                                        <span class="d-block" style="color: #ffffff;">Emergency Medical Services</span>
-                                                        <span class="d-block" style="color: #ffffff;"><i class="fa-solid fa-phone me-2"></i> 1669</span>
-                                                    </b>
-                                                    
+                                            <!--single form panel-->
+                                            <div class="multisteps-form__panel  pt-0 px-4 rounded bg-white" data-animation="slideHorz">
+                                                <h3 class="multisteps-form__title">อาการเบื้องต้น</h3>
+                                                <div class="form-row mt-1">
+                                                    <div class="col-12 col-sm-6  mt-4">
+                                                        <input class="multisteps-form__input form-control" type="text" name="symptom" placeholder="อาการที่พบ" />
+                                                    </div>
+                                                    <div class="col-12 col-sm-6  mt-4">
+                                                        <input class="multisteps-form__input form-control" type="text" name="symptom_detail" placeholder="รายละเอียดอาการที่พบ" />
+                                                    </div>
+                                                    <div class="col-6 mt-4 ">
+                                                        <label for="victim_number">จำนวนผู้ประสบเหตุ</label>
+                                                        <input class="multisteps-form__input form-control" type="text" name="victim_number" placeholder="จำนวนผู้ประสบเหตุ" value="1" />
+                                                    </div>
+                                                    <div class="mydict mt-4 col-6">
+                                                        <label for="victim_number">โอกาสเกิดซ้ำ</label>
+
+                                                        <div class="mt-0">
+                                                            <label class="w-50">
+                                                                <input type="radio" name="risk_of_recurrence" checked="" value="no">
+                                                                <span>ไม่</span>
+                                                            </label>
+                                                            <label class="w-50">
+                                                                <input type="radio" name="risk_of_recurrence" value="yes">
+                                                                <span>ใช่</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area">
+                                                        <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+                                                            <div class="form-group my-2" id="add_select_img_1669_api">
+                                                                <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_1669_api').src = window.URL.createObjectURL(this.files[0]);check_add_img_1669_api();document.querySelector('#btn_help_area').disabled = false;">
+                                                                <div class="text-center">
+                                                                    <center>
+                                                                        <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;width: 100px;" src="https://www.viicheck.com/img/stickerline/PNG/37.2.png" class="card-img-top center">
+                                                                    </center>
+                                                                    <h5 class="text-center  mt-2 mb-0">
+                                                                        <b>เพิ่มภาพถ่าย "คลิก"</b>
+                                                                    </h5>
+                                                                </div>
+
+                                                            </div>
+                                                            <img class="full_img d-none" style="padding:0px ;" width="100%" alt="ภาพของคุณ" id="show_photo_1669_api">
+                                                            <div class="child">
+                                                                <span>เลือกรูป</span>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="button-row d-flex mt-4">
+                                                    <button class="btn js-btn-prev w-50" type="button" title="Prev"><i class="fa-solid fa-arrow-left"></i> ย้อนกลับ</button>
+                                                    <button class="btn btn-primary w-50 js-btn-next" type="button" title="Next">ต่อไป</button>
+                                                </div>
+                                            </div>
+                                            <!--single form panel-->
+                                            <div class="multisteps-form__panel  pt-0 px-4 rounded bg-white" data-animation="slideHorz">
+                                                <h3 class="multisteps-form__title">สถานที่เกิดเหตุ</h3>
+                                                <div id="map_1669_api" class="">
+                                                    <!-- MAP -->
+                                                </div>
+                                                <div class="form-row mt-1">
+                                                    <div class="col-12 col-sm-6  mt-4 d-">
+                                                        <textarea class="multisteps-form__textarea form-control" rows="3" name="location" id="sos_1669_api_location"></textarea>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6  mt-4 d-none">
+                                                        <input class="multisteps-form__input form-control" type="text" name="latitude" id="sos_1669_api_latitude">
+                                                    </div>
+                                                    <div class="col-12 mt-4  d-none">
+                                                        <input class="multisteps-form__input form-control" type="text" name="longitude" id="sos_1669_api_longitude">
+                                                    </div>
+                                                    <input class="multisteps-form__input form-control d-none" type="text" name="platform" >
+
+                                                    <div class="col-12 mt-2 ">
+                                                        <label for="remark">รายละเอียดสถานที่</label>
+                                                        <textarea class="multisteps-form__textarea form-control" rows="5" name="remark" placeholder="เช่น ตรงสี่แยก ใกล้กับเซเว่น"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="button-row d-flex mt-4">
+                                                    <button class="btn js-btn-prev w-50" type="button" title="Prev"><i class="fa-solid fa-arrow-left"></i> ย้อนกลับ</button>
+                                                    <button class="btn w-50" type="button" title="Send" onclick="save_sos_content('สพฉ','1669');"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >ยืนยัน</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                  </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            <script>
+
+                                function showPosition_1669_api() {
+                                    let lat_text = document.querySelector("#lat");
+                                    let lng_text = document.querySelector("#lng");
+
+                                    document.querySelector('#sos_1669_api_latitude').value = lat_text.value;
+                                    document.querySelector('#sos_1669_api_longitude').value = lng_text.value;
+
+                                    let lat = parseFloat(lat_text.value) ;
+                                    let lng = parseFloat(lng_text.value) ;
+
+                                    // console.log(lat);
+                                    // console.log(lng);
+
+                                    const map_1669_api = new google.maps.Map(document.getElementById("map_1669_api"), {
+                                        zoom: 15,
+                                        center: { lat: lat, lng: lng },
+                                        mapTypeId: "terrain",
+                                    });
+                                    // 40.7504479,-73.9936564,19
+
+                                    // ตำแหน่ง USER
+                                    const image_sos_1669_api = "{{ url('/img/icon/operating_unit/sos.png') }}";
+                                    let marker_user_1669_api = new google.maps.Marker({
+                                        position: {
+                                            lat: parseFloat(lat),
+                                            lng: parseFloat(lng)
+                                        },
+                                        map: map_1669_api,
+                                        icon: image_sos_1669_api,
+                                    });
+
+                                    // เรียกใช้ Geocoding API
+                                    const geocoder = new google.maps.Geocoder();
+                                    geocodeLatLng_1669_api(geocoder, lat, lng);
+
+                                }
+
+                                function geocodeLatLng_1669_api(geocoder, lat, lng) {
+                                    const latlng = { lat: lat, lng: lng };
+                                    geocoder.geocode({ location: latlng }, (results, status) => {
+                                        if (status === "OK") {
+                                            if (results[0]) {
+                                                // console.log(results[0].formatted_address);
+                                                // คุณสามารถใช้ข้อมูลจาก results เพื่อแสดงที่อยู่หรือรายละเอียดเพิ่มเติม
+                                                document.querySelector('#sos_1669_api_location').value = results[0].formatted_address;
+                                            } else {
+                                                console.log("No results found");
+                                            }
+                                        } else {
+                                            console.log("Geocoder failed due to: " + status);
+                                        }
+                                    });
+                                }
+
+                                function setOSInInput() {
+                                    const os = getOS();
+                                    const inputElement = document.querySelector('input[name="platform"]');
+                                    inputElement.value = os;
+                                }
+
+                                function getOS() {
+                                    let userAgent = window.navigator.userAgent,
+                                        platform = window.navigator.platform,
+                                        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+                                        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+                                        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+                                        os = null;
+
+                                    if (macosPlatforms.indexOf(platform) !== -1) {
+                                        os = 'Mac OS';
+                                    } else if (iosPlatforms.indexOf(platform) !== -1) {
+                                        os = 'iOS';
+                                    } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                                        os = 'Windows';
+                                    } else if (/Android/.test(userAgent)) {
+                                        os = 'Android';
+                                    } else if (!os && /Linux/.test(platform)) {
+                                        os = 'Linux';
+                                    }
+
+                                    return os;
+                                }
+
+                                function open_content_1669_api() {
+                                    setTimeout(() => {
+                                        document.querySelector('#btn_user_info').click();
+                                        showPosition_1669_api();
+                                        setOSInInput();
+                                    }, 200);
+                                }
+
+                                function check_add_img_1669_api() {
+                                    document.querySelector('#show_photo_1669_api').classList.remove('d-none');
+                                    document.querySelector('#add_select_img_1669_api').classList.add('d-none');
+                                    setTimeout(() => {
+                                        document.querySelector('#btn_symptom').click();
+                                    }, 200);
+                                }
+                                //DOM elements
+                                const DOMstrings = {
+                                    stepsBtnClass: 'multisteps-form__progress-btn',
+                                    stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
+                                    stepsBar: document.querySelector('.multisteps-form__progress'),
+                                    stepsForm: document.querySelector('.multisteps-form__form'),
+                                    stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
+                                    stepFormPanelClass: 'multisteps-form__panel',
+                                    stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
+                                    stepPrevBtnClass: 'js-btn-prev',
+                                    stepNextBtnClass: 'js-btn-next'
+                                };
+
+
+                                //remove class from a set of items
+                                const removeClasses = (elemSet, className) => {
+
+                                    elemSet.forEach(elem => {
+
+                                        elem.classList.remove(className);
+
+                                    });
+
+                                };
+
+                                //return exect parent node of the element
+                                const findParent = (elem, parentClass) => {
+
+                                    let currentNode = elem;
+
+                                    while (!currentNode.classList.contains(parentClass)) {
+                                        currentNode = currentNode.parentNode;
+                                    }
+
+                                    return currentNode;
+
+                                };
+
+                                //get active button step number
+                                const getActiveStep = elem => {
+                                    return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+                                };
+
+                                //set all steps before clicked (and clicked too) to active
+                                const setActiveStep = activeStepNum => {
+
+                                    //remove active state from all the state
+                                    removeClasses(DOMstrings.stepsBtns, 'js-active');
+
+                                    //set picked items to active
+                                    DOMstrings.stepsBtns.forEach((elem, index) => {
+
+                                        if (index <= activeStepNum) {
+                                            elem.classList.add('js-active');
+                                        }
+
+                                    });
+                                };
+
+                                //get active panel
+                                const getActivePanel = () => {
+
+                                    let activePanel;
+
+                                    DOMstrings.stepFormPanels.forEach(elem => {
+
+                                        if (elem.classList.contains('js-active')) {
+
+                                            activePanel = elem;
+
+                                        }
+
+                                    });
+
+                                    return activePanel;
+
+                                };
+
+                                //open active panel (and close unactive panels)
+                                const setActivePanel = activePanelNum => {
+
+                                    //remove active class from all the panels
+                                    removeClasses(DOMstrings.stepFormPanels, 'js-active');
+
+                                    //show active panel
+                                    DOMstrings.stepFormPanels.forEach((elem, index) => {
+                                        if (index === activePanelNum) {
+
+                                            elem.classList.add('js-active');
+
+                                            setFormHeight(elem);
+
+                                        }
+                                    });
+
+                                };
+
+                                //set form height equal to current panel height
+                                const formHeight = activePanel => {
+
+                                    const activePanelHeight = activePanel.offsetHeight;
+
+                                    DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+                                };
+
+                                const setFormHeight = () => {
+                                    const activePanel = getActivePanel();
+
+                                    formHeight(activePanel);
+                                };
+
+                                //STEPS BAR CLICK FUNCTION
+                                DOMstrings.stepsBar.addEventListener('click', e => {
+
+                                    //check if click target is a step button
+                                    const eventTarget = e.target;
+
+                                    if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
+                                        return;
+                                    }
+
+                                    //get active button step number
+                                    const activeStep = getActiveStep(eventTarget);
+
+                                    //set all steps before clicked (and clicked too) to active
+                                    setActiveStep(activeStep);
+
+                                    //open active panel
+                                    setActivePanel(activeStep);
+                                });
+
+                                //PREV/NEXT BTNS CLICK
+                                DOMstrings.stepsForm.addEventListener('click', e => {
+
+                                    const eventTarget = e.target;
+
+                                    //check if we clicked on `PREV` or NEXT` buttons
+                                    if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`))) {
+                                        return;
+                                    }
+
+                                    //find active panel
+                                    const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+
+                                    let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+                                    //set active step and active panel onclick
+                                    if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+                                        activePanelNum--;
+
+                                    } else {
+
+                                        activePanelNum++;
+
+                                    }
+
+                                    setActiveStep(activePanelNum);
+                                    setActivePanel(activePanelNum);
+
+                                });
+
+                                //SETTING PROPER FORM HEIGHT ONLOAD
+                                window.addEventListener('load', setFormHeight, false);
+
+                                //SETTING PROPER FORM HEIGHT ONRESIZE
+                                window.addEventListener('resize', setFormHeight, false);
+
+                                //changing animation via animation select !!!YOU DON'T NEED THIS CODE (if you want to change animation type, just change form panels data-attr)
+
+                                const setAnimationType = newType => {
+                                    DOMstrings.stepFormPanels.forEach(elem => {
+                                        elem.dataset.animation = slideHorz;
+                                    });
+                                };
+                            </script>
+
+                            <!-- END SOS 1669 API -->
 
                             <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                                 <div class="d-flex">

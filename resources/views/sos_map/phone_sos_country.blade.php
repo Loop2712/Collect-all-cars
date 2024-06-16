@@ -1091,8 +1091,7 @@
         btn_tel.appendChild(tag_a);
 
         if(type_content == 'สพฉ'){
-            // 
-            console.log('สพฉ 1669');
+            // console.log('สพฉ 1669');
             send_data_sos_api(phone_sos);
         }
         else{
@@ -1103,48 +1102,71 @@
 
     function send_data_sos_api(phone_sos){
 
-        let informer = 'self';
-        let symptom = 'รถชน';
-        let cid = '2390787778323';
-        let firstname = 'Thanakorn';
-        let lastname = 'Tungkasopa';
-        let gender = 'ชาย';
-        let age = '20';
-        let phone = '0981234567';
-        let symptom_detail = 'คนขับหมดสติ';
-        let victim_number = '1';
-        let risk_of_recurrence = 'false';
-        let location = '1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย';
-        let longitude = '100.56730535399781';
-        let latitude = '13.747591710132115';
-        let platform = 'android';
-        let remark = 'ตรงสี่แยก ใกล้กับเซเว่น';
+        let informer = document.querySelectorAll('[name="informer"]');
+        let informer_value = "" ;
+            informer.forEach(informer => {
+                if(informer.checked){
+                    informer_value = informer.value;
+                }
+            })
+        let symptom = document.querySelector('[name="symptom"]');
+        let cid = document.querySelector('[name="cid"]');
+        let firstname = document.querySelector('[name="firstname"]');
+        let lastname = document.querySelector('[name="lastname"]');
+        let gender = document.querySelectorAll('[name="gender"]');
+        let gender_value = "" ;
+            gender.forEach(gender => {
+                if(gender.checked){
+                    gender_value = gender.value;
+                }
+            })
+        let age = document.querySelector('[name="age"]');
+        let phone = document.querySelector('[name="phone"]');
+        let symptom_detail = document.querySelector('[name="symptom_detail"]');
+        let victim_number = document.querySelector('[name="victim_number"]');
+        let risk_of_recurrence = document.querySelectorAll('[name="risk_of_recurrence"]');
+        let risk_of_recurrence_value = "" ;
+            risk_of_recurrence.forEach(risk_of_recurrence => {
+                if(risk_of_recurrence.checked){
+                    if(risk_of_recurrence.value == 'yes'){
+                        risk_of_recurrence_value = true;
+                    }
+                    else{
+                        risk_of_recurrence_value = false;
+                    }
+                }
+            })
+        let location =  document.querySelector('[name="location"]');
+        let longitude = document.querySelector('[name="longitude"]');
+        let latitude = document.querySelector('[name="latitude"]');
+        let platform = document.querySelector('[name="platform"]');
+        let remark = document.querySelector('[name="remark"]');
 
-        data_arr = {
-            "informer" : informer,
-            "symptom" : symptom,
-            "cid" : cid,
-            "firstname" : firstname,
-            "lastname" : lastname,
-            "gender" : gender,
-            "age" : age,
-            "phone" : phone,
-            "symptom_detail" : symptom_detail,
-            "victim_number" : victim_number,
-            "risk_of_recurrence" : risk_of_recurrence,
-            "location" : location,
-            "longitude" : longitude,
-            "latitude" : latitude,
-            "platform" : platform,
-            "remark" : remark,
+        let data_arr = {
+            "informer" : informer_value,
+            "symptom" : symptom.value,
+            "cid" : cid.value,
+            "firstname" : firstname.value,
+            "lastname" : lastname.value,
+            "gender" : gender_value,
+            "age" : age.value,
+            "phone" : phone.value,
+            "symptom_detail" : symptom_detail.value,
+            "victim_number" : victim_number.value,
+            "risk_of_recurrence" : risk_of_recurrence_value,
+            "location" : location.value,
+            "longitude" : longitude.value,
+            "latitude" : latitude.value,
+            "platform" : platform.value,
+            "remark" : remark.value,
         }; 
 
-        let full_name = firstname + " " + lastname ;
+        let full_name = firstname.value + " " + lastname.value ;
 
         let test_url = "{{ url('/') }}/api/send_data_sos_api" ;
         let url_api = "https://uat-emergencymed.one.th/management/api/v1/case";
 
-        fetch(test_url, {
+        fetch(url_api, {
             method: 'post',
             body: JSON.stringify(data_arr),
             headers: {
@@ -1170,43 +1192,66 @@
 
     function send_data_sos_api_viicheck(phone_sos){
 
-        let informer = 'self';
-        let symptom = 'รถชน';
-        let cid = '2390787778323';
-        let firstname = 'Tungkasopa';
-        let lastname = 'Tungkasopa';
-        let gender = 'ชาย';
-        let age = '20';
-        let phone = '0981234567';
-        let symptom_detail = 'คนขับหมดสติ';
-        let victim_number = '1';
-        let risk_of_recurrence = 'false';
-        let location = '1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย';
-        let longitude = '100.56730535399781';
-        let latitude = '13.747591710132115';
-        let platform = 'android';
-        let remark = 'ตรงสี่แยก ใกล้กับเซเว่น';
+        let informer = document.querySelectorAll('[name="informer"]');
+        let informer_value = "" ;
+            informer.forEach(informer => {
+                if(informer.checked){
+                    informer_value = informer.value;
+                }
+            })
+        let symptom = document.querySelector('[name="symptom"]');
+        let cid = document.querySelector('[name="cid"]');
+        let firstname = document.querySelector('[name="firstname"]');
+        let lastname = document.querySelector('[name="lastname"]');
+        let gender = document.querySelectorAll('[name="gender"]');
+        let gender_value = "" ;
+            gender.forEach(gender => {
+                if(gender.checked){
+                    gender_value = gender.value;
+                }
+            })
+        let age = document.querySelector('[name="age"]');
+        let phone = document.querySelector('[name="phone"]');
+        let symptom_detail = document.querySelector('[name="symptom_detail"]');
+        let victim_number = document.querySelector('[name="victim_number"]');
+        let risk_of_recurrence = document.querySelectorAll('[name="risk_of_recurrence"]');
+        let risk_of_recurrence_value = "" ;
+            risk_of_recurrence.forEach(risk_of_recurrence => {
+                if(risk_of_recurrence.checked){
+                    if(risk_of_recurrence.value == 'yes'){
+                        risk_of_recurrence_value = true;
+                    }
+                    else{
+                        risk_of_recurrence_value = false;
+                    }
+                }
+            })
+        let location =  document.querySelector('[name="location"]');
+        let longitude = document.querySelector('[name="longitude"]');
+        let latitude = document.querySelector('[name="latitude"]');
+        let platform = document.querySelector('[name="platform"]');
+        let remark = document.querySelector('[name="remark"]');
 
-        data_arr = {
-            "informer" : informer,
-            "symptom" : symptom,
-            "cid" : cid,
-            "firstname" : firstname,
-            "lastname" : lastname,
-            "gender" : gender,
-            "age" : age,
-            "phone" : phone,
-            "symptom_detail" : symptom_detail,
-            "victim_number" : victim_number,
-            "risk_of_recurrence" : risk_of_recurrence,
-            "location" : location,
-            "longitude" : longitude,
-            "latitude" : latitude,
-            "platform" : platform,
-            "remark" : remark,
+        let data_arr = {
+            "informer" : informer_value,
+            "symptom" : symptom.value,
+            "cid" : cid.value,
+            "firstname" : firstname.value,
+            "lastname" : lastname.value,
+            "gender" : gender_value,
+            "age" : age.value,
+            "phone" : phone.value,
+            "symptom_detail" : symptom_detail.value,
+            "victim_number" : victim_number.value,
+            "risk_of_recurrence" : risk_of_recurrence_value,
+            "location" : location.value,
+            "longitude" : longitude.value,
+            "latitude" : latitude.value,
+            "platform" : platform.value,
+            "remark" : remark.value,
         }; 
 
-        let full_name = firstname + " " + lastname ;
+        let full_name = firstname.value + " " + lastname.value ;
 
         fetch("{{ url('/') }}/api/send_data_sos_api", {
             method: 'post',
