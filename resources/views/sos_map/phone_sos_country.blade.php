@@ -1140,7 +1140,7 @@
         }; 
 
         let full_name = firstname + " " + lastname ;
-        
+
         let test_url = "{{ url('/') }}/api/send_data_sos_api" ;
         let url_api = "https://uat-emergencymed.one.th/management/api/v1/case";
 
@@ -1157,6 +1157,9 @@
             if(data.status_code == 201){
                 // console.log(data.status_code);
                 send_data_sos_api_to_line(data.data.case_id, phone_sos , full_name);
+            }
+            else if(data.status_code == 400){
+                alert(data.message);
             }
         }).catch(function(error){
             // console.error(error);
