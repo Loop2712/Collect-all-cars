@@ -2298,8 +2298,8 @@ class LineMessagingAPI extends Model
         $string_json = str_replace("photo_profile_user",$photo_profile,$string_json);
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
-        // $string_json = str_replace("tag_case_id",$case_id);
-        $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&case_id=tag_case_id","https://www.viicheck.com/demo_sos_1669_api/?openExternalBrowser=1");
+        // $string_json = str_replace("tag_case_id",$case_id,$string_json);
+        $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&case_id=tag_case_id","https://www.viicheck.com/demo_sos_1669_api/?openExternalBrowser=1",$string_json);
 
 
         $messages = [ json_decode($string_json, true) ];
