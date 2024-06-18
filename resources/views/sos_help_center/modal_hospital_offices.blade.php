@@ -578,7 +578,7 @@
                 document.querySelector('.contrainerCheckmark').classList.toggle('d-none');
 
                 sos_hospital_id = result.id;
-            }, 1500)
+            }, 2000)
 
         }).catch(function(error){
             console.error("error cf_select_hospital");
