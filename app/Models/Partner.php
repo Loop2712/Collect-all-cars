@@ -39,8 +39,5 @@ class Partner extends Model
         return $this->hasOne('App\Models\Partner_condo', 'partner_id');
     }
 
-    public function privilege(){
-        return $this->hasMany('App\Models\Privilege', 'partner_id');
-    }
-
+   
 }

@@ -25,6 +25,7 @@ use App\Http\Controllers\API\ImageController;
 use App\Models\Group_line;
 use App\Models\Report_repair;
 use App\Models\Sos_map_wait_delete;
+use App\Models\Sos_by_organization;
 
 use App\Http\Controllers\API\LineApiController;
 
@@ -1427,6 +1428,30 @@ class Sos_mapController extends Controller
         $line->_send_data_sos_api_to_line($user_id , $full_name , $case_id);
 
         return 'success';
+    }
+
+    function get_data_btn_organizations(Request $request){
+        $requestData = $request->all();
+
+        // แยกชื่อบริษัทหลักออกจากกัน
+        $company_names = explode(',', $requestData['user_from']);
+        // ดึงข้อมูลบริษัทย่อย
+        $subsidiaries = [];
+        foreach ($company_names as $company_name) {
+            $subsidiaries = array_merge($subsidiaries, Sos_by_organization::where('name_partner', $company_name)
+            ->leftJoin('partners', 'sos_by_organizations.name_partner', '=', 'partners.name')
+            ->whereNull('partners.name_area')
+            ->get()->toArray());
+        }
+
+        // จัดกลุ่มข้อมูลบริษัทย่อย
+        $groupedSubsidiaries = array_reduce($subsidiaries, function ($acc, $subsidiary) {
+            $acc[$subsidiary['name_partner']][] = $subsidiary;
+            return $acc;
+        }, []);
+
+        // ส่งข้อมูลบริษัทย่อยกลับไปยัง client
+        return response()->json($groupedSubsidiaries);
     }
 
 }

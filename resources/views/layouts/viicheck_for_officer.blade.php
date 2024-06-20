@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{ asset('Medilab/css/style.css') }}" rel="stylesheet">
 
@@ -168,7 +168,7 @@
     <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('carousel-12/js/main.js') }}"></script>
     <script src="{{ asset('Medilab/js/script.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       function func_arrivalTime(duration){
           // assuming you have already obtained the duration from Google Maps API and stored it in a variable called `duration`

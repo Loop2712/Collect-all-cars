@@ -38,7 +38,7 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
-        <span class="text-success mr-2"><b> {{ number_format(($new_vmove_report/$count_vmove_report)*100,1) }} %</b></span>
+        <span class="text-success mr-2"><b> @if(!empty($new_vmove_report) and !empty($count_vmove_report)){{ number_format(($new_vmove_report/$count_vmove_report)*100,1) }} % @endif</b></span>
         <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_vmove_report) }}</b> ครั้ง</span>
 
       </p>

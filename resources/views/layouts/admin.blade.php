@@ -256,6 +256,12 @@
                     <span class="nav-link-text">Group Line</span>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('admin/privilege') }}">
+                    <i style="color: lightgreen" class="fab fa-line"></i>
+                    <span class="nav-link-text">Privilege</span>
+                  </a>
+                </li>
               </div>
             </div>
             

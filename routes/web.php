@@ -176,7 +176,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('nationalitie_sos', 'Nationalitie_sosController');
 	Route::resource('nationalitie_group_lines', 'Nationalitie_group_linesController');
 	Route::resource('nationalitie_officers', 'Nationalitie_officersController');
-
+	Route::get('admin/privilege', 'PrivilegeController@privilege_admin');
 });
 // END ADMIN VIICHECK
 
@@ -615,7 +615,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::resource('problem_report', 'Problem_reportController')->except(['show','edit']);;
 
 Route::resource('privilege', 'PrivilegeController');
-Route::get('privilege_partner', 'PrivilegeController@seach_partner');
+Route::get('show_privilege_partner', 'PrivilegeController@seach_partner');
 Route::resource('redeem_code', 'Redeem_codeController');
 });
 

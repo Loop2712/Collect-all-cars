@@ -2,415 +2,452 @@
 
 @section('content')
 <br><br><br><br><br>
-    <div class="container d-block d-md-none">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <input type="hidden" id="latlng" name="latlng" value="{{ $latlng }}" readonly>
-                        <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
-                        <input type="hidden" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
-                        <input type="hidden" id="user_phone" name="user_phone" value="{{ Auth::user()->phone }}" readonly>
-                        <div id="map">
-                            <img style="width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
-                        </div>
-                        <div id="text_open_location" style="margin-top:10px;" class="">
-                            <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
-                            <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
-                        </div>
+<div class="container d-block d-md-none">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" id="latlng" name="latlng" value="{{ $latlng }}" readonly>
+                    <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
+                    <input type="hidden" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
+                    <input type="hidden" id="user_phone" name="user_phone" value="{{ Auth::user()->phone }}" readonly>
+                    <div id="map">
+                        <img style="width: 100%;height: 100%;object-fit: contain; " src="{{ asset('/img/more/sorry.png') }}" class="card-img-top center" style="padding: 10px;">
+                    </div>
+                    <div id="text_open_location" style="margin-top:10px;" class="">
+                        <span class="text-danger">กรุณาเปิดตำแหน่งที่ตั้ง</span>
+                        <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
+                    </div>
 
-                        <div id="div_content_call" class="d-none">
-                            @foreach($register_car as $item)
-                            <!-- แบบใหม่ -->
-                                <div class="card shadow" style="margin-top:25px;padding: 10px;border-radius: 15px;border-color: #f76565;">
+                    <div id="div_content_call" class="d-none">
+                        @foreach($register_car as $item)
+                        <!-- แบบใหม่ -->
+                        <div class="card shadow" style="margin-top:25px;padding: 10px;border-radius: 15px;border-color: #f76565;">
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <img style="margin-top:7px;width: 100%;margin-left: 7px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
-                                                </div>
-                                                <div class="col-6 notranslate" style="margin-top:8px;overflow ;">
-                                                    <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
-                                                    <h6><b>{{ $item->registration_number }}</b></h6>
-                                                    <span>{{ $item->province }}</span>
-                                                </div>
-                                                <div class="col-3">
-                                                    @if(!empty($item->name_insurance))
-                                                        <button style="margin-top:7px;overflow ;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show">
-                                                            <i class="fas fa-phone-alt"></i> 
-                                                        </button>
-                                                        <a class="d-none" id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}" ></a>
-                                                    @endif
-                                                    <button style="margin-top:7px;overflow ;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none collapse multi-collapse_{{ $loop->iteration }}">
-                                                        <i class="fas fa-phone-alt"></i>
-                                                    </button>
-                                                    <a id="btn_call_other_ins_{{ $loop->iteration }}"></a>
-
-                                                    <button style="margin-top:7px;overflow ;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none">
-                                                        <i class="fas fa-phone-alt"></i> 
-                                                    </button>
-                                                    <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
-                                                </div>
-                                            </div>
-                                            <hr class="text-danger">
+                                        <div class="col-3">
+                                            <img style="margin-top:7px;width: 100%;margin-left: 7px;" src="{{ url('/img/logo_brand/logo-') }}{{ strtolower($item->brand) }}.png">
+                                        </div>
+                                        <div class="col-6 notranslate" style="margin-top:8px;\">
+                                            <p class="d-none" id="car_id_{{ $loop->iteration }}">{{ $item->id }}</p>
+                                            <h6><b>{{ $item->registration_number }}</b></h6>
+                                            <span>{{ $item->province }}</span>
+                                        </div>
+                                        <div class="col-3">
                                             @if(!empty($item->name_insurance))
-                                                <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
-                                                    <div class="col-3">
-                                                        <img style="margin-left: 7px;margin-top:-5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <p style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;" id="name_insurance_{{ $item->id }}" class="text-success">
-                                                            {{ $item->name_insurance }}
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 1px;">
-                                                            อื่นๆ <i class="fas fa-chevron-circle-down"></i>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample2">
-                                                    <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 8px;">
-                                                        <i class="fas fa-chevron-circle-up"></i>
-                                                    </p>
-
-                                                    <div class="row" style="margin-top: 10px;">
-                                                        <div class="col-12">
-                                                            <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
-                                                                <option value="" selected>- เลือกบริษัทประกันภัย -</option>
-                                                                @foreach($select_ins as $item_2)
-                                                                    <option value="{{ $item_2->company }}" 
-                                                                    {{ request('company') == $item_2->company ? 'selected' : ''   }} >
-                                                                    {{ $item_2->company }} 
-                                                                    </option>
-                                                                @endforeach  
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                            <div class="col-12" style="margin-top: 13px;">
-                                                <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
-                                                    <option value="" selected>- เลือกบริษัทประกันภัย -</option>
-                                                    @foreach($name_insurance as $item)
-                                                        <option value="{{ $item->company }}" 
-                                                        {{ request('company') == $item->company ? 'selected' : ''   }} >
-                                                        {{ $item->company }} 
-                                                        </option>
-                                                    @endforeach  
-                                                </select>
-                                            </div>
+                                            <!-- <button style="margin-top:7px;" onclick="call_insurance('{{ $item->name_insurance }}', '{{ $loop->iteration }}');" class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show">
+                                                <i class="fas fa-phone-alt"></i>
+                                            </button> -->
+                                            <a  class="btn btn-primary main-shadow main-radius collapse multi-collapse_{{ $loop->iteration }} show" style="margin-top:7px;" id="btn_call_insurance_{{ $loop->iteration }}" href="tel:{{ $item->phone_insurance }}">
+                                            <i class="fas fa-phone-alt"></i></a>
                                             @endif
+                                            <!-- <button style="margin-top:7px;" onclick="call_other_ins('{{ $loop->iteration }}');" id="btn_other_ins_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none collapse multi-collapse_{{ $loop->iteration }}">
+                                                <i class="fas fa-phone-alt"></i>
+                                            </button>
+                                            <a id="btn_call_other_ins_{{ $loop->iteration }}"></a> -->
+
+                                            <button style="margin-top:7px;" onclick="call_select_insurance('{{ $loop->iteration }}');" id="btn2_call_select_insurance_{{ $loop->iteration }}" class="btn btn-primary main-shadow main-radius d-none">
+                                                <i class="fas fa-phone-alt"></i>
+                                            </button>
+                                            <a id="btn_call_select_insurance_{{ $loop->iteration }}"></a>
                                         </div>
                                     </div>
+                                    <hr class="text-danger">
+                                    @if(!empty($item->name_insurance))
+
+                                    <div class="d-flex justify-content-between d-none mb-3 align-items-center"  id="preview_insurance_{{ $loop->iteration }}" >
+                                        <div style="white-space: nowrap;overflow: hidden;  text-overflow: ellipsis; width: calc(100% - 80px) " >
+                                            <img id="img_preview_insurance_{{ $loop->iteration }}" width="40" height="40" style="object-fit: cover;"  src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                            <span id="name_insurance_{{ $loop->iteration }}" class="text-success ml-2"> {{ $item->name_insurance }}</span>
+                                        </div>
+                                        <div class="mx-2">
+                                             <span data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;">
+                                                อื่นๆ <i class="fas fa-chevron-circle-down"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="row collapse multi-collapse_{{ $loop->iteration }} show" id="multiCollapseExample1">
+                                        <div class="col-3">
+                                            <img style="margin-left: 7px;margin-top:-5px;overflow" src="{{ url('/img/logo_insuraance/') }}/{{ $item->name_insurance }}.png">
+                                        </div>
+                                        <div class="col-6">
+                                            <p style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;" id="name_insurance_{{ $item->id }}" class="text-success">
+                                                {{ $item->name_insurance }}
+                                            </p>
+                                        </div>
+                                        <div class="col-3">
+                                            <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary " style="font-size:14px;padding-top: 1px;">
+                                                อื่นๆ <i class="fas fa-chevron-circle-down"></i>
+                                            </p>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="collapse multi-collapse_{{ $loop->iteration }}" id="multiCollapseExample{{ $loop->iteration }}">
+                                        <p data-toggle="collapse" data-target=".multi-collapse_{{ $loop->iteration }}" aria-expanded="false" class="text-secondary float-right" style="font-size:14px;padding-top: 8px;">
+                                            <i class="fas fa-chevron-circle-up"></i>
+                                        </p>
+
+
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col-12">
+                                                <select id="tag_select_ins_{{ $loop->iteration }}" class="form-control" onchange="select_ins('{{ $loop->iteration }}');">
+                                                    <option value="" selected>- เลือกบริษัทประกันภัย -</option>
+                                                    @foreach($select_ins as $item_2)
+                                                    <option value="{{ $item_2->company }}" {{ request('company') == $item_2->company ? 'selected' : ''   }}>
+                                                        {{ $item_2->company }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @else
+                                    <div class="col-12" style="margin-top: 13px;">
+                                        <div class="d-none mb-3" id="preview_insurance_{{ $loop->iteration }}" style="white-space: nowrap;overflow: hidden;  text-overflow: ellipsis; width: 100%; ">
+                                            <img id="img_preview_insurance_{{ $loop->iteration }}" width="40" height="40" style="object-fit: cover;" src="">
+                                            <span id="name_insurance_{{ $loop->iteration }}" class="text-success ml-2"></span>
+                                        </div>
+                                        <select name="select_insurance" id="select_insurance_{{ $loop->iteration }}" class="form-control" onchange="select_insurance('{{ $loop->iteration }}');">
+                                            <option value="" selected>- เลือกบริษัทประกันภัย -</option>
+                                            @foreach($name_insurance as $item)
+                                            <option value="{{ $item->company }}" {{ request('company') == $item->company ? 'selected' : ''   }}>
+                                                {{ $item->company }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @endif
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<input class="d-none" type="text" id="latlng" name="latlng" readonly>
+<input class="d-none form-control" name="lat" type="text" id="lat" value="">
+<input class="d-none form-control" name="lng" type="text" id="lng" value="">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+<style type="text/css">
+    #map {
+        height: calc(33vh);
+    }
+</style>
 
-    <input class="d-none" type="text" id="latlng" name="latlng" readonly>
-    <input class="d-none form-control" name="lat" type="text" id="lat" value="" >
-    <input class="d-none form-control" name="lng" type="text" id="lng" value="" >
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
-    <style type="text/css">
-        #map {
-          height: calc(33vh);
-        }
-        
-    </style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
 
-    <script>
+        // const queryString = window.location.search;
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // console.log("START");
-            
-            // const queryString = window.location.search;
+        // const urlParams = new URLSearchParams(queryString);
 
-            // const urlParams = new URLSearchParams(queryString);
+        // const latlng_url = urlParams.get('latlng')
+        //     // console.log(latlng_url);
+        //     initMap(latlng_url);
+        getLocation();
+    });
 
-            // const latlng_url = urlParams.get('latlng')
-            //     // console.log(latlng_url);
-            //     initMap(latlng_url);
-            getLocation();
-        });
-
-        function getLocation() {
-          if (navigator.geolocation) {
+    function getLocation() {
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
             navigator.geolocation.getCurrentPosition(initMap);
             // navigator.geolocation.getCurrentPosition(geocodeLatLng);
-          } else { 
+        } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
-          }
         }
+    }
 
-        function showPosition(position) {
-            let lat_text = document.querySelector("#lat");
-            let lng_text = document.querySelector("#lng");
-            let latlng = document.querySelector("#latlng");
+    function showPosition(position) {
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+        let latlng = document.querySelector("#latlng");
 
-            lat_text.value = position.coords.latitude ;
-            lng_text.value = position.coords.longitude ;
-            latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        lat_text.value = position.coords.latitude;
+        lng_text.value = position.coords.longitude;
+        latlng.value = position.coords.latitude + "," + position.coords.longitude;
 
-            let lat = parseFloat(lat_text.value) ;
-            let lng = parseFloat(lng_text.value) ;
+        let lat = parseFloat(lat_text.value);
+        let lng = parseFloat(lng_text.value);
 
-            // console.log(lat);
-            // console.log(lng);
+        // console.log(lat);
+        // console.log(lng);
 
-        }
+    }
 
-        function initMap(position) {
+    function initMap(position) {
 
-            // latlng_url_sp = latlng_url.split(",");
+        // latlng_url_sp = latlng_url.split(",");
 
-            // let lat = parseFloat(latlng_url_sp[0]) ;
-            // let lng = parseFloat(latlng_url_sp[1]) ;
+        // let lat = parseFloat(latlng_url_sp[0]) ;
+        // let lng = parseFloat(latlng_url_sp[1]) ;
 
-            let lat_text = document.querySelector("#lat");
-            let lng_text = document.querySelector("#lng");
-            let latlng = document.querySelector("#latlng");
+        let lat_text = document.querySelector("#lat");
+        let lng_text = document.querySelector("#lng");
+        let latlng = document.querySelector("#latlng");
 
-            lat_text.value = position.coords.latitude ;
-            lng_text.value = position.coords.longitude ;
-            latlng.value = position.coords.latitude+","+position.coords.longitude ;
-            let lat = parseFloat(lat_text.value) ;
-            let lng = parseFloat(lng_text.value) ;
+        lat_text.value = position.coords.latitude;
+        lng_text.value = position.coords.longitude;
+        latlng.value = position.coords.latitude + "," + position.coords.longitude;
+        let lat = parseFloat(lat_text.value);
+        let lng = parseFloat(lng_text.value);
 
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 15,
-                center: { lat: lat, lng: lng },
-                mapTypeId: "terrain",
-            });
-            // 40.7504479,-73.9936564,19
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: {
+                lat: lat,
+                lng: lng
+            },
+            mapTypeId: "terrain",
+        });
+        // 40.7504479,-73.9936564,19
 
-            // ตำแหน่ง USER
-            const user = { lat: lat, lng: lng };
-            const marker_user = new google.maps.Marker({ map, position: user });
+        // ตำแหน่ง USER
+        const user = {
+            lat: lat,
+            lng: lng
+        };
+        const marker_user = new google.maps.Marker({
+            map,
+            position: user
+        });
 
-            const geocoder = new google.maps.Geocoder();
-            const infowindow = new google.maps.InfoWindow();
+        const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
 
-            // let location_user = document.querySelector("#location_user");
-            // location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
+        // let location_user = document.querySelector("#location_user");
+        // location_user.innerHTML = '<a class="btn-block shadow-box text-white btn btn-primary" id="submit"><i class="fas fa-search-location"></i> ตำแหน่งของฉัน</a>';
 
-            // document.getElementById("submit").addEventListener("click", () => {
-            //     geocodeLatLng(geocoder, map, infowindow);
-            // });
+        // document.getElementById("submit").addEventListener("click", () => {
+        //     geocodeLatLng(geocoder, map, infowindow);
+        // });
 
-            marker_user.addListener("click", () => {
-                geocodeLatLng(geocoder, map, infowindow);
-            });
+        marker_user.addListener("click", () => {
+            geocodeLatLng(geocoder, map, infowindow);
+        });
 
-            document.querySelector('#text_open_location').classList.add('d-none');
-            document.querySelector('#div_content_call').classList.remove('d-none');
+        document.querySelector('#text_open_location').classList.add('d-none');
+        document.querySelector('#div_content_call').classList.remove('d-none');
 
-        }
+    }
 
-        function geocodeLatLng(geocoder, map, infowindow) {
+    function geocodeLatLng(geocoder, map, infowindow) {
 
-            const input = document.getElementById("latlng").value;
-            const latlngStr = input.split(",", 2);
-            const latlng = {
-                lat: parseFloat(latlngStr[0]),
-                lng: parseFloat(latlngStr[1]),
-            };
-            geocoder
-                .geocode({ location: latlng })
-                .then((response) => {
-                    if (response.results[0]) {
-                        map.setZoom(15);
-                        const marker = new google.maps.Marker({
-                          position: latlng,
-                          map: map,
-                        });
-                        infowindow.setContent(response.results[0].formatted_address);
-                        infowindow.open(map, marker);
+        const input = document.getElementById("latlng").value;
+        const latlngStr = input.split(",", 2);
+        const latlng = {
+            lat: parseFloat(latlngStr[0]),
+            lng: parseFloat(latlngStr[1]),
+        };
+        geocoder
+            .geocode({
+                location: latlng
+            })
+            .then((response) => {
+                if (response.results[0]) {
+                    map.setZoom(15);
+                    const marker = new google.maps.Marker({
+                        position: latlng,
+                        map: map,
+                    });
+                    infowindow.setContent(response.results[0].formatted_address);
+                    infowindow.open(map, marker);
 
-                        // let location_user = document.querySelector("#location_user");
-                        //     location_user.innerHTML = response.results[0].formatted_address;
-                    } else {
-                        window.alert("No results found");
-                    }
-                })
-                .catch((e) => window.alert("Geocoder failed due to: " + e));
-        }
-            
-        function call_insurance(name_insurance,loop){
-
-            let name = document.querySelector("#name").value ; 
-            let user_id = document.querySelector("#user_id").value ; 
-            let user_phone = document.querySelector("#user_phone").value ; 
-            let car_id = document.querySelector("#car_id_"+loop).innerText ; 
-
-            let latlng = document.querySelector("#latlng").value ; 
-            let lat = latlng.split(",")[0];
-            let lng = latlng.split(",")[1];
-
-            let data_sos_insurance = {
-                "name" : name,
-                "user_id" : user_id,
-                "phone" : user_phone,
-                "lat" : lat,
-                "lng" : lng,
-                "insurance" : name_insurance,
-                "car_id" : car_id,
-            };
-
-            fetch("{{ url('/') }}/api/save_sos_insurance", {
-                    method: 'post',
-                    body: JSON.stringify(data_sos_insurance),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(text){
-                    // console.log(text);
-                }).catch(function(error){
-                    // console.error(error);
-                });
-
-            document.querySelector("#btn_call_insurance_"+loop).click();
-
-        }
-
-        function select_insurance(loop){
-
-            let select_insurance = document.querySelector("#select_insurance_"+loop).value;
-            let btn_call_select_insurance = document.querySelector("#btn_call_select_insurance_"+loop);
-            let btn2_call_select_insurance = document.querySelector("#btn2_call_select_insurance_"+loop);
-
-            fetch("{{ url('/') }}/api/select_sos_insurance/"+select_insurance+"/select_insurance")
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    // console.log(result[0]['phone']);
-
-                    if (result[0]['phone']) {
-
-                        let href = document.createAttribute("href");
-                            href.value = "tel:"+result[0]['phone'];
-                            btn_call_select_insurance.setAttributeNode(href); 
-
-                            btn2_call_select_insurance.classList.remove('d-none');
-                    }
-
-                });
-
-        }
-
-        function select_ins(loop){
-
-            let tag_select_ins = document.querySelector("#tag_select_ins_"+loop).value;
-            let btn_other_ins = document.querySelector("#btn_other_ins_"+loop);
-            let btn_call_other_ins = document.querySelector("#btn_call_other_ins_"+loop);
-
-            fetch("{{ url('/') }}/api/select_sos_insurance/"+tag_select_ins+"/select_insurance")
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    // console.log(result[0]['phone']);
-
-                    if (result[0]['phone']) {
-
-                        let href = document.createAttribute("href");
-                            href.value = "tel:"+result[0]['phone'];
-                            btn_call_other_ins.setAttributeNode(href); 
-
-                            btn_other_ins.classList.remove('d-none');
-                    }
-
-                });
-
-        }
-
-        function call_select_insurance(loop){
-
-            let name = document.querySelector("#name").value ; 
-            let user_id = document.querySelector("#user_id").value ; 
-            let user_phone = document.querySelector("#user_phone").value ;
-            let car_id = document.querySelector("#car_id_"+loop).innerText ; 
-
-            let latlng = document.querySelector("#latlng").value ; 
-            let lat = latlng.split(",")[0];
-            let lng = latlng.split(",")[1];
-
-            let select_insurance = document.querySelector("#select_insurance_"+loop).value;
-
-            let data_sos_insurance = {
-                "name" : name,
-                "user_id" : user_id,
-                "phone" : user_phone,
-                "lat" : lat,
-                "lng" : lng,
-                "insurance" : select_insurance,
-                "car_id" : car_id,
-            };
-
-            fetch("{{ url('/') }}/api/save_sos_insurance", {
-                method: 'post',
-                body: JSON.stringify(data_sos_insurance),
-                headers: {
-                    'Content-Type': 'application/json'
+                    // let location_user = document.querySelector("#location_user");
+                    //     location_user.innerHTML = response.results[0].formatted_address;
+                } else {
+                    window.alert("No results found");
                 }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(text){
-                    // console.log(text);
-                }).catch(function(error){
-                    // console.error(error);
-                });
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
 
-            document.querySelector("#btn_call_select_insurance_"+loop).click();
+    function select_insurance(loop) {
 
-        }
+        let select_insurance = document.querySelector("#select_insurance_" + loop).value;
+        let btn_call_select_insurance = document.querySelector("#btn_call_select_insurance_" + loop);
+        let btn2_call_select_insurance = document.querySelector("#btn2_call_select_insurance_" + loop);
 
-        function call_other_ins(loop){
+        fetch("{{ url('/') }}/api/select_sos_insurance/" + select_insurance + "/select_insurance")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(select_insurance);
 
-            let name = document.querySelector("#name").value ; 
-            let user_id = document.querySelector("#user_id").value ; 
-            let user_phone = document.querySelector("#user_phone").value ;
-            let car_id = document.querySelector("#car_id_"+loop).innerText ; 
+                document.querySelector('#preview_insurance_' + loop).classList.remove('d-none');
+                document.querySelector('#name_insurance_' + loop).innerText = select_insurance;
+                let img_preview_insurance = document.querySelector("#img_preview_insurance_" + loop);
+                img_preview_insurance.src = `{{ url('/img/logo_insuraance/') }}/` + select_insurance + `.png`;
 
-            let latlng = document.querySelector("#latlng").value ; 
-            let lat = latlng.split(",")[0];
-            let lng = latlng.split(",")[1];
+                if (result[0]['phone']) {
 
-            let tag_select_ins = document.querySelector("#tag_select_ins_"+loop).value;
+                    let href = document.createAttribute("href");
+                    href.value = "tel:" + result[0]['phone'];
+                    btn_call_select_insurance.setAttributeNode(href);
 
-            let data_sos_insurance = {
-                "name" : name,
-                "user_id" : user_id,
-                "phone" : user_phone,
-                "lat" : lat,
-                "lng" : lng,
-                "insurance" : tag_select_ins,
-                "car_id" : car_id,
-            };
-
-            fetch("{{ url('/') }}/api/save_sos_insurance", {
-                method: 'post',
-                body: JSON.stringify(data_sos_insurance),
-                headers: {
-                    'Content-Type': 'application/json'
+                    btn2_call_select_insurance.classList.remove('d-none');
                 }
-                }).then(function (response){
-                    // return response.text();
-                }).then(function(text){
-                    // console.log(text);
-                }).catch(function(error){
-                    // console.error(error);
-                });
+                call_insurance(select_insurance, loop);
+            });
 
-            document.querySelector("#btn_call_other_ins_"+loop).click();
+    }
 
-        }
+    function call_insurance(name_insurance, loop) {
 
-    </script>
+        let name = document.querySelector("#name").value;
+        let user_id = document.querySelector("#user_id").value;
+        let user_phone = document.querySelector("#user_phone").value;
+        let car_id = document.querySelector("#car_id_" + loop).innerText;
+
+        let latlng = document.querySelector("#latlng").value;
+        let lat = latlng.split(",")[0];
+        let lng = latlng.split(",")[1];
+
+        let data_sos_insurance = {
+            "name": name,
+            "user_id": user_id,
+            "phone": user_phone,
+            "lat": lat,
+            "lng": lng,
+            "insurance": name_insurance,
+            "car_id": car_id,
+        };
+
+        fetch("{{ url('/') }}/api/save_sos_insurance", {
+            method: 'post',
+            body: JSON.stringify(data_sos_insurance),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.text();
+        }).then(function(text) {
+            // console.log(text);
+        }).catch(function(error) {
+            // console.error(error);
+        });
+
+        // document.querySelector("#btn_call_insurance_" + loop).click();
+
+    }
+
+
+
+    function select_ins(loop) {
+
+        let tag_select_ins = document.querySelector("#tag_select_ins_" + loop).value;
+        let btn_other_ins = document.querySelector("#btn_other_ins_" + loop);
+        let btn_call_other_ins = document.querySelector("#btn_call_other_ins_" + loop);
+        let btn_call_insurance = document.querySelector("#btn_call_insurance_" + loop);
+
+        fetch("{{ url('/') }}/api/select_sos_insurance/" + tag_select_ins + "/select_insurance")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                // console.log(result[0]['phone']);
+                document.querySelector('#name_insurance_' + loop).innerText = tag_select_ins;
+                let img_preview_insurance = document.querySelector("#img_preview_insurance_" + loop);
+                img_preview_insurance.src = `{{ url('/img/logo_insuraance/') }}/` + tag_select_ins + `.png`;
+
+                if (result[0]['phone']) {
+
+                    let href = document.createAttribute("href");
+                    href.value = "tel:" + result[0]['phone'];
+                    btn_call_insurance.setAttributeNode(href);
+
+                    // btn_other_ins.classList.remove('d-none');
+                }
+                call_insurance(tag_select_ins, loop);
+
+            });
+
+    }
+
+    function call_select_insurance(loop) {
+        console.log(loop);
+        let name = document.querySelector("#name").value;
+        let user_id = document.querySelector("#user_id").value;
+        let user_phone = document.querySelector("#user_phone").value;
+        let car_id = document.querySelector("#car_id_" + loop).innerText;
+
+        let latlng = document.querySelector("#latlng").value;
+        let lat = latlng.split(",")[0];
+        let lng = latlng.split(",")[1];
+
+        let select_insurance = document.querySelector("#select_insurance_" + loop).value;
+
+        let data_sos_insurance = {
+            "name": name,
+            "user_id": user_id,
+            "phone": user_phone,
+            "lat": lat,
+            "lng": lng,
+            "insurance": select_insurance,
+            "car_id": car_id,
+        };
+
+        fetch("{{ url('/') }}/api/save_sos_insurance", {
+            method: 'post',
+            body: JSON.stringify(data_sos_insurance),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.text();
+        }).then(function(text) {
+            // console.log(text);
+        }).catch(function(error) {
+            // console.error(error);
+        });
+
+        // document.querySelector("#btn_call_select_insurance_" + loop).click();
+
+    }
+
+    function call_other_ins(loop) {
+        console.log(loop);
+
+        let name = document.querySelector("#name").value;
+        let user_id = document.querySelector("#user_id").value;
+        let user_phone = document.querySelector("#user_phone").value;
+        let car_id = document.querySelector("#car_id_" + loop).innerText;
+
+        let latlng = document.querySelector("#latlng").value;
+        let lat = latlng.split(",")[0];
+        let lng = latlng.split(",")[1];
+
+        let tag_select_ins = document.querySelector("#tag_select_ins_" + loop).value;
+
+        let data_sos_insurance = {
+            "name": name,
+            "user_id": user_id,
+            "phone": user_phone,
+            "lat": lat,
+            "lng": lng,
+            "insurance": tag_select_ins,
+            "car_id": car_id,
+        };
+
+        fetch("{{ url('/') }}/api/save_sos_insurance", {
+            method: 'post',
+            body: JSON.stringify(data_sos_insurance),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(response) {
+            // return response.text();
+        }).then(function(text) {
+            // console.log(text);
+        }).catch(function(error) {
+            // console.error(error);
+        });
+
+        document.querySelector("#btn_call_other_ins_" + loop).click();
+
+    }
+</script>
 @endsection

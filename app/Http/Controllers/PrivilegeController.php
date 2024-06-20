@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Privilege;
 use App\Models\Redeem_code;
+use App\Models\Privilege_partner;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -49,7 +50,9 @@ class PrivilegeController extends Controller
         $privilege_seven_day_expire = Privilege::where('expire_privilege', '<', $sevendays)->get();
 
 
-        return view('privilege.index', compact('privilege', 'privilege_partner', 'privilege_hot', 'privilege_seven_day_expire'));
+        $privilege_category_hot = Privilege::orderBy('user_click_redeem', 'desc')->groupBy('type')->limit(10)->get();
+
+        return view('privilege.index', compact('privilege', 'privilege_partner', 'privilege_hot', 'privilege_seven_day_expire','privilege_category_hot'));
     }
     public function seach_partner(Request $request)
     {
@@ -274,6 +277,56 @@ class PrivilegeController extends Controller
 
 
 
+        return response()->json($privilege);
+    }
+
+    public function privilege_admin()
+    {
+
+           $name_partner = Privilege_partner::groupBy('name')->get();
+        // $name_partner = Partner::
+        // where('name_area', "!=" , null)
+        // ->groupBy('name')->get();
+
+        return view('admin_viicheck.partner.partner_privilege' , compact('name_partner'));
+
+    }
+
+    public function add_privileges(Request $request)
+    {
+        $requestData = $request->all();
+        // if (is_string($requestData['partner_id'])) {
+        //     dd( 'partner_id เป็น string');
+        // } elseif (is_int($requestData['partner_id'])) {
+        //     dd( 'partner_id เป็น int');
+        // } else {
+        //     dd( 'partner_id ไม่ใช่ string หรือ int');
+        // }
+
+        $num = $requestData['partner_id']; // รับค่า partner_id จากข้อมูลที่ส่งมา
+
+        if (is_numeric($num) && strval(intval($num)) === $num) {
+
+        } else {
+            $data_arr = [];
+            $data_arr['name'] = $requestData['partner_id'];
+            $data_arr['status'] = 'active';
+            $data_partner = Privilege_partner::create($data_arr);
+
+            $requestData['partner_id'] = $data_partner->id;
+        }
+
+        if ($request->hasFile('img_cover')) {
+            $requestData['img_cover'] = $request->file('img_cover')->store('uploads', 'public');
+        }
+        if ($request->hasFile('img_content')) {
+            $requestData['img_content'] = $request->file('img_content')->store('uploads', 'public');
+        }   
+        
+        $privilege = Privilege::create($requestData);
+
+
+        // Return response
         return response()->json($privilege);
     }
 }

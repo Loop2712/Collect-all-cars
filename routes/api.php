@@ -428,5 +428,6 @@ Route::get('/get_unit_offiecr/{sub_organization}', 'Sos_help_centerController@ge
 
 // Privilege
 Route::get('/get_code_redeem', 'PrivilegeController@get_code_redeem');
+Route::post('/add_privileges', 'PrivilegeController@add_privileges');
 
 

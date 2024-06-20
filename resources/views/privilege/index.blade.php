@@ -69,11 +69,11 @@
                     <h4>Partner</h4>
                     <div class="owl-carousel owl-theme owl-carousel-partner">
                         <div class="item">
-                            <a href="{{url('privilege_partner')}}" class="text-white">ทั้งหมด</a>
+                            <a href="{{url('show_privilege_partner')}}" class="text-white">ทั้งหมด</a>
                         </div>
                         @foreach($privilege_partner as $item)
                         <div class="item">
-                            <a href="{{url('privilege_partner?partner_id=')}}{{$item->partner->id}}">
+                            <a href="{{url('show_privilege_partner?partner_id=')}}{{$item->partner->id}}">
                                 @if(!empty($item->partner->logo))
                                 <img src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
                                 @else
@@ -133,7 +133,30 @@
                     @endforeach
                     </div>
                 </div>
+
+                <div class="mt-5">
+                    <h4>หมวดยอดฮิต</h4>
+                    <div class="owl-carousel owl-theme owl-carousel-hot">
+                    @foreach($privilege_category_hot as $item)
+                        <div class="item">
+                                <div style="position: relative;">
+                                    <a href="{{ url('/privilege/' . $item->id) }}">
+                                        <img src="{{ url('storage')}}/{{ $item->img_cover }}" class="img-cover" alt="">
+                                        
+                                        <div class="logo_cover">
+                                            <div>
+                                                <img  src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- {{$item->titel}} -->
+                            </div>
+                    @endforeach
+                    </div>
+                </div>
             </div>
+
             <!-- <div class="card">
                     <div class="card-header">Privilege</div>
                     <div class="card-body">

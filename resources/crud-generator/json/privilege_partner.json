@@ -1,0 +1,25 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "logo",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        }
+        ,
+        {
+            "name": "mail",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        }
+    ]
+}
