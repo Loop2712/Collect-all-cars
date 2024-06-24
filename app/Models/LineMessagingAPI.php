@@ -2164,52 +2164,85 @@ class LineMessagingAPI extends Model
 
     public function test_new_flex($data, $event, $message_type)
     {
-        $api_array_data = [
-            "informer" => "self",
-            "symptom" => "รถชน",
-            "cid" => "2390787778323",
-            "firstname" => "สมชาย",
-            "lastname" => "ใจดี",
-            "gender" => "ชาย",
-            "age" => "24",
-            "phone" => "0981234567",
-            "symptom_detail" => "คนขับหมดสติ",
-            "victim_number" => "1",
-            "risk_of_recurrence" => false,
-            "location" => "1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย",
-            "longitude" => "100.56730535399781",
-            "latitude" => "13.747591710132115",
-            "platform" => "ios",
-            "remark" => "ตรงสี่แยก ใกล้กับเซเว่น"
-        ];
+        switch ($message_type) {
+            case 'deme_sos_api':
+                    $api_array_data = [
+                        "informer" => "self",
+                        "symptom" => "รถชน",
+                        "cid" => "2390787778323",
+                        "firstname" => "สมชาย",
+                        "lastname" => "ใจดี",
+                        "gender" => "ชาย",
+                        "age" => "24",
+                        "phone" => "0981234567",
+                        "symptom_detail" => "คนขับหมดสติ",
+                        "victim_number" => "1",
+                        "risk_of_recurrence" => false,
+                        "location" => "1768 Thai Summit Tower ถ. เพชรบุรี แขวงบางกะปิ เขตห้วยขวาง กรุงเทพมหานคร 10310 ประเทศไทย",
+                        "longitude" => "100.56730535399781",
+                        "latitude" => "13.747591710132115",
+                        "platform" => "ios",
+                        "remark" => "ตรงสี่แยก ใกล้กับเซเว่น"
+                    ];
 
-        $data_user = User::where('provider_id',$event["replyToken"])->first();
+                    $data_user = User::where('provider_id',$event["replyToken"])->first();
 
-        // TIME ZONE LINE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
+                    // TIME ZONE LINE
+                    $API_Time_zone = new API_Time_zone();
+                    $time_zone = $API_Time_zone->change_Time_zone('Asia/Bangkok');
 
-        // datetime
-        $time_zone_explode = explode(" ",$time_zone);
+                    // datetime
+                    $time_zone_explode = explode(" ",$time_zone);
 
-        $date = $time_zone_explode[0] ;
-        $time = $time_zone_explode[1] ;
+                    $date = $time_zone_explode[0] ;
+                    $time = $time_zone_explode[1] ;
 
-        if (!empty($data_user->photo)) {
-            $photo_profile = "https://www.viicheck.com/storage/".$data_user->photo ;
-        }else{
-            $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                    if (!empty($data_user->photo)) {
+                        $photo_profile = "https://www.viicheck.com/storage/".$data_user->photo ;
+                    }else{
+                        $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                    }
+
+                    $template_path = storage_path('../public/json/test_new_flex_line.json');
+                    $string_json = file_get_contents($template_path);
+
+                    $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user",$photo_profile,$string_json);
+                    $string_json = str_replace("name_user",$api_array_data['firstname']." ".$api_array_data['lastname'],$string_json);
+                    // $string_json = str_replace("name_user",$data_user->username,$string_json);
+
+                    $string_json = str_replace("date",$date,$string_json);
+                    $string_json = str_replace("time",$time,$string_json);
+
+                break;
+            case 'promotion_partner':
+                $privilege_data = Privilege_partner::inRandomOrder()
+                ->take(4)
+                ->get();
+
+                $logo_privilege = [];
+
+                for ($loop = 0; $loop < count($privilege_data); $loop++) {
+                    if (!empty($privilege_data[$loop]['logo'])) {
+                        $logo_privilege[$loop] = $privilege_data[$loop]['logo'];
+                    } else {
+                        $logo_privilege[$loop] = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                    }
+                }
+
+                $template_path = storage_path('../public/json/flex_promotion_partner/flex_promotion_partner.json');
+                $string_json = file_get_contents($template_path);
+
+                $string_json = str_replace("https://www.viicheck.com/storage/p_slot_1", $logo_privilege[0], $string_json);
+                $string_json = str_replace("https://www.viicheck.com/storage/p_slot_2", $logo_privilege[1], $string_json);
+                $string_json = str_replace("https://www.viicheck.com/storage/p_slot_3", $logo_privilege[2], $string_json);
+                $string_json = str_replace("https://www.viicheck.com/storage/p_slot_4", $logo_privilege[3], $string_json);
+
+                break;
+            default:
+                # code...
+                break;
         }
 
-        $template_path = storage_path('../public/json/test_new_flex_line.json');
-        $string_json = file_get_contents($template_path);
-
-        $string_json = str_replace("https://www.viicheck.com/storage/photo_profile_user",$photo_profile,$string_json);
-        $string_json = str_replace("name_user",$api_array_data['firstname']." ".$api_array_data['lastname'],$string_json);
-        // $string_json = str_replace("name_user",$data_user->username,$string_json);
-
-        $string_json = str_replace("date",$date,$string_json);
-        $string_json = str_replace("time",$time,$string_json);
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
