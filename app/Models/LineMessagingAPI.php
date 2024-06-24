@@ -2215,7 +2215,8 @@ class LineMessagingAPI extends Model
 
                 break;
             case 'promotion_partner':
-                $privilege_data = Privilege_partner::inRandomOrder()
+                $privilege_data = Privilege_partner::where('status','active')
+                ->inRandomOrder()
                 ->take(4)
                 ->get();
 
@@ -2223,7 +2224,7 @@ class LineMessagingAPI extends Model
 
                 for ($loop = 0; $loop < count($privilege_data); $loop++) {
                     if (!empty($privilege_data[$loop]['logo'])) {
-                        $logo_privilege[$loop] = $privilege_data[$loop]['logo'];
+                        $logo_privilege[$loop] = "https://www.viicheck.com/storage"."/".$privilege_data[$loop]['logo'];
                     } else {
                         $logo_privilege[$loop] = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
                     }
@@ -2239,7 +2240,12 @@ class LineMessagingAPI extends Model
 
                 break;
             default:
-                # code...
+                //SAVE LOG
+                $data_not_found_flex = [
+                    "title" => "not_found_flex",
+                    "content" => "ไม่พบชื่อตามเงื่อนไข",
+                ];
+                MyLog::create($data_not_found_flex);
                 break;
         }
 
