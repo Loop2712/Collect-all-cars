@@ -119,7 +119,7 @@
               "action": {
                 "type": "uri",
                 "label": "action",
-                "uri": "https://www.viicheck.com/?openExternalBrowser=1&promotion=all"
+                "uri": "https://www.viicheck.com/show_privilege_partner?openExternalBrowser=1"
               }
             }
           ],
