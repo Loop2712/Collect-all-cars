@@ -217,6 +217,7 @@ class PrivilegeController extends Controller
             ->where('redeem_codes.user_id', $requestData['user_id'])
             ->select(
                 'privileges.id',
+                'privileges.redeem_type',
                 'privileges.titel',
                 'privileges.img_cover',
                 'privileges.user_click_redeem',
@@ -241,6 +242,7 @@ class PrivilegeController extends Controller
                 ->select(
                     'privileges.id',
                     'privileges.titel',
+                    'privileges.redeem_type',
                     'privileges.img_cover',
                     'privileges.user_click_redeem',
                     'privileges.expire_privilege',
@@ -261,6 +263,7 @@ class PrivilegeController extends Controller
                 ->select(
                     'privileges.id',
                     'privileges.titel',
+                    'privileges.redeem_type',
                     'privileges.img_cover',
                     'privileges.user_click_redeem',
                     'redeem_codes.redeem_code',
@@ -283,6 +286,7 @@ class PrivilegeController extends Controller
                 ->select(
                     'privileges.id',
                     'privileges.titel',
+                    'privileges.redeem_type',
                     'privileges.img_cover',
                     'privileges.amount_privilege',
                     'privileges.user_click_redeem',
@@ -342,6 +346,7 @@ class PrivilegeController extends Controller
                     ->select(
                         'privileges.titel',
                         'privileges.img_cover',
+                        'privileges.redeem_type',
                         'privileges.user_click_redeem',
                         'privileges.expire_privilege',
                         'privileges.amount_privilege',

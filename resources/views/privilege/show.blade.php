@@ -277,7 +277,10 @@
                 const currentDate = new Date();
                 const expireDate = new Date(result.expire_privilege);
 
-                if (!result.redeem_code) {
+                if(result.redeem_type == 'member'){
+
+                }
+                else if (!result.redeem_code) {
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
                     document.querySelector('#text_redeem_sorry').innerText = 'โปรโมชั่นนี้มีผู้ใช้สิทธิเต็มแล้ว';
                     $('#modal_sorry_redeem').modal('show')
