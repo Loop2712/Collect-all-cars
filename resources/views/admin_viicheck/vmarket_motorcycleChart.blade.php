@@ -1,6 +1,43 @@
 <div class="row">
     <canvas id="vmarket_motorcycleChart"></canvas>
 <script>
+
+@php
+    
+if( empty($vmotercycle_desc_location[0]) ){
+    $vmotercycle_desc_location[0] = '';
+}
+if( empty($vmotercycle_desc_location[1]) ){
+    $vmotercycle_desc_location[1] = '';
+}
+if( empty($vmotercycle_desc_location[2]) ){
+    $vmotercycle_desc_location[2] = '';
+}
+if( empty($vmotercycle_desc_location[3]) ){
+    $vmotercycle_desc_location[3] = '';
+}
+if( empty($vmotercycle_desc_location[4]) ){
+    $vmotercycle_desc_location[4] = '';
+}
+
+if( empty($vmotercycle_desc_count[0]) ){
+    $vmotercycle_desc_count[0] = '';
+}
+if( empty($vmotercycle_desc_count[1]) ){
+    $vmotercycle_desc_count[1] = '';
+}
+if( empty($vmotercycle_desc_count[2]) ){
+    $vmotercycle_desc_count[2] = '';
+}
+if( empty($vmotercycle_desc_count[3]) ){
+    $vmotercycle_desc_count[3] = '';
+}
+if( empty($vmotercycle_desc_count[4]) ){
+    $vmotercycle_desc_count[4] = '';
+}
+
+@endphp
+
 var ctx = document.getElementById('vmarket_motorcycleChart').getContext('2d');
 var vmarket_motorcycleChart = new Chart(ctx, {
     type: 'horizontalBar',

@@ -258,7 +258,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('admin/privilege') }}">
-                    <i style="color: lightgreen" class="fab fa-line"></i>
+                    <i style="color: #F0972D" class="fa-solid fa-stars"></i>
                     <span class="nav-link-text">Privilege</span>
                   </a>
                 </li>

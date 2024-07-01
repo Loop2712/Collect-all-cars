@@ -84,7 +84,11 @@
         </div>
       </div>
       <p class="mt-3 mb-0 text-sm">
+        @if($count_car != 0)
         <span class="text-success mr-2"><b> {{ number_format(($new_car/$count_car)*100,1) }} %</b></span>
+        @else
+        <span class="text-success mr-2"><b>0</b></span>
+        @endif
         <span class="text-nowrap">จากทั้งหมด <b class="text-danger">{{ number_format($count_car) }}</b> คัน</span>
       </p>
     </div>

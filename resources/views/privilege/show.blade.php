@@ -15,7 +15,7 @@
     }
 </style>
 @section('content')
-<div class="container" style="padding-top: 150px;">
+<div class="container notranslate" style="padding-top: 150px;">
     <div class="row">
         <div class="col-md-3">
             <div class="w-100 image" style="position: relative;">
@@ -272,6 +272,8 @@
             .then(response => response.json())
             .then(result => {
 
+                console.log(result);
+
                 const currentDate = new Date();
                 const expireDate = new Date(result.expire_privilege);
 
@@ -279,13 +281,15 @@
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
                     document.querySelector('#text_redeem_sorry').innerText = 'โปรโมชั่นนี้มีผู้ใช้สิทธิเต็มแล้ว';
                     $('#modal_sorry_redeem').modal('show')
-                }else if (currentDate > expireDate) {
+                }
+                else if (currentDate > expireDate) {
                     console.log(result.expire_privilege);
 
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
                     document.querySelector('#text_redeem_sorry').innerText = 'โปรโมชั่นนี้หมดอายุแล้ว';
                     $('#modal_sorry_redeem').modal('show')
-                } else if (result.status == 'pending') {
+                }
+                else if (result.status == 'pending') {
                     document.querySelector('#img_logo_partner_redeem').src = '{{ url("/storage") }}' + '/' + result.logo;
                     document.querySelector('#title_redeem').innerHTML = result.titel;
                     document.querySelector('#privilege_code').innerHTML = result.redeem_code;
@@ -308,7 +312,8 @@
 
                     $('#redeem_code').modal('show')
 
-                } else if (result.status == 'success') {
+                }
+                else if (result.status == 'success') {
                     console.log(result.expire_privilege);
 
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
