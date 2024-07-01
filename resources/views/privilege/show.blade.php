@@ -260,6 +260,23 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal_member_redeem" tabindex="-1" role="dialog" aria-labelledby="modal_member_redeem" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="{{url('img/logo/logo_x-icon.png')}}" alt="" width="120" class="mt-1">
+                <h3 class=""><b>คุณเป็นสมาชิกวีเช็ค</b></h3>
+                <hr>
+                <img id="img_logo_partner_member" src="" alt="" width="120" class="mt-2"> <br>
+                <h3 id="text_redeem_member" class="text-denger text-bold mt-3" style="font-weight: bolder;color: #db2d2e !important;"></h3>
+                <p class="mt-3">โปรดแสดงหน้านี้
+                กับพนักงานเพื่อรับสิทธิ</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="copied-success" class="copied">
     <span>คัดลอกเรียบร้อย</span>
 </div>
@@ -278,9 +295,9 @@
                 const expireDate = new Date(result.expire_privilege);
 
                 if(result.redeem_type == 'member'){
-                    document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
-                    document.querySelector('#text_redeem_sorry').innerText = 'เยี่ยม';
-                    $('#modal_sorry_redeem').modal('show')
+                    document.querySelector('#img_logo_partner_member').src = '{{ url("/storage") }}' + '/' + result.logo
+                    document.querySelector('#text_redeem_member').innerText = result.titel;
+                    $('#modal_member_redeem').modal('show')
                 }
                 else if (!result.redeem_code) {
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
