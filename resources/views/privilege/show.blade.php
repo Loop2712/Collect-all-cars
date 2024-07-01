@@ -261,7 +261,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal_member_redeem" tabindex="-1" role="dialog" aria-labelledby="modal_member_redeem" aria-hidden="true">
+<div class="modal fade notranslate" id="modal_member_redeem" tabindex="-1" role="dialog" aria-labelledby="modal_member_redeem" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body text-center">
