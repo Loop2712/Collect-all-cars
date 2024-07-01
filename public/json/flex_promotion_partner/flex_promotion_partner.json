@@ -10,9 +10,9 @@
           "contents": [
             {
               "type": "image",
-              "url": "https://www.viicheck.com/img/flex/promotion_partner/flex_promotion_partner.png",
+              "url": "https://i.ibb.co/9V1YCsz/1.png",
               "size": "full",
-              "aspectRatio": "1280:540"
+              "aspectRatio": "1280:475"
             },
             {
               "type": "box",
@@ -26,8 +26,8 @@
                 }
               ],
               "position": "absolute",
-              "width": "12.3%",
-              "height": "28.5%",
+              "width": "10.4%",
+              "height": "27%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
               "offsetStart": "5%",
@@ -49,11 +49,11 @@
                 }
               ],
               "position": "absolute",
-              "width": "12.3%",
-              "height": "28.5%",
+              "width": "10.4%",
+              "height": "27%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
-              "offsetStart": "19.5%",
+              "offsetStart": "16.8%",
               "action": {
                 "type": "uri",
                 "label": "action",
@@ -72,11 +72,11 @@
                 }
               ],
               "position": "absolute",
-              "width": "12.3%",
-              "height": "28.5%",
+              "width": "10.4%",
+              "height": "27%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
-              "offsetStart": "34%",
+              "offsetStart": "28.7%",
               "action": {
                 "type": "uri",
                 "label": "action",
@@ -95,11 +95,11 @@
                 }
               ],
               "position": "absolute",
-              "width": "12.3%",
-              "height": "28.5%",
+              "width": "10.4%",
+              "height": "27%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
-              "offsetStart": "48.3%",
+              "offsetStart": "40.5%",
               "action": {
                 "type": "uri",
                 "label": "action",
@@ -109,17 +109,40 @@
             {
               "type": "box",
               "layout": "vertical",
-              "contents": [],
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/p_slot_4",
+                  "size": "full",
+                  "aspectMode": "cover"
+                }
+              ],
               "position": "absolute",
-              "width": "29.1%",
-              "height": "28.5%",
-              "cornerRadius": "5px",
+              "width": "10.4%",
+              "height": "27%",
+              "cornerRadius": "100px",
               "offsetTop": "58.5%",
-              "offsetStart": "63%",
+              "offsetStart": "52.4%",
               "action": {
                 "type": "uri",
                 "label": "action",
-                "uri": "https://www.viicheck.com/show_privilege_partner?openExternalBrowser=1"
+                "uri": "https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_5"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "30%",
+              "height": "16.5%",
+              "cornerRadius": "20px",
+              "offsetTop": "69%",
+              "offsetStart": "65.5%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "https://www.viicheck.com/privilege?openExternalBrowser=1"
               }
             }
           ],

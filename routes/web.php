@@ -237,6 +237,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	});
     // Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
     Route::get('/dashboard_viisos_3_topic', 'Partner_DashboardController@viisos_3_topic');
+    Route::get('/dashboard_viisos_used', 'Partner_DashboardController@viisos_used');
 
     Route::get('/dashboard_viimove_register_car', 'Partner_DashboardController@viimove_register_car');
     Route::get('/dashboard_viimove_car_3_topic', 'Partner_DashboardController@viimove_car_3_topic');

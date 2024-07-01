@@ -2217,7 +2217,7 @@ class LineMessagingAPI extends Model
             case 'promotion_partner':
                 $privilege_data = Privilege_partner::where('status','active')
                 ->inRandomOrder()
-                ->take(4)
+                ->take(5)
                 ->get();
 
                 $logo_privilege = [];
@@ -2240,11 +2240,13 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("https://www.viicheck.com/storage/p_slot_2", $logo_privilege[1], $string_json);
                 $string_json = str_replace("https://www.viicheck.com/storage/p_slot_3", $logo_privilege[2], $string_json);
                 $string_json = str_replace("https://www.viicheck.com/storage/p_slot_4", $logo_privilege[3], $string_json);
+                $string_json = str_replace("https://www.viicheck.com/storage/p_slot_5", $logo_privilege[4], $string_json);
 
                 $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_1", "https://www.viicheck.com/show_privilege_partner?partner_id=".$id_privilege[0]."&openExternalBrowser=1", $string_json);
                 $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_2", "https://www.viicheck.com/show_privilege_partner?partner_id=".$id_privilege[1]."&openExternalBrowser=1", $string_json);
                 $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_3", "https://www.viicheck.com/show_privilege_partner?partner_id=".$id_privilege[2]."&openExternalBrowser=1", $string_json);
                 $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_4", "https://www.viicheck.com/show_privilege_partner?partner_id=".$id_privilege[3]."&openExternalBrowser=1", $string_json);
+                $string_json = str_replace("https://www.viicheck.com/?openExternalBrowser=1&promotion=slot_5", "https://www.viicheck.com/show_privilege_partner?partner_id=".$id_privilege[4]."&openExternalBrowser=1", $string_json);
 
                 break;
             default:

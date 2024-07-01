@@ -379,6 +379,7 @@ Route::get('get_data_sos_success', 'Sos_help_centerController@get_data_sos_succe
 Route::get('getDataFormColor', 'Sos_help_centerController@getDataFormColor');
 Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
 Route::get('/dashboard_1669_all_case_sos_show', 'Partner_DashboardController@dashboard_1669_all_case_sos_show');
+Route::get('/viisos_used/{user_login_organization}', 'Partner_DashboardController@viisos_used_api');
 Route::get('/API_dashboard_index_1669', 'Dashboard_1669_Controller@API_dashboard_index_1669');
 Route::get('/API_dashboard_operating_officer', 'Dashboard_1669_Controller@API_dashboard_operating_officer');
 Route::get('/API_dashboard_avg_score_by_case', 'Dashboard_1669_Controller@API_dashboard_avg_score_by_case');
