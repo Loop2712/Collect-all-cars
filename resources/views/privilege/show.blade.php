@@ -278,7 +278,9 @@
                 const expireDate = new Date(result.expire_privilege);
 
                 if(result.redeem_type == 'member'){
-
+                    document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
+                    document.querySelector('#text_redeem_sorry').innerText = 'เยี่ยม';
+                    $('#modal_sorry_redeem').modal('show')
                 }
                 else if (!result.redeem_code) {
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
