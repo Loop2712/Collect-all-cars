@@ -289,7 +289,7 @@
             .then(response => response.json())
             .then(result => {
 
-                console.log(result);
+                // console.log(result);
 
                 const currentDate = new Date();
                 const expireDate = new Date(result.expire_privilege);
@@ -305,7 +305,7 @@
                     $('#modal_sorry_redeem').modal('show')
                 }
                 else if (currentDate > expireDate) {
-                    console.log(result.expire_privilege);
+                    // console.log(result.expire_privilege);
 
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
                     document.querySelector('#text_redeem_sorry').innerText = 'โปรโมชั่นนี้หมดอายุแล้ว';
@@ -336,7 +336,7 @@
 
                 }
                 else if (result.status == 'success') {
-                    console.log(result.expire_privilege);
+                    // console.log(result.expire_privilege);
 
                     document.querySelector('#img_logo_partner_sorry').src = '{{ url("/storage") }}' + '/' + result.logo
                     document.querySelector('#text_redeem_sorry').innerText = 'คุณรับสิทธิแล้ว';
