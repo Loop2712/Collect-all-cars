@@ -378,6 +378,7 @@ Route::post('create_and_delete_data_patient', 'Sos_help_centerController@create_
 Route::get('get_data_sos_success', 'Sos_help_centerController@get_data_sos_success');
 Route::get('getDataFormColor', 'Sos_help_centerController@getDataFormColor');
 Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
+Route::get('/update_status_block_user', 'Partner_DashboardController@update_status_block_user');
 Route::get('/dashboard_1669_all_case_sos_show', 'Partner_DashboardController@dashboard_1669_all_case_sos_show');
 Route::get('/viisos_used/{user_login_organization}', 'Partner_DashboardController@viisos_used_api');
 Route::get('/API_dashboard_index_1669', 'Dashboard_1669_Controller@API_dashboard_index_1669');
