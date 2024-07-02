@@ -10,7 +10,7 @@
           "contents": [
             {
               "type": "image",
-              "url": "https://i.ibb.co/9V1YCsz/1.png",
+              "url": "https://www.viicheck.com/img/flex/promotion_partner/สิทธิพิเศษสำหรับคุณ_ver2.png",
               "size": "full",
               "aspectRatio": "1280:475"
             },
@@ -22,7 +22,8 @@
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_1",
                   "aspectMode": "cover",
-                  "size": "full"
+                  "size": "full",
+                  "backgroundColor": "#ffffff"
                 }
               ],
               "position": "absolute",
@@ -45,7 +46,8 @@
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_2",
                   "size": "full",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "backgroundColor": "#ffffff"
                 }
               ],
               "position": "absolute",
@@ -68,7 +70,8 @@
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_3",
                   "size": "full",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "backgroundColor": "#ffffff"
                 }
               ],
               "position": "absolute",
@@ -91,7 +94,8 @@
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_4",
                   "size": "full",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "backgroundColor": "#ffffff"
                 }
               ],
               "position": "absolute",
@@ -114,7 +118,8 @@
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_5",
                   "size": "full",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "backgroundColor": "#ffffff"
                 }
               ],
               "position": "absolute",
