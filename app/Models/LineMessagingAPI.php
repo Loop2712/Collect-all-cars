@@ -2229,7 +2229,7 @@ class LineMessagingAPI extends Model
                     if (!empty($privilege_data[$loop]['logo'])) {
                         $logo_privilege[$loop] = "https://www.viicheck.com/storage"."/".$privilege_data[$loop]['logo'];
                     } else {
-                        $logo_privilege[$loop] = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                        $logo_privilege[$loop] = "https://www.viicheck.com/img/logo/logo_x-icon.png";
                     }
                 }
 
