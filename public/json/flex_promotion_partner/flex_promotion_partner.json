@@ -21,13 +21,13 @@
                 {
                   "type": "image",
                   "url": "https://www.viicheck.com/storage/p_slot_1",
-                  "size": "full",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "size": "full"
                 }
               ],
               "position": "absolute",
-              "width": "10.4%",
-              "height": "27%",
+              "width": "10%",
+              "height": "26.8%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
               "offsetStart": "5%",
@@ -49,11 +49,11 @@
                 }
               ],
               "position": "absolute",
-              "width": "10.4%",
-              "height": "27%",
+              "width": "10%",
+              "height": "26.8%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
-              "offsetStart": "16.8%",
+              "offsetStart": "16.9%",
               "action": {
                 "type": "uri",
                 "label": "action",
@@ -72,8 +72,8 @@
                 }
               ],
               "position": "absolute",
-              "width": "10.4%",
-              "height": "27%",
+              "width": "10%",
+              "height": "26.8%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
               "offsetStart": "28.7%",
@@ -95,8 +95,8 @@
                 }
               ],
               "position": "absolute",
-              "width": "10.4%",
-              "height": "27%",
+              "width": "10%",
+              "height": "26.8%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
               "offsetStart": "40.5%",
@@ -118,8 +118,8 @@
                 }
               ],
               "position": "absolute",
-              "width": "10.4%",
-              "height": "27%",
+              "width": "10%",
+              "height": "26.8%",
               "cornerRadius": "100px",
               "offsetTop": "58.5%",
               "offsetStart": "52.4%",
