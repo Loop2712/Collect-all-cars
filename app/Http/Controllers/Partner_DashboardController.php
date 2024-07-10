@@ -160,6 +160,14 @@ class Partner_DashboardController extends Controller
             ->orderBy('id','desc')
             ->get();
 
+        $amount_ten_data_sos = Sos_map::select('user_id', DB::raw('count(*) as amount_sos'))
+            ->where('area', $user_login->organization)
+            ->where('content', 'help_area')
+            ->groupBy('user_id')
+            ->orderBy('user_id', 'desc')
+            ->limit(10)
+            ->get();
+
         // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
         $data_sos_fastest_5 = Sos_map::where('area',$user_login->organization)
             ->where('content','help_area')
@@ -914,6 +922,7 @@ class Partner_DashboardController extends Controller
             'data_sos_slowest_5',
             'data_sos_score_best_5',
             'all_data_sos',
+            'amount_ten_data_sos',
             'mostCommonDistrict',
             'orderedDistricts',
             'countMostCommonDistrict',
@@ -990,7 +999,7 @@ class Partner_DashboardController extends Controller
         $year_start = $request->get('year');
         $month_start = $request->get('month_start');
         $month_end = $request->get('month_end');
-        
+
         $data_sos = DB::table('sos_help_centers as main_sos_help_center')
         ->where('main_sos_help_center.notify', 'LIKE', "%$user_login%")
         ->join('sos_1669_form_yellows', 'main_sos_help_center.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
@@ -998,18 +1007,18 @@ class Partner_DashboardController extends Controller
         ->leftjoin('sos_help_centers as forward_sos_help_center_form', 'main_sos_help_center.forward_operation_from', '=', 'forward_sos_help_center_form.id')
         ->leftjoin('sos_help_centers as forward_sos_help_center_to', 'main_sos_help_center.forward_operation_to', '=', 'forward_sos_help_center_to.id')
         ->select(
-            'main_sos_help_center.id', 
-            'main_sos_help_center.operating_code', 
-            'main_sos_help_center.status', 
-            'main_sos_help_center.remark_status', 
-            'main_sos_help_center.created_at', 
-            'main_sos_help_center.lat', 
-            'main_sos_help_center.lng', 
-            'main_sos_help_center.address', 
-            'main_sos_help_center.name_user', 
-            'main_sos_help_center.phone_user', 
-            'main_sos_help_center.organization_helper', 
-            'main_sos_help_center.name_helper', 
+            'main_sos_help_center.id',
+            'main_sos_help_center.operating_code',
+            'main_sos_help_center.status',
+            'main_sos_help_center.remark_status',
+            'main_sos_help_center.created_at',
+            'main_sos_help_center.lat',
+            'main_sos_help_center.lng',
+            'main_sos_help_center.address',
+            'main_sos_help_center.name_user',
+            'main_sos_help_center.phone_user',
+            'main_sos_help_center.organization_helper',
+            'main_sos_help_center.name_helper',
             'main_sos_help_center.remark_photo_sos',
             'main_sos_help_center.time_command',
             'main_sos_help_center.time_go_to_help',
@@ -1027,8 +1036,8 @@ class Partner_DashboardController extends Controller
             'main_sos_help_center.refuse',
             'forward_sos_help_center_form.operating_code as forward_operating_form',
             'forward_sos_help_center_to.operating_code as forward_operating_to',
-            'sos_1669_form_yellows.location_sos', 
-            'sos_1669_form_yellows.be_notified', 
+            'sos_1669_form_yellows.location_sos',
+            'sos_1669_form_yellows.be_notified',
             'sos_1669_form_yellows.vehicle_type',
             'sos_1669_form_yellows.operating_suit_type',
             'sos_1669_form_yellows.symptom',
@@ -1084,9 +1093,9 @@ class Partner_DashboardController extends Controller
                 });
             })
             ->get();
-            
+
         } else {
-           
+
             $data_sos_filter = $data_sos->whereYear('main_sos_help_center.created_at', $year_start)
                 ->whereMonth('main_sos_help_center.created_at', '>=', $month_start)
                 ->whereMonth('main_sos_help_center.created_at', '<=', $month_end)
@@ -1094,8 +1103,8 @@ class Partner_DashboardController extends Controller
         }
         // dd($user_login);
         // นับ sos ทั้งหมด
-        
-       
+
+
         // ddd($data_sos);
         return response()->json($data_sos_filter);
 
@@ -1110,6 +1119,11 @@ class Partner_DashboardController extends Controller
             ->get();
 
         return view('dashboard.dashboard_viisos.viisos_show.viisos_3_topic', compact('data_sos_score_time') );
+    }
+
+    function viisos_used(Request $request){
+        // return view('dashboard.dashboard_viisos.viisos_show.viisos_test');
+        return view('dashboard.dashboard_viisos.viisos_show.viisos_used');
     }
 
     //========================================== viimove show ================================================
@@ -1739,6 +1753,47 @@ class Partner_DashboardController extends Controller
         }
 
         return $mergedData;
+    }
+
+    function viisos_used_api($user_login_organization){
+
+        $amount_ten_data_sos = Sos_map::select('user_id', DB::raw('count(*) as amount_sos'))
+            ->where('area', $user_login_organization)
+            ->where('content', 'help_area')
+            ->groupBy('user_id')
+            ->leftJoin('users', 'sos_maps.user_id', '=', 'users.id')
+            ->addSelect('users.name as name_user', 'users.block_sos as block_sos')
+            ->orderBy('sos_maps.user_id', 'desc')
+            ->get();
+
+        return $amount_ten_data_sos;
+    }
+
+    function update_status_block_user(Request $request){
+        $user_id = $request->get('user_id');
+        $type = $request->get('type');
+
+
+        if ($type == "block") {
+            DB::table('users')
+            ->where([
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'block_sos' => null,
+                ]);
+            $status = "unblock";
+        } else {
+            DB::table('users')
+            ->where([
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'block_sos' => "Yes",
+                ]);
+            $status = "block";
+        }
+        return $status;
     }
 
 

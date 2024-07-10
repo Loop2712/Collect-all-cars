@@ -132,7 +132,7 @@
             <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0 ">ข้อมูลการขอควาsมช่วยเหลือ {{count($all_data_sos)}} ลำดับล่าสุด </h5>
+                        <h5 class="font-weight-bold mb-0 ">ข้อมูลการขอความช่วยเหลือ {{count($all_data_sos)}} ลำดับล่าสุด </h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -239,12 +239,99 @@
     </div>
 
 </div>
+
+<!--======= ข้อมูลผู้ใช้ที่เคยขอความช่วยเหลือ 10 ลำดับล่าสุด ============-->
+<!-- Button trigger modal -->
+<button id="btn_open_modal_cf_block_sos" type="button" class="d-none" data-toggle="modal" data-target="#modal_cf_block_sos"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_cf_block_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="z-index:999999!important;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px;">
+            <button id="close_modal_cf_block_sos" type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <!-- <div class="modal-header">
+            <h5 class="modal-title" id="Label_cf_block_sos">โปรดยืนยัน</h5>
+            </div> -->
+            <div id="content_modal_cf_block_sos" class="modal-body">
+                <!--  -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12 col-lg-12">
+        <div id="amount_ten_data_sos_lastest" class="card radius-10 w-100 h-100">
+            <div class="p-3">
+                <div class="d-flex align-items-center">
+                    <div class="col-10">
+                        <h5 class="font-weight-bold mb-0 ">ข้อมูลผู้ใช้ที่เคยขอความช่วยเหลือ {{count($amount_ten_data_sos)}} ลำดับล่าสุด </h5>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('/dashboard_viisos_used') }}" target="_blank">ข้อมูลการช่วยเหลือเพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-3 pt-0">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 ">
+                        <thead>
+                            <tr>
+                                <th>ชื่อผู้ขอความช่วยเหลือ</th>
+                                <th>จำนวนขอความช่วยเหลือ</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($amount_ten_data_sos as $amount_ten_sos)
+
+                            <tr>
+                                <!-- ชื่อผู้ขอความช่วยเหลือ -->
+                                <td>
+                                    @if( !empty($amount_ten_sos->user->name) )
+                                        {{ $amount_ten_sos->user->name }}
+                                    @else
+                                        --
+                                    @endif
+                                </td>
+                                <!-- ชื่อเจ้าหน้าที่ -->
+                                @if (!empty($amount_ten_sos->amount_sos))
+                                    <td>{{ $amount_ten_sos->amount_sos ? $amount_ten_sos->amount_sos : "--"}}</td>
+                                @else
+                                    <td> -- </td>
+                                @endif
+                                <td class="text-end" id="block_sos_btn_{{$amount_ten_sos->user_id}}">
+                                    @if (!empty($amount_ten_sos->user->block_sos))
+                                        <span class="btn btn-secondary" onclick="confirm_block_sos('block','{{$amount_ten_sos->user_id}}','{{$amount_ten_sos->user->name}}')">ถูกระงับแล้ว</span>
+                                    @else
+                                        <span class="btn btn-danger" onclick="confirm_block_sos('free','{{$amount_ten_sos->user_id}}','{{$amount_ten_sos->user->name}}')">ระงับการใช้งาน</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--========================= คะแนนผู้ช่วยเหลือ  =============================-->
 <style>
     .product-list{
         overflow: auto;
     }
 </style>
-<!--========================= คะแนนผู้ช่วยเหลือ  =============================-->
+
 <div class="row row-cols-1 row-cols-lg-3">
     <div class="col-12 col-xl-4 d-flex">
         <div class="card radius-10 w-100 ">
@@ -791,6 +878,59 @@
 
         });
 
+    }
+</script>
+
+<script>
+    function confirm_block_sos(type,user_id,name_user){
+
+        console.log("confirm_block_sos");
+
+        let content_modal_cf_block_sos = document.querySelector('#content_modal_cf_block_sos')
+            content_modal_cf_block_sos.innerHTML = '';
+        let html_cf_user;
+        if (type == "block") {
+            html_cf_user = '<h5 class="text-success">ยืนยันการยกเลิกระงับผู้ใช้</h5>';
+        } else {
+            html_cf_user = '<h5 class="text-danger">ยืนยันการระงับผู้ใช้</h5>';
+        }
+
+        let html = `
+        <div class="text-center p-3">
+            <center>
+            <img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/7.png" width="150">
+            </center>
+            <br>
+            `+html_cf_user+`
+            <h3 class="mt-2 mb-2"><b>`+name_user+`</b></h3>
+        </div>
+        <div class="float-end mt-3">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+            <button type="button" class="btn btn-primary" onclick="update_block_sos('`+type+`','`+user_id+`','`+name_user+`')">ยืนยัน</button>
+        </div>
+        `;
+
+        content_modal_cf_block_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+        document.querySelector('#btn_open_modal_cf_block_sos').click();
+    }
+
+    function update_block_sos(type,user_id,name_user){
+        console.log("update_block_sos");
+        document.querySelector('#close_modal_cf_block_sos').click();
+
+        fetch("{{ url('/') }}/api/update_status_block_user/" + "?user_id=" + user_id + "&type=" + type)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+
+                if (result == "block") {
+                    document.querySelector('#block_sos_btn_'+user_id).innerHTML = `<span class="btn btn-secondary" onclick="confirm_block_sos('block','`+user_id+`','`+name_user+`')">ถูกระงับแล้ว</span>`;
+                } else {
+                    document.querySelector('#block_sos_btn_'+user_id).innerHTML = `<span class="btn btn-danger" onclick="confirm_block_sos('free','`+user_id+`','`+name_user+`')">ระงับการใช้งาน</span>`;
+                }
+
+        });
     }
 </script>
 

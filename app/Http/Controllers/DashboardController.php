@@ -16,7 +16,7 @@ use App\Models\Sos_map;
 class DashboardController extends Controller
 {
     public function dashboard()
-    {	
+    {
     	// Type User Login
         $total_user = User::selectRaw('count(id) as count')
                     	->get();
@@ -51,7 +51,7 @@ class DashboardController extends Controller
                     	foreach ($web_user as $key ) {
 				        	$count_web = $key->count;
 				        }
-		// END Type User Login		       
+		// END Type User Login
 
 		// รถเข้าใหม่ 28 วนที่ผ่านมา
     	$d28 = strtotime("-28 Day");
@@ -61,12 +61,12 @@ class DashboardController extends Controller
 	            ->get();
 	            foreach ($new_car_28 as $key ) {
 				        	$new_car = $key->count;
-				        } 
+				        }
 	    $all_car =CarModel::selectRaw('count(id) as count')
                     	->get();
 	            foreach ($all_car as $key ) {
 				        	$count_car = $key->count;
-				        } 
+				        }
 
         // ลงทะเบียน Vmove 28 วันที่ผ่านมา
         $vmove28 =Register_car::whereDate('created_at',">=" , $day28)
@@ -74,12 +74,12 @@ class DashboardController extends Controller
 	            ->get();
 	            foreach ($vmove28 as $key ) {
 				        	$new_vmove = $key->count;
-				        } 
+				        }
 	    $all_vmove =Register_car::selectRaw('count(id) as count')
                     	->get();
 	            foreach ($all_vmove as $key ) {
 				        	$count_vmove = $key->count;
-				        } 
+				        }
 
         // Vmove Report 28 วันที่ผ่านมา
         $vmove_report28 =Guest::whereDate('created_at',">=" , $day28)
@@ -87,12 +87,12 @@ class DashboardController extends Controller
 	            ->get();
 	            foreach ($vmove_report28 as $key ) {
 				        	$new_vmove_report = $key->count;
-				        } 
+				        }
 	    $all_vmove_report =Guest::selectRaw('count(id) as count')
                     	->get();
 	            foreach ($all_vmove_report as $key ) {
 				        	$count_vmove_report = $key->count;
-				        } 
+				        }
 
          // V News 28 วันที่ผ่านมา
         $vnews28 =News::whereDate('created_at',">=" , $day28)
@@ -100,7 +100,7 @@ class DashboardController extends Controller
 	            ->get();
 	            foreach ($vnews28 as $key ) {
 				        	$new_vnews = $key->count;
-				        } 
+				        }
 	    $all_vnews =News::selectRaw('count(id) as count')
                     	->get();
 	            foreach ($all_vnews as $key ) {
@@ -113,7 +113,7 @@ class DashboardController extends Controller
                 ->get();
                 foreach ($sos28 as $key ) {
                             $new_sos = $key->count;
-                        } 
+                        }
         $all_sos =Sos_map::selectRaw('count(id) as count')
                         ->get();
                 foreach ($all_sos as $key ) {
@@ -137,7 +137,7 @@ class DashboardController extends Controller
         $vmarket_desc_count[3] = "";
         $vmarket_desc_count[4] = "";
 
-        for ($i=0; $i < count($vmarket_desc);) { 
+        for ($i=0; $i < count($vmarket_desc);) {
             foreach($vmarket_desc as $item ){
                 $vmarket_desc_location[$i] = $item->location;
                 $vmarket_desc_count[$i] = $item->count;
@@ -163,7 +163,7 @@ class DashboardController extends Controller
         $vmotercycle_desc_count[3] = "";
         $vmotercycle_desc_count[4] = "";
 
-        for ($i=0; $i < count($vmotercycle_desc);) { 
+        for ($i=0; $i < count($vmotercycle_desc);) {
             foreach($vmotercycle_desc as $item ){
                 $vmotercycle_desc_location[$i] = $item->location;
                 $vmotercycle_desc_count[$i] = $item->count;
@@ -189,7 +189,7 @@ class DashboardController extends Controller
         $vmove_desc_count[3] = "";
         $vmove_desc_count[4] = "";
 
-        for ($i=0; $i < count($vmove_desc);) { 
+        for ($i=0; $i < count($vmove_desc);) {
             foreach($vmove_desc as $item ){
                 $vmove_desc_province[$i] = $item->location;
                 $vmove_desc_count[$i] = $item->count;
@@ -215,7 +215,7 @@ class DashboardController extends Controller
         $vnews_desc_count[3] = "";
         $vnews_desc_count[4] = "";
 
-        for ($i=0; $i < count($vnews_desc);) { 
+        for ($i=0; $i < count($vnews_desc);) {
             foreach($vnews_desc as $item ){
                 $vnews_desc_province[$i] = $item->province;
                 $vnews_desc_count[$i] = $item->count;
