@@ -12,7 +12,8 @@
               "type": "image",
               "url": "https://www.viicheck.com/img/flex/promotion_partner/สิทธิพิเศษสำหรับคุณ_ver2.png",
               "size": "full",
-              "aspectRatio": "1280:475"
+              "aspectRatio": "1280:475",
+              "aspectMode": "cover"
             },
             {
               "type": "box",

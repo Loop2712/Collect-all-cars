@@ -2162,7 +2162,7 @@ class LineMessagingAPI extends Model
 
     }
 
-    public function test_new_flex($data, $event, $message_type)
+    public function new_flex_2024($data, $event, $message_type)
     {
         switch ($message_type) {
             case 'deme_sos_api':

@@ -204,9 +204,9 @@ class LineApiController extends Controller
         }else if($event["message"]["text"] == "language"){
             $line->replyToUser(null, $event, "language");
         }else if($event["message"]["text"] == "ทดสอบ"){
-            $line->test_new_flex(null, $event, "deme_sos_api");
+            $line->new_flex_2024(null, $event, "deme_sos_api");
         }else if($event["message"]["text"] == "promotion_partner"){
-            $line->test_new_flex(null, $event, "promotion_partner");
+            $line->new_flex_2024(null, $event, "promotion_partner");
         }else {
 
             $data_users = DB::table('users')
