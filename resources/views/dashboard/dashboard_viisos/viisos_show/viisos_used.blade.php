@@ -174,8 +174,8 @@
             .then(response => response.json())
             .then(data => {
                 const itemTable = document.getElementById('itemTable');
-                console.log("data");
-                console.log(data);
+                // console.log("data");
+                // console.log(data);
 
                 data.forEach(item => {
                     const rowDiv = document.createElement('div');
@@ -324,7 +324,7 @@
 
     function confirm_block_sos(type,user_id,name_user){
 
-        console.log("confirm_block_sos");
+        // console.log("confirm_block_sos");
 
         let content_modal_cf_block_sos = document.querySelector('#content_modal_cf_block_sos')
             content_modal_cf_block_sos.innerHTML = '';
@@ -356,13 +356,13 @@
     }
 
     function update_block_sos(type,user_id,name_user){
-        console.log("update_block_sos");
+        // console.log("update_block_sos");
         document.querySelector('#close_modal_cf_block_sos').click();
 
         fetch("{{ url('/') }}/api/update_status_block_user/" + "?user_id=" + user_id + "&type=" + type)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result == "block") {
                     document.querySelector('#block_btn_div_'+user_id).innerHTML = `<span id="block_btn" onclick="confirm_block_sos('block','`+user_id+`','`+name_user+`')">ถูกระงับแล้ว</span>`;
