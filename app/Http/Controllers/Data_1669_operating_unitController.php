@@ -21,7 +21,7 @@ class Data_1669_operating_unitController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        // $perPage = 25;
 
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization ;
@@ -33,9 +33,9 @@ class Data_1669_operating_unitController extends Controller
                     ->where('name', 'LIKE', "%$keyword%")
                     ->orWhere('area', 'LIKE', "%$keyword%")
                     ->orWhere('level', 'LIKE', "%$keyword%")
-                    ->latest()->paginate($perPage);
+                    ->latest()->get();
             } else {
-                $data_1669_operating_unit = Data_1669_operating_unit::where('area' , $sub_organization)->latest()->paginate($perPage);
+                $data_1669_operating_unit = Data_1669_operating_unit::where('area' , $sub_organization)->latest()->get();
             }
 
         }else{
@@ -43,9 +43,9 @@ class Data_1669_operating_unitController extends Controller
                 $data_1669_operating_unit = Data_1669_operating_unit::where('name', 'LIKE', "%$keyword%")
                     ->orWhere('area', 'LIKE', "%$keyword%")
                     ->orWhere('level', 'LIKE', "%$keyword%")
-                    ->latest()->paginate($perPage);
+                    ->latest()->get();
             } else {
-                $data_1669_operating_unit = Data_1669_operating_unit::latest()->paginate($perPage);
+                $data_1669_operating_unit = Data_1669_operating_unit::latest()->get();
             }
         }
 
