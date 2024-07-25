@@ -30,6 +30,8 @@
 	}
 @endphp
 
+<h1>ทั้งหมด : {{ count($unique_names) }}</h1>
+<hr>
 @foreach ($unique_names as $name => $count)
 	<h3>
 		{{ $name }} =>  Count: {{ $count }}
