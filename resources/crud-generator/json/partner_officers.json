@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "partner_id",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "department",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "type": "integer"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "code",
+            "type": "string"
+        },
+        {
+            "name": "count",
+            "type": "string"
+        }
+    ]
+}

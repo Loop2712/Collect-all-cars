@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "maintain_material_id",
+            "type": "string"
+        },
+        {
+            "name": "officer_id",
+            "type": "string"
+        },
+        {
+            "name": "amount",
+            "type": "string"
+        }
+    ]
+}

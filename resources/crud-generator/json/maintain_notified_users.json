@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "department",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        }
+    ]
+}

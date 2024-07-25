@@ -636,3 +636,13 @@ Route::resource('phone_niems', 'Phone_niemsController');
 Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
 
 Route::resource('sos_by_organization', 'Sos_by_organizationController');
+
+Route::resource('maintain_notified_users', 'Maintain_notified_usersController');
+Route::resource('partner_officers', 'Partner_officersController');
+Route::resource('maintain_notis', 'Maintain_notisController');
+Route::resource('maintain_categorys', 'Maintain_categorysController');
+Route::resource('maintain_categorys', 'Maintain_categorysController');
+Route::resource('maintain_sub_categorys', 'Maintain_sub_categorysController');
+Route::resource('maintain_device_codes', 'Maintain_device_codesController');
+Route::resource('maintain_materials', 'Maintain_materialsController');
+Route::resource('maintain_use_materials', 'Maintain_use_materialsController');

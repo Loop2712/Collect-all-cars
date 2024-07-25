@@ -1,0 +1,132 @@
+{
+    "fields": [
+        {
+            "name": "name_user",
+            "type": "string"
+        },
+        {
+            "name": "maintain_notified_user_id",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "partner_id",
+            "type": "string"
+        },
+        {
+            "name": "name_area",
+            "type": "string"
+        },
+        {
+            "name": "detail_location",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail_title",
+            "type": "string"
+        },
+        {
+            "name": "category_id",
+            "type": "string"
+        },
+        {
+            "name": "sub_category_id",
+            "type": "string"
+        },
+        {
+            "name": "photo",
+            "type": "longtext"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "priority",
+            "type": "string"
+        },
+        {
+            "name": "name_officer",
+            "type": "longtext"
+        },
+        {
+            "name": "officer_id",
+            "type": "longtext"
+        },
+        {
+            "name": "device_code",
+            "type": "string"
+        },
+        {
+            "name": "device_code_id",
+            "type": "string"
+        },
+        {
+            "name": "datetime_command",
+            "type": "datetime"
+        },
+        {
+            "name": "datetime_start",
+            "type": "datetime"
+        },
+        {
+            "name": "datetime_end",
+            "type": "datetime"
+        },
+        {
+            "name": "datetime_success",
+            "type": "datetime"
+        },
+        {
+            "name": "material",
+            "type": "longtext"
+        },
+        {
+            "name": "repair_costs",
+            "type": "string"
+        },
+        {
+            "name": "photo_repair_costs",
+            "type": "longtext"
+        },
+        {
+            "name": "remark_user",
+            "type": "longtext"
+        },
+        {
+            "name": "remark_officer",
+            "type": "longtext"
+        },
+        {
+            "name": "remark_admin",
+            "type": "longtext"
+        },
+        {
+            "name": "rating_maintain",
+            "type": "string"
+        },
+        {
+            "name": "rating_operation",
+            "type": "string"
+        },
+        {
+            "name": "rating_impression",
+            "type": "string"
+        },
+        {
+            "name": "rating_sum",
+            "type": "string"
+        },
+        {
+            "name": "rating_remark",
+            "type": "longtext"
+        }
+    ]
+}
