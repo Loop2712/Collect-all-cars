@@ -33,6 +33,10 @@ Route::get('/test_pdf_blade', function () {
     return view('/report/PDF/test_export_pdf');
 });
 
+Route::get('/test_get_partners', function () {
+    return view('/test_get_partners');
+});
+
 Route::get('/share_1669', function () {
     return view('share_to_facebook/share_1669');
 });
