@@ -37,6 +37,9 @@ Route::get('/test_get_partners', function () {
     return view('/test_get_partners');
 });
 
+Route::get('/check_user_from/{name}', 'PartnerController@check_user_from');
+
+
 Route::get('/share_1669', function () {
     return view('share_to_facebook/share_1669');
 });

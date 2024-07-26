@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/get_data_check_user_from/{name_partner}', 'PartnerController@get_data_check_user_from');
+
 // Test api 1669
 Route::post('/send_data_sos_api', 'Sos_mapController@send_data_sos_api');
 Route::get('/send_data_sos_api_to_line/{user_id}/{full_name}/{case_id}', 'Sos_mapController@send_data_sos_api_to_line');

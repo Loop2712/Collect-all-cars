@@ -1743,4 +1743,24 @@ class PartnerController extends Controller
         return $ads_contents;
     }
 
+    function check_user_from($name_partner){
+        // $users = User::where('user_from', 'LIKE', "%$name_partner%")->get();
+
+        return view('check_user_from', compact('name_partner'));
+    }
+
+    function get_data_check_user_from($name_partner){
+        $users = User::where('user_from', 'LIKE', "%$name_partner%")
+            ->select(
+                'name',
+                'email',
+                'created_at',
+                'phone',
+                'status',
+            )
+            ->get();
+
+        return $users;
+    }
+
 }
