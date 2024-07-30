@@ -5,7 +5,7 @@
 <style>
     @media (max-width: 435px){
         .img-cover{
-           max-width: 300px;           
+           max-width: 300px;
            min-width: 300px;
            border-radius: 10px;
            aspect-ratio: 16/9;
@@ -16,13 +16,13 @@
     }
     @media (min-width: 435px){
         .img-cover{
-           max-width: 400px;           
+           max-width: 400px;
            min-width: 400px;
            border-radius: 10px;
            aspect-ratio: 16/9;
         }
         .logo_cover{
-            width: 400px;
+            width: 100%;
         }
     }
       .owl-carousel-partner .item a{
@@ -58,7 +58,7 @@
     }
     .card {
         border: none !important;
-    }  
+    }
 </style>
 <div class="container " style="padding-top: 150px;">
     <div class="row">
@@ -81,11 +81,11 @@
                                     {{ $item->partner->name }}
                                 </p>
                                 @endif
-                                
+
                             </a>
                         </div>
                         @endforeach
-                        
+
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                                 <div style="position: relative;">
                                     <a href="{{ url('/privilege/' . $item->id) }}">
                                         <img src="{{ url('storage')}}/{{ $item->img_cover }}" class="img-cover" alt="">
-                                        
+
                                         <div class="logo_cover">
                                             <div>
                                                 <img  src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
@@ -120,7 +120,7 @@
                                 <div style="position: relative;">
                                     <a href="{{ url('/privilege/' . $item->id) }}">
                                         <img src="{{ url('storage')}}/{{ $item->img_cover }}" class="img-cover" alt="">
-                                        
+
                                         <div class="logo_cover">
                                             <div>
                                                 <img  src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
@@ -142,7 +142,7 @@
                                 <div style="position: relative;">
                                     <a href="{{ url('/privilege/' . $item->id) }}">
                                         <img src="{{ url('storage')}}/{{ $item->img_cover }}" class="img-cover" alt="">
-                                        
+
                                         <div class="logo_cover">
                                             <div>
                                                 <img  src="{{ url('storage')}}/{{ $item->partner->logo }}" alt="">
