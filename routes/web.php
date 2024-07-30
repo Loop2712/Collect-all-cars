@@ -16,6 +16,14 @@ use App\Http\Controllers\QrCodeGeneratorController;
 //DEMO
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
+Route::get('/demo_repair_admin_index', function () {
+    return view('test_repair_admin_index');
+});
+
+Route::get('/demo_repair_admin_view', function () {
+    return view('test_repair_admin_view');
+});
+
 // VIICHECK.COM
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
