@@ -653,3 +653,18 @@ Route::resource('maintain_sub_categorys', 'Maintain_sub_categorysController');
 Route::resource('maintain_device_codes', 'Maintain_device_codesController');
 Route::resource('maintain_materials', 'Maintain_materialsController');
 Route::resource('maintain_use_materials', 'Maintain_use_materialsController');
+
+
+//demo
+Route::get('/demo/maintain_index', function () {
+    return view('demo/maintain_index');
+});
+Route::get('/demo/maintain_form', function () {
+    return view('demo/maintain_form');
+});
+Route::get('/demo/maintain_show', function () {
+    return view('demo/maintain_show');
+});
+Route::get('/demo/maintain_rating', function () {
+    return view('demo/maintain_rating');
+});
