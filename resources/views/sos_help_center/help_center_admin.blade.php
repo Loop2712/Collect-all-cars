@@ -1141,7 +1141,11 @@
                                                 <!-- command_by -->
                                                 @if(!empty($item->command_by))
                                                 <button class="btn btn-sm btn-info text-white main-shadow main-radius float-end">
+                                                    @if( !empty($item->officers_command_by->name_officer_command) )
                                                     สั่งการโดย : <text>{{ $item->officers_command_by->name_officer_command }}</text>
+                                                    @else
+                                                        สั่งการโดย : <text>เจ้าหน้าที่ถูกยกเลิกสถานะแล้ว</text>
+                                                    @endif
                                                 </button>
                                                 @endif
                                             </span>
