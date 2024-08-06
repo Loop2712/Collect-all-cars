@@ -84,13 +84,13 @@
                         <label for="type_partner" class="control-label">{{ 'ประเภทพาร์ทเนอร์' }}</label>
 
                         <select name="type_partner" class="form-control"  id="type_partner" required>
-                                <option selected value="">- กรุณาเลือก -</option>
-                                <option value="university">- สถานศึกษา -</option>
-                                <option value="government">- สถานที่ราชการ -</option>
-                                <option value="company">- บริษัทเอกชน -</option>
-                                <option value="volunteer">- อาสาสมัคร -</option>
-                                <option value="condo">- คอนโด -</option>
-                                <option value="other">- อื่นๆ -</option>
+                                <option selected value="">กรุณาเลือก</option>
+                                <option value="university">สถานศึกษา</option>
+                                <option value="government">สถานที่ราชการ</option>
+                                <option value="company">บริษัทเอกชน</option>
+                                <option value="volunteer">อาสาสมัคร</option>
+                                <option value="condo">คอนโด</option>
+                                <option value="other">อื่นๆ</option>
                         </select>
                         {!! $errors->first('type_partner', '<p class="help-block">:message</p>') !!}
                     </div>

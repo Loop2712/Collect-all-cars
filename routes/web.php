@@ -694,3 +694,8 @@ Route::get('/demo/maintain_show', function () {
 Route::get('/demo/maintain_rating', function () {
     return view('demo/maintain_rating');
 });
+
+
+Route::resource('sos_partners', 'Sos_partnersController');
+Route::resource('sos_partner_areas', 'Sos_partner_areasController');
+Route::resource('sos_partner_officers', 'Sos_partner_officersController');

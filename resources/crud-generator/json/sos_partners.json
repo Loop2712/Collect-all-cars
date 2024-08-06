@@ -1,0 +1,68 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "mail",
+            "type": "string"
+        },
+        {
+            "name": "logo",
+            "type": "longtext"
+        },
+        {
+            "name": "color_main",
+            "type": "string"
+        },
+        {
+            "name": "color_navbar",
+            "type": "string"
+        },
+        {
+            "name": "color_body",
+            "type": "string"
+        },
+        {
+            "name": "class_color_menu",
+            "type": "string"
+        },
+        {
+            "name": "type_partner",
+            "type": "string"
+        },
+        {
+            "name": "full_name",
+            "type": "longtext"
+        },
+        {
+            "name": "show_homepage",
+            "type": "string"
+        },
+        {
+            "name": "secret_token",
+            "type": "string"
+        },
+        {
+            "name": "open_sos",
+            "type": "string"
+        },
+        {
+            "name": "open_repair",
+            "type": "string"
+        },
+        {
+            "name": "open_move",
+            "type": "string"
+        },
+        {
+            "name": "open_news",
+            "type": "string"
+        }
+    ]
+}
