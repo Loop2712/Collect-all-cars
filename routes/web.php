@@ -17,11 +17,29 @@ use App\Http\Controllers\QrCodeGeneratorController;
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
 Route::get('/demo_repair_admin_index', function () {
-    return view('test_repair_admin_index');
+    return view('test_repair_admin/test_repair_admin_index');
 });
 
 Route::get('/demo_repair_admin_view', function () {
-    return view('test_repair_admin_view');
+    return view('test_repair_admin/test_repair_admin_view');
+});
+Route::get('/demo_management_area', function () {
+    return view('test_repair_admin/test_management_area');
+});
+Route::get('/demo_management_view', function () {
+    return view('test_repair_admin/test_management_view');
+});
+Route::get('/demo_management_view', function () {
+    return view('test_repair_admin/test_management_view');
+});
+Route::get('/demo_categorie_repair_index', function () {
+    return view('test_repair_admin/test_categorie_repair_index');
+});
+Route::get('/demo_categorie_repair_create', function () {
+    return view('test_repair_admin/test_categorie_repair_create');
+});
+Route::get('/demo_categorie_repair_view', function () {
+    return view('test_repair_admin/test_categorie_repair_view');
 });
 
 // VIICHECK.COM

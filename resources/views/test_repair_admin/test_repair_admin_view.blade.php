@@ -108,35 +108,6 @@
             height: calc(100% - 100px);
         }
 
-        #prevImageReceipt, #nextImageReceipt {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            font-size: 2em;
-            height: 95%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            cursor: pointer;
-            padding: 0 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #prevImageReceipt {
-            left: 5px; /* เพิ่มระยะห่างจากขอบซ้าย */
-        }
-
-        #nextImageReceipt {
-            right: 5px; /* เพิ่มระยะห่างจากขอบขวา */
-        }
-
-        #prevImageReceipt:hover, #nextImageReceipt:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
 
 
     </style>
@@ -168,8 +139,12 @@
                     <img id="modal_main_image" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100 h-100">
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary" id="prevImage">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextImage">Next</button>
+                    <button type="button" class="btn btn-secondary" id="prevImage" style="width: 120px;">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="nextImage" style="width: 120px;">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -450,15 +425,17 @@
                                         </div>
 
                                         <div class="modal-body d-flex justify-content-center align-items-center" style="height: 800px;">
-                                            <button type="button" class="btn btn-secondary" id="prevImageReceipt" >&#8249;</button>
                                             <img id="modal_main_image_receipt" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100 h-100 px-4 ">
-                                            <button type="button" class="btn btn-primary" id="nextImageReceipt" >&#8250;</button>
                                         </div>
 
-                                        {{-- <div class="modal-footer d-flex justify-content-center">
-                                            <button type="button" class="btn btn-secondary" id="prevImageReceipt"><</button>
-                                            <button type="button" class="btn btn-primary" id="nextImageReceipt">></button>
-                                        </div> --}}
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-secondary" id="prevImageReceipt" style="width: 120px;">
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-secondary" id="nextImageReceipt" style="width: 120px;">
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
