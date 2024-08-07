@@ -125,133 +125,20 @@
         transition: all .15s ease-in-out;
         max-width: 80px;
         cursor: pointer;
-        opacity: 0.6;
-        cursor: pointer;
-    }
-
-    .img-group img:hover {
-        opacity: 1;
+        filter: blur(1px) grayscale(100%);
+        -webkit-filter: blur(1px) grayscale(100%);
+        -moz-filter: blur(1px) grayscale(100%);
+        -o-filter: blur(1px) grayscale(100%);
+        -ms-filter: blur(1px) grayscale(100%);
     }
 
     .img-group img.active {
-        opacity: 1;
-
-    }
-
-    .radius-50 {
+        filter: none !important;
+    } .radius-50{
         border-radius: 50px !important;
         color: #fff !important;
     }
-
-    /* Next & previous buttons */
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 16px;
-        margin-top: -50px;
-        color: #fff !important;
-        font-weight: bold;
-        font-size: 20px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-        -webkit-user-select: none;
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-    
-
-    /* Position the "next button" to the right */
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    /* Number text (1/3 etc) */
-    .numbertext {
-        color: #f2f2f2;
-        font-size: 24px;
-        padding: 8px 20px;
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 50px;
-    }
-
-    /* The Modal (background) */
-    .modal-light-box.modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: black;
-    }
-
-    /* Modal Content */
-    .modal-light-box .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: auto;
-        padding: 0;
-        width: 90%;
-        max-width: 1200px;
-    }
-
-    /* The Close Button */
-    .close {
-        color: white;
-        position: absolute;
-        top: 10px;
-        right: 25px;
-        font-size: 35px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #999;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .mySlides {
-        display: none;
-    }
-
-    .mySlides img {
-        opacity: 1;
-        border-radius: 0;
-    }
-
-    .mySlides img:hover {
-        opacity: 1;
-    }
-
-
-    .cursor {
-        cursor: pointer;
-    }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-
-
-
-
 <div class="container">
     <div class="pt-4">
         <div class="content">
@@ -275,20 +162,20 @@
                                 </div>
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="d-block text-center">
-                                        <div class="img-show mb-2">
+                                        <div class="img-show">
                                             <img src="{{url('img/stickerline/PNG/1.png')}}" alt="">
                                         </div>
                                         <div class="img-group">
-                                            <img src="{{url('img/stickerline/PNG/1.png')}}" class="active" alt="" data-slide="1">
-                                            <img src="{{url('img/stickerline/PNG/2.png')}}" alt="" data-slide="2">
-                                            <img src="{{url('img/stickerline/PNG/3.png')}}" alt="" data-slide="3">
-                                            <img src="{{url('img/stickerline/PNG/4.png')}}" alt="" data-slide="4">
-                                            <img src="{{url('img/stickerline/PNG/5.png')}}" alt="" data-slide="5">
-                                            <img src="{{url('img/stickerline/PNG/6.png')}}" alt="" data-slide="6">
-                                            <img src="{{url('img/stickerline/PNG/7.png')}}" alt="" data-slide="7">
-                                            <img src="{{url('img/stickerline/PNG/9.png')}}" alt="" data-slide="8">
-                                            <img src="{{url('img/stickerline/PNG/10.png')}}" alt="" data-slide="9">
-                                            <img src="{{url('img/stickerline/PNG/11.png')}}" alt="" data-slide="10">
+                                            <img src="{{url('img/stickerline/PNG/1.png')}}" class="active" alt="">
+                                            <img src="{{url('img/stickerline/PNG/2.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/3.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/4.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/5.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/6.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/7.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/8.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/9.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/10.png')}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -308,147 +195,9 @@
                             this.classList.add('active');
                             // Set the src of the imgShow to the src of the clicked image
                             imgShow.src = this.src;
-                            // Set the onclick attribute of imgShow
-                            const slideNumber = this.getAttribute('data-slide');
-                            imgShow.setAttribute('onclick', `openModal();currentSlide(${slideNumber})`);
                         });
                     });
                 </script>
-
-
-                <div id="myModal" class="modal modal-light-box">
-                    <span class="close cursor" onclick="closeModal()">&times;</span>
-                    <div class="modal-content">
-
-                        <div class="mySlides">
-                            <div class="numbertext">1 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/1.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">2 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/2.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">3 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/3.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">4 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/4.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">5 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/5.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">6 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/6.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">7 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/7.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">8 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/9.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">9 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/10.png')}}" style="width:100%">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext">10 / 10</div>
-                            <img src="{{url('img/stickerline/PNG/11.png')}}" style="width:100%">
-                        </div>
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                    </div>
-
-
-
-                </div>
-
-                <script>
-                    // Wrap every letter in a span
-                    var textWrapper = document.querySelector('.ml12');
-                    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-                    anime.timeline({
-                            loop: true
-                        })
-                        .add({
-                            targets: '.ml12 .letter',
-                            translateX: [40, 0],
-                            translateZ: 0,
-                            opacity: [0, 1],
-                            easing: "easeOutExpo",
-                            duration: 1200,
-                            delay: (el, i) => 500 + 40 * i
-                        }).add({
-                            targets: '.ml12 .letter',
-                            translateX: [0, -30],
-                            opacity: [1, 0],
-                            easing: "easeInExpo",
-                            duration: 1100,
-                            delay: (el, i) => 5000 + 30 * i
-                        });
-
-
-                    ////////////////////////////////////////////////////////////////////
-                    function openModal() {
-                        document.getElementById("myModal").style.display = "block";
-                    }
-
-                    function closeModal() {
-                        document.getElementById("myModal").style.display = "none";
-                    }
-
-                    var slideIndex = 1;
-                    showSlides(slideIndex);
-
-                    function plusSlides(n) {
-                        showSlides(slideIndex += n);
-                    }
-
-                    function currentSlide(n) {
-                        showSlides(slideIndex = n);
-                    }
-
-                    function showSlides(n) {
-                        var i;
-                        var slides = document.getElementsByClassName("mySlides");
-                        var dots = document.getElementsByClassName("demo");
-                        var captionText = document.getElementById("caption");
-                        if (n > slides.length) {
-                            slideIndex = 1
-                        }
-                        if (n < 1) {
-                            slideIndex = slides.length
-                        }
-                        for (i = 0; i < slides.length; i++) {
-                            slides[i].style.display = "none";
-                        }
-                        for (i = 0; i < dots.length; i++) {
-                            dots[i].className = dots[i].className.replace(" active", "");
-                        }
-                        slides[slideIndex - 1].style.display = "block";
-                        dots[slideIndex - 1].className += " active";
-                        captionText.innerHTML = dots[slideIndex - 1].alt;
-                    }
-                </script>
-
-
-
                 <style>
                     .tl-header .tl-time {
                         line-height: 2.653 !important;
@@ -674,21 +423,20 @@
                     </div>
                 </div>
                 <style>
-                    .btn-rating {
+                    .btn-rating{
                         position: fixed;
                         right: 15px;
                         bottom: 15px;
                         z-index: 996;
                         height: 40px;
-                        width: 150px;
+                        width:  150px;
                         border-radius: 4px;
                         transition: all 0.4s;
                         margin-right: 10px;
                         margin-bottom: 15px;
                         transition: all .15s ease-in-out;
                     }
-
-                    #a_up_short.active~div div div div a.btn-rating {
+                    #a_up_short.active ~ div div div div a.btn-rating{
                         right: 65px !important;
 
                     }
