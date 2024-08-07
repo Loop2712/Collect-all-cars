@@ -1244,7 +1244,8 @@ input:focus {
         </script>
 
 
-    <a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
+    <!-- <a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a> -->
+    <a id="tag_a_switch_standby" href="{{ url('/officers/sum_km_for_officer') }}/{{ $data_sos->id }}" class="d-none"></a>
 
     <style>
         .active-li1 {

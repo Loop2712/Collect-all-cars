@@ -363,6 +363,14 @@ class Sos_help_centerController extends Controller
         return view('sos_help_center.switch_standby', compact('data_user','data_standby'));
     }
 
+    function sum_km_for_officer(Request $request, $sos_id){
+
+        $data_user = Auth::user();
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$sos_id)->first();
+
+        return view('sos_help_center.sum_km_for_officer', compact('data_user' , 'data_form_yellow'));
+    }
+
     public function create_new_sos_help_center($user_id)
     {
         $time_create_sos = Carbon::now();

@@ -237,6 +237,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('nationalitie_group_lines', 'Nationalitie_group_linesController');
 	Route::resource('nationalitie_officers', 'Nationalitie_officersController');
 	Route::get('admin/privilege', 'PrivilegeController@privilege_admin');
+
+	// NEW Partner (SOS Partner)
+	Route::resource('sos_partners', 'Sos_partnersController');
 });
 // END ADMIN VIICHECK
 
@@ -425,6 +428,7 @@ Route::middleware(['auth'])->group(function () {
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
 	Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
+	Route::get('officers/sum_km_for_officer/{sos_id}', 'Sos_help_centerController@sum_km_for_officer');
 
 	// sos nationalitie
 	Route::get('nationalitie_sos/login_register_officer/{group_line_id}', 'Nationalitie_officersController@login_register_officer');
@@ -723,6 +727,6 @@ Route::get('/demo/maintain_rating', function () {
 });
 
 
-Route::resource('sos_partners', 'Sos_partnersController');
+// Route::resource('sos_partners', 'Sos_partnersController');
 Route::resource('sos_partner_areas', 'Sos_partner_areasController');
 Route::resource('sos_partner_officers', 'Sos_partner_officersController');
