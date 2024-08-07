@@ -148,7 +148,7 @@
                             </datalist>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12" >
-                            <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label">กรอกรหัสผ่าน</label>
+                            <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label">กรอก Secret Token</label>
                             <input class="form-control radius-15" list="cfPassWordGroupLind" name="cfPassWordGroupLind" value="">
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                         <div class="col-12 col-md-12 col-lg-12" >
                             <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label text-danger">เมื่อกดยืนยัน
                                 หมวดหมู่นี้จะอยู่ในสถานะปิดใช้งาน</label>
-                            <input class="form-control radius-15" list="cfPassWordGroupLind" placeholder="กรอกรหัสผ่าน" name="cfPassWordGroupLind" value="">
+                            <input class="form-control radius-15" list="cfPassWordGroupLind" placeholder="กรอก Secret Token" name="cfPassWordGroupLind" value="">
                         </div>
                     </div>
                 </div>
