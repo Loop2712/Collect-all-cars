@@ -70,7 +70,7 @@
 
             <div class="row mt-4">
                 <div class="col-12 col-md-5">
-                    <input class="form-control radius-15" list="passwordGroupLine" name="passwordGroupLine" value="" placeholder="กรอกรหัสผ่าน">
+                    <input class="form-control radius-15" list="passwordGroupLine" name="passwordGroupLine" value="" placeholder="กรอก secret token">
                 </div>
                 <div class="col-12 col-md-7">
                     <button class="btn btn-success disabled w-100 radius-15">ยืนยัน</button>

@@ -16,13 +16,14 @@ use App\Http\Controllers\QrCodeGeneratorController;
 //DEMO
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
+// Test รับเรื่องแจ้งซ่อม
 Route::get('/demo_repair_admin_index', function () {
     return view('test_repair_admin/test_repair_admin_index');
 });
-
 Route::get('/demo_repair_admin_view', function () {
     return view('test_repair_admin/test_repair_admin_view');
 });
+// Test การจัดการพื้นที่ดูแล
 Route::get('/demo_management_area', function () {
     return view('test_repair_admin/test_management_area');
 });
@@ -32,6 +33,7 @@ Route::get('/demo_management_view', function () {
 Route::get('/demo_management_view', function () {
     return view('test_repair_admin/test_management_view');
 });
+// Test การจัดการหมวดหมู่และกลุ่มไลน์
 Route::get('/demo_categorie_repair_index', function () {
     return view('test_repair_admin/test_categorie_repair_index');
 });
@@ -40,6 +42,10 @@ Route::get('/demo_categorie_repair_create', function () {
 });
 Route::get('/demo_categorie_repair_view', function () {
     return view('test_repair_admin/test_categorie_repair_view');
+});
+// Test ดูช่วงเวลาการแจ้งซ่อมบำรุง
+Route::get('/demo_repair_timeline', function () {
+    return view('test_repair_admin/test_repair_timeline');
 });
 
 // VIICHECK.COM
