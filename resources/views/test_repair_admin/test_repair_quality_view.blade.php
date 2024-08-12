@@ -40,7 +40,7 @@
                                         <div class="d-flex align-items-center" style="margin-left: 10px;">
                                             <div style="font-family: 'Kanit', sans-serif;">
                                                 <h4 class="m-0">
-                                                    <b>{ name_officer } </b>
+                                                    <b>{ User } </b>
                                                 </h4>
                                                 <p class="m-0">{ date }</p>
                                             </div>
@@ -114,7 +114,7 @@
                                         <div class="d-flex align-items-center" style="margin-left: 10px;">
                                             <div style="font-family: 'Kanit', sans-serif;">
                                                 <h4 class="m-0">
-                                                    <b>{ name_officer } </b>
+                                                    <b>{ User } </b>
                                                 </h4>
                                                 <p class="m-0">{ date }</p>
                                             </div>
