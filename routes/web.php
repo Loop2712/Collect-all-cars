@@ -725,7 +725,12 @@ Route::get('/demo/maintain_show', function () {
 Route::get('/demo/maintain_rating', function () {
     return view('demo/maintain_rating');
 });
-
+Route::get('/demo/set_group_line', function () {
+    return view('demo/set_group_line');
+});
+Route::get('/demo/register_organization', function () {
+    return view('demo/register_organization');
+});
 
 // Route::resource('sos_partners', 'Sos_partnersController');
 Route::resource('sos_partner_areas', 'Sos_partner_areasController');
