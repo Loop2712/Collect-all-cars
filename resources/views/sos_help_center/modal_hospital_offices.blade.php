@@ -493,7 +493,7 @@
     let html = `
       <div class="text-center p-3">
         <center>
-        <img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/7.png" width="150">
+        <img src="{{ url('/img/stickerline/PNG/7.png') }}"  width="150">
         </center>
         <br>
         <h5 class="text-danger">ยืนยันการเลือก</h5>
