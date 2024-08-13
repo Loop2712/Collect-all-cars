@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "sos_partner_id",
+            "type": "string"
+        },
+        {
+            "name": "creator",
+            "type": "string"
+        },
+        {
+            "name": "name_area",
+            "type": "string"
+        },
+        {
+            "name": "group_line_id",
+            "type": "string"
+        },
+        {
+            "name": "sos_area",
+            "type": "longtext"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        }
+    ]
+}

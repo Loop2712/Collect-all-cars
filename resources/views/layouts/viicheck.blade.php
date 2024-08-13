@@ -283,6 +283,9 @@
 </head>
 
 <body class="bg-white">
+  <a id="a_up_short" style="margin-right:10px;margin-bottom: 15px;" href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
 
   <!-- ============== COOKIE ============== -->
 <!-- Cookie Consent by https://www.cookiewow.com -->
@@ -1286,9 +1289,6 @@
 
 
   <div id="preloader"></div>
-  <a id="a_up_short" style="margin-right:10px;margin-bottom: 15px;" href="#" class="back-to-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
-  </a>
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('Medilab/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

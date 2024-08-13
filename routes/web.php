@@ -16,6 +16,59 @@ use App\Http\Controllers\QrCodeGeneratorController;
 //DEMO
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
+// Test รับเรื่องแจ้งซ่อม
+Route::get('/demo_repair_admin_index', function () {
+    return view('test_repair_admin/test_repair_admin_index');
+});
+Route::get('/demo_repair_admin_view', function () {
+    return view('test_repair_admin/test_repair_admin_view');
+});
+// Test การจัดการพื้นที่ดูแล
+Route::get('/demo_management_area', function () {
+    return view('test_repair_admin/test_management_area');
+});
+Route::get('/demo_management_view', function () {
+    return view('test_repair_admin/test_management_view');
+});
+Route::get('/demo_management_view', function () {
+    return view('test_repair_admin/test_management_view');
+});
+// Test การจัดการหมวดหมู่และกลุ่มไลน์
+Route::get('/demo_categorie_repair_index', function () {
+    return view('test_repair_admin/test_categorie_repair_index');
+});
+Route::get('/demo_categorie_repair_create', function () {
+    return view('test_repair_admin/test_categorie_repair_create');
+});
+Route::get('/demo_categorie_repair_view', function () {
+    return view('test_repair_admin/test_categorie_repair_view');
+});
+// Test ดูช่วงเวลาการแจ้งซ่อมบำรุง
+Route::get('/demo_repair_timeline', function () {
+    return view('test_repair_admin/test_repair_timeline');
+});
+// Test ตรวจสอบคุณภาพการซ่อม
+Route::get('/demo_repair_quality_index', function () {
+    return view('test_repair_admin/test_repair_quality_index');
+});
+Route::get('/demo_repair_quality_view', function () {
+    return view('test_repair_admin/test_repair_quality_view');
+});
+// Test การจัดการวัสดุ / อุปกรณ์ที่ใช้ในการซ่อม
+Route::get('/demo_repair_mat_index', function () {
+    return view('test_repair_admin/test_repair_mat_index');
+});
+Route::get('/demo_repair_mat_view', function () {
+    return view('test_repair_admin/test_repair_mat_view');
+});
+// Test การซ่อมบำรุง
+Route::get('/demo_repair_maintenance_index', function () {
+    return view('test_repair_admin/test_repair_maintenance_index');
+});
+Route::get('/demo_repair_maintenance_view', function () {
+    return view('test_repair_admin/test_repair_maintenance_view');
+});
+
 // VIICHECK.COM
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
@@ -184,6 +237,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('nationalitie_group_lines', 'Nationalitie_group_linesController');
 	Route::resource('nationalitie_officers', 'Nationalitie_officersController');
 	Route::get('admin/privilege', 'PrivilegeController@privilege_admin');
+
+	// NEW Partner (SOS Partner)
+	Route::resource('sos_partners', 'Sos_partnersController');
 });
 // END ADMIN VIICHECK
 
@@ -372,6 +428,7 @@ Route::middleware(['auth'])->group(function () {
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
 	Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
+	Route::get('officers/sum_km_for_officer/{sos_id}', 'Sos_help_centerController@sum_km_for_officer');
 
 	// sos nationalitie
 	Route::get('nationalitie_sos/login_register_officer/{group_line_id}', 'Nationalitie_officersController@login_register_officer');
@@ -653,3 +710,28 @@ Route::resource('maintain_sub_categorys', 'Maintain_sub_categorysController');
 Route::resource('maintain_device_codes', 'Maintain_device_codesController');
 Route::resource('maintain_materials', 'Maintain_materialsController');
 Route::resource('maintain_use_materials', 'Maintain_use_materialsController');
+
+
+//demo
+Route::get('/demo/maintain_index', function () {
+    return view('demo/maintain_index');
+});
+Route::get('/demo/maintain_form', function () {
+    return view('demo/maintain_form');
+});
+Route::get('/demo/maintain_show', function () {
+    return view('demo/maintain_show');
+});
+Route::get('/demo/maintain_rating', function () {
+    return view('demo/maintain_rating');
+});
+Route::get('/demo/set_group_line', function () {
+    return view('demo/set_group_line');
+});
+Route::get('/demo/register_organization', function () {
+    return view('demo/register_organization');
+});
+
+// Route::resource('sos_partners', 'Sos_partnersController');
+Route::resource('sos_partner_areas', 'Sos_partner_areasController');
+Route::resource('sos_partner_officers', 'Sos_partner_officersController');

@@ -1,0 +1,40 @@
+{
+    "fields": [
+        {
+            "name": "full_name",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "department",
+            "type": "string"
+        },
+        {
+            "name": "position",
+            "type": "string"
+        },
+        {
+            "name": "sos_partner_id",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "role",
+            "type": "string"
+        },
+        {
+            "name": "active",
+            "type": "string"
+        },
+        {
+            "name": "status_officer",
+            "type": "string"
+        }
+    ]
+}

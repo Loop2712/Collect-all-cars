@@ -2198,7 +2198,7 @@ class LineMessagingAPI extends Model
                     $time = $time_zone_explode[1] ;
 
                     if (!empty($data_user->photo)) {
-                        $photo_profile = "https://www.viicheck.com/storage/".$data_user->photo ;
+                        $photo_profile = "https://www.viicheck.com/storage"."/".$data_user->photo ;
                     }else{
                         $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
                     }

@@ -87,9 +87,9 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
+        // $group_line = Group_line::where('owner', null)->where('condo_id', null)->get();
 
-        return view('partner.create', compact('group_line'));
+        return view('partner.create_partner_sos');
     }
 
     /**
