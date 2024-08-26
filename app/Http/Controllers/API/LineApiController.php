@@ -213,6 +213,8 @@ class LineApiController extends Controller
             $line->new_flex_2024(null, $event, "promotion_partner");
         }else if($event["message"]["text"] == "fix_flex_line"){
             $line->new_flex_2024(null, $event, "fix_flex_line");
+        }else if($event["message"]["text"] == "bind_groupLine"){
+            $line->new_flex_2024(null, $event, "bind_groupLine");
         }else {
 
             $data_users = DB::table('users')

@@ -2278,7 +2278,7 @@ class LineMessagingAPI extends Model
 
 
                 break;
-            case 'fix_process':
+            case 'fix_process': //มาจาก postback ของ fix_flex_line
 
                 $data_fix_process = [
                     "sub_category" => "คอมพิวเตอร์",
@@ -2302,6 +2302,12 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("https://www.viicheck.com/img/stickerline/PNG/tab.png", $photo_profile, $string_json);
 
                 break;
+            case 'bind_groupLine':
+
+                    $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_groupLine.json');
+                    $string_json = file_get_contents($template_path);
+
+                    break;
             default:
                 //SAVE LOG
                 $data_not_found_flex = [
