@@ -2279,6 +2279,12 @@ class LineMessagingAPI extends Model
 
                 break;
             case 'fix_process':
+                //SAVE LOG
+                $data_1234 = [
+                    "title" => "เข้ามาถึง fix_process",
+                    "content" => "ไม่พบชื่อตามเงื่อนไข",
+                ];
+                MyLog::create($data_1234);
                 // $data_user = User::where('provider_id',$event["replyToken"])->first();
                 $data_fix = [
                     "sub_category" => "คอมพิวเตอร์",
