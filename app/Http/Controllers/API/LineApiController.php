@@ -145,6 +145,10 @@ class LineApiController extends Controller
                 // sos_1669?SOS_ID/refuse/_UNIT_ID_/_OFFICER_ID_
                 $this->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
                 break;
+            // case by Junior Dear ติดต่อสอบถามได้ที่ Dear
+            case "fix_process" :
+                $line->new_flex_2024(null, $event, "fix_process");
+                break;
         }
 
     }
@@ -209,8 +213,6 @@ class LineApiController extends Controller
             $line->new_flex_2024(null, $event, "promotion_partner");
         }else if($event["message"]["text"] == "fix_flex_line"){
             $line->new_flex_2024(null, $event, "fix_flex_line");
-        }else if($event["message"]["text"] == "fix_process"){
-            $line->new_flex_2024(null, $event, "fix_process");
         }else {
 
             $data_users = DB::table('users')
