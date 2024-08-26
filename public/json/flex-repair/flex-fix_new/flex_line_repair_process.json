@@ -153,7 +153,8 @@
                   "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "size": "full"
                 }
               ],
               "cornerRadius": "50px",
@@ -172,7 +173,8 @@
                   "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
-                  "aspectMode": "cover"
+                  "aspectMode": "cover",
+                  "size": "full"
                 }
               ],
               "cornerRadius": "50px",
