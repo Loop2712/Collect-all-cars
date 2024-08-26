@@ -2297,7 +2297,7 @@ class LineMessagingAPI extends Model
                 $string_json = str_replace("D/M/Y", $data_fix_process['D/M/Y'], $string_json);
                 $string_json = str_replace("H:I:S", $data_fix_process['H:I:S'], $string_json);
                 $string_json = str_replace("name_informer", $data_fix_process['name_informer'], $string_json);
-                $string_json = str_replace("phone_informer", $data_fix_process['phone_informer'], $string_json);
+                $string_json = str_replace("name_officer", $data_fix_process['name_officer'], $string_json);
 
                 $string_json = str_replace("https://www.viicheck.com/img/stickerline/PNG/tab.png", $photo_profile, $string_json);
 
