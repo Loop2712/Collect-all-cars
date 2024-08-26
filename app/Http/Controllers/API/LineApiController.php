@@ -207,6 +207,8 @@ class LineApiController extends Controller
             $line->new_flex_2024(null, $event, "deme_sos_api");
         }else if($event["message"]["text"] == "promotion_partner"){
             $line->new_flex_2024(null, $event, "promotion_partner");
+        }else if($event["message"]["text"] == "fix_flex_line"){
+            $line->new_flex_2024(null, $event, "fix_flex_line");
         }else {
 
             $data_users = DB::table('users')
