@@ -25,8 +25,9 @@
         </div>
     </div>
 
-    {{-- item #1 --}}
+
     <div class="container-fluid">
+        {{-- item #1 --}}
         <div class="row mx-2 py-2 radius-10 mb-3" style="background-color: #71c2ec;">
             <div class="col-12 col-md-12 ">
                 <div class="row">
@@ -45,7 +46,7 @@
                 </div>
             </div>
         </div>
-
+        {{-- item #2 --}}
         <div class="row mx-2 py-2 radius-10 mb-3" style="background-color: #71c2ec;">
             <div class="col-12 col-md-12 ">
                 <div class="row">
@@ -64,7 +65,7 @@
                 </div>
             </div>
         </div>
-
+        {{-- item #3 --}}
         <div class="row mx-2 py-2 radius-10 mb-3" style="background-color: #71c2ec;">
             <div class="col-12 col-md-12 ">
                 <div class="row">

@@ -94,7 +94,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-center">
+                        <td style="padding-left: 15px;">
                             <span style="font-size: 18px;">AC001 หลอดไฟ</span>
                         </td>
                         <td class="text-center">
@@ -105,7 +105,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td style="padding-left: 15px;">
                             <span style="font-size: 18px;">AC002 สายไฟ</span>
                         </td>
                         <td class="text-center">
@@ -116,7 +116,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td style="padding-left: 15px;">
                             <span style="font-size: 18px;">AC003 กาว</span>
                         </td>
                         <td class="text-center">

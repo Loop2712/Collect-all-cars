@@ -115,20 +115,6 @@
     <!-- carousel -->
   <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
 
-    <!-- Modal Structure -->
-    {{-- <div class="modal fade" id="imageModal_in_sidebar" tabindex="-2" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img id="modal_main_image" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100">
-            </div>
-        </div>
-        </div>
-    </div> --}}
-
     <div class="modal fade h-100 " id="imageModal_in_sidebar" tabindex="-2" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
@@ -142,6 +128,7 @@
                     <button type="button" class="btn btn-secondary" id="prevImage" style="width: 120px;">
                         <i class="fa-solid fa-arrow-left"></i>
                     </button>
+                    <span id="imageCounter" class="mx-3 " style="font-weight: bold; font-size:16px;"></span>
                     <button type="button" class="btn btn-secondary" id="nextImage" style="width: 120px;">
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
@@ -341,6 +328,7 @@
                                 <b style="font-size: 16px; color:#000000;">ค่าใช้จ่ายในการซ่อม :
                                     <span style="font-weight: normal; color:#6c757d;">................</span>
                                 </b>
+                                <button id="btn_ModalReceipt" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#imageModal1">Modal Open</button>
                             </div>
 
                             <div class=" row mt-4">
@@ -350,50 +338,50 @@
                                             <div class="owl-carousel myCarousel owl-1 ">
 
                                                 <div class="gallery-item item ">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal1" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
                                                 <div class="gallery-item item">
-                                                    <a data-bs-toggle="modal" data-bs-target="#imageModal2" class="galelry-lightbox">
-                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover">
+                                                    <a class="galelry-lightbox">
+                                                        <img class="receipt_main_image" style="object-fit: cover; height: 100px;" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
                                                     </a>
                                                 </div>
 
@@ -402,20 +390,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                           <!-- Modal Structure -->
-                            {{-- <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100">
-                                    </div>
-                                </div>
-                                </div>
-                            </div> --}}
 
                             <div class="modal fade h-100 " id="imageModal1" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -428,10 +402,11 @@
                                             <img id="modal_main_image_receipt" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100 h-100 px-4 ">
                                         </div>
 
-                                        <div class="modal-footer d-flex justify-content-between">
+                                        <div class="modal-footer d-flex justify-content-center">
                                             <button type="button" class="btn btn-secondary" id="prevImageReceipt" style="width: 120px;">
                                                 <i class="fa-solid fa-arrow-left"></i>
                                             </button>
+                                            <span id="imageCounterReceipt" class="mx-3 " style="font-weight: bold; font-size:16px;"></span>
                                             <button type="button" class="btn btn-secondary" id="nextImageReceipt" style="width: 120px;">
                                                 <i class="fa-solid fa-arrow-right"></i>
                                             </button>
@@ -439,7 +414,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="mt-4">
                                 <b style="font-size: 16px; color:#000000; display: block; margin-bottom: 1rem;">การประเมินคุณภาพการซ่อม </b>
@@ -605,6 +579,12 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        updateImageCounterInSB(); // ตั้งค่าเลขภาพเริ่มต้นตอนโหลดหน้า ของ Sidebar Thumbnails
+        updateImageCounterInReceipt(); // ตั้งค่าเลขภาพเริ่มต้นตอนโหลดหน้า ของ ค่าใช้จ่ายในการซ่อม
+    });
+
     $(document).ready(function(){
         $(".myCarousel").owlCarousel({
             autoplay: false,
@@ -614,25 +594,14 @@
         });
     });
 
-    // function changeImage(element) {
-    //     // Change the main image source to the clicked thumbnail source
-    //     var mainImage = document.getElementById('mainImage');
-    //     mainImage.src = element.src;
-
-    //     document.querySelector('#modal_main_image').src = element.src;
-
-    //     // Remove 'active' class from all thumbnails
-    //     var thumbnails = document.querySelectorAll('.thumbnail');
-    //     thumbnails.forEach(function(thumbnail) {
-    //         thumbnail.classList.remove('active');
-    //     });
-
-    //     // Add 'active' class to the clicked thumbnail
-    //     element.classList.add('active');
-    // }
-
     let currentImageIndex = 0;
     const thumbnails = document.querySelectorAll('.thumbnail');
+    const totalImages = thumbnails.length; // จำนวนทั้งหมดของภาพ
+    const imageCounter = document.getElementById('imageCounter'); // ตัวแสดงเลขภาพ
+
+    function updateImageCounterInSB() {
+        imageCounter.textContent = `${currentImageIndex + 1}/${totalImages}`;
+    }
 
     function changeImage(element) {
         var mainImage = document.getElementById('mainImage');
@@ -650,6 +619,8 @@
 
         // Update current image index
         currentImageIndex = Array.from(thumbnails).indexOf(element);
+
+        updateImageCounterInSB();
     }
 
     function showImageByIndex(index) {
@@ -672,12 +643,18 @@
 
     let currentImageIndexReceipt = 0;
     const receipt_thumbnails = document.querySelectorAll('.receipt_main_image');
+    const totalImagesInReceipt = receipt_thumbnails.length; // จำนวนทั้งหมดของภาพ
+    const imageCounterReceipt = document.getElementById('imageCounterReceipt'); // ตัวแสดงเลขภาพ
+
+    function updateImageCounterInReceipt() {
+        imageCounterReceipt.textContent = `${currentImageIndexReceipt + 1}/${totalImagesInReceipt}`;
+    }
 
     function changeImage_receipt(element) {
         var main_image_receipt = document.getElementById('modal_main_image_receipt');
         main_image_receipt.src = element.src;
 
-        document.querySelector('#modal_main_image').src = element.src;
+        document.querySelector('#modal_main_image_receipt').src = element.src;
 
         // Remove 'active' class from all thumbnails
         receipt_thumbnails.forEach(function(receipt_thumbnail) {
@@ -689,6 +666,10 @@
 
         // Update current image index
         currentImageIndexReceipt = Array.from(receipt_thumbnails).indexOf(element);
+
+        updateImageCounterInReceipt();
+
+        document.querySelector('#btn_ModalReceipt').click();
     }
 
     function showImageByIndex_receipt(indexReceipt) {

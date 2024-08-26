@@ -1,0 +1,94 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/fix/flex_bind_groupLine.png",
+              "size": "full",
+              "aspectRatio": "8722:10402",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "GROUP",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#244250",
+                  "maxLines": 2,
+                  "wrap": true,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "50%",
+              "offsetTop": "16.9%",
+              "offsetStart": "20%",
+              "alignItems": "flex-start",
+              "height": "13%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "82%",
+              "offsetTop": "58.2%",
+              "offsetStart": "7%",
+              "alignItems": "center",
+              "height": "11%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "mailto:contact.viicheck@gmail.com"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "82%",
+              "offsetTop": "71%",
+              "offsetStart": "7%",
+              "alignItems": "center",
+              "height": "11%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "tel:020277856"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "82%",
+              "offsetTop": "84.8%",
+              "offsetStart": "7%",
+              "alignItems": "center",
+              "height": "11%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "https://www.viicheck.com"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+    }
+}
