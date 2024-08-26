@@ -208,9 +208,10 @@
               "alignItems": "center",
               "height": "9%",
               "action": {
-                "type": "message",
-                "label": "รับเรื่อง",
-                "text": "รับเรื่อง"
+                "type": "postback",
+                "label": "ดำเนินการซ่อม",
+                "data": "fix_process?name_informer",
+                "displayText": "ดำเนินการซ่อม"
               }
             },
             {
