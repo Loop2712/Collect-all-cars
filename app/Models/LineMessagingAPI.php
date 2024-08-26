@@ -2279,7 +2279,7 @@ class LineMessagingAPI extends Model
 
                 break;
             case 'fix_process_flex_line':
-                $data_user = User::where('provider_id',$event["replyToken"])->first();
+                // $data_user = User::where('provider_id',$event["replyToken"])->first();
                 $data_fix = [
                     "sub_category" => "คอมพิวเตอร์",
                     "D/M/Y" => "29/9/2022",
@@ -2288,11 +2288,13 @@ class LineMessagingAPI extends Model
                     "name_officer" => "Theesak",
                 ];
 
-                if (!empty($data_user->photo)) {
-                    $photo_profile = "https://www.viicheck.com/storage"."/".$data_user->photo ;
-                }else{
-                    $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
-                }
+                // if (!empty($data_user->photo)) {
+                //     $photo_profile = "https://www.viicheck.com/storage"."/".$data_user->photo ;
+                // }else{
+                //     $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                // }
+
+                $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
 
                 $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_repair_process.json');
                 $string_json = file_get_contents($template_path);

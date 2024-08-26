@@ -147,7 +147,7 @@ class LineApiController extends Controller
                 break;
             // case by Junior Dear ติดต่อสอบถามได้ที่ Dear
             case "fix_process" :
-                $line->new_flex_2024($data_postback, $event, "fix_process_flex_line");
+                $line->new_flex_2024($data_postback_explode[1], $event, "fix_process_flex_line");
                 break;
         }
 
