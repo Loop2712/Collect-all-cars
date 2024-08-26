@@ -2263,7 +2263,7 @@ class LineMessagingAPI extends Model
                     "phone_informer" => "081-234-5678",
                 ];
 
-                $template_path = storage_path('../public/json/flex_promotion_partner/flex_promotion_partner.json');
+                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_repair.json');
                 $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("name_category", $data_fix['name_category'], $string_json);
