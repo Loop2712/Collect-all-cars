@@ -2278,6 +2278,34 @@ class LineMessagingAPI extends Model
 
 
                 break;
+            case 'fix_process_flex_line':
+                $data_user = User::where('provider_id',$event["replyToken"])->first();
+                $data_fix = [
+                    "sub_category" => "คอมพิวเตอร์",
+                    "D/M/Y" => "29/9/2022",
+                    "H:I:S" => "02:30:57",
+                    "name_informer" => "thanakorn tungkasopa",
+                    "name_officer" => "Theesak",
+                ];
+
+                if (!empty($data_user->photo)) {
+                    $photo_profile = "https://www.viicheck.com/storage"."/".$data_user->photo ;
+                }else{
+                    $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+                }
+
+                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_repair_process.json');
+                $string_json = file_get_contents($template_path);
+
+                $string_json = str_replace("sub_category", $data_fix['sub_category'], $string_json);
+                $string_json = str_replace("D/M/Y", $data_fix['D/M/Y'], $string_json);
+                $string_json = str_replace("H:I:S", $data_fix['H:I:S'], $string_json);
+                $string_json = str_replace("name_informer", $data_fix['name_informer'], $string_json);
+                $string_json = str_replace("phone_informer", $data_fix['phone_informer'], $string_json);
+
+                $string_json = str_replace("https://www.viicheck.com/img/stickerline/PNG/tab.png", $photo_profile, $string_json);
+
+                break;
             default:
                 //SAVE LOG
                 $data_not_found_flex = [

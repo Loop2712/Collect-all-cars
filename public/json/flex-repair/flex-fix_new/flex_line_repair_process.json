@@ -88,7 +88,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "Name",
+                  "text": "name_informer",
                   "weight": "bold",
                   "size": "md",
                   "color": "#ffffff",
@@ -111,7 +111,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "Name_officer",
+                  "text": "name_officer",
                   "weight": "bold",
                   "size": "md",
                   "color": "#ffffff",
@@ -150,7 +150,7 @@
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                  "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
                   "aspectMode": "cover"
@@ -169,7 +169,7 @@
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                  "url": "https://www.viicheck.com/img/stickerline/PNG/tab.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
                   "aspectMode": "cover"
