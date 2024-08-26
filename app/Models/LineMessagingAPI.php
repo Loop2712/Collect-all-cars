@@ -2304,8 +2304,11 @@ class LineMessagingAPI extends Model
                 break;
             case 'bind_groupLine':
 
+
                     $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_groupLine.json');
                     $string_json = file_get_contents($template_path);
+
+                    $string_json = str_replace("GROUP", "ชื่อกลุ่มไลน์", $string_json);
 
                     break;
             default:
