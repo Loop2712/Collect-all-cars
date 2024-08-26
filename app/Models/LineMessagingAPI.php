@@ -2278,7 +2278,7 @@ class LineMessagingAPI extends Model
 
 
                 break;
-            case 'fix_process_flex_line':
+            case 'fix_process':
                 // $data_user = User::where('provider_id',$event["replyToken"])->first();
                 $data_fix = [
                     "sub_category" => "คอมพิวเตอร์",
