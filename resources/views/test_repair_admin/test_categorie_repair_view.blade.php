@@ -198,7 +198,7 @@
     <div class="container-fluid">
         <div class="card radius-10 p-4">
             <div class="row mb-4">
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-4">
                     <span id="changeCategorie" class="h2 d-block" style="font-weight: bold; ">หมวดหมู่ :
                         <b>อุปกรณ์สำนักงาน</b>
                         <i class="fa-solid fa-pen-to-square cursor-pointer"
@@ -210,32 +210,41 @@
                             style="width:35px; height: 35px; font-size:25px;" data-bs-toggle="modal" data-bs-target="#modalChangeGroupLine"></i>
                     </span>
                 </div>
-                <div class="col-12 col-md-7 ">
+                <div class="col-12 col-md-8 ">
                     <div class="header-colors-indigators">
                         <div class="row col-12 g-3">
-                            <div class="col-4 d-flex justify-content-evenly">
-                                <div class="indigator" id="color_item_1"></div>
-                                <div class="indigator" id="color_item_2"></div>
-                                <div class="indigator" id="color_item_3"></div>
-                                <div class="indigator" id="color_item_4"></div>
+                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-evenly align-items-center d-non" style="border-right: #6c757d solid 2px;">
+                                <input id="colorCodeCategorie" class="form-control radius-15 d-none" type="text" value="">
+                                <div class="header-colors-indigators">
+                                    <div class="indigator" id="colorExample"></div>
+                                </div>
+                                <label for="" style="font-weight: bold; font-size: 16px; ">สีที่เลือกใช้</label>
+                            </div>
+                            <div class="col-3 d-flex justify-content-evenly">
+                                <div class="indigator" id="colorItem_1"></div>
+                                <div class="indigator" id="colorItem_2"></div>
+                                <div class="indigator" id="colorItem_3"></div>
+                                <div class="indigator" id="colorItem_4"></div>
                             </div>
                             <div class="col-1 d-flex justify-content-center align-items-center h-100 ">
                                 <i class="fas fa-sync-alt d-flex justify-content-center align-items-center bg-white cursor-pointer"
-                                    style="width:45px; height: 45px; font-size:35px; " onclick="random_color();"></i>
+                                style="width:45px; height: 45px; font-size:35px;" onclick="random_colorCategories();"></i>
                             </div>
-                            <div class="col-4 d-flex justify-content-center align-items-center">
+                            <div class="col-3 d-flex justify-content-center align-items-center">
                                 <div class="row">
                                     <div class="col-3">
-                                        <div class="indigator" id="color_item_Ex"></div>
+                                        <div class="indigator" id="color_item_Code_Ex"></div>
                                     </div>
                                     <div class="col-9">
                                         <input style="margin-top:5px;" type="text" class="form-control w-100"
-                                            id="code_color" name="code_color" placeholder="color code"
-                                            oninput="add_color_item_Ex();">
+                                            id="code_colorCategorie" name="code_colorCategorie" placeholder="color code" oninput="add_color_item_Code_Categorie();">
                                     </div>
+                                    {{-- <div id="" class="col-12 mt-2 " style="height: 20px;">
+                                        <span class="text-danger" id="textAlertInvalidCC"></span>
+                                    </div> --}}
                                 </div>
                             </div>
-                            <div class="col-3 d-flex justify-content-end align-items-center">
+                            <div class="col-2 d-flex justify-content-end align-items-center">
                                 <i class="fa-solid fa-circle-info d-flex justify-content-center align-items-center cursor-pointer"
                                     style="width:45px; height: 45px; font-size:35px; " onclick=""></i>
                             </div>
@@ -358,58 +367,200 @@
 
 
     <!-- Add this script to your HTML file -->
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // Get the cancel button in modalChangeGroupLineConfirm
-        const Cancel_modalChangeGroupLineConfirm = document.querySelector('#Cancel_modalChangeGroupLineConfirm');
-        const btnCancelLinkGroupLine = document.querySelector('#btnCancelLinkGroupLine');
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            random_colorCategories(); //สุ่มสี ในหมวดเลือกสีแสดงในปฎิทิน
 
-        Cancel_modalChangeGroupLineConfirm.addEventListener('click', () => {
-            // Hide modalChangeGroupLineConfirm
-            close_modalChangeGroupLineConfirm.click();
+            // Get the cancel button in modalChangeGroupLineConfirm
+            const Cancel_modalChangeGroupLineConfirm = document.querySelector('#Cancel_modalChangeGroupLineConfirm');
+            const btnCancelLinkGroupLine = document.querySelector('#btnCancelLinkGroupLine');
 
-            // Show modalChangeGroupLine
-            document.getElementById('iconModalChangeGroupLine').click();
+            Cancel_modalChangeGroupLineConfirm.addEventListener('click', () => {
+                // Hide modalChangeGroupLineConfirm
+                close_modalChangeGroupLineConfirm.click();
+
+                // Show modalChangeGroupLine
+                document.getElementById('iconModalChangeGroupLine').click();
+            });
+
+            btnCancelLinkGroupLine.addEventListener('click', () => {
+                // Hide modalChangeGroupLineConfirm
+                close_modalChangeGroupLine.click();
+
+                // Show modalChangeGroupLine
+                // const modalChangeGroupLine = new bootstrap.Modal(document.getElementById('modalChangeGroupLine'));
+                // modalChangeGroupLine.show();
+            });
+
         });
 
-        btnCancelLinkGroupLine.addEventListener('click', () => {
-            // Hide modalChangeGroupLineConfirm
-            close_modalChangeGroupLine.click();
+        const changeCategorie = () => {
 
-            // Show modalChangeGroupLine
-            // const modalChangeGroupLine = new bootstrap.Modal(document.getElementById('modalChangeGroupLine'));
-            // modalChangeGroupLine.show();
-        });
+            let changeCategorieDiv = document.querySelector('#changeCategorie');
+                changeCategorieDiv.innerHTML = "";
+            let html = `
+                        <div class="row px-2 ">หมวดหมู่ :
+                            <div class="col-12 col-md-6">
+                                <input class="form-control radius-10" list="" name="" value=""
+                                    placeholder="แก้ไขหัวข้อของหมวดหมู่">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button class="btn btn-success w-100 radius-10" onclick="confirmCategorie()">ยืนยัน</button>
+                            </div>
+                        </div>`;
 
-    });
+                    changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+        }
 
-    const changeCategorie = () => {
+        const confirmCategorie = () => {
+            let changeCategorieDiv = document.querySelector('#changeCategorie');
+                changeCategorieDiv.innerHTML = "";
+            let html = `หมวดหมู่ :
+                        <b>อุปกรณ์สำนักงาน</b>
+                        <i class="fa-solid fa-pen-to-square cursor-pointer" style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>`;
 
-        let changeCategorieDiv = document.querySelector('#changeCategorie');
-            changeCategorieDiv.innerHTML = "";
-        let html = `
-                    <div class="row px-2 ">หมวดหมู่ :
-                        <div class="col-12 col-md-6">
-                            <input class="form-control radius-10" list="" name="" value=""
-                                placeholder="แก้ไขหัวข้อของหมวดหมู่">
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <button class="btn btn-success w-100 radius-10" onclick="confirmCategorie()">ยืนยัน</button>
-                        </div>
-                    </div>`;
+                    changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+        }
+    </script>
 
-                changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
-    }
+    <script>
+        function random_colorCategories(){
+            //ลบสีที่เลือก
+            let indigator = document.querySelectorAll('.indigator');
+            indigator.forEach(function(items) {
+                items.classList.remove('active');
+            });
+            let colorCodeCategorie = document.querySelector('#colorCodeCategorie');
+                colorCodeCategorie.value = "";
 
-    const confirmCategorie = () => {
-        let changeCategorieDiv = document.querySelector('#changeCategorie');
-            changeCategorieDiv.innerHTML = "";
-        let html = `หมวดหมู่ :
-                    <b>อุปกรณ์สำนักงาน</b>
-                    <i class="fa-solid fa-pen-to-square cursor-pointer" style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>`;
+            let letters = '0123456789ABCDEF'.split('');
+            let color = '#';
 
-                changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
-    }
-  </script>
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            // console.log(color);
+            add_color_to_itemCategories(color)
+        }
+
+        function add_color_to_itemCategories(color){
+            let text_color = color.split('');
+
+            let color_1 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "FF" + "CC" ;
+            let color_2 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "CC" + "CC" ;
+            let color_3 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "99" + "CC" ;
+            let color_4 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "77" + "CC" ;
+            let color_5 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "55" + "CC" ;
+            // let color_6 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "33" ;
+            // let color_7 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "11" ;
+            // let color_8 = text_color[0] + text_color[1] + text_color[2] + text_color[3] + text_color[4] + "00" ;
+
+            // 1
+            let color_item_1 = document.querySelector('#colorItem_1');
+                let color_item_1_style = document.createAttribute("style");
+                    color_item_1_style.value = "background-color:" + color_1 + " ;";
+                    color_item_1.setAttributeNode(color_item_1_style);
+                let click_color_item_1 = document.createAttribute("onclick");
+                    click_color_item_1.value = `selectColorCategories('${color_1}', '${color_item_1.id}')`;
+                    color_item_1.setAttributeNode(click_color_item_1);
+
+            // 2
+            let color_item_2 = document.querySelector('#colorItem_2');
+                let color_item_2_style = document.createAttribute("style");
+                    color_item_2_style.value = "background-color:" + color_2 + " ;";
+                    color_item_2.setAttributeNode(color_item_2_style);
+                let click_color_item_2 = document.createAttribute("onclick");
+                    click_color_item_2.value = `selectColorCategories('${color_2}', '${color_item_2.id}')`;
+                    color_item_2.setAttributeNode(click_color_item_2);
+
+            // 3
+            let color_item_3 = document.querySelector('#colorItem_3');
+                let color_item_3_style = document.createAttribute("style");
+                    color_item_3_style.value = "background-color:" + color_3 + " ;";
+                    color_item_3.setAttributeNode(color_item_3_style);
+                let click_color_item_3 = document.createAttribute("onclick");
+                    click_color_item_3.value = `selectColorCategories('${color_3}', '${color_item_3.id}')`;
+                    color_item_3.setAttributeNode(click_color_item_3);
+
+            // 4
+            let color_item_4 = document.querySelector('#colorItem_4');
+                let color_item_4_style = document.createAttribute("style");
+                    color_item_4_style.value = "background-color:" + color_4 + " ;";
+                    color_item_4.setAttributeNode(color_item_4_style);
+                let click_color_item_4 = document.createAttribute("onclick");
+                    click_color_item_4.value = `selectColorCategories('${color_4}', '${color_item_4.id}')`;
+                    color_item_4.setAttributeNode(click_color_item_4);
+
+        }
+
+        function add_color_item_Code_Categorie(){
+            let code_colorCategorie = document.querySelector('#code_colorCategorie').value ;
+            if (code_colorCategorie.length === 5 || code_colorCategorie.length === 7) {
+                code_colorCategorie += "cc";// เพิ่ม "cc" ต่อท้ายโค้ดสี
+            }
+
+            let color_item_Ex_menu = document.querySelector('#color_item_Code_Ex');
+                color_item_Ex_menu.style = "";
+                color_item_Ex_menu.onclick = "";
+
+            // ตรวจสอบว่ามีคลาส 'active' หรือไม่
+            let colorCodeCategorie = document.querySelector('#colorCodeCategorie');
+            if (color_item_Ex_menu.classList.contains('active')) {
+                color_item_Ex_menu.classList.remove('active');
+                colorCodeCategorie.value = "";
+            }
+
+            let color_item_Ex_style_menu = document.createAttribute("style");
+                color_item_Ex_style_menu.value = "background-color:" + code_colorCategorie + " ;";
+                color_item_Ex_menu.setAttributeNode(color_item_Ex_style_menu);
+            let click_color_item_Ex_menu = document.createAttribute("onclick");
+                click_color_item_Ex_menu.value = `selectColorCategories('${code_colorCategorie}', '${color_item_Ex_menu.id}')`;
+                color_item_Ex_menu.setAttributeNode(click_color_item_Ex_menu);
+        }
+
+        function selectColorCategories(color,element){
+            let indigator = document.querySelectorAll('.indigator');
+            let selectedElement = document.querySelector('#'+element);
+            let colorCodeCategorie = document.querySelector('#colorCodeCategorie');
+
+            // ตรวจสอบว่าเป็นโค้ดสีที่ถูกต้องหรือไม่
+            if (!isValidColorCode(color)) {
+                let alertText = document.querySelector('#textAlertInvalidCC');
+
+                // แสดง div โดยการลบคลาส d-none
+                alertText.innerHTML = "โค้ดสีไม่ถูกต้อง กรุณาป้อนโค้ดสีที่ถูกต้องในรูปแบบ #RRGGBB หรือ #RRGGBBAA";
+
+                // หลังจาก 3 วินาที ให้ค่อยๆ fade-out
+                setTimeout(() => {
+                    alertText.innerHTML = "";
+                }, 5000);
+                return;
+            }else{
+                colorCodeCategorie.value = color;
+
+                let colorExample = document.querySelector('#colorExample');
+                let colorExample_style = document.createAttribute("style");
+                    colorExample_style.value = "background-color:" + color + " ;";
+                    colorExample.setAttributeNode(colorExample_style);
+            }
+
+            // console.log("color "+color);
+            // console.log("element "+element);
+
+            // Remove 'active' class from all thumbnails
+            indigator.forEach(function(items) {
+                items.classList.remove('active');
+            });
+
+            selectedElement.classList.add('active');
+        }
+
+        function isValidColorCode(code) {
+            // ตรวจสอบว่าโค้ดสีอยู่ในรูปแบบที่ถูกต้อง
+            const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/;
+            return regex.test(code);
+        }
+
+    </script>
 
 @endsection

@@ -41,7 +41,7 @@
                     </datalist>
                 </div>
 
-                <div class="d-flex col-12 col-md-6 col-lg-6 mt-2 d-non" >
+                <div class="d-flex col-12 col-md-6 col-lg-6 mt-2 d-none" >
                     <input id="colorCodeCategorie" class="form-control radius-15" type="text" value="">
                     <div class="header-colors-indigators">
                         <div class="indigator" id="colorExample"></div>
