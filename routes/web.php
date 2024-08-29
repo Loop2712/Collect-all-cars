@@ -69,6 +69,12 @@ Route::get('/demo_repair_maintenance_view', function () {
     return view('test_repair_admin/test_repair_maintenance_view');
 });
 
+//VIIFIX Dashboard
+Route::get('/demo_repair_dashboard', function () {
+    return view('test_repair_admin/repair_dashboard/fix_dashboard_index');
+});
+
+
 // VIICHECK.COM
 Route::get('/', 'Home_pageController@home_page');
 Route::get('/home', 'Home_pageController@home_page');
