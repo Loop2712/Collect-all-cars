@@ -63,11 +63,27 @@ class Check_name_group_line extends Command
 
             $response = curl_exec($ch);
 
-            // if (curl_errno($ch)) {
-            //     echo 'cURL error: ' . curl_error($ch);
-            // } else {
-            //     echo 'Response: ' . $response;
-            // }
+            if (curl_errno($ch)) {
+                MyLog::error('cURL error: ' . curl_error($ch));
+            } else {
+                // แปลง JSON response เป็น PHP object
+                $responseData = json_decode($response);
+
+                // ตรวจสอบว่าแปลง JSON สำเร็จ
+                if ($responseData && isset($responseData->groupName, $responseData->pictureUrl)) {
+                    // เปรียบเทียบและอัปเดตข้อมูล
+                    if ($responseData->groupName != $item->groupName || $responseData->pictureUrl != $item->pictureUrl) {
+                        DB::table('group_lines')
+                            ->where('groupId', $responseData->groupId)
+                            ->update([
+                                'groupName' => $responseData->groupName,
+                                'pictureUrl' => $responseData->pictureUrl,
+                            ]);
+                    }
+                } else {
+                    MyLog::warning('Unexpected response format: ' . $response);
+                }
+            }
 
             curl_close($ch);
         }
