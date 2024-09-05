@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('cron:delete_check_in_after_15_day')->dailyAt('08:00')->withoutOverlapping(5);
         $schedule->command('cron:set_null_for_gen_code')->dailyAt('00:00')->withoutOverlapping(5);
         // $schedule->command('cron:check_name_group_line')->hourly()->withoutOverlapping(5);
-        $schedule->command('cron:check_name_group_line')->everyMinute()->withoutOverlapping(5);
+        $schedule->command('cron:check_name_group_line')->everyMinute()->withoutOverlapping(2);
     }
 
 
