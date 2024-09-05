@@ -80,8 +80,6 @@ class Check_name_group_line extends Command
                                 'pictureUrl' => $responseData->pictureUrl,
                             ]);
                     }
-                } else {
-                    // 
                 }
             }
 
