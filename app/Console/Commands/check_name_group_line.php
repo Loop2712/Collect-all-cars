@@ -65,10 +65,10 @@ class Check_name_group_line extends Command
 
             if (curl_errno($ch)) {
                 //SAVE LOG
-                $requestData = $request->all();
+                $requestData = json_decode($response);
                 $data = [
                     "title" => "Line",
-                    "content" => 'cURL error: ' . curl_error($ch),
+                    "content" => 'cURL error: ',
                 ];
                 MyLog::create($data);
             } else {
@@ -87,7 +87,7 @@ class Check_name_group_line extends Command
                             ]);
 
                         //SAVE LOG
-                        $requestData = $request->all();
+                        $requestData = json_decode($response);
                         $data = [
                             "title" => "Line",
                             "content" => 'เปลี่ยนชื่อกลุ่มไลน์ | ' . $item->groupName . ' >> ' . $responseData->groupName,
@@ -96,10 +96,10 @@ class Check_name_group_line extends Command
                     }
                 } else {
                     //SAVE LOG
-                    $requestData = $request->all();
+                    $requestData = json_decode($response);
                     $data = [
                         "title" => "Line",
-                        "content" => 'Unexpected response format: ' . $response,
+                        "content" => 'Unexpected response format: '
                     ];
                     MyLog::create($data);
                 }
