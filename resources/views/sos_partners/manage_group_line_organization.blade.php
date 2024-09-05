@@ -6,11 +6,11 @@
 <div class="card border-top border-0 border-4 border-success">
 	<div class="card-body">
 		<div class="border p-4 rounded">
-			<div class="card-title d-flex align-items-center">
-				<div>
-					<i class="fa-brands fa-line me-1 font-22 text-success"></i>
-				</div>
-				<h5 class="mb-0 text-success">การจัดการกลุ่มไลน์</h5>
+			<div class="card-title">
+				<h4 class="mb-0 text-success">
+					<i class="fa-brands fa-line me-1 font-22 text-success"></i> การจัดการกลุ่มไลน์
+				</h4>
+				<p class="mt-2" style="color: #7F7F7F;">(ชื่อและรูปจะอัพเดททุกๆ 1 ชั่วโมง)</p>
 			</div>
 			<hr>
 
