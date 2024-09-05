@@ -30,6 +30,7 @@ use App\Models\Data_1669_officer_command;
 use App\Models\Disease;
 use App\Models\Sos_map_title;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Sos_partner;
 
 
 class PartnerController extends Controller
@@ -45,7 +46,8 @@ class PartnerController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $partner = Partner::where('name', 'LIKE', "%$keyword%")
+            // $partner = Partner::where('name', 'LIKE', "%$keyword%")
+            $partner = Sos_partner::where('name', 'LIKE', "%$keyword%")
                 ->where('name_area', null)
                 ->orWhere('phone', 'LIKE', "%$keyword%")
                 ->orWhere('line_group', 'LIKE', "%$keyword%")
@@ -53,7 +55,8 @@ class PartnerController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             // $partner = Partner::where('name_area', null)->latest()->paginate($perPage);
-            $partner = Partner::where('name_area', null)->latest()->get();
+            // $partner = Partner::where('name_area', null)->latest()->get();
+            $partner = Sos_partner::latest()->get();
         }
 
         foreach ($partner as $key) {

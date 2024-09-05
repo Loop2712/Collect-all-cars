@@ -473,6 +473,14 @@
                 @endswitch
               @endif
 
+            @if(in_array(Auth::user()->id, [1, 64, 11003429, 50]))
+              <a href="{{ url('/test_test') }}">
+                <li>
+                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/12.png') }}">&nbsp; New Admin (soon)
+                </li>
+              </a>
+            @endif
+
             @if (Route::has('password.request'))
             <a href="{{ route('password.request') }}">
               <li>

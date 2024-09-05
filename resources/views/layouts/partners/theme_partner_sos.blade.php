@@ -267,7 +267,19 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="#"><i class="fa-duotone fa-sitemap"></i> ข้อมูลองค์กร</a>
+                                <a href="{{ url('/manage_organization') }}">
+                                	<i class="fa-duotone fa-sitemap"></i> ข้อมูลองค์กร
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/manage_group_line_organization') }}">
+                                	<i class="fa-brands fa-line"></i> กลุ่มไลน์
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/manage_sos_area') }}">
+                                	<i class="fa-solid fa-map-location-dot"></i> พื้นที่ SOS
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -346,15 +358,6 @@
 
                             @if(Auth::check())
                                 @if(Auth::user()->role == "admin-partner")
-                                    <li>
-                                        <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu">
-                                            <i class='far fa-map'></i>
-
-                                            <span>
-                                                &nbsp;พื้นที่บริการ
-                                            </span>
-                                        </a>
-                                    </li>
 									<li>
 										<a href="{{ url('/sos_map_title') }}"><i class="fa-solid fa-list-ol"></i>
 										หัวข้อขอความช่วยเหลือ</a>

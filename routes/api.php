@@ -218,6 +218,8 @@ Route::post('/create_img_check_in', 'API\ImageController@create_img_check_in');
 Route::post('/admin_create_img_check_in', 'API\ImageController@admin_create_img_check_in');
 
 Route::get('/search_nationalitie', 'API\API_language@search_nationalitie');
+Route::get('/search_data_time_zones', 'API\API_language@search_data_time_zones');
+Route::get('/search_data_country', 'API\API_language@search_data_country');
 Route::get('/update_user_nationalitie/{nationality}/{user_id}', 'API\API_language@update_user_nationalitie');
 
 Route::get('/submit_show_homepage/{partner_id}/{input_show_homepage}', 'API\PartnersController@submit_show_homepage');
@@ -436,3 +438,6 @@ Route::post('/add_privileges', 'PrivilegeController@add_privileges');
 Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'PrivilegeController@create_redeem_code_excel');
 
 
+// >>>>>> SOS PARTNER V2. <<<<<< //
+    Route::post('/edit_data_sos_partners', 'Sos_partnersController@edit_data_sos_partners');
+// >>>>>> END SOS PARTNER V2. <<<<<< //

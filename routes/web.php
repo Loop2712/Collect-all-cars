@@ -374,6 +374,16 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::resource('data_1669_officer_hospital', 'Data_1669_officer_hospitalController');
 	Route::resource('sos_1669_to_hospital', 'Sos_1669_to_hospitalController');
 
+
+	// >>>>>> SOS PARTNER V2. <<<<<< //
+
+		Route::get('manage_organization', 'Sos_partnersController@manage_organization');
+		Route::get('manage_group_line_organization', 'Sos_partnersController@manage_group_line_organization');
+		Route::get('manage_sos_area', 'Sos_partnersController@manage_sos_area');
+
+	// >>>>>> END SOS PARTNER V2. <<<<<< //
+
+
 });
 // end admin-partner
 

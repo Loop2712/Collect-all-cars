@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\API\LineApiController;
 use App\Models\LineMessagingAPI;
+use App\Models\Time_zone;
 
 use App\Models\Mylog;
 use App\Models\Nationality;
@@ -156,6 +157,24 @@ class API_language extends Controller
             ->get();
 
         return $data_nationality ;
+    }
+
+    public function search_data_time_zones()
+    {
+        $data_time_zones = Time_zone::select('TimeZone')
+            ->orderBy('TimeZone', 'ASC')
+            ->get();
+
+        return $data_time_zones ;
+    }
+
+    public function search_data_country()
+    {
+        $country = Time_zone::select('CountryCode')
+            ->orderBy('CountryCode', 'ASC')
+            ->get();
+
+        return $country ;
     }
 
     public function update_user_nationalitie($nationality , $user_id)

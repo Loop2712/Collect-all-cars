@@ -66,19 +66,19 @@
 
                             <div class="col-12 mt-3 d-flex justify-content-between px-5 py-2">
                                 <div>
-                                    <input class="" name="show_homepage" type="checkbox" id="show_homepage" value=""> show_homepage
+                                    <input class="" name="show_homepage" type="checkbox" id="show_homepage" value="show"> show_homepage
                                 </div>
                                 <div>
-                                    <input class="" name="open_sos" type="checkbox" id="open_sos" value=""> open_sos
+                                    <input class="" name="open_sos" type="checkbox" id="open_sos" value="Yes"> open_sos
                                 </div>
                                 <div>
-                                    <input class="" name="open_repair" type="checkbox" id="open_repair" value=""> open_repair
+                                    <input class="" name="open_repair" type="checkbox" id="open_repair" value="Yes"> open_repair
                                 </div>
                                 <div>
-                                    <input class="" name="open_move" type="checkbox" id="open_move" value=""> open_move
+                                    <input class="" name="open_move" type="checkbox" id="open_move" value="Yes"> open_move
                                 </div>
                                 <div>
-                                    <input class="" name="open_news" type="checkbox" id="open_news" value=""> open_news
+                                    <input class="" name="open_news" type="checkbox" id="open_news" value="Yes"> open_news
                                 </div>
                             </div>
                         </div>
@@ -89,15 +89,117 @@
                         <div class="row">
                             <div class="col-3 mt-3">
                                 <label for="username" class="control-label">{{ 'username' }}</label>
-                                <input class="form-control" type="text" name="username" id="username" value="">
+                                <input class="form-control" type="text" name="username" id="username" value="" required>
                             </div>
                             <div class="col-3 mt-3">
                                 <label for="password" class="control-label">{{ 'password' }}</label>
-                                <input class="form-control" type="text" name="password" id="password" value="">
+                                <input class="form-control" type="text" name="password" id="password" value="" required>
+                            </div>
+                            <div class="col-6 mt-3"></div>
+
+                            <div class="col-3 mt-3">
+                                <label for="language" class="control-label">{{ 'language' }}</label>
+                                <select name="language" class="form-control"  id="language">
+                                    <option selected value="th">th</option>
+                                    <option value="en">en</option>
+                                    <option value="zh-TW">zh-TW</option>
+                                    <option value="zh-CN">zh-CN</option>
+                                    <option value="ja">ja</option>
+                                    <option value="ko">ko</option>
+                                    <option value="es">es</option>
+                                    <option value="lo">lo</option>
+                                    <option value="my">my</option>
+                                    <option value="de">de</option>
+                                    <option value="ar">ar</option>
+                                    <option value="hi">hi</option>
+                                    <option value="ru">ru</option>
+                                </select>
                             </div>
                             <div class="col-3 mt-3">
+                                <label for="country" class="control-label">{{ 'country' }}</label>
+                                <select id="country" name="country" class="form-control">
+                                    <option selected value="TH">TH</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mt-3">
+                                <label for="time_zone" class="control-label">{{ 'time_zone' }}</label>
+                                <select id="time_zone" name="time_zone" class="form-control">
+                                    <option selected value="Asia/Bangkok">Asia/Bangkok</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mt-3">
+                                <label for="nationalitie" class="control-label">{{ 'nationalitie' }}</label>
+                                <select id="nationalitie" name="nationalitie" class="form-control">
+                                    <option selected value="Thai">Thai</option>
+                                </select>
                             </div>
                         </div>
+
+                        <script>
+
+                            document.addEventListener('DOMContentLoaded', (event) => {
+                                search_nationalitie();
+                                search_data_time_zones();
+                                search_data_country();
+                            });
+
+                            function search_nationalitie() {
+                                fetch("{{ url('/') }}/api/search_nationalitie")
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        // console.log(result);
+
+                                        let nationalitie = document.querySelector('#nationalitie');
+
+                                        for (let item of result) {
+                                            let option = document.createElement("option");
+                                            option.text = item.nationality;
+                                            option.value = item.nationality;
+
+                                            nationalitie.add(option);
+                                        }
+
+                                    });
+                            }
+
+                            function search_data_time_zones() {
+                                fetch("{{ url('/') }}/api/search_data_time_zones")
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        // console.log(result);
+
+                                        let time_zone = document.querySelector('#time_zone');
+
+                                        for (let item of result) {
+                                            let option = document.createElement("option");
+                                            option.text = item.TimeZone;
+                                            option.value = item.TimeZone;
+
+                                            time_zone.add(option);
+                                        }
+
+                                    });
+                            }
+
+                            function search_data_country() {
+                                fetch("{{ url('/') }}/api/search_data_country")
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        // console.log(result);
+
+                                        let country = document.querySelector('#country');
+
+                                        for (let item of result) {
+                                            let option = document.createElement("option");
+                                            option.text = item.CountryCode;
+                                            option.value = item.CountryCode;
+
+                                            country.add(option);
+                                        }
+
+                                    });
+                            }
+                        </script>
 
                         <hr>
 
