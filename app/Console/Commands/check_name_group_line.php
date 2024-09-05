@@ -64,7 +64,13 @@ class Check_name_group_line extends Command
             $response = curl_exec($ch);
 
             if (curl_errno($ch)) {
-                MyLog::error('cURL error: ' . curl_error($ch));
+                //SAVE LOG
+                $requestData = $request->all();
+                $data = [
+                    "title" => "Line",
+                    "content" => 'cURL error: ' . curl_error($ch),
+                ];
+                MyLog::create($data);
             } else {
                 // แปลง JSON response เป็น PHP object
                 $responseData = json_decode($response);
@@ -79,9 +85,23 @@ class Check_name_group_line extends Command
                                 'groupName' => $responseData->groupName,
                                 'pictureUrl' => $responseData->pictureUrl,
                             ]);
+
+                        //SAVE LOG
+                        $requestData = $request->all();
+                        $data = [
+                            "title" => "Line",
+                            "content" => 'เปลี่ยนชื่อกลุ่มไลน์ | ' . $item->groupName . ' >> ' . $responseData->groupName,
+                        ];
+                        MyLog::create($data);
                     }
                 } else {
-                    MyLog::warning('Unexpected response format: ' . $response);
+                    //SAVE LOG
+                    $requestData = $request->all();
+                    $data = [
+                        "title" => "Line",
+                        "content" => 'Unexpected response format: ' . $response,
+                    ];
+                    MyLog::create($data);
                 }
             }
 
