@@ -29,7 +29,7 @@
             font-weight: bold !important;
         }
     </style>
-    <div class="col-12 col-md-12 col-lg-12 mb-4">
+    <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-end align-items-center container-fluid p-2">
         <a href="#sos_help_pdf" class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</a>
         <a class="btn btn-danger float-end me-1" onclick="SaveImageGlobal('section1')">บันทึกภาพ section 1</a>
         <a class="btn btn-success float-end me-1" onclick="SaveImageGlobal('section2')">บันทึกภาพ section 2</a>
@@ -41,29 +41,13 @@
             @include ('test_repair_admin.repair_dashboard.fix_dashboard_sec1')
         </div>
         <!-- เพิ่มระยะห่าง -->
-        <div id="dashboard_fix" style="margin: 70px 0 70px 0;"></div>
-
+        {{-- <div id="dashboard_fix" style="margin: 70px 0 70px 0;"></div> --}}
+        <hr>
         <div id="section2" class="my-3 ">
             @include ('test_repair_admin.repair_dashboard.fix_dashboard_sec2')
         </div>
 
-        {{-- <div id="sos_help_pdf">
-            <h3 id="sos_help" class="text-dark mb-0" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
-            <hr>
-            <div class="mb-3">
-                @include ('dashboard_1669.dashboard_1669_sos.sos_help_index')
-            </div>
-            <div id="sos_service_area" class="mb-3">
-                @include ('dashboard_1669.dashboard_1669_sos.sos_service_area_index')
-            </div>
-        </div>
 
-        @if (Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
-            <div id="video_call" class="mb-3 bg_section">
-                @include ('dashboard_1669.dashboard_1669_sos.video_call_index')
-            </div>
-        @endif --}}
-        <hr>
     </div>
 
     <script src="https://unpkg.com/modern-screenshot"></script>

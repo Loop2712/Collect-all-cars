@@ -101,7 +101,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody_case_sos">
-                           
+
                         </tbody>
                     </table>
                 </div>
@@ -145,7 +145,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_data_sos_fastest">
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -182,7 +182,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_data_sos_slowest">
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -292,7 +292,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_sos_score_worst_5">
-                                   
+
                                 </tbody>
                             </table>
                         </div>
@@ -339,13 +339,13 @@
             tbody_case_sos.innerHTML = "";
 
             result.forEach(item => {
-                
+
                 if (item.time_sos_success && item.time_command) {
                     sum_time(item.time_sos_success , item.time_command)
                 }else{
                     sTimeUnit = '--';
                 }
-            
+
                 data_table = `
                     <tr>
                         <td>${item.operating_code ? item.operating_code : '--'}</td>
@@ -355,7 +355,7 @@
                         <td>${item.operating_unit_name ? item.operating_unit_name : '--'}</td>
                         <td>${sTimeUnit}</td>
                         <td>${item.status ? item.status : '--'}</td>
-                        
+
                     </tr>
                 `;
 
@@ -374,7 +374,7 @@
             document.getElementById('count_data_sos_fastest_5').innerHTML = result.length;
             tbody_data_sos_fastest.innerHTML = "";
 
-            
+
             result.forEach(item => {
                 sum_time(item.time_sos_success , item.time_command)
                 data_table = `
@@ -399,7 +399,7 @@
             document.getElementById('count_data_sos_slowest_5').innerHTML = result.length;
             tbody_data_sos_slowest.innerHTML = "";
 
-            
+
             result.forEach(item => {
                 sum_time(item.time_sos_success , item.time_command)
                 data_table = `
@@ -413,7 +413,7 @@
                 `;
                 tbody_data_sos_slowest.insertAdjacentHTML('beforeend', data_table); // แทรกบนสุด
             })
-            
+
         })
     }
 
@@ -427,7 +427,7 @@
             tbody_sos_score_worst_5.innerHTML = "";
 
             result.forEach(item => {
-                
+
                 data_table = `
                     <tr>
                         <td>${ item.operating_code ? item.operating_code : "--"}</td>
@@ -456,7 +456,7 @@
             tbody_sos_score_best_5.innerHTML = "";
 
             result.forEach(item => {
-                
+
                 data_table = `
                     <tr>
                         <td>${ item.operating_code ? item.operating_code : "--"}</td>
@@ -503,19 +503,19 @@
 
         return sTimeUnit
     }
-    
 
 
 
 
-    
+
+
     function count_area_sos() {
         fetch("{{ url('/') }}/api/API_dashboard_count_area_sos?user_id=" + user_id)
         .then(response => response.json())
         .then(result => {
             // console.log(result)
 
-           
+
             document.querySelector('#count_area_sos').innerHTML = result.length;
             let options = {
                     series: [{
@@ -604,6 +604,7 @@
         fetch("{{ url('/') }}/api/API_dashboard_count_treatment?user_id=" + user_id)
         .then(response => response.json())
         .then(result => {
+            // console.log("result operation");
             // console.log(result);
             var options = {
         series: [{
@@ -666,5 +667,5 @@
     }
 
 
-    
+
 </script>
