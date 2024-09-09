@@ -49,12 +49,29 @@
 
     /* ======== END of CSS สำหรับ Dropdown ==========*/
 
-
+    /* ======== ตัวอักษรไม่เกินขอบบรรทัดและซ่อนไว้ ==========*/
     .overflow-dot {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+
+    /* ======== ตัวอักษรกระพริบ ==========*/
+    .textWarning{
+        font-size:1rem;
+        font-weight:bold;
+        color: rgb(250, 22, 22);
+    }
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+
+    .blink {
+        animation: blink 2s infinite;
+    }
+
 </style>
 
 {{-- <div class="p-4">
@@ -127,8 +144,9 @@
                         <span id="titleSubCate" style="margin-top: 10px; display: block;"></span>
                     </div>
                 </div>
-                <div class=" w-100 ">
-                    <div id="chartSubCate"></div>
+                <div id="chartSubCate">
+                </div>
+                <div id="cardBodySubCate" class="h-75">
                 </div>
             </div>
         </div>
@@ -146,7 +164,7 @@
                         <span id="titleSubCate" style="margin-top: 10px; display: block;"></span>
                     </div>
                 </div>
-                <div class="w-100">
+                <div class="h-100 w-100" >
                     <div id="areaAmountChart"></div>
                 </div>
             </div>
@@ -161,6 +179,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         cateChart();
+        subcateChart();
         areaAmountChart();
     })
 
@@ -360,58 +379,73 @@
 
     const subcateChart = (data, title) => {
         document.querySelector('#chartSubCate').innerHTML = "";
+        document.querySelector('#cardBodySubCate').innerHTML = "";
         // console.log(data);
+        if (!data) {
+            document.querySelector('#chartSubCate').classList.add('d-none');
+            document.querySelector('#cardBodySubCate').classList.remove('d-none');
 
-        const labels = data.map(item => item.label);
-        const series = data.map(item => item.value);
-        // const colors = data.map(item => item.color);
-        const colors = data.map(() => getRandomColor());
+            document.querySelector('#cardBodySubCate').innerHTML = `
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                        <span class="textWarning blink">
+                            คลิ๊กที่แท่งกราฟหมวดหมู่เพื่อแสดงข้อมูล
+                        </span>
+                    </div>`;
+        } else {
+            document.querySelector('#cardBodySubCate').classList.add('d-none');
+            document.querySelector('#chartSubCate').classList.remove('d-none');
 
-        document.querySelector('#titleSubCate').innerHTML =
+            const labels = data.map(item => item.label);
+            const series = data.map(item => item.value);
+            // const colors = data.map(item => item.color);
+            const colors = data.map(() => getRandomColor());
+
+            document.querySelector('#titleSubCate').innerHTML =
             `<h6 class="mb-0 font-weight-bold">หมวดหมู่ : <a class="text-danger">` + title + `</a></h6>`;
 
-        let options = {
-            series: series,
-            chart: {
-                type: 'pie',
-                // background: '#fff', // #f0f0f0 เปลี่ยนสีพื้นหลังที่นี่
-            },
-            labels: labels,
-            colors: colors,
-            theme: {
-                monochrome: {
-                    enabled: false,
+            let options = {
+                series: series,
+                chart: {
+                    type: 'pie',
+                    // background: '#fff', // #f0f0f0 เปลี่ยนสีพื้นหลังที่นี่
                 },
-            },
-            plotOptions: {
-                pie: {
-                    dataLabels: {
-                        offset: -5,
+                labels: labels,
+                colors: colors,
+                theme: {
+                    monochrome: {
+                        enabled: false,
                     },
                 },
-            },
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            offset: -5,
+                        },
+                    },
                 },
-            },
-            dataLabels: {
-                formatter(val, opts) {
-                    const name = opts.w.globals.labels[opts.seriesIndex];
-                    const value = series[opts.seriesIndex];
-                    return [name, `${val.toFixed(1)}% (${value})`];
+                grid: {
+                    padding: {
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                    },
                 },
-            },
-            legend: {
-                show: false,
-            },
-        };
+                dataLabels: {
+                    formatter(val, opts) {
+                        const name = opts.w.globals.labels[opts.seriesIndex];
+                        const value = series[opts.seriesIndex];
+                        return [name, `${val.toFixed(1)}% (${value})`];
+                    },
+                },
+                legend: {
+                    show: false,
+                },
+            };
 
-        var chartSubCate = new ApexCharts(document.querySelector("#chartSubCate"), options);
-        chartSubCate.render();
+            var chartSubCate = new ApexCharts(document.querySelector("#chartSubCate"), options);
+            chartSubCate.render();
+        }
     };
 
     const areaAmountChart = () => {
@@ -442,7 +476,13 @@
                 },
             },
             dataLabels: {
-                enabled: false
+                enabled: true, // เปิดใช้งาน dataLabels
+                style: {
+                    colors: ['#000'] // กำหนดสีของตัวอักษร
+                },
+                formatter: function(val) {
+                    return val; // แสดงจำนวนพร้อมหน่วย
+                },
             },
             stroke: {
                 show: true,
@@ -473,13 +513,5 @@
         areaAmountChart.render();
     }
 
-    // ฟังก์ชันสุ่มสีในรูปแบบ HEX
-    function getRandomColor() {
-        let letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+
 </script>

@@ -22,6 +22,11 @@
     }
 
     /*======== Calendar =============*/
+    .eventTitle{
+        color: #000000;
+        padding-left: 5px;
+        font-weight: normal;
+    }
     #sidebarWorkCalendar {
         position: relative;
         border-radius: 5px;
@@ -239,87 +244,7 @@
 </div>
 <!--======= ตารางงานช่าง - รูปแบบปฎิทิน ============-->
 <div class="card p-4 d-none d-lg-block">
-    <div class="category">
-        <div class="category-item">
-            <div class="circle" style="background-color: #FF5733;"></div>
-            <span>หมวดหมู่ 1</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #33C1FF;"></div>
-            <span>หมวดหมู่ 2</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #75FF33;"></div>
-            <span>หมวดหมู่ 3</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FFC733;"></div>
-            <span>หมวดหมู่ 4</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FF5733;"></div>
-            <span>หมวดหมู่ 5</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #33C1FF;"></div>
-            <span>หมวดหมู่ 6</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #75FF33;"></div>
-            <span>หมวดหมู่ 7</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FFC733;"></div>
-            <span>หมวดหมู่ 8</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FF5733;"></div>
-            <span>หมวดหมู่ 9</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #33C1FF;"></div>
-            <span>หมวดหมู่ 10</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #75FF33;"></div>
-            <span>หมวดหมู่ 11</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FFC733;"></div>
-            <span>หมวดหมู่ 12</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FF5733;"></div>
-            <span>หมวดหมู่ 12</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #33C1FF;"></div>
-            <span>หมวดหมู่ 14</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #75FF33;"></div>
-            <span>หมวดหมู่ 15</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FFC733;"></div>
-            <span>หมวดหมู่ 16</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FF5733;"></div>
-            <span>หมวดหมู่ 17</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #33C1FF;"></div>
-            <span>หมวดหมู่ 18</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #75FF33;"></div>
-            <span>หมวดหมู่ 19</span>
-        </div>
-        <div class="category-item">
-            <div class="circle" style="background-color: #FFC733;"></div>
-            <span>หมวดหมู่ 20</span>
-        </div>
+    <div id="cateDiv" class="category">
         <!-- เพิ่มหมวดหมู่เพิ่มเติมที่นี่ -->
     </div>
     <hr>
@@ -434,45 +359,6 @@
             </div>
         </div>
     </div>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script>
-		document.addEventListener('DOMContentLoaded', function () {
-            const formattedDateNow = new Date().toISOString().split('T')[0];
-            // console.log(formattedDateNow); // 2024-09-09
-
-			let calendarEl = document.getElementById('workCalendar');
-			let calendar = new FullCalendar.Calendar(calendarEl, {
-				headerToolbar: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-				},
-				initialView: 'dayGridMonth',
-				initialDate: formattedDateNow,
-				navLinks: true, // can click day/week names to navigate views
-				selectable: true,
-				nowIndicator: true,
-				dayMaxEvents: true, // allow "more" link when too many events
-				// editable: true,
-				selectable: true,
-				businessHours: true,
-				dayMaxEvents: true, // allow "more" link when too many events
-				events: [{
-					title: 'All Day Event',
-					start: '2024-09-12',
-                    color: 'blue'
-				}, {
-					title: 'ทดสอบ ตารางงาน',
-					start: '2024-09-12T14:30:00'
-				}, {
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2020-09-28'
-				}]
-			});
-			calendar.render();
-		});
-	</script>
 
 {{-- events: [{
     title: 'All Day Event',
@@ -517,111 +403,6 @@
     url: 'http://google.com/',
     start: '2020-09-28'
 }] --}}
-
-    {{-- <script>
-        var isSidebarOpen = false; //status ของ sidebar
-        var selectedCell = null; // เก็บ element ของ cell ที่ถูกเลือก
-        // กำหนดวันที่ปัจจุบัน
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // ไฮไลท์สีให้กับช่องที่ตรงกับ วันที่ปัจจุบัน
-            let toDay = new Date().toLocaleString("en-CA", { timeZone: "Asia/Bangkok" }).split(',')[0];
-            // console.log("toDay");
-            // console.log(toDay);
-
-            let todayDate = new Date();
-            // ดึงค่าเดือนและปี
-            let currentMonth = todayDate.toLocaleString('default', { month: 'long' }); // แสดงชื่อเดือนแบบเต็ม
-            let currentYear = todayDate.getFullYear(); // ดึงปี
-            // แสดงผลใน span ที่มี id="headCalendar"
-            document.getElementById('headCalendar').textContent = `${currentMonth} ${currentYear}`;
-
-             // Highlight today's date
-            document.querySelectorAll('.day-cell').forEach(function(element) {
-                let cellDate = element.getAttribute('data-date');
-                    console.log(cellDate);
-                // Normalize cellDate to ensure it's in YYYY-MM-DD format
-                if (cellDate === toDay) {
-                    element.classList.add('today');
-                }
-            });
-
-            function showSidebar(date , cell) {
-                let sidebar = document.getElementById('sidebarWorkCalendar');
-                sidebar.classList.add('open'); // เพิ่มคลาส open เพื่อแสดง sidebar
-                document.getElementById('calendar-container').classList.replace('col-12', 'col-10');
-
-                isSidebarOpen = true;
-
-                let sidebarContent =  document.getElementById('sidebar-content');
-                sidebarContent.innerHTML = "";
-                    sidebarContent.innerHTML = `
-                        <h4>${date} </h4>
-                        <p>รายละเอียดเนื้อหาของวันที่ ${date}</p>
-                    `;
-
-                // ไฮไลท์สีให้กับช่องที่ตรงกับ ที่กดเลือก
-                if (selectedCell) {
-                    selectedCell.classList.remove('selected');
-                }
-                selectedCell = cell;
-                selectedCell.classList.add('selected');
-
-                // Add event listener to close button
-                document.getElementById('close-sidebar').addEventListener('click', function() {
-                let sidebarContent =  document.getElementById('sidebar-content');
-                    sidebar.classList.remove('open'); // ลบคลาส open เพื่อซ่อน sidebar
-                    document.getElementById('calendar-container').classList.replace('col-10', 'col-12');
-                    isSidebarOpen = false;
-                    // Remove highlight when sidebar is closed
-                    if (selectedCell) {
-                        selectedCell.classList.remove('selected');
-                        selectedCell = null;
-                    }
-                });
-            }
-
-            // Add event listeners to "ดูเพิ่มเติม"
-            document.querySelectorAll('.more-tasks').forEach(function(element) {
-                element.addEventListener('click', function() {
-                    var date = this.getAttribute('data-date');
-                    var parentCell = this.closest('.day-cell');
-                    showSidebar(date, parentCell);
-                });
-            });
-
-            // คลิ๊กส่วนไหนของช่องตารางจะอัพเดตข้อมูลไปไว้ที่ sidebar แต่ทำเฉพาะ sidebar เปิดอยู่เท่านั้น
-            document.querySelectorAll('.day-cell').forEach(function(element) {
-                element.addEventListener('click', function() {
-                    if (isSidebarOpen) {
-                        var date = this.getAttribute('data-date');
-                        updateSidebarContent(date);
-
-                        // Highlight the selected cell
-                        if (selectedCell) {
-                            selectedCell.classList.remove('selected');
-                        }
-                        selectedCell = this;
-                        selectedCell.classList.add('selected');
-                    }
-                });
-            });
-
-            function updateSidebarContent(date) {
-                console.log("updateSidebarContent");
-                // Update the sidebar content if it's already open
-                    let sidebarContent =  document.getElementById('sidebar-content');
-                        sidebarContent.innerHTML = "";
-                        sidebarContent.innerHTML = `
-                            <h4>${date} </h4>
-                            <p>รายละเอียดเนื้อหาของวันที่ ${date}</p>
-                        `;
-
-            }
-        });
-
-    </script> --}}
-
 
 </div>
 
@@ -785,3 +566,112 @@
         </div>
     </div>
 </div>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        createCategories();
+        createWorkCalendar();
+    });
+    const createCategories = () => {
+        let cateData = [];
+
+        // สร้าง 15 ข้อมูล
+        for (let i = 1; i <= 15; i++) {
+            cateData.push({
+                name: `หมวดหมู่ ${i}`,
+                color: getRandomColor()
+            });
+        }
+
+        // สร้าง HTML และแทรกลงใน #cateDiv
+        let htmlCate = cateData.map(element => `
+            <div class="category-item">
+                <div class="circle" style="background-color: ${element.color};"></div>
+                <span>${element.name}</span>
+            </div>
+        `).join('');
+
+        document.querySelector('#cateDiv').insertAdjacentHTML('afterbegin', htmlCate); // แทรกบนสุด
+
+    }
+
+    const createWorkCalendar = () => {
+        const formattedDateNow = new Date().toISOString().split('T')[0];
+        // console.log(formattedDateNow); // 2024-09-09
+
+        let calendarEl = document.getElementById('workCalendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'th', // Set locale to Thai
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            buttonText: {
+                today: 'วันนี้',
+                month: 'เดือน',
+                week: 'สัปดาห์',
+                day: 'วัน',
+                list: 'รายการ'
+            },
+            initialView: 'dayGridMonth',
+            initialDate: formattedDateNow,
+            // navLinks: true, // คลิ๊กที่เลขวันหรือเดือน เพื่อแสดงผลรูปแบบวันหรือเดือน
+            selectable: true,
+            nowIndicator: true,
+            // editable: true,
+            selectable: true,
+            businessHours: true,
+            dayMaxEvents: true, // อนุญาตให้แสดงปุ่ม more เพื่อดูข้อมูลทั้งหมด
+            events: [{
+                title: 'ช่าง',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            }, {
+                title: 'ทดสอบ ตารางงาน 1',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 2',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 3',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 4',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 5',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 5',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            },{
+                title: 'ทดสอบ ตารางงาน 5',
+                start: '2024-09-12',
+                color: getRandomColor(),
+            }, {
+                title: 'Meeting',
+                start: '2024-09-12',
+                end: '2024-09-14',
+                color: getRandomColor(),
+            }],
+            eventContent: function (arg) {
+                    let eventTitle = document.createElement('div');
+                    eventTitle.innerHTML = arg.event.title;
+                    eventTitle.setAttribute('class','eventTitle')
+
+
+                    return { domNodes: [eventTitle] };
+                }
+        });
+        calendar.render();
+    }
+
+</script>

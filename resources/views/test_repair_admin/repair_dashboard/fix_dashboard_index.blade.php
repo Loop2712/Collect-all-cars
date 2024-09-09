@@ -53,6 +53,7 @@
     <script src="https://unpkg.com/modern-screenshot"></script>
 
     <script>
+        // ฟังก์ชัน SaveImage
         function SaveImageGlobal(id_div) {
             setTimeout(() => {
                 const targetElement = document.querySelector('#'+id_div);
@@ -65,6 +66,16 @@
                     link.click()
                 })
             }, 500);
+        }
+
+        // ฟังก์ชันสุ่มสีในรูปแบบ HEX
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color + 'CC';
         }
 
     </script>
