@@ -388,7 +388,7 @@
             document.querySelector('#cardBodySubCate').innerHTML = `
                     <div class="h-100 d-flex justify-content-center align-items-center">
                         <span class="textWarning blink">
-                            คลิ๊กที่แท่งกราฟหมวดหมู่เพื่อแสดงข้อมูล
+                            คลิกที่แท่งกราฟหมวดหมู่เพื่อแสดงข้อมูล
                         </span>
                     </div>`;
         } else {
