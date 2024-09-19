@@ -1,5 +1,9 @@
 @extends('layouts.partners.theme_partner_new')
 <style>
+    *:not(i) {
+        font-family: 'Kanit', sans-serif;
+
+    }
     .table th {
         text-align: center; /* จัดข้อความให้อยู่กึ่งกลางแนวนอน */
         vertical-align: middle; /* จัดข้อความให้อยู่กึ่งกลางแนวตั้ง */

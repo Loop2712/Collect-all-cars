@@ -54,6 +54,9 @@ Route::get('/demo_repair_quality_index', function () {
 Route::get('/demo_repair_quality_view', function () {
     return view('test_repair_admin/test_repair_quality_view');
 });
+Route::get('/demo_detail_repair_quality', function () {
+    return view('test_repair_admin/demo_detail_repair_quality');
+});
 // Test การจัดการวัสดุ / อุปกรณ์ที่ใช้ในการซ่อม
 Route::get('/demo_repair_mat_index', function () {
     return view('test_repair_admin/test_repair_mat_index');

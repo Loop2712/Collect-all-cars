@@ -1,9 +1,62 @@
 @extends('layouts.partners.theme_partner_new')
 <style>
+*:not(i) {
+        font-family: 'Kanit', sans-serif;
 
+    }
 </style>
 @section('content')
-    <div class="p-4">
+<div class="container-fluid">
+    <div class="page-breadcrumb d-flex flex-wrap align-items-center mb-3">
+        <div class="breadcrumb-title pe-3" style="border-right:none !important ;">การจัดการวัสดุ / อุปกรณ์ที่ใช้ในการซ่อม</div>
+        <div class="ms-auto d-flex">
+            <select name="" class="form-control" id="">
+                <option value="ทั้งหมด">ทั้งหมด</option>
+                <option value="">A001 หลอดไฟ</option>
+                <option value="">A002 สายไฟ</option>
+                <option value="">A003 กาว</option>
+            </select>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark bg-dark text-white">
+            <tr>
+                <th scope="col">วัสดุ / อุปกรณ์</th>
+                <th scope="col">ใช้วันที่</th>
+                <th scope="col">ผู้ใช้</th>
+                <th scope="col">จำนวน</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>AC001 หลอดไฟ</td>
+                <td>วันที่ 10 ธันวาคม 2567</td>
+                <td>Tharabut</td>
+                <td>
+                    2
+                </td>
+            </tr>
+            <tr>
+                <td>AC002 สายไฟ</td>
+                <td>วันที่ 10 ธันวาคม 2567</td>
+                <td>Teenabut</td>
+                <td>
+                    2
+                </td>
+            </tr>
+            <tr>
+                <td>AC003 กาว</td>
+                <td>วันที่ 10 ธันวาคม 2567</td>
+                <td>Pirakorn</td>
+                <td>
+                    1
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <!-- <div class="p-4">
         <div class="row">
             <div class="col-12 col-md-10 ">
                 <span class="h3 px-0" style="font-weight: bold;">การจัดการหมวดหมู่และกลุ่มไลน์</span>
@@ -84,5 +137,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
