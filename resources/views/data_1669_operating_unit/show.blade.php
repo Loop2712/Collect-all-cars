@@ -529,6 +529,8 @@
                 'url': base64Image,
                 'name_unit': "{{ $data_1669_operating_unit->name }}",
             };
+            console.log("base64Image");
+            console.log(base64Image);
 
             fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
                 method: 'post',
@@ -541,7 +543,7 @@
             }).then(function(text) {
                 let url_img = "{{ url('storage') }}/" + text;
                 console.log("url_img");
-                console.log(url_img);
+                // console.log(url_img);
 
                 document.querySelector('#img_qr_code').setAttribute('src', url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href', url_img);

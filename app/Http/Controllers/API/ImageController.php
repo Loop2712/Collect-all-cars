@@ -172,38 +172,41 @@ class ImageController extends Controller
     function save_qr_code_add_officer()
     {
         try {
-            // ขั้นตอนการอ่าน JSON input
+            // รับข้อมูล JSON input
             $json = file_get_contents("php://input");
             $data = json_decode($json, true);
 
-            // ตรวจสอบว่าได้รับข้อมูลที่ถูกต้องหรือไม่
-            if (!$data) {
-                return response()->json(['error_no_data' => 'Invalid JSON data'], 400);
+            // ตรวจสอบว่ามีข้อมูลที่ต้องการหรือไม่
+            if (!isset($data['url']) || !isset($data['name_unit'])) {
+                return response()->json(['error' => 'Invalid input data'], 400);
             }
 
-            // ตรวจสอบว่า base64 image และ name_unit มีค่าหรือไม่
             $base64_image = $data['url'];
             $name_unit = $data['name_unit'];
 
-            if (empty($base64_image) || empty($name_unit)) {
-                return response()->json(['error_no_base64_image_or_name_unit' => 'Missing required data'], 400);
+            // ตรวจสอบขนาดของ base64 string (กำหนดขนาดที่เหมาะสม เช่น 5MB)
+            $image_size_in_bytes = (int)(strlen(rtrim($base64_image, '=')) * 3 / 4);
+            $max_size = 5 * 1024 * 1024; // 5MB
+            if ($image_size_in_bytes > $max_size) {
+                return response()->json(['error' => 'Image size exceeds the maximum limit (5MB)'], 400);
             }
 
-            // ตรวจสอบ base64 image
-            if (strpos($base64_image, 'base64') === false) {
-                return response()->json(['error_base64_image' => 'Invalid base64 image format'], 400);
-            }
-
-            // แปลง base64 เป็นไฟล์
+            // แปลง base64 เป็น binary และบันทึก
             list($type, $base64_image) = explode(';', $base64_image);
             list(, $base64_image) = explode(',', $base64_image);
             $image_data = base64_decode($base64_image);
 
-            // กำหนดเส้นทางการเก็บไฟล์
+            // ตรวจสอบชนิดของภาพที่ถูกส่งมา
+            if ($type !== 'data:image/png') {
+                return response()->json(['error' => 'Invalid image type'], 400);
+            }
+
             $img_path = storage_path("app/public") . "/1669/qr_code_add_officer_" . $name_unit . '.png';
 
-           // บันทึกไฟล์ลงใน storage
-            Storage::put($img_path, $image_data);
+            // บันทึกไฟล์
+            if (file_put_contents($img_path, $image_data) === false) {
+                return response()->json(['error' => 'Failed to save image'], 500);
+            }
 
             // เพิ่มโลโก้ลงใน QR code
             $qr_code = Image::make($img_path);
@@ -211,13 +214,14 @@ class ImageController extends Controller
             $logo_viicheck->resize(80, 80);
             $qr_code->insert($logo_viicheck, 'center')->save();
 
-            // ส่งเส้นทางไฟล์ที่บันทึกกลับไปยัง client
+            // ส่ง response กลับไป
             return response()->json("1669/qr_code_add_officer_" . $name_unit . '.png');
 
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
 
 
 
