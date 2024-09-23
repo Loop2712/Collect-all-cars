@@ -541,9 +541,12 @@
             }).then(function(response) {
                 return response.text();
             }).then(function(text) {
+                console.log("text");
+
+                console.log(text);
                 let url_img = "{{ url('storage') }}/" + text;
                 console.log("url_img");
-                // console.log(url_img);
+                console.log(url_img);
 
                 document.querySelector('#img_qr_code').setAttribute('src', url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href', url_img);

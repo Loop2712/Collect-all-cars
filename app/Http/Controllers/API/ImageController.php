@@ -139,88 +139,31 @@ class ImageController extends Controller
 
     // }
 
-//     function save_qr_code_add_officer()
-// {
-//         $json = file_get_contents("php://input");
-//         $data = json_decode($json, true);
-
-//         $base64_image = $data['url']; // base64 image
-//         $name_unit = $data['name_unit'];
-
-//         // Remove the base64 prefix
-//         list($type, $base64_image) = explode(';', $base64_image);
-//         list(, $base64_image) = explode(',', $base64_image);
-
-//         // Decode base64 to binary
-//         $image_data = base64_decode($base64_image);
-
-//         // Define the path to save the image
-//         $img = storage_path("app/public") . "/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
-
-//         // Save image
-//         file_put_contents($img, $image_data);
-
-//         $qr_code = Image::make($img);
-//         // แทรกโลโก้ใน qr_code
-//         $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
-//         $logo_viicheck->resize(80, 80);
-//         $qr_code->insert($logo_viicheck, 'center')->save();
-
-//         return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
-//     }
-
     function save_qr_code_add_officer()
     {
-        try {
-            // รับข้อมูล JSON input
-            $json = file_get_contents("php://input");
-            $data = json_decode($json, true);
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
 
-            // ตรวจสอบว่ามีข้อมูลที่ต้องการหรือไม่
-            if (!isset($data['url']) || !isset($data['name_unit'])) {
-                return response()->json(['error' => 'Invalid input data'], 400);
-            }
+        $base64 = $data['url'];
+        $name_unit = $data['name_unit'];
 
-            $base64_image = $data['url'];
-            $name_unit = $data['name_unit'];
+        // สร้างชื่อไฟล์
+        $img = storage_path("app/public")."/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
 
-            // ตรวจสอบขนาดของ base64 string (กำหนดขนาดที่เหมาะสม เช่น 5MB)
-            $image_size_in_bytes = (int)(strlen(rtrim($base64_image, '=')) * 3 / 4);
-            $max_size = 5 * 1024 * 1024; // 5MB
-            if ($image_size_in_bytes > $max_size) {
-                return response()->json(['error' => 'Image size exceeds the maximum limit (5MB)'], 400);
-            }
+        // แปลง base64 เป็นรูปภาพ
+        $base64 = str_replace('data:image/png;base64,', '', $base64);
+        $base64 = str_replace(' ', '+', $base64);
+        file_put_contents($img, base64_decode($base64));
 
-            // แปลง base64 เป็น binary และบันทึก
-            list($type, $base64_image) = explode(';', $base64_image);
-            list(, $base64_image) = explode(',', $base64_image);
-            $image_data = base64_decode($base64_image);
+        // แทรกโลโก้
+        $qr_code = Image::make($img);
+        $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+        $logo_viicheck->resize(80, 80);
+        $qr_code->insert($logo_viicheck, 'center')->save();
 
-            // ตรวจสอบชนิดของภาพที่ถูกส่งมา
-            if ($type !== 'data:image/png') {
-                return response()->json(['error' => 'Invalid image type'], 400);
-            }
-
-            $img_path = storage_path("app/public") . "/1669/qr_code_add_officer_" . $name_unit . '.png';
-
-            // บันทึกไฟล์
-            if (file_put_contents($img_path, $image_data) === false) {
-                return response()->json(['error' => 'Failed to save image'], 500);
-            }
-
-            // เพิ่มโลโก้ลงใน QR code
-            $qr_code = Image::make($img_path);
-            $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
-            $logo_viicheck->resize(80, 80);
-            $qr_code->insert($logo_viicheck, 'center')->save();
-
-            // ส่ง response กลับไป
-            return response()->json("1669/qr_code_add_officer_" . $name_unit . '.png');
-
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
     }
+
 
 
 
