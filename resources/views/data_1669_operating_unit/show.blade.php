@@ -323,10 +323,10 @@
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap5">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="dt-buttons btn-group"> 
-                                    <button class="btn btn-outline-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>Copy</span></button> 
-                                    <button class="btn btn-outline-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>Excel</span></button> 
-                                    <button class="btn btn-outline-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>PDF</span></button> 
+                                <div class="dt-buttons btn-group">
+                                    <button class="btn btn-outline-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>Copy</span></button>
+                                    <button class="btn btn-outline-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>Excel</span></button>
+                                    <button class="btn btn-outline-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example2" type="button"><span>PDF</span></button>
                                     <button class="btn btn-outline-secondary buttons-print" tabindex="0" aria-controls="example2" type="button"><span>Print</span></button> </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
@@ -404,17 +404,17 @@
 </div>
 
 <script>
-        
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
         open_map_standby_all();
-        
+
         var table = $('#example2555').DataTable( {
-            
+
             lengthChange: false,
             buttons: [ 'copy', 'excel', 'pdf', 'print']
         } );
-     
+
         table.buttons().container()
             .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
 
@@ -463,49 +463,99 @@
     }
 </script>
 
+{{-- สำหรับสร้ง qr code --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
 
-    function gen_qr_code_add_officer(){
+    // function gen_qr_code_add_officer(){
 
+    //     document.querySelector('#btn_modal_confirm_create').click();
+
+    //     let url = "" ;
+
+    //     url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
+    //     console.log(url);
+
+    //     let data = {
+    //         'url' : url,
+    //         'name_unit' : "{{ $data_1669_operating_unit->name }}",
+    //     };
+
+    //     fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
+    //         method: 'post',
+    //         body: JSON.stringify(data),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).then(function (response){
+    //         return response.text();
+    //     }).then(function(text){
+    //         // console.log(text);
+    //         let url_img = "{{ url('storage') }}/" + text;
+    //         console.log(url_img);
+
+    //         document.querySelector('#img_qr_code').setAttribute('src' , url_img);
+    //         document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
+
+    //         document.querySelector('#content_qr_code').classList.remove('d-none');
+    //         document.querySelector('#content_load').classList.add('d-none');
+
+    //     }).catch(function(error){
+    //         // console.error(error);
+    //     });
+
+    // }
+
+    function gen_qr_code_add_officer() {
+        console.log("ทำงาน gen_qr_code_add_officer");
         document.querySelector('#btn_modal_confirm_create').click();
 
-        let url = "" ;
+        let url = "https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}";
+        console.log(url);
+        let qrCodeDiv = document.createElement('div');
 
-        url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
-        // console.log(url);
-
-        let data = {
-            'url' : url,
-            'name_unit' : "{{ $data_1669_operating_unit->name }}",
-        };
-
-        fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
-            method: 'post',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response){
-            return response.text();
-        }).then(function(text){
-            // console.log(text);
-            let url_img = "{{ url('storage') }}/" + text;
-            // console.log(url_img);
-
-            document.querySelector('#img_qr_code').setAttribute('src' , url_img);
-            document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
-
-            document.querySelector('#content_qr_code').classList.remove('d-none');
-            document.querySelector('#content_load').classList.add('d-none');
-
-        }).catch(function(error){
-            // console.error(error);
+        let qr = new QRCode(qrCodeDiv, {
+            text: url,
+            width: 500,
+            height: 500
         });
 
-        
+        setTimeout(function() {
+            let qrCanvas = qrCodeDiv.querySelector('canvas');
+            let base64Image = qrCanvas.toDataURL("image/png");
 
+            let data = {
+                'url': base64Image,
+                'name_unit': "{{ $data_1669_operating_unit->name }}",
+            };
 
+            fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
+                method: 'post',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(response) {
+                return response.text();
+            }).then(function(text) {
+                let url_img = "{{ url('storage') }}/" + text;
+                console.log("url_img");
+                console.log(url_img);
+
+                document.querySelector('#img_qr_code').setAttribute('src', url_img);
+                document.querySelector('#img_qr_code_downloada').setAttribute('href', url_img);
+
+                document.querySelector('#content_qr_code').classList.remove('d-none');
+                document.querySelector('#content_load').classList.add('d-none');
+
+            }).catch(function(error) {
+                console.error(error);
+            });
+
+        }, 500);
     }
+
 
     function CopyToClipboard(containerid) {
         if (document.selection) {
@@ -527,7 +577,7 @@
 
 <script>
     function show_modal_Change_name_officer(name_officer , id_officer){
-        
+
         document.querySelector('#new_name_officer').value = '' ;
         document.querySelector('#btn_cf_Change_name_officer').setAttribute('onclick','CF_Change_name_officer('+id_officer+');');
         document.querySelector('#old_name_officer').value = name_officer;
@@ -555,7 +605,7 @@
                 document.querySelector('#btn_close_Change_name_officer').click();
         });
 
-        
+
     }
 </script>
 
@@ -590,7 +640,7 @@
                     document.querySelector('#count_delete').innerHTML = count_select_delete;
                 } else {
                     document.querySelector('#btn_multi_delete').classList.add('d-none');
-                    
+
                 }
             }
 
@@ -667,7 +717,7 @@
                             "id_multi_delete": multi_delete_id,
                             "multi_delete":true,
                         };
-                        
+
                         fetch("{{ url('/') }}/api/multiple_delete_officer", {
                             method: 'post',
                             body: JSON.stringify(arr),
@@ -694,7 +744,7 @@
                                 icon: 'success',
                                 timer: 1500,
                                 showConfirmButton: false,
-                            })   
+                            })
 
                                 multi_delete_id = '';
 

@@ -10,6 +10,7 @@ use App\Models\Partner;
 use Illuminate\Support\Facades\DB;
 
 use Google\Cloud\Vision\VisionClient;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -60,10 +61,10 @@ class ImageController extends Controller
     	$data = explode( ',', $base64_string );
 
 		$fp = fopen($path, "w+");
- 
+
 		// write the data in image file
 		fwrite($fp, base64_decode( $data[ 1 ] ) );
-		 
+
 		// close an open file pointer
 		fclose($fp);
 
@@ -73,11 +74,11 @@ class ImageController extends Controller
 
 	public function detectText()
     {
-        $vision = new VisionClient(['keyFile' => json_decode(public_path('ckartisan-c48273251fdf.json'), true)]); 
+        $vision = new VisionClient(['keyFile' => json_decode(public_path('ckartisan-c48273251fdf.json'), true)]);
 
         $img_register = fopen(public_path('img/ocr/img_register.png'), 'r');
 
-        $image = $vision->image($img_register, [ 'TEXT_DETECTION' ] );        
+        $image = $vision->image($img_register, [ 'TEXT_DETECTION' ] );
         $result = $vision->annotate($image);
 
         print_r($result); exit;
@@ -98,7 +99,7 @@ class ImageController extends Controller
         if (empty($name_new_check_in)) {
             $name_new_check_in = 'รวม' ;
         }
- 
+
         $img = storage_path("app/public")."/check_in". "/" . 'check_in_' . $name_partner . '_' . $name_new_check_in . '.png';
 
         // Save image
@@ -114,29 +115,112 @@ class ImageController extends Controller
 
     }
 
+    // function save_qr_code_add_officer()
+    // {
+
+    //     $json = file_get_contents("php://input");
+    //     $data = json_decode($json, true);
+
+    //     $url = $data['url'];
+    //     $name_unit = $data['name_unit'];
+
+    //     $img = storage_path("app/public")."/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+
+    //     // Save image
+    //     file_put_contents($img, file_get_contents($url));
+
+    //     $qr_code = Image::make( $img );
+    //     //logo viicheck
+    //     $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+    //     $logo_viicheck->resize(80,80);
+    //     $qr_code->insert($logo_viicheck,'center')->save();
+
+    //     return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+
+    // }
+
+//     function save_qr_code_add_officer()
+// {
+//         $json = file_get_contents("php://input");
+//         $data = json_decode($json, true);
+
+//         $base64_image = $data['url']; // base64 image
+//         $name_unit = $data['name_unit'];
+
+//         // Remove the base64 prefix
+//         list($type, $base64_image) = explode(';', $base64_image);
+//         list(, $base64_image) = explode(',', $base64_image);
+
+//         // Decode base64 to binary
+//         $image_data = base64_decode($base64_image);
+
+//         // Define the path to save the image
+//         $img = storage_path("app/public") . "/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+
+//         // Save image
+//         file_put_contents($img, $image_data);
+
+//         $qr_code = Image::make($img);
+//         // แทรกโลโก้ใน qr_code
+//         $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+//         $logo_viicheck->resize(80, 80);
+//         $qr_code->insert($logo_viicheck, 'center')->save();
+
+//         return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+//     }
+
     function save_qr_code_add_officer()
     {
+        try {
+            // ขั้นตอนการอ่าน JSON input
+            $json = file_get_contents("php://input");
+            $data = json_decode($json, true);
 
-        $json = file_get_contents("php://input");
-        $data = json_decode($json, true);
+            // ตรวจสอบว่าได้รับข้อมูลที่ถูกต้องหรือไม่
+            if (!$data) {
+                return response()->json(['error_no_data' => 'Invalid JSON data'], 400);
+            }
 
-        $url = $data['url'];
-        $name_unit = $data['name_unit'];
+            // ตรวจสอบว่า base64 image และ name_unit มีค่าหรือไม่
+            $base64_image = $data['url'];
+            $name_unit = $data['name_unit'];
 
-        $img = storage_path("app/public")."/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+            if (empty($base64_image) || empty($name_unit)) {
+                return response()->json(['error_no_base64_image_or_name_unit' => 'Missing required data'], 400);
+            }
 
-        // Save image
-        file_put_contents($img, file_get_contents($url));
+            // ตรวจสอบ base64 image
+            if (strpos($base64_image, 'base64') === false) {
+                return response()->json(['error_base64_image' => 'Invalid base64 image format'], 400);
+            }
 
-        $qr_code = Image::make( $img );
-        //logo viicheck
-        $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
-        $logo_viicheck->resize(80,80);
-        $qr_code->insert($logo_viicheck,'center')->save();
+            // แปลง base64 เป็นไฟล์
+            list($type, $base64_image) = explode(';', $base64_image);
+            list(, $base64_image) = explode(',', $base64_image);
+            $image_data = base64_decode($base64_image);
 
-        return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+            // กำหนดเส้นทางการเก็บไฟล์
+            $img_path = storage_path("app/public") . "/1669/qr_code_add_officer_" . $name_unit . '.png';
 
+           // บันทึกไฟล์ลงใน storage
+            Storage::put($img_path, $image_data);
+
+            // เพิ่มโลโก้ลงใน QR code
+            $qr_code = Image::make($img_path);
+            $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+            $logo_viicheck->resize(80, 80);
+            $qr_code->insert($logo_viicheck, 'center')->save();
+
+            // ส่งเส้นทางไฟล์ที่บันทึกกลับไปยัง client
+            return response()->json("1669/qr_code_add_officer_" . $name_unit . '.png');
+
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+
+
+
 
     function create_img_check_in()
     {
@@ -373,7 +457,7 @@ class ImageController extends Controller
             // qr-coed
             $watermark_2->resize(850, 850);
             $image_flag->insert($watermark_2 ,'top-right', 350, 525);
-            
+
             // logo partner
             $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
             $logo_partner->resize(400, 400);
@@ -441,22 +525,22 @@ class ImageController extends Controller
 
             return "OK";
         }
-        
+
     }
 
     function hex2rgba($color, $opacity = false) {
- 
+
         $default = '255,0,0';
-     
+
         //Return default if no color provided
         if(empty($color))
-              return $default; 
-     
-        //Sanitize $color if "#" is provided 
+              return $default;
+
+        //Sanitize $color if "#" is provided
             if ($color[0] == '#' ) {
                 $color = substr( $color, 1 );
             }
-     
+
             //Check if color has 6 or 3 characters and get values
             if (strlen($color) == 6) {
                     $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
@@ -465,17 +549,17 @@ class ImageController extends Controller
             } else {
                     return $default;
             }
-     
+
             //Convert hexadec to rgb
             $rgb =  array_map('hexdec', $hex);
-     
+
             //Check if opacity is set(rgba or rgb)
             if($opacity){
                 $output = implode(",",$rgb).','.$opacity;
             } else {
                 $output = implode(",",$rgb);
             }
-     
+
             //Return rgb(a) color string
             return $output;
     }
@@ -614,7 +698,7 @@ class ImageController extends Controller
         // qr-coed
         $watermark_2->resize(850, 850);
         $image_flag->insert($watermark_2 ,'top-right', 350, 525);
-        
+
         // logo partner
         $logo_partner = Image::make( storage_path("app/public") . "/" .  $img_logo_partner );
         $logo_partner->resize(400, 400);
@@ -667,7 +751,7 @@ class ImageController extends Controller
             }
 
         }
-        
+
         // เช็คมหาลัย
         if ($type_partner == "university") { // มหาลัย
 
@@ -690,14 +774,14 @@ class ImageController extends Controller
         $filename = 'public/' . $part_img;
 
         $image = Image::make(storage_path("app/") . $filename);
-        
-        $size = $image->filesize();  
+
+        $size = $image->filesize();
 
         // if($size > 524288){
         //     $image->resize(
-        //         intval($image->width()/2) , 
+        //         intval($image->width()/2) ,
         //         intval($image->height()/2)
-        //     )->save(); 
+        //     )->save();
         // }
 
         while ($size > 524288) {
@@ -705,7 +789,7 @@ class ImageController extends Controller
                 intval($image->width() / 2),
                 intval($image->height() / 2)
             )->save();
-        
+
             if ($image->width() <= 750) {
                 break;
             }
@@ -725,7 +809,7 @@ class ImageController extends Controller
 
         $cout_partner = count($partner) - 1 ;
 
-        for ($i=0; $i <= $cout_partner; ) { 
+        for ($i=0; $i <= $cout_partner; ) {
             foreach($partner as $item_partner ){
                 $img_partner[$i] = $item_partner->logo;
                 $i++;
@@ -733,7 +817,7 @@ class ImageController extends Controller
         }
 
         return $img_partner ;
-    
+
     }
 
 }
