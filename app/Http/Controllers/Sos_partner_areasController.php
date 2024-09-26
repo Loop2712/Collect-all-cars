@@ -24,7 +24,7 @@ class Sos_partner_areasController extends Controller
             $sos_partner_areas = Sos_partner_area::where('sos_partner_id', 'LIKE', "%$keyword%")
                 ->orWhere('creator', 'LIKE', "%$keyword%")
                 ->orWhere('name_area', 'LIKE', "%$keyword%")
-                ->orWhere('group_line_id', 'LIKE', "%$keyword%")
+                ->orWhere('sos_group_line_id', 'LIKE', "%$keyword%")
                 ->orWhere('sos_area', 'LIKE', "%$keyword%")
                 ->orWhere('status', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);

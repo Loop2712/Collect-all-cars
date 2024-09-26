@@ -122,6 +122,17 @@ function set_data_start(){
                 document.getElementById(key).value !== initialValues[key]
             );
 
+            if(input.name == "color_navbar"){
+                // console.log(input.name)
+                document.querySelector('#div_color_navbar').setAttribute("style", "background-color: "+input.value+";");
+            }
+
+            if(input.name == "class_color_menu"){
+                // console.log(input.name)
+                document.querySelector('#header-wrapper_menu').setAttribute("style", "background-color: "+input.value+";");
+                document.querySelector('#switcher-wrapper_menu').setAttribute("style", "background-color: "+input.value+";");
+            }
+
             // ถ้ามีการเปลี่ยนแปลงที่แตกต่างจากค่าเริ่มต้น ให้เปิดปุ่ม save_data_partner
             document.getElementById('save_data_partner').disabled = !isChanged;
         });

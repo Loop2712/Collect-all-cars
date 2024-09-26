@@ -25,7 +25,7 @@ class Sos_partner_area extends Model
      *
      * @var array
      */
-    protected $fillable = ['sos_partner_id', 'creator', 'name_area', 'group_line_id', 'sos_area', 'status'];
+    protected $fillable = ['sos_partner_id', 'creator', 'name_area', 'sos_group_line_id', 'sos_area', 'status','open_sos','open_repair','open_move','open_news'];
 
     
 }

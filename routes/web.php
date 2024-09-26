@@ -383,6 +383,10 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 		Route::get('manage_organization', 'Sos_partnersController@manage_organization');
 		Route::get('manage_group_line_organization', 'Sos_partnersController@manage_group_line_organization');
 		Route::get('manage_sos_area', 'Sos_partnersController@manage_sos_area');
+		Route::get('connect_line_groups/{groupId}', 'Sos_partnersController@connect_line_groups');
+		Route::get('categorie_repair_index', 'Sos_partnersController@categorie_repair_index');
+		Route::get('categorie_repair_create', 'Sos_partnersController@categorie_repair_create');
+		Route::get('categorie_repair_view', 'Sos_partnersController@categorie_repair_view');
 
 	// >>>>>> END SOS PARTNER V2. <<<<<< //
 

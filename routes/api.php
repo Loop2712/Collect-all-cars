@@ -440,4 +440,17 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
 
 // >>>>>> SOS PARTNER V2. <<<<<< //
     Route::post('/edit_data_sos_partners', 'Sos_partnersController@edit_data_sos_partners');
+    Route::get('/check_secret_token/{secret_token}', 'Sos_partnersController@check_secret_token');
+    Route::get('/click_cf_connect/{partner_id}/{partner_name}/{groupId}', 'Sos_partnersController@click_cf_connect');
+    Route::get('/get_data_group_line_ower/{organization_id}', 'Sos_partnersController@get_data_group_line_ower');
+    Route::get('/get_data_area/{organization_id}', 'Sos_partnersController@get_data_area');
+    Route::get('/get_data_area_repair_index', 'Sos_partnersController@get_data_area_repair_index');
+    Route::get('/check_secret_token_for_area/{id}/{secret_token}', 'Sos_partnersController@check_secret_token_for_area');
+    Route::get('/CF_select_line_for_area/{id_area}/{id_line_group}/{type}', 'Sos_partnersController@CF_select_line_for_area');
+    Route::get('/create_name_area/{name_area}/{creator}/{organization_id}', 'Sos_partnersController@create_name_area');
+    Route::get('/open_area/{id}/{type}', 'Sos_partnersController@open_area');
+    Route::post('/create_categorie_repair', 'Sos_partnersController@create_categorie_repair');
+    Route::get('/get_data_categorie/{area_id}', 'Sos_partnersController@get_data_categorie');
+    Route::get('/open_status_category/{categorie_id}/{type}', 'Sos_partnersController@open_status_category');
+
 // >>>>>> END SOS PARTNER V2. <<<<<< //

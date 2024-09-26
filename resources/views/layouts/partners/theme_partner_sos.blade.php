@@ -225,12 +225,18 @@
 	</style>
 </head>
 
+@php
+	$data_partner = App\Models\Sos_partner::where('id' , Auth::user()->organization_id)->first();
+	$color_navbar = $data_partner->color_navbar ;
+	$class_color_menu = $data_partner->class_color_menu ;
+@endphp
+
 <body>
 <!--wrapper-->
 <div class="wrapper">
 	<!--sidebar wrapper -->
-	<div id="switcher-wrapper_menu" class="sidebar-wrapper menu-background" data-simplebar="true">
-		<div id="header-wrapper_menu" class="sidebar-header menu-background">
+	<div id="switcher-wrapper_menu" class="sidebar-wrapper menu-background" data-simplebar="true" style="background-color: {{ $class_color_menu }};">
+		<div id="header-wrapper_menu" class="sidebar-header menu-background" style="background-color: {{ $class_color_menu }};">
                 <div>
                     <a href="{{ url('/partner_index') }}" >
                         <h4 id="h4_name_partner" class="logo-text" style="font-family: 'Baloo Bhaijaan 2', cursive;
@@ -568,7 +574,7 @@
 
 	<!--start header -->
 	<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-		<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="">
+		<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="background-color: {{ $color_navbar }};">
 			<nav class="navbar navbar-expand d-flex">
 				<div class="mobile-toggle-menu">
 					<i class='bx bx-menu'></i>

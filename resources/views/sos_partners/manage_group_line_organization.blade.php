@@ -21,6 +21,7 @@
 					   	<table class="table align-middle mb-0">
 						   	<thead class="table-light">
 							   	<tr>
+								   	<th>รูป</th>
 								   	<th>ชื่อ</th>
 								   	<th>พื้นที่</th>
 								   	<th>ประเภท</th>
@@ -28,8 +29,11 @@
 								   	<th>สถานะ</th>
 							   	</tr>
 						   	</thead>
-						   	<tbody>
+						   	<tbody id="tbody">
 							   	<tr>
+								   	<td>
+								   		<img src="{{ url('/img/stickerline/PNG/1.png') }}" style="width:20%;">
+								   	</td>
 								   	<td>name</td>
 								   	<td>area</td>
 								   	<td class="">
@@ -49,5 +53,59 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	
+document.addEventListener('DOMContentLoaded', (event) => {
+    // console.log("START");
+    get_data_group_line_ower();
+});
+
+function get_data_group_line_ower() {
+	let organization_id = "{{ Auth::user()->organization_id }}";
+
+	fetch("{{ url('/') }}/api/get_data_group_line_ower/" + organization_id)
+        .then(response => response.json())
+        .then(result => {
+	       	console.log(result);
+
+	       	if(result){
+
+	       		let tbody = document.querySelector('#tbody');
+	       			tbody.innerHTML = '';
+	       			
+	       		for (let i = 0; i < result.length; i++) {
+
+	       			let html_status = `<span class="badge bg-light-danger text-danger">Inactive</span>`;
+	       			if(result[i].status == "Active"){
+	       				html_status = `<span class="badge bg-light-success text-success">Active</span>`;
+	       			}
+
+		       		let html = `
+		       			<tr>
+						   	<td>
+						   		<img src="`+result[i].pictureUrl+`" style="width:20%;">
+						   	</td>
+						   	<td>`+result[i].groupName+`</td>
+						   	<td>area</td>
+						   	<td class="">
+						   		<span class="badge bg-light-danger text-danger">Vii SOS</span>
+						   		<span class="badge bg-light-warning text-warning">Vii FIX</span>
+						   	</td>
+						   	<td>อุปกรณ์สำนักงาน</td>
+						   	<td>
+						   		`+html_status+`
+						   	</td>
+					   	</tr>
+		       		`;
+
+		       		tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+		       	}
+	       	}
+        	
+        })
+}
+
+</script>
 
 @endsection

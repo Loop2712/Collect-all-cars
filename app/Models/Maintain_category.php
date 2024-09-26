@@ -25,7 +25,7 @@ class Maintain_category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'user_id', 'area', 'line_group_id', 'status', 'count', 'color'];
+    protected $fillable = ['name', 'user_id', 'area_id', 'line_group_id', 'status', 'count', 'color'];
 
     
 }
