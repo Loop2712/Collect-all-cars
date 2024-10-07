@@ -2203,12 +2203,12 @@ class LineApiController extends Controller
         $groupId = $data['groupId'];
 
         // สร้างชื่อไฟล์
-        // $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
+        $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
 
-        // // แปลง base64 เป็นรูปภาพ
-        // $base64 = str_replace('data:image/png;base64,', '', $base64);
-        // $base64 = str_replace(' ', '+', $base64);
-        // file_put_contents($img, base64_decode($base64));
+        // แปลง base64 เป็นรูปภาพ
+        $base64 = str_replace('data:image/png;base64,', '', $base64);
+        $base64 = str_replace(' ', '+', $base64);
+        file_put_contents($img, base64_decode($base64));
 
         // // แทรกโลโก้
         // $qr_code = Image::make($img);
@@ -2221,7 +2221,7 @@ class LineApiController extends Controller
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_group.json');
             $string_json = file_get_contents($template_path);
 
-            // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$base64,$string_json);
+            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 

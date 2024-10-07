@@ -3,7 +3,7 @@
     "altText": "ผูกกลุ่มไลน์",
     "contents": {
         "type": "bubble",
-        "size": "giga",
+        "size": "mega",
         "body": {
           "type": "box",
           "layout": "vertical",
