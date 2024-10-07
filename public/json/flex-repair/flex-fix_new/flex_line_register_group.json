@@ -1,0 +1,97 @@
+{
+    "type": "flex",
+    "altText": "ผูกกลุ่มไลน์",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/fix/flex_register_group.png",
+              "size": "full",
+              "aspectRatio": "2134:2553",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ชื่อองค์กร",
+                  "weight": "bold",
+                  "size": "sm",
+                  "color": "#ffffff",
+                  "maxLines": 1,
+                  "wrap": false,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "54%",
+              "offsetTop": "25.2%",
+              "offsetStart": "23%",
+              "alignItems": "center",
+              "height": "4%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                  "aspectMode": "cover",
+                  "size": "4xl"
+                }
+              ],
+              "position": "absolute",
+              "width": "55%",
+              "offsetTop": "31%",
+              "offsetStart": "22.5%",
+              "alignItems": "center",
+              "height": "44.5%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "56%",
+              "offsetTop": "82%",
+              "offsetStart": "8%",
+              "alignItems": "center",
+              "height": "8%",
+              "action": {
+                "type": "uri",
+                "label": "ดำเนินการ",
+                "uri": "http://www.viicheck.com/"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "25.2%",
+              "offsetTop": "82%",
+              "offsetStart": "66.5%",
+              "alignItems": "center",
+              "height": "8%",
+              "action": {
+                "type": "uri",
+                "label": "ดำเนินการ",
+                "uri": "http://www.viicheck.com/"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+}
