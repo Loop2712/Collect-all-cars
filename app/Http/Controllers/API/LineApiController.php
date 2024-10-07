@@ -2221,7 +2221,7 @@ class LineApiController extends Controller
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_group.json');
             $string_json = file_get_contents($template_path);
 
-            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$base64,$string_json);
+            // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$base64,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
@@ -2246,7 +2246,7 @@ class LineApiController extends Controller
 
             // SAVE LOG
             $data_save_log = [
-                "title" => "send flex register_officer",
+                "title" => "send flex register_groupLine",
                 "content" => "to >> " . $groupId,
             ];
             MyLog::create($data_save_log);
