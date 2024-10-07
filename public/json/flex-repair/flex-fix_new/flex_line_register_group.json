@@ -23,7 +23,7 @@
                   "type": "text",
                   "text": "ชื่อองค์กร",
                   "weight": "bold",
-                  "size": "sm",
+                  "size": "xs",
                   "color": "#ffffff",
                   "maxLines": 1,
                   "wrap": false,
@@ -69,8 +69,8 @@
               "height": "8%",
               "action": {
                 "type": "uri",
-                "label": "ดำเนินการ",
-                "uri": "http://www.viicheck.com/"
+                "label": "download",
+                "uri": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png"
               }
             },
             {
@@ -84,9 +84,9 @@
               "alignItems": "center",
               "height": "8%",
               "action": {
-                "type": "uri",
-                "label": "ดำเนินการ",
-                "uri": "http://www.viicheck.com/"
+                "type": "postback",
+                "label": "action",
+                "data": "คำแนะนำ"
               }
             }
           ],
