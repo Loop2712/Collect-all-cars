@@ -2203,25 +2203,20 @@ class LineApiController extends Controller
         $groupId = $data['groupId'];
 
         // สร้างชื่อไฟล์
-        $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
+        // $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
 
-        // แปลง base64 เป็นรูปภาพ
-        $base64 = str_replace('data:image/png;base64,', '', $base64);
-        $base64 = str_replace(' ', '+', $base64);
-        file_put_contents($img, base64_decode($base64));
+        // // แปลง base64 เป็นรูปภาพ
+        // $base64 = str_replace('data:image/png;base64,', '', $base64);
+        // $base64 = str_replace(' ', '+', $base64);
+        // file_put_contents($img, base64_decode($base64));
 
-        // // แทรกโลโก้
-        // $qr_code = Image::make($img);
-        // $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
-        // $logo_viicheck->resize(80, 80);
-        // $qr_code->insert($logo_viicheck, 'center')->save();
 
         if ( !empty($groupId) ){
             // ส่งไลน์ให้ลงทะเบียน
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_group.json');
             $string_json = file_get_contents($template_path);
 
-            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
+            // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
