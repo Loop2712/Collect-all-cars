@@ -146,10 +146,14 @@ class LineApiController extends Controller
                 // sos_1669?SOS_ID/refuse/_UNIT_ID_/_OFFICER_ID_
                 $this->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
                 break;
-            // case by Junior Dear ติดต่อสอบถามได้ที่ Dear
+            //===== case by Junior Dear ติดต่อสอบถามได้ที่ Dear =====
             case "fix_process" :
                 $line->new_flex_2024(null, $event, "fix_process");
                 break;
+            case "advice_ViiFix" :
+                $line->new_flex_2024(null, $event, "advice_ViiFix");
+                break;
+            //=====End case by Junior Dear ติดต่อสอบถามได้ที่ Dear =====
         }
 
     }
@@ -2194,6 +2198,7 @@ class LineApiController extends Controller
 
     }
 
+    // **created by Junior Dear**
     public function bind_groupLine_ViiFix()
     {
         $json = file_get_contents("php://input");

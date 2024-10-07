@@ -2311,6 +2311,17 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("GROUP", "ชื่อกลุ่มไลน์", $string_json);
 
                     break;
+            case 'advice_ViiFix': //มาจาก postback ของ fix_flex_line
+                $text_message = "เพิ่ม QR code ลงทะเบียนไว้ในโน๊ต เพื่อให้เจ้าหน้าที่ที่เข้ามาภายหลังลงทำเบียนได้ทันที หรือให้เจ้าหน้าที่ พิมพ์ “ลงทะเบียนเจ้าหน้าที่” เพื่้อลงทะเบียนเข้าองค์กรณของคูณ"; // แก้ไขข้อความตามต้องการ
+
+                $messages = [
+                    [
+                        "type" => "text",
+                        "text" => $text_message
+                    ]
+                ];
+
+                break;
             default:
                 //SAVE LOG
                 $data_not_found_flex = [

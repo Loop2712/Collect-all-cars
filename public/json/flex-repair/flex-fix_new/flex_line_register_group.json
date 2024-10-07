@@ -85,8 +85,9 @@
               "height": "8%",
               "action": {
                 "type": "postback",
-                "label": "action",
-                "data": "คำแนะนำ"
+                "label": "คำแนะนำ",
+                "data": "advice_ViiFix",
+                "displayText": "คำแนะนำ"
               }
             }
           ],
