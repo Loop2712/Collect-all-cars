@@ -2313,19 +2313,8 @@ class LineMessagingAPI extends Model
                     break;
             case 'advice_ViiFix': //มาจาก postback ของ fix_flex_line
                 //SAVE LOG
-                $test12345 = [
-                    "title" => "advice_ViiFix",
-                    "content" => "advice_ViiFix",
-                ];
-                MyLog::create($test12345);
-                $text_message = "เพิ่ม QR code ลงทะเบียนไว้ในโน๊ต เพื่อให้เจ้าหน้าที่ที่เข้ามาภายหลังลงทำเบียนได้ทันที หรือให้เจ้าหน้าที่ พิมพ์ “ลงทะเบียนเจ้าหน้าที่” เพื่้อลงทะเบียนเข้าองค์กรณของคูณ"; // แก้ไขข้อความตามต้องการ
-
-                $messages = [
-                    [
-                        "type" => "text",
-                        "text" => $text_message
-                    ]
-                ];
+                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_advice_viifix.json');
+                $string_json = file_get_contents($template_path);
 
                 break;
             default:
