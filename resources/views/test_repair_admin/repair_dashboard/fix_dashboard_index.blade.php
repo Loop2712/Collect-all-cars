@@ -29,7 +29,7 @@
             font-weight: bold !important;
         }
     </style>
-    <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-end align-items-center container-fluid p-2">
+    <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-end align-items-center ">
         <a href="#sos_help_pdf" class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</a>
         <a class="btn btn-danger float-end me-1" onclick="SaveImageGlobal('section1')">บันทึกภาพ section 1</a>
         <a class="btn btn-success float-end me-1" onclick="SaveImageGlobal('section2')">บันทึกภาพ section 2</a>

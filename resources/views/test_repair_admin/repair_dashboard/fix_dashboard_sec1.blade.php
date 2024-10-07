@@ -1,3 +1,4 @@
+
 <style>
     .category {
         display: flex;
@@ -21,12 +22,42 @@
         margin-bottom: 10px;
     }
 
+    .square {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        border:#000000 1px solid;
+    }
+
     /*======== Calendar =============*/
+    .event-container {
+        display: flex;
+        align-items: center;
+        padding-top: 2px;
+        overflow: hidden;
+    }
+
+    .event-circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border:#000000 1px solid;
+        display: inline-block;
+        margin-right: 5px;
+        margin-left: 5px;
+        flex-shrink: 0;
+    }
+
     .eventTitle{
         color: #000000;
         padding-left: 5px;
         font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
     #sidebarWorkCalendar {
         position: relative;
         border-radius: 5px;
@@ -188,7 +219,8 @@
             <div class="py-2 px-4">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 text-dark font-weight-bold">แจ้งซ่อม</h4>
+                        <h3 class="mb-0 text-dark font-weight-bold">แจ้งซ่อม</h3>
+                        {{-- <h6 class="mb-0 text-dark font-weight-bold">เดือนนี้ <b>(5)</b></h6> --}}
                     </div>
                     <div class="ms-auto text-dark">
                         <span class="text-dark font-weight-bold font-50">15</span>
@@ -202,7 +234,8 @@
             <div class="py-2 px-4">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 text-dark font-weight-bold">รอดำเนินการ</h4>
+                        <h3 class="mb-0 text-dark font-weight-bold">รอดำเนินการ</h3>
+                        {{-- <h6 class="mb-0 text-dark font-weight-bold">เดือนนี้ <b>(2)</b></h6> --}}
                     </div>
                     <div class="ms-auto text-dark">
                         <span class="text-dark font-weight-bold font-50">5</span>
@@ -216,7 +249,8 @@
             <div class="py-2 px-4">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 text-dark font-weight-bold">กำลังดำเนินการ</h4>
+                        <h3 class="mb-0 text-dark font-weight-bold">กำลังดำเนินการ</h3>
+                        {{-- <h6 class="mb-0 text-dark font-weight-bold">เดือนนี้ <b>(1)</b></h6> --}}
                     </div>
                     <div class="ms-auto text-dark">
                         <span class="text-dark font-weight-bold font-50">5</span>
@@ -230,8 +264,8 @@
             <div class="py-2 px-4">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h4 class="mb-0 text-dark font-weight-bold">เสร็จสิ้น</h4>
-
+                        <h3 class="mb-0 text-dark font-weight-bold">เสร็จสิ้น</h3>
+                        {{-- <h6 class="mb-0 text-dark font-weight-bold">เดือนนี้ <b>(2)</b></h6> --}}
                     </div>
                     <div class="ms-auto text-dark">
                         <span class="text-dark font-weight-bold font-50">5</span>
@@ -250,102 +284,23 @@
     <hr>
 
     <div class="my-4">
-        {{-- <script>
-            // วันที่เริ่มต้นของเดือนปัจจุบัน
-            const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-            // console.log("startOfMonth "+ startOfMonth);
-            // วันที่สิ้นสุดของเดือนปัจจุบัน
-            const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
-            // console.log("endOfMonth "+ endOfMonth);
-            // วนลูปจากวันที่เริ่มต้นจนถึงวันที่สิ้นสุด
-            let daysInMonth = [];
-            let currentDate = new Date(startOfMonth);
-
-            // เริ่มจากวันที่ 1 ไปจนถึงสิ้นเดือน
-            while (currentDate <= endOfMonth) {
-                daysInMonth.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-
-            // คำนวณช่องว่างในแถวสุดท้าย
-            const remainingSlots = 7 - (endOfMonth.getDay() + 1);
-
-            // เพิ่มวันที่จากเดือนถัดไป
-            if (remainingSlots > 0) {
-                let nextMonthDate = new Date(endOfMonth);
-                nextMonthDate.setDate(nextMonthDate.getDate() + 1);
-                for (let i = 0; i < remainingSlots; i++) {
-                    daysInMonth.push(new Date(nextMonthDate));
-                    nextMonthDate.setDate(nextMonthDate.getDate() + 1);
-                }
-            }
-
-            // Placeholder for detailed information
-            let detailedInfo = null;
-
-            // แสดงวันที่ใน console (เพื่อเช็คผลลัพธ์)
-            // console.log(daysInMonth);
-        </script> --}}
-
         <div class="row">
+            <div class="d-flex justify-content-end mb-4">
+                <div class="mx-1 d-flex justify-content-center align-items-center">
+                    <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
+                </div>
+                <div class="mx-1 d-flex justify-content-center align-items-center">
+                    <div class="square" style="background-color: rgb(230, 46, 46,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
+                </div>
+                <div class="mx-1 d-flex justify-content-center align-items-center">
+                    <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
+                </div>
+            </div>
+
             <div class="col-12" id="calendar-container">
-                {{-- <div class="calendar">
-                    <!-- Day Headers -->
-                    <div class="day-header day-header-color">Sunday</div>
-                    <div class="day-header day-header-color">Monday</div>
-                    <div class="day-header day-header-color">Tuesday</div>
-                    <div class="day-header day-header-color">Wednesday</div>
-                    <div class="day-header day-header-color">Thursday</div>
-                    <div class="day-header day-header-color">Friday</div>
-                    <div class="day-header day-header-color">Saturday</div>
-
-                    <!-- Day Cells -->
-                    <script>
-                        daysInMonth.forEach(date => {
-                            const dayCell = document.createElement('div');
-                            dayCell.className = `day-cell ${date.getMonth() !== new Date().getMonth() ? 'next-month' : ''}`;
-                            dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
-
-                            const dateNumber = document.createElement('div');
-                            dateNumber.className = 'date-number';
-                            dateNumber.textContent = date.getDate();
-                            dayCell.appendChild(dateNumber);
-
-                            if (date.getMonth() === new Date().getMonth()) {
-                                const tasks = [
-                                    { color: '#FF5733', text: 'ช่าง Theesak Taweesak : คอมพิวเตอร์' },
-                                    { color: '#33C1FF', text: 'ช่าง Benze Thanakorn : คอมพิวเตอร์' },
-                                    { color: '#75FF33', text: 'ช่าง Dear : คอมพิวเตอร์' }
-                                ];
-
-                                tasks.forEach(task => {
-                                    const taskDiv = document.createElement('div');
-                                    taskDiv.className = 'task';
-
-                                    const circle = document.createElement('div');
-                                    circle.className = 'circle_calendar';
-                                    circle.style.backgroundColor = task.color;
-                                    taskDiv.appendChild(circle);
-
-                                    const span = document.createElement('span');
-                                    span.textContent = task.text;
-                                    taskDiv.appendChild(span);
-
-                                    dayCell.appendChild(taskDiv);
-                                });
-
-                                const moreTasks = document.createElement('div');
-                                moreTasks.className = 'more-tasks';
-                                moreTasks.setAttribute('data-date', date.toISOString().split('T')[0]);
-                                moreTasks.textContent = 'ดูเพิ่มเติม';
-                                dayCell.appendChild(moreTasks);
-                            }
-
-                            document.querySelector('.calendar').appendChild(dayCell);
-                        });
-                    </script>
-                </div> --}}
-
                 <div id="workCalendar"></div>
             </div>
 
@@ -359,50 +314,6 @@
             </div>
         </div>
     </div>
-
-{{-- events: [{
-    title: 'All Day Event',
-    start: '2024-09-12',
-}, {
-    title: 'Long Event',
-    start: '2020-09-07',
-    end: '2020-09-10'
-}, {
-    groupId: 999,
-    title: 'Repeating Event',
-    start: '2020-09-09T16:00:00'
-}, {
-    groupId: 999,
-    title: 'Repeating Event',
-    start: '2020-09-16T16:00:00'
-}, {
-    title: 'Conference',
-    start: '2020-09-11',
-    end: '2020-09-13'
-}, {
-    title: 'Meeting',
-    start: '2020-09-12T10:30:00',
-    end: '2020-09-12T12:30:00'
-}, {
-    title: 'Lunch',
-    start: '2020-09-12T12:00:00'
-}, {
-    title: 'ทดสอบ ตารางงาน',
-    start: '2024-09-12T14:30:00'
-}, {
-    title: 'Happy Hour',
-    start: '2020-09-12T17:30:00'
-}, {
-    title: 'Dinner',
-    start: '2020-09-12T20:00:00'
-}, {
-    title: 'Birthday Party',
-    start: '2020-09-13T07:00:00'
-}, {
-    title: 'Click for Google',
-    url: 'http://google.com/',
-    start: '2020-09-28'
-}] --}}
 
 </div>
 
@@ -421,7 +332,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/demo_repair_dashboard') }}">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/demo_all_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -467,7 +378,7 @@
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item"
-                                        href="{{ url('/demo_repair_dashboard') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                                        href="{{ url('/demo_all_repair_fastest') }}" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                                 </div>
                             </div>
                         </div>
@@ -504,7 +415,7 @@
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item"
-                                        href="{{ url('/demo_repair_dashboard') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                                        href="{{ url('/demo_all_repair_fastest') }}" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                                 </div>
                             </div>
                         </div>
@@ -542,7 +453,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/demo_repair_dashboard') }}">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/demo_all_used_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -552,12 +463,13 @@
                     <table class="table align-middle mb-0">
                         <thead class="">
                             <tr>
-                                <th class="text-start">รหัสเครื่อง/อุปกรณ์</th>
+                                <th class="text-start">รหัสอุปกรณ์	</th>
+                                <th class="text-start">ชื่อ</th>
                                 <th class="text-center">หมวดหมู่</th>
                                 <th class="text-center">จำนวนการซ่อมบำรุง/ครั้ง</th>
                             </tr>
                         </thead>
-                        <tbody id="teble_fix" class="fz_body">
+                        <tbody id="teble_all_used_fix" class="fz_body">
 
                         </tbody>
                     </table>
@@ -625,51 +537,67 @@
             businessHours: true,
             dayMaxEvents: true, // อนุญาตให้แสดงปุ่ม more เพื่อดูข้อมูลทั้งหมด
             events: [{
-                title: 'ช่าง',
+                title: 'ช่าง A : คอมพิวเตอร์ ชั้น 2',
                 start: '2024-09-12',
-                color: getRandomColor(),
+                // color: getRandomColor(),
+                color: 'rgb(41, 204, 57 ,0.5)',
             }, {
-                title: 'ทดสอบ ตารางงาน 1',
+                title: 'ช่าง B : คอมพิวเตอร์ ชั้น 3',
                 start: '2024-09-12',
-                color: getRandomColor(),
+                color: 'rgb(41, 204, 57 ,0.5)',
             },{
-                title: 'ทดสอบ ตารางงาน 2',
+                title: 'ช่าง C : เครื่องปริ้น ชั้น 1-A',
                 start: '2024-09-12',
-                color: getRandomColor(),
+                color: 'rgb(41, 204, 57 ,0.5)',
             },{
                 title: 'ทดสอบ ตารางงาน 3',
-                start: '2024-09-12',
-                color: getRandomColor(),
+                start: '2024-09-24',
+                color: 'rgb(94, 216, 240 ,0.5)',
             },{
                 title: 'ทดสอบ ตารางงาน 4',
-                start: '2024-09-12',
-                color: getRandomColor(),
+                start: '2024-09-24',
+                color: 'rgb(94, 216, 240 ,0.5)',
             },{
                 title: 'ทดสอบ ตารางงาน 5',
                 start: '2024-09-12',
-                color: getRandomColor(),
+                color: 'rgb(230, 46, 46,0.5)',
             },{
                 title: 'ทดสอบ ตารางงาน 5',
-                start: '2024-09-12',
-                color: getRandomColor(),
+                start: '2024-09-23',
+                color: 'rgb(230, 46, 46,0.5)',
             },{
                 title: 'ทดสอบ ตารางงาน 5',
-                start: '2024-09-12',
-                color: getRandomColor(),
+                start: '2024-09-22',
+                color: 'rgb(230, 46, 46,0.5)',
             }, {
-                title: 'Meeting',
+                title: 'ช่าง Benze : หลอดไฟ ชั้น 10',
                 start: '2024-09-12',
                 end: '2024-09-16',
-                color: getRandomColor(),
+                color: 'rgb(230, 46, 46,0.5)',
             }],
             eventContent: function (arg) {
-                    let eventTitle = document.createElement('div');
-                    eventTitle.innerHTML = arg.event.title;
-                    eventTitle.setAttribute('class','eventTitle')
+                let eventTitle = document.createElement('div');
+                eventTitle.textContent = arg.event.title;
+                eventTitle.setAttribute('class', 'eventTitle');
+
+                let circle = document.createElement('span');
+                circle.setAttribute('class', 'event-circle');
+
+                // circle.style.backgroundColor = arg.event.backgroundColor || arg.event.color;
+                circle.style.backgroundColor = getRandomColor();
 
 
-                    return { domNodes: [eventTitle] };
-                }
+                let container = document.createElement('div');
+                container.setAttribute('class', 'event-container');
+
+                container.appendChild(circle);
+                container.appendChild(eventTitle);
+
+                return { domNodes: [container] };
+            },
+            eventDidMount: function (info) {
+                info.el.style.border = '1px solid #000'; // เพิ่มขอบสีดำ
+            }
         });
         calendar.render();
     }
