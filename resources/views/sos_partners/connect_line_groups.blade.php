@@ -59,6 +59,9 @@
 	  	</div>
 	</div>
 
+    {{-- สำหรับสร้ง qr code --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 	<script>
 		var data_partner ;
 		function check_secret_token() {
@@ -90,11 +93,52 @@
 			fetch("{{ url('/') }}/api/click_cf_connect/" + data_partner.id + "/" + data_partner.name + "/" + groupId)
                 .then(response => response.text())
                 .then(result => {
-                	
+
                 	if(result == "success"){
                 		console.log("success");
                 		document.querySelector('#footer_modal').classList.add('d-none');
                 		document.querySelector('#body_modal').innerHTML = "ดำเนินการเรียบร้อย";
+
+                        // ========QR CODE Generate By Junior Dear===============
+                        let url = "https://www.viicheck.com/sos_partner_officers";
+                        // console.log(url);
+                        let qrCodeDiv = document.createElement('div');
+
+                        let qr = new QRCode(qrCodeDiv, {
+                            text: url,
+                            width: 500,
+                            height: 500
+                        });
+
+                        setTimeout(function() {
+                            console.log("เข้าสู่ qr code generate");
+                            let qrCanvas = qrCodeDiv.querySelector('canvas');
+                            let base64Image = qrCanvas.toDataURL("image/png");
+
+                            let data = {
+                                'url': base64Image,
+                                'groupId': groupId,
+                            };
+
+                            fetch("{{ url('/') }}/api/bind_groupLine_ViiFix", {
+                                method: 'post',
+                                body: JSON.stringify(data),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }).then(function(response) {
+                                return response.text();
+                            }).then(function(text) {
+                                console.log("text response");
+                                console.log(text);
+                            }).catch(function(error) {
+                                console.error(error);
+                            });
+
+                        }, 500);
+
+                        // ========End QR CODE Generate By Junior Dear===============
+
                 	}
                 })
 		}

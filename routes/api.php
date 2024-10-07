@@ -452,5 +452,7 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::post('/create_categorie_repair', 'Sos_partnersController@create_categorie_repair');
     Route::get('/get_data_categorie/{area_id}', 'Sos_partnersController@get_data_categorie');
     Route::get('/open_status_category/{categorie_id}/{type}', 'Sos_partnersController@open_status_category');
+    Route::post('/bind_groupLine_ViiFix', 'API\ImageController@bind_groupLine_ViiFix');
+
 
 // >>>>>> END SOS PARTNER V2. <<<<<< //

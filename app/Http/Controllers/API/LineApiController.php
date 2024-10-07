@@ -19,6 +19,7 @@ use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Nationalitie_group_line;
 use App\Models\Nationalitie_officer;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LineApiController extends Controller
 {
@@ -2189,6 +2190,68 @@ class LineApiController extends Controller
             "content" => "sos id = " . $id_sos_1669,
         ];
         MyLog::create($data);
+
+
+    }
+
+    public function bind_groupLine_ViiFix()
+    {
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $base64 = $data['url'];
+        $groupId = $data['groupId'];
+
+        // สร้างชื่อไฟล์
+        // $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
+
+        // // แปลง base64 เป็นรูปภาพ
+        // $base64 = str_replace('data:image/png;base64,', '', $base64);
+        // $base64 = str_replace(' ', '+', $base64);
+        // file_put_contents($img, base64_decode($base64));
+
+        // // แทรกโลโก้
+        // $qr_code = Image::make($img);
+        // $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+        // $logo_viicheck->resize(80, 80);
+        // $qr_code->insert($logo_viicheck, 'center')->save();
+
+        if ( !empty($groupId) ){
+            // ส่งไลน์ให้ลงทะเบียน
+            $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_group.json');
+            $string_json = file_get_contents($template_path);
+
+            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$base64,$string_json);
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "to" => $groupId,
+                "messages" => $messages,
+            ];
+
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+
+            $context  = stream_context_create($opts);
+            $url = "https://api.line.me/v2/bot/message/push";
+            $result = file_get_contents($url, false, $context);
+
+            // SAVE LOG
+            $data_save_log = [
+                "title" => "send flex register_officer",
+                "content" => "to >> " . $groupId,
+            ];
+            MyLog::create($data_save_log);
+
+        }
 
 
     }
