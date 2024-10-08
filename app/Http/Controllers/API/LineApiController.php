@@ -212,14 +212,16 @@ class LineApiController extends Controller
             $line->replyToUser(null, $event, "contact_viiCHECK");
         }else if($event["message"]["text"] == "language"){
             $line->replyToUser(null, $event, "language");
-        }else if($event["message"]["text"] == "ทดสอบ"){
+        }else if($event["message"]["text"] == "ทดสอบ"){ //by Junior Dear
             $line->new_flex_2024(null, $event, "deme_sos_api");
-        }else if($event["message"]["text"] == "promotion_partner"){
+        }else if($event["message"]["text"] == "promotion_partner"){ //by Junior Dear
             $line->new_flex_2024(null, $event, "promotion_partner");
-        }else if($event["message"]["text"] == "fix_flex_line"){
+        }else if($event["message"]["text"] == "fix_flex_line"){ //by Junior Dear
             $line->new_flex_2024(null, $event, "fix_flex_line");
-        }else if($event["message"]["text"] == "bind_groupLine"){
+        }else if($event["message"]["text"] == "bind_groupLine"){ //by Junior Dear
             $line->new_flex_2024(null, $event, "bind_groupLine");
+        }else if($event["message"]["text"] == "ลงทะเบียนเจ้าหน้าที่"){ //by Junior Dear
+            $line->new_flex_2024(null, $event, "register_officer");
         }else {
 
             $data_users = DB::table('users')

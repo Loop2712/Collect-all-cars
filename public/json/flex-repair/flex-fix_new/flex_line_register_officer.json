@@ -1,0 +1,39 @@
+{
+    "type": "flex",
+    "altText": "ลงทะเบียนเจ้าหน้าที่",
+    "contents": {
+        "type": "bubble",
+        "size": "mega",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://i.ibb.co/gvpNs9P/image.png",
+              "size": "full",
+              "aspectRatio": "2134:1449",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "89%",
+              "offsetTop": "73%",
+              "offsetStart": "5.5%",
+              "alignItems": "center",
+              "height": "22%",
+              "action": {
+                "type": "uri",
+                "label": "ลงทะเบียนเจ้าหน้าที่",
+                "uri": "https://www.viicheck.com/sos_partner_officers"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+}

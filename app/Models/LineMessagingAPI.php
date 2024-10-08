@@ -2312,8 +2312,12 @@ class LineMessagingAPI extends Model
                     // $string_json = str_replace("https://www.viicheck.com/connect_line_groups", "https://www.viicheck.com/connect_line_groups"."/".$groupId, $string_json);
                     break;
             case 'advice_ViiFix': //มาจาก postback ของ fix_flex_line
-                //SAVE LOG
                 $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_advice_viifix.json');
+                $string_json = file_get_contents($template_path);
+
+                break;
+            case 'register_officer': //มาจาก postback ของ fix_flex_line
+                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_officer.json');
                 $string_json = file_get_contents($template_path);
 
                 break;
