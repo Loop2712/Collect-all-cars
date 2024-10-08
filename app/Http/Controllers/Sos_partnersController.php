@@ -71,16 +71,16 @@ class Sos_partnersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
 
         // Generate a unique 6-digit random number for secret_token
         do {
             $secretToken = mt_rand(100000, 999999);
         } while (Sos_partner::where('secret_token', $secretToken)->exists());
-        
+
         $requestData['secret_token'] = $secretToken;
-        
+
         if ($request->hasFile('logo')) {
             $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
         }
@@ -157,9 +157,9 @@ class Sos_partnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $sos_partner = Sos_partner::findOrFail($id);
         $sos_partner->update($requestData);
 
@@ -206,7 +206,7 @@ class Sos_partnersController extends Controller
 
     public function edit_data_sos_partners(Request $request)
     {
-        
+
         $requestData = $request->all();
         $id = $requestData['id'] ;
 
@@ -217,7 +217,10 @@ class Sos_partnersController extends Controller
     }
 
     public function connect_line_groups($groupId){
-        return view('sos_partners.connect_line_groups', compact('groupId'));
+        $organization_id = Auth::user()->organization_id;
+        $data_sos_partner = Sos_partner::where('id', $organization_id)->first();
+
+        return view('sos_partners.connect_line_groups', compact('groupId','data_sos_partner'));
     }
 
     function check_secret_token($secret_token){

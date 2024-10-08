@@ -87,8 +87,9 @@
 		}
 
 		function click_cf_connect(){
-			console.log(data_partner);
+			// console.log(data_partner);
 			let groupId = "{{ $groupId }}";
+            let sos_partner_name = "{{ $data_sos_partner->full_name }}";
 
 			fetch("{{ url('/') }}/api/click_cf_connect/" + data_partner.id + "/" + data_partner.name + "/" + groupId)
                 .then(response => response.text())
@@ -118,6 +119,7 @@
                             let data = {
                                 'url': base64Image,
                                 'groupId': groupId,
+                                'sos_partner_name': sos_partner_name,
                             };
 
                             fetch("{{ url('/') }}/api/bind_groupLine_ViiFix", {

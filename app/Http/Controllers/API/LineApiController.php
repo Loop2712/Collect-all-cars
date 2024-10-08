@@ -2206,7 +2206,7 @@ class LineApiController extends Controller
 
         $base64 = $data['url'];
         $groupId = $data['groupId'];
-
+        $sos_partner_name = $data['sos_partner_name'];
         // สร้างชื่อไฟล์
         // $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
 
@@ -2215,13 +2215,14 @@ class LineApiController extends Controller
         // $base64 = str_replace(' ', '+', $base64);
         // file_put_contents($img, base64_decode($base64));
 
-
         if ( !empty($groupId) ){
             // ส่งไลน์ให้ลงทะเบียน
+
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_group.json');
             $string_json = file_get_contents($template_path);
 
             // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
+            $string_json = str_replace("ชื่อองค์กร",$sos_partner_name,$string_json);
 
             $messages = [ json_decode($string_json, true) ];
 
