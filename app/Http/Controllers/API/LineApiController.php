@@ -220,8 +220,6 @@ class LineApiController extends Controller
             $line->new_flex_2024(null, $event, "fix_flex_line");
         }else if($event["message"]["text"] == "bind_groupLine"){ //by Junior Dear
             $line->new_flex_2024(null, $event, "bind_groupLine");
-        }else if($event["message"]["text"] == "ลงทะเบียนเจ้าหน้าที่"){ //by Junior Dear
-            $line->new_flex_2024(null, $event, "register_officer");
         }else {
 
             $data_users = DB::table('users')
@@ -321,28 +319,33 @@ class LineApiController extends Controller
 
             $string_json = str_replace("ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",$text,$string_json);
 
-            $messages = [ json_decode($string_json, true) ];
-
-            $body = [
-                "replyToken" => $event["replyToken"],
-                "messages" => $messages,
-            ];
-
-            $opts = [
-                'http' =>[
-                    'method'  => 'POST',
-                    'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                    //'timeout' => 60
-                ]
-            ];
-
-            $context  = stream_context_create($opts);
-            //https://api-data.line.me/v2/bot/message/11914912908139/content
-            $url = "https://api.line.me/v2/bot/message/reply";
-            $result = file_get_contents($url, false, $context);
         }
+        else if($event["message"]["text"] == "ลงทะเบียนเจ้าหน้าที่"){ //by Junior Dear
+            $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_officer.json');
+            $string_json = file_get_contents($template_path);
+        }
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
 
         // $event["message"]["text"] == "ติดต่อ ViiCHECK" ;
 

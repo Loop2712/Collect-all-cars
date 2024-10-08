@@ -2316,11 +2316,6 @@ class LineMessagingAPI extends Model
                 $string_json = file_get_contents($template_path);
 
                 break;
-            case 'register_officer': //มาจาก postback ของ fix_flex_line
-                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_officer.json');
-                $string_json = file_get_contents($template_path);
-
-                break;
             default:
                 //SAVE LOG
                 $data_not_found_flex = [
