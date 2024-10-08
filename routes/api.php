@@ -452,7 +452,13 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::post('/create_categorie_repair', 'Sos_partnersController@create_categorie_repair');
     Route::get('/get_data_categorie/{area_id}', 'Sos_partnersController@get_data_categorie');
     Route::get('/open_status_category/{categorie_id}/{type}', 'Sos_partnersController@open_status_category');
+    Route::get('/changr_color_categorys/{color}/{categorys_id}', 'Sos_partnersController@changr_color_categorys');
+    Route::get('/get_sub_categorys/{categorys_id}', 'Sos_partnersController@get_sub_categorys');
+    Route::post('/add_title_category', 'Sos_partnersController@add_title_category');
+    Route::get('/open_status_sub_categorys/{sub_categorys_id}/{type}', 'Sos_partnersController@open_status_sub_categorys');
+    Route::get('/delete_sub_cat/{sub_cat_id}', 'Sos_partnersController@delete_sub_cat');
+    Route::post('/edit_name_Categorie', 'Sos_partnersController@edit_name_Categorie');
+    Route::post('/CF_ChangeGroupLine_categorie', 'Sos_partnersController@CF_ChangeGroupLine_categorie');
+    Route::get('/CF_cancel_GroupLine/{categorys_id}/{user_id}', 'Sos_partnersController@CF_cancel_GroupLine');
     Route::post('/bind_groupLine_ViiFix', 'API\LineApiController@bind_groupLine_ViiFix');
-
-
 // >>>>>> END SOS PARTNER V2. <<<<<< //
