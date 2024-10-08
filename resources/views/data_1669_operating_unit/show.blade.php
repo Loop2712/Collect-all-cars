@@ -468,51 +468,12 @@
 
 <script>
 
-    // function gen_qr_code_add_officer(){
-
-    //     document.querySelector('#btn_modal_confirm_create').click();
-
-    //     let url = "" ;
-
-    //     url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
-    //     console.log(url);
-
-    //     let data = {
-    //         'url' : url,
-    //         'name_unit' : "{{ $data_1669_operating_unit->name }}",
-    //     };
-
-    //     fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
-    //         method: 'post',
-    //         body: JSON.stringify(data),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(function (response){
-    //         return response.text();
-    //     }).then(function(text){
-    //         // console.log(text);
-    //         let url_img = "{{ url('storage') }}/" + text;
-    //         console.log(url_img);
-
-    //         document.querySelector('#img_qr_code').setAttribute('src' , url_img);
-    //         document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
-
-    //         document.querySelector('#content_qr_code').classList.remove('d-none');
-    //         document.querySelector('#content_load').classList.add('d-none');
-
-    //     }).catch(function(error){
-    //         // console.error(error);
-    //     });
-
-    // }
-
     function gen_qr_code_add_officer() {
-        console.log("ทำงาน gen_qr_code_add_officer");
+        // console.log("ทำงาน gen_qr_code_add_officer");
         document.querySelector('#btn_modal_confirm_create').click();
 
         let url = "https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}";
-        console.log(url);
+        // console.log(url);
         let qrCodeDiv = document.createElement('div');
 
         let qr = new QRCode(qrCodeDiv, {
@@ -529,8 +490,6 @@
                 'url': base64Image,
                 'name_unit': "{{ $data_1669_operating_unit->name }}",
             };
-            console.log("base64Image");
-            console.log(base64Image);
 
             fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
                 method: 'post',
@@ -541,12 +500,9 @@
             }).then(function(response) {
                 return response.text();
             }).then(function(text) {
-                console.log("text");
-
-                console.log(text);
                 let url_img = "{{ url('storage') }}/" + text;
-                console.log("url_img");
-                console.log(url_img);
+                // console.log("url_img");
+                // console.log(url_img);
 
                 document.querySelector('#img_qr_code').setAttribute('src', url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href', url_img);

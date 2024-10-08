@@ -2303,13 +2303,13 @@ class LineMessagingAPI extends Model
 
                 break;
             case 'bind_groupLine':
-
+                    // $groupId = $event['source']['groupId'];
 
                     $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_groupLine.json');
                     $string_json = file_get_contents($template_path);
 
                     $string_json = str_replace("GROUP", "ชื่อกลุ่มไลน์", $string_json);
-
+                    // $string_json = str_replace("https://www.viicheck.com/connect_line_groups", "https://www.viicheck.com/connect_line_groups"."/".$groupId, $string_json);
                     break;
             case 'advice_ViiFix': //มาจาก postback ของ fix_flex_line
                 //SAVE LOG

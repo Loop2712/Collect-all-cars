@@ -83,12 +83,12 @@
               "action": {
                 "type": "uri",
                 "label": "action",
-                "uri": "https://www.viicheck.com"
+                "uri": "https://www.viicheck.com/connect_line_groups"
               }
             }
           ],
           "position": "relative",
           "paddingAll": "0px"
         }
-    }
+      }
 }
