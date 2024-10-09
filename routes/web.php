@@ -770,3 +770,4 @@ Route::get('/demo/register_organization', function () {
 // Route::resource('sos_partners', 'Sos_partnersController');
 Route::resource('sos_partner_areas', 'Sos_partner_areasController');
 Route::resource('sos_partner_officers', 'Sos_partner_officersController');
+Route::get('sos_partner_officers.create', 'Sos_partner_officersController@add_new_officers_viifix'); //by junior dear

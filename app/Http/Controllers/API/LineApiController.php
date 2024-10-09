@@ -321,8 +321,14 @@ class LineApiController extends Controller
 
         }
         else if($event["message"]["text"] == "ลงทะเบียนเจ้าหน้าที่"){ //by Junior Dear
+
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_officer.json');
             $string_json = file_get_contents($template_path);
+
+            $registration_url = url('/sos_partner_officers') . "?sos_partner_id=" . $data_groupline->partner_id;
+
+            $string_json = str_replace("https://www.viicheck.com/sos_partner_officers", $registration_url, $string_json);
+
         }
 
         $messages = [ json_decode($string_json, true) ];
