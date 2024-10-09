@@ -78,17 +78,19 @@ class Sos_partner_officersController extends Controller
     }
 
 
-    function add_new_officers_viifix($sos_partner_id){
+    function add_new_officers_sos(Request $request){
+
+        $sos_partner_id = $request->get('sos_partner_id');
 
         if(Auth::check()){
-            return redirect('register_new_officer_viifix/?sos_partner_id=' . $sos_partner_id);
+            return redirect('register_new_officer_sos/?sos_partner_id='.$sos_partner_id);
         }else{
-            return redirect('/login/line?redirectTo=register_new_officer_viifix/?sos_partner_id=' . $sos_partner_id);
+            return redirect('/login/line?redirectTo=register_new_officer_sos/?sos_partner_id='.$sos_partner_id);
         }
 
     }
 
-    function register_new_officer_viifix(Request $request){
+    function register_new_officer_sos(Request $request){
 
         $sos_partner_id = $request->get('sos_partner_id');
 
@@ -106,6 +108,11 @@ class Sos_partner_officersController extends Controller
 
         Sos_partner_officer::create($requestData);
 
-        return redirect('sos_partner_officers')->with('flash_message', 'Sos_partner_officer added!');
+        // return redirect('sos_partner_officers')->with('flash_message', 'Sos_partner_officer added!');
+        return view('return_line');
+    }
+
+    function register_new_officer_qr_code(Request $request){
+        return view('sos_partner_officers.qr_code_sos_partner_officer' );
     }
 }

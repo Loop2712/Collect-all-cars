@@ -21,12 +21,12 @@
 
 <div class="d-non form-group {{ $errors->has('sos_partner_id') ? 'has-error' : ''}}">
     <label for="sos_partner_id" class="control-label">{{ 'Sos Partner Id' }}</label>
-    <input required class="form-control" name="sos_partner_id" type="text" id="sos_partner_id" value="{{ isset($sos_partner_officer->sos_partner_id) ? $sos_partner_officer->sos_partner_id : ''}}" readonly>
+    <input required class="form-control" name="sos_partner_id" type="text" id="sos_partner_id" value="{{ isset($sos_partner_id) ? $sos_partner_id : $sos_partner_id}}" readonly>
     {!! $errors->first('sos_partner_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="d-non form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-    <input required class="form-control" name="user_id" type="text" id="user_id" value="{{ isset($sos_partner_officer->user_id) ? $sos_partner_officer->user_id : Auth::user()->id}}" readonly>
+    <input required class="form-control" name="user_id" type="text" id="user_id" value="{{ isset($user_id) ? $user_id : Auth::user()->id}}" readonly>
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 

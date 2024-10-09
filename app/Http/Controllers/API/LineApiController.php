@@ -325,7 +325,7 @@ class LineApiController extends Controller
             $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_register_officer.json');
             $string_json = file_get_contents($template_path);
 
-            $registration_url = url('/sos_partner_officers.create') . "?sos_partner_id=" . $data_groupline->partner_id;
+            $registration_url = url('/sos_partner_officers/create') . "?sos_partner_id=" . $data_groupline->partner_id;
 
             $string_json = str_replace("https://www.viicheck.com/sos_partner_officers", $registration_url, $string_json);
 
