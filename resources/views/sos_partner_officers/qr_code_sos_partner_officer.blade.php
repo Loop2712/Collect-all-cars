@@ -20,7 +20,7 @@
                 <div class="col-md-6 ">
                     <div id="content_qr_code" class="">
                         <center>
-                            <img id="img_qr_code" width="250px" style="border:2px #000 solid; border-radius:10px;" src="{{ asset('img/logo/logo_x-icon_2.png') }}">
+                            <img id="img_qr_code" width="250px" style="border:2px #000 solid; border-radius:10px;" src="{{ asset('img/qr_reg_officer/qr_code_'.$data_sos_partner->id.'.png') }}">
                             <br><br>
                             <a id="img_qr_code_download" href="" download="qr_code.png">
                                 <span class="btn btn-success"><i class="fa-solid fa-download"></i> ดาวน์โหลด QR-CODE</span>

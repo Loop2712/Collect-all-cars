@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-
+use App\Models\Sos_partner;
 use App\Models\Sos_partner_officer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,6 +113,9 @@ class Sos_partner_officersController extends Controller
     }
 
     function register_new_officer_qr_code(Request $request){
-        return view('sos_partner_officers.qr_code_sos_partner_officer' );
+        $organization_id = Auth::user()->organization_id;
+        $data_sos_partner = Sos_partner::where('id', $organization_id)->first();
+
+        return view('sos_partner_officers.qr_code_sos_partner_officer', compact('data_sos_partner'));
     }
 }

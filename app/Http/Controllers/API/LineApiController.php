@@ -2218,6 +2218,7 @@ class LineApiController extends Controller
         $base64 = $data['url'];
         $groupId = $data['groupId'];
         $sos_partner_name = $data['sos_partner_name'];
+        $sos_partner_id = $data['sos_partner_id'];
         // สร้างชื่อไฟล์
         // $img = storage_path("app/public")."/1669" . "/" . 'qr_code_register_groupline_' . $groupId . '.png';
 
@@ -2233,6 +2234,10 @@ class LineApiController extends Controller
             $string_json = file_get_contents($template_path);
 
             // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
+
+            $img_qr_code = storage_path("app/public")."/img/qr_reg_officer" . "/" . 'qr_code_' . $sos_partner_id . '.png';;
+            $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img_qr_code,$string_json);
+
             $string_json = str_replace("ชื่อองค์กร",$sos_partner_name,$string_json);
 
             $messages = [ json_decode($string_json, true) ];

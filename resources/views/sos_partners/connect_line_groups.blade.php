@@ -89,8 +89,8 @@
 		function click_cf_connect(){
 			// console.log(data_partner);
 			let groupId = "{{ $groupId }}";
-            let sos_partner_name = "{{ $data_sos_partner->full_name }}";
-
+            let sos_partner_name = "{{ $data_sos_partner->name }}";
+            let sos_partner_id = "{{ $data_sos_partner->id }}";
 			fetch("{{ url('/') }}/api/click_cf_connect/" + data_partner.id + "/" + data_partner.name + "/" + groupId)
                 .then(response => response.text())
                 .then(result => {
@@ -112,7 +112,7 @@
                         });
 
                         setTimeout(function() {
-                            console.log("เข้าสู่ qr code generate");
+                            // console.log("เข้าสู่ qr code generate");
                             let qrCanvas = qrCodeDiv.querySelector('canvas');
                             let base64Image = qrCanvas.toDataURL("image/png");
 
@@ -120,6 +120,7 @@
                                 'url': base64Image,
                                 'groupId': groupId,
                                 'sos_partner_name': sos_partner_name,
+                                'sos_partner_id': sos_partner_id,
                             };
 
                             fetch("{{ url('/') }}/api/bind_groupLine_ViiFix", {
