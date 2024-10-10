@@ -480,6 +480,7 @@ class Sos_partnersController extends Controller
     }
 
     function open_status_category($categorie_id, $type){
+
         DB::table('maintain_categorys')
             ->where([
                     ['id', $categorie_id],
@@ -487,6 +488,32 @@ class Sos_partnersController extends Controller
             ->update([
                     'status' => $type,
                 ]);
+            
+        $data_maintain_categorys = Maintain_category::where('id',$categorie_id)->first();
+        $area_id = $data_maintain_categorys->area_id ;
+
+        $check_active = Maintain_category::where('area_id',$area_id)
+            ->where('status' , 'Active')
+            ->count();
+
+        if($check_active != 0){
+            DB::table('sos_partner_areas')
+            ->where([
+                    ['id', $area_id],
+                ])
+            ->update([
+                    'open_repair' => 'Yes',
+                ]);
+        }
+        else if($check_active <= 0){
+            DB::table('sos_partner_areas')
+            ->where([
+                    ['id', $area_id],
+                ])
+            ->update([
+                    'open_repair' => null,
+                ]);
+        }
 
         return "success";
     }
@@ -731,6 +758,29 @@ class Sos_partnersController extends Controller
 
     function CF_delete_area($area_id){
 
+        $data_area = Sos_partner_area::where('id' , $area_id)->first();
+        $arr_line_action = [] ;
+
+        // เคลียกลุ่มไลน์ของ sos
+        $sos_group_line_id = $data_area->sos_group_line_id;
+        array_push($arr_line_action,$sos_group_line_id);
+
+        $group_line_of_sos = Group_line::where('id', $sos_group_line_id)->first();
+
+        if ($group_line_of_sos) {
+            $arr_area_id = explode(",", $group_line_of_sos->partners_area_id);
+
+            if (($key = array_search($area_id, $arr_area_id)) !== false) {
+                unset($arr_area_id[$key]);
+            }
+
+            $updated_partners_area_id = implode(",", $arr_area_id);
+
+            $group_line_of_sos->partners_area_id = $updated_partners_area_id;
+            $group_line_of_sos->save();
+
+        }
+
         DB::table('sos_partner_areas')
             ->where([
                     ['id', $area_id],
@@ -744,6 +794,80 @@ class Sos_partnersController extends Controller
                     'open_move' => null,
                     'open_news' => null,
                 ]);
+
+        // เคลียกลุ่มไลน์ของ maintain_categorys
+        $maintain_categorys = Maintain_category::where('area_id' , $area_id)->get();
+
+        foreach ($maintain_categorys as $item) {
+
+            $line_group_id = $item->line_group_id ;
+
+            array_push($arr_line_action,$line_group_id);
+
+            $data_group_lines = Group_line::where('id', $line_group_id)->first();
+
+            if ($data_group_lines) {
+                $arr_area_id = explode(",", $data_group_lines->partners_area_id);
+
+                if (($key = array_search($area_id, $arr_area_id)) !== false) {
+                    unset($arr_area_id[$key]);
+                }
+
+                $updated_partners_area_id = implode(",", $arr_area_id);
+
+                $data_group_lines->partners_area_id = $updated_partners_area_id;
+
+                $data_group_lines->save();
+            }
+
+
+            DB::table('maintain_categorys')
+                ->where([
+                        ['id', $item->id],
+                    ])
+                ->update([
+                        'status' => 'Inactive',
+                        'line_group_id' => null,
+                    ]);
+        }
+
+
+        // ตรวจสอบ line เดิมเพื่อเช็ค for_type
+        // ตัดค่าที่ซ้ำกันออก
+        $arr_line_action_unique = array_unique($arr_line_action);
+
+        foreach ($arr_line_action_unique as $line_id) {
+
+            $for_type = '';
+
+            // ตรวจสอบว่ามีไลน์นี้สำหรับ sos ที่พื้นที่อื่นไหม
+            $check_for_sos_area = Sos_partner_area::where('sos_group_line_id' , $line_id)->count();
+
+            if ($check_for_sos_area != 0) {
+                $for_type = 'sos';
+            }
+
+            // ตรวจสอบว่ามีไลน์นี้สำหรับ fix ที่พื้นที่อื่นไหม
+            $check_for_fix_area = Maintain_category::where('line_group_id' , $line_id)->count();
+
+            if ($check_for_fix_area != 0) {
+                if(!empty($for_type)){
+                    $for_type = 'sos,fix';
+                }
+                else{
+                    $for_type = 'fix';
+                }
+            }
+
+            DB::table('group_lines')
+                ->where([
+                        ['id', $line_id],
+                    ])
+                ->update([
+                        'for_type' => $for_type,
+                    ]);
+            
+        }
 
         return "success" ;
     }

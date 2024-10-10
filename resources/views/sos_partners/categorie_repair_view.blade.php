@@ -346,7 +346,7 @@
 }
 </style>
         <div class="row mt-3">
-            <div class="col-12 col-md-6 mt-3">
+            <div class="col-12 col-md-12 mt-3">
                 <div class="mx-2 pb-4 radius-10 w-100" style="background-color: #e8f6ff;">
                     <div class="row d-flex justify-content-between p-4">
                         <div class="col-9">
@@ -382,44 +382,6 @@
                         <!-- data title_category -->
                     </div>
 
-                </div>
-            </div>
-            
-            <div class="col-12 col-md-6 mt-3">
-                <div class="col-12 col-md-6 mx-2 radius-10 w-100 overflow" style="background-color: #fa797a;overflow: auto;">
-                    <div class="row d-flex justify-content-between p-4">
-                        <div class="col-12">
-                            <span class="h2" style="font-weight: bold;">หัวข้ออื่นๆ ที่ได้รับแจ้ง</span>
-                        </div>
-                    </div>
-
-
-                    <div class="d-flex justify-content-between px-4 py-2 my-3 align-items-center">
-                        <span style="font-size: 24px; color:#000000;">ชั้นวางของ</span>
-
-                        <div>
-                            <span style="font-size: 24px; color:#000000;">2</span>
-                            <i onclick="add_to_use_title(this);" class="fa-duotone fa-solid fa-circle-plus ms-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #57dd46; --fa-secondary-opacity: 1; font-size: 28px; cursor: pointer;"></i>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between px-4 py-2 my-3 align-items-center">
-                        <span style="font-size: 24px; color:#000000;">ตู้หนังสือ</span>
-
-                        <div>
-                            <span style="font-size: 24px; color:#000000;">2</span>
-                            <i onclick="add_to_use_title(this);" class="fa-duotone fa-solid fa-circle-plus ms-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #57dd46; --fa-secondary-opacity: 1; font-size: 28px; cursor: pointer;"></i>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between px-4 py-2 my-3 align-items-center">
-                        <span style="font-size: 24px; color:#000000;">เก้าอี้สำนักงาน</span>
-
-                        <div>
-                            <span style="font-size: 24px; color:#000000;">2</span>
-                            <i onclick="add_to_use_title(this);" class="fa-duotone fa-solid fa-circle-plus ms-3" style="--fa-primary-color: #ffffff; --fa-secondary-color: #57dd46; --fa-secondary-opacity: 1; font-size: 28px; cursor: pointer;"></i>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
