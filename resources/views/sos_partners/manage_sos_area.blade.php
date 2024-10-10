@@ -392,6 +392,28 @@
     </div>
 </div>
 
+<!-- Button Modal Delete Area -->
+<button id="btn_modal_delete_area" type="button" class="d-none" data-toggle="modal" data-target="#modal_delete_area">
+</button>
+
+<!-- Modal Delete Area -->
+<div class="modal fade" id="modal_delete_area" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_delete_area" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Label_modal_delete_area">ยืนยันการยกเลิก ?</h5>
+      </div>
+      <div id="body_modal_delete_area" class="modal-body">
+        <!--  -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button id="btn_cf_delete_area" type="button" class="btn btn-primary">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     let timeout_name_area = null;
     document.querySelector('#name_area').addEventListener('input', function() {
@@ -612,7 +634,7 @@
                             <a id="" href="{{ url('/demo_management_view') }}" type="button" class="btn btn-warning active radius-15">
                                 <i class="fa-solid fa-plus"></i>ดูข้อมูล / แก้ไข
                             </a>
-                            <button id="" type="button" class="btn btn-danger active radius-15">
+                            <button id="" type="button" class="btn btn-danger active radius-15" onclick="click_delete_area('`+result[i].id+`','`+result[i].name_area+`')">
                                 <i class="fa-solid fa-trash"></i>ลบ
                             </button>
                         </td>
@@ -721,6 +743,27 @@
         console.log("id_line_group >> " + id_line_group);
 
         fetch("{{ url('/') }}/api/CF_select_line_for_area/" + id_area + "/" + id_line_group + "/sos")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+
+                if (result == "success") {
+                    location.reload();
+                }
+
+            });
+    }
+
+    function click_delete_area(area_id , name_area){
+        document.querySelector('#body_modal_delete_area').innerHTML = `ยืนยันการยกเลือกพื้นที่ <b class="text-danger">`+name_area+`</b> ใช่หรือไม่` ;
+
+        document.querySelector('#btn_cf_delete_area').setAttribute('onclick' , "CF_delete_area('"+area_id+"')")
+        document.querySelector('#btn_modal_delete_area').click();
+    }
+
+    function CF_delete_area(area_id){
+        console.log(area_id);
+        fetch("{{ url('/') }}/api/CF_delete_area/" + area_id)
             .then(response => response.text())
             .then(result => {
                 console.log(result);

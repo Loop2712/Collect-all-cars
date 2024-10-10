@@ -22,6 +22,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
+        "milon/barcode": "^11.0",
         "phattarachai/thaidate": "^12.1",
         "revolution/laravel-line-sdk": "^1.3",
         "simplesoftwareio/simple-qrcode": "^4.2",

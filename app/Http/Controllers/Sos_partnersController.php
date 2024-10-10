@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Group_line;
 use App\Models\Maintain_category;
+use App\Models\Maintain_sub_category;
+use Milon\Barcode\DNS2D;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class Sos_partnersController extends Controller
 {
@@ -71,16 +74,16 @@ class Sos_partnersController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $requestData = $request->all();
 
         // Generate a unique 6-digit random number for secret_token
         do {
             $secretToken = mt_rand(100000, 999999);
         } while (Sos_partner::where('secret_token', $secretToken)->exists());
-
+        
         $requestData['secret_token'] = $secretToken;
-
+        
         if ($request->hasFile('logo')) {
             $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
         }
@@ -108,6 +111,23 @@ class Sos_partnersController extends Controller
                 'role' => 'admin-partner',
                 'organization_id' => $data_Sos_partner->id,
         ]);
+
+        // สร้าง URL สำหรับ QR Code
+        $qrUrl = url('/sos_partner_officers/create?sos_partner_id=' . $data_Sos_partner->id);
+
+        // สร้าง instance ของ DNS2D
+        $dns = new DNS2D();
+
+        // สร้าง QR Code
+        $qrCode = $dns->getBarcodePNG($qrUrl, 'QRCODE');
+
+        // ใช้ Intervention Image เพื่อสร้างภาพจากข้อมูล PNG ของ QR Code
+        $image = Image::make($qrCode);
+
+        // บันทึกภาพ QR Code ลงใน public/uploads
+        $qrFileName = 'qr_code_' . $data_Sos_partner->id . '.png';
+        $path = public_path('img/qr_reg_officer/' . $qrFileName);
+        $image->save($path);
 
         // echo "<pre>";
         // print_r($requestData);
@@ -157,9 +177,9 @@ class Sos_partnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         $requestData = $request->all();
-
+        
         $sos_partner = Sos_partner::findOrFail($id);
         $sos_partner->update($requestData);
 
@@ -206,7 +226,7 @@ class Sos_partnersController extends Controller
 
     public function edit_data_sos_partners(Request $request)
     {
-
+        
         $requestData = $request->all();
         $id = $requestData['id'] ;
 
@@ -254,7 +274,9 @@ class Sos_partnersController extends Controller
     }
 
     function get_data_area($organization_id){
-        $data = Sos_partner_area::where('sos_partner_id',$organization_id)->get();
+        $data = Sos_partner_area::where('sos_partner_id',$organization_id)
+            ->where('status' , '!=' , 'd-none')
+            ->get();
         return $data ;
     }
 
@@ -449,7 +471,7 @@ class Sos_partnersController extends Controller
         // $data = Maintain_category::where('area_id' , $area_id)->get();
 
         $data = DB::table('maintain_categorys')
-            ->join('group_lines', 'group_lines.id', '=', 'maintain_categorys.line_group_id')
+            ->leftJoin('group_lines', 'group_lines.id', '=', 'maintain_categorys.line_group_id')
             ->select('maintain_categorys.*', 'group_lines.groupName')
             ->where('maintain_categorys.area_id' , $area_id)
             ->get();
@@ -476,12 +498,254 @@ class Sos_partnersController extends Controller
         $categorie_id = $requestData['categorie_id'];
 
         $maintain_categorys = DB::table('maintain_categorys')
-            ->join('group_lines', 'group_lines.id', '=', 'maintain_categorys.line_group_id')
+            ->leftJoin('group_lines', 'group_lines.id', '=', 'maintain_categorys.line_group_id')
             ->select('maintain_categorys.*', 'group_lines.groupName')
             ->where('maintain_categorys.id' , $categorie_id)
             ->first();
 
-        return view('sos_partners.categorie_repair_view', compact('maintain_categorys'));
+        $organization_id = Auth::user()->organization_id;
+        $data_sos_partner = Sos_partner::where('id', $organization_id)->first();
+        $secret_token = $data_sos_partner->secret_token ;
+
+        return view('sos_partners.categorie_repair_view', compact('maintain_categorys' , 'secret_token'));
+    }
+
+    function changr_color_categorys($color , $categorys_id){
+        DB::table('maintain_categorys')
+            ->where([
+                    ['id', $categorys_id],
+                ])
+            ->update([
+                    'color' => '#'.$color,
+                ]);
+
+        return "success";
+    }
+
+    function get_sub_categorys($categorys_id){
+        $data = Maintain_sub_category::where('category_id' , $categorys_id)->get();
+        return $data ;
+    }
+
+    public function add_title_category(Request $request)
+    {
+        $requestData = $request->all();
+        $new_data = Maintain_sub_category::create($requestData);
+
+        $data = [];
+        $data['response'] = 'success' ;
+        $data['data'] = $new_data ;
+
+        return $data ;
+    }
+
+    function open_status_sub_categorys($sub_categorys_id,$type){
+        DB::table('maintain_sub_categorys')
+            ->where([
+                    ['id', $sub_categorys_id],
+                ])
+            ->update([
+                    'status' => $type,
+                ]);
+
+        return "success";
+    }
+
+    function delete_sub_cat($sub_cat_id){
+        Maintain_sub_category::where('id', $sub_cat_id)->delete();
+        return "success" ;
+    }
+
+    public function edit_name_Categorie(Request $request)
+    {
+        $requestData = $request->all();
+
+        $check_data = Maintain_category::where('name' , $requestData['name'])->first();
+
+        if(!empty($check_data->id)){
+            return "มีอยู่แล้ว" ;
+            // return $check_data ;
+        }
+        else{
+            DB::table('maintain_categorys')
+                ->where([
+                        ['id', $requestData['category_id']],
+                    ])
+                ->update([
+                        'name' => $requestData['name'],
+                        'user_id' => $requestData['user_id'],
+                    ]);
+
+            return 'success' ;
+        }
+
+    }
+
+    function CF_ChangeGroupLine_categorie(Request $request)
+    {
+        $requestData = $request->all();
+
+        $old_data = Maintain_category::where('id' , $requestData['id'])->first();
+        $area_id = $old_data->area_id;
+        $old_line_group_id = $old_data->line_group_id;
+
+        $count = Maintain_category::where('area_id', $area_id)
+            ->where('id', '!=', $requestData['id'])
+            ->where('line_group_id', $old_line_group_id)
+            ->count();
+
+        if ($count <= 0) {
+            // ไม่มีข้อมูล
+            $data_group_lines = Group_line::where('id', $old_line_group_id)->first();
+
+            if ($data_group_lines) {
+                $arr_area_id = explode(",", $data_group_lines->partners_area_id);
+
+                if (($key = array_search($area_id, $arr_area_id)) !== false) {
+                    unset($arr_area_id[$key]);
+                }
+
+                $updated_partners_area_id = implode(",", $arr_area_id);
+
+                $data_group_lines->partners_area_id = $updated_partners_area_id;
+
+                $check_fix_in_area_other = Maintain_category::where('id', '!=', $requestData['id'])
+                    ->where('line_group_id', $old_line_group_id)
+                    ->count();
+                if($check_fix_in_area_other <= 0){
+                    $data_group_lines->for_type = 'sos';
+                }
+
+                $data_group_lines->save();
+            }
+        }
+
+        DB::table('maintain_categorys')
+            ->where([
+                    ['id', $requestData['id']],
+                ])
+            ->update([
+                    'line_group_id' => $requestData['line_group_id'],
+                    'user_id' => $requestData['user_id'],
+                ]);
+
+
+        $type = "fix" ;
+
+        $dataGroup_line = Group_line::where('id' , $requestData['line_group_id'])->first();
+
+        if(!empty($dataGroup_line->for_type)){
+
+            $for_type_array = explode(',', $dataGroup_line->for_type);
+
+            if (!in_array($type, $for_type_array)) {
+                // ถ้าไม่มีใน array ให้เพิ่ม $type เข้าไปในสตริง
+                $for_type = $dataGroup_line->for_type . "," . $type;
+            } else {
+                // ถ้ามีอยู่แล้ว ไม่ต้องทำอะไร หรือแสดงข้อความตามต้องการ
+                $for_type = $dataGroup_line->for_type;
+            }
+        }
+        else{
+            $for_type = $type ;
+        }
+
+        if(!empty($dataGroup_line->partners_area_id)){
+
+            $area_id_array = explode(',', $dataGroup_line->partners_area_id);
+
+            if (!in_array($area_id, $area_id_array)) {
+                // ถ้าไม่มีใน array ให้เพิ่ม $area_id เข้าไปในสตริง
+                $partners_area_id = $dataGroup_line->partners_area_id . "," . $area_id;
+            } else {
+                // ถ้ามีอยู่แล้ว ไม่ต้องทำอะไร หรือแสดงข้อความตามต้องการ
+                $partners_area_id = $dataGroup_line->partners_area_id;
+            }
+
+        }
+        else{
+            $partners_area_id = $area_id ;
+        }
+
+        DB::table('group_lines')
+            ->where([
+                    ['id', $requestData['line_group_id']],
+                ])
+            ->update([
+                    'for_type' => $for_type,
+                    'partners_area_id' => $partners_area_id,
+                ]);
+
+        return 'success' ;
+    }
+
+    function CF_cancel_GroupLine($categorys_id , $user_id){
+
+        $old_data = Maintain_category::where('id' , $categorys_id)->first();
+        $area_id = $old_data->area_id;
+        $old_line_group_id = $old_data->line_group_id;
+
+        $count = Maintain_category::where('area_id', $area_id)
+            ->where('id', '!=', $categorys_id)
+            ->where('line_group_id', $old_line_group_id)
+            ->count();
+
+        if ($count <= 0) {
+            // ไม่มีข้อมูล
+            $data_group_lines = Group_line::where('id', $old_line_group_id)->first();
+
+            if ($data_group_lines) {
+                $arr_area_id = explode(",", $data_group_lines->partners_area_id);
+
+                if (($key = array_search($area_id, $arr_area_id)) !== false) {
+                    unset($arr_area_id[$key]);
+                }
+
+                $updated_partners_area_id = implode(",", $arr_area_id);
+
+                $data_group_lines->partners_area_id = $updated_partners_area_id;
+
+                $check_fix_in_area_other = Maintain_category::where('id', '!=', $categorys_id)
+                    ->where('line_group_id', $old_line_group_id)
+                    ->count();
+                if($check_fix_in_area_other <= 0){
+                    $data_group_lines->for_type = 'sos';
+                }
+
+                $data_group_lines->save();
+            }
+        }
+
+        DB::table('maintain_categorys')
+            ->where([
+                    ['id', $categorys_id],
+                ])
+            ->update([
+                    'line_group_id' => null,
+                    'status' => 'Inactive',
+                    'user_id' => $user_id,
+                ]);
+
+        return "success" ;
+    }
+
+    function CF_delete_area($area_id){
+
+        DB::table('sos_partner_areas')
+            ->where([
+                    ['id', $area_id],
+                ])
+            ->update([
+                    'sos_group_line_id' => null,
+                    'sos_area' => null,
+                    'status' => 'd-none',
+                    'open_sos' => null,
+                    'open_repair' => null,
+                    'open_move' => null,
+                    'open_news' => null,
+                ]);
+
+        return "success" ;
     }
 
 }

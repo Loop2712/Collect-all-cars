@@ -245,13 +245,13 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label">เลือกกลุ่มไลน์</label>
-                        <input class="form-control radius-15" list="nameCategorie" name="nameCategorie" value="">
-                        <datalist id="nameCategorie">
-                        </datalist>
+                        <select name="" class="form-control" id="select_line_for_area" onchange="check_select_GroupLine();">
+                            <!--  -->
+                        </select>
                     </div>
                     <div class="col-12 col-md-12 col-lg-12">
                         <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label">กรอก Secret Token</label>
-                        <input class="form-control radius-15" list="cfPassWordGroupLind" name="cfPassWordGroupLind" value="">
+                        <input class="form-control radius-15" list="cfPassWordGroupLine" name="cfPassWordGroupLine" id="cfPassWordGroupLine" value="" readonly oninput="check_ST_to_ChangeGroupLine();">
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@
                 <button type="button" class="btn btn-danger radius-10 h-100" id="btnCancelLinkGroupLine" data-bs-toggle="modal" data-bs-target="#modalChangeGroupLineConfirm">
                     ยกเลิกการผูกกลุ่มไลน์
                 </button>
-                <button type="button" class="btn btn-success radius-10 h-100" id="" style="width: 150px;">
+                <button type="button" class="btn btn-success radius-10 h-100" id="btn_cf_ChangeGroupLine" style="width: 150px;" disabled onclick="CF_ChangeGroupLine_categorie();">
                     ยืนยัน
                 </button>
             </div>
@@ -281,12 +281,12 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <label style="font-weight: bold; font-size: 20px;" for="department" class="form-label text-danger">เมื่อกดยืนยัน
                             หมวดหมู่นี้จะอยู่ในสถานะปิดใช้งาน</label>
-                        <input class="form-control radius-15" list="cfPassWordGroupLind" placeholder="กรอก Secret Token" name="cfPassWordGroupLind" value="">
+                        <input class="form-control radius-15" list="cfPassWordGroupLine" placeholder="กรอก Secret Token" name="cfPassWordGroupLine" id="st_for_cancel_GroupLine" value="" oninput="input_for_cancel_GroupLine();">
                     </div>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-around ">
-                <button type="button" class="btn btn-secondary radius-10 h-100" id="" style="width: 150px;">
+                <button type="button" class="btn btn-secondary radius-10 h-100" id="btn_for_cancel_GroupLine" style="width: 150px;" disabled onclick="CF_cancel_GroupLine();">
                     ยืนยัน
                 </button>
                 <button type="button" class="btn btn-primary radius-10 h-100" id="Cancel_modalChangeGroupLineConfirm" style="width: 150px;">
@@ -304,14 +304,20 @@
                 <div class="d-flex w-100">
 
                     <span id="changeCategorie" class="h2 d-block" style="font-weight: bold; ">หมวดหมู่ :
-                        <b>{{ $maintain_categorys->name }}</b>
+                        @if(!empty($maintain_categorys->name))
+                            <span>{{ $maintain_categorys->name }}</span>
+                        @endif
                         <i class="fa-solid fa-pen-to-square cursor-pointer"
                             style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>
                     </span>
                 </div>
                 <span class="h4">กลุ่มไลน์ :
-                    <span>{{ $maintain_categorys->groupName }}</span>
-                    <i id="iconModalChangeGroupLine" class="fa-solid fa-pen-to-square cursor-pointer"
+                    @if(!empty($maintain_categorys->groupName))
+                        <span>{{ $maintain_categorys->groupName }}</span>
+                    @endif
+                    <i class="fa-solid fa-pen-to-square cursor-pointer"
+                        style="width:35px; height: 35px; font-size:25px;" onclick="open_modal_ChangeGroupLine();"></i>
+                    <i id="iconModalChangeGroupLine" class="d-none"
                         style="width:35px; height: 35px; font-size:25px;" data-bs-toggle="modal" data-bs-target="#modalChangeGroupLine"></i>
                 </span>
 
@@ -323,64 +329,9 @@
                     </div>
                     <label for="" style="font-weight: bold; font-size: 16px; padding-right: 15px;">เลือกสี</label>
                 </div>
-                <input class="ms-3" type="color" name="" id="" style="width: 60px;height: 27px;border: none;border-radius: 10px;">
+                <input class="ms-3" type="color" name="color_categorys" id="color_categorys" style="width: 60px;height: 27px;border: none;border-radius: 10px;" value="{{ $maintain_categorys->color }}" onchange="changr_color_categorys();">
             </div>
         </div>
-        <!-- <div class="row mb-4">
-                <div class="col-12 col-md-4">
-                    <span id="changeCategorie" class="h2 d-block" style="font-weight: bold; ">หมวดหมู่ :
-                        <b>อุปกรณ์สำนักงาน</b>
-                        <i class="fa-solid fa-pen-to-square cursor-pointer"
-                            style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>
-                    </span>
-                    <span class="h4">กลุ่มไลน์ :
-                        <span>ช่างคอมซ่อมได้</span>
-                        <i id="iconModalChangeGroupLine" class="fa-solid fa-pen-to-square cursor-pointer"
-                            style="width:35px; height: 35px; font-size:25px;" data-bs-toggle="modal" data-bs-target="#modalChangeGroupLine"></i>
-                    </span>
-                </div>
-                <div class="col-12 col-md-8 ">
-                    <div class="header-colors-indigators">
-                        <div class="row col-12 g-3">
-                            <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-evenly align-items-center d-non" style="border-right: #6c757d solid 2px;">
-                                <input id="colorCodeCategorie" class="form-control radius-15 d-none" type="text" value="">
-                                <div class="header-colors-indigators">
-                                    <div class="indigator" id="colorExample"></div>
-                                </div>
-                                <label for="" style="font-weight: bold; font-size: 16px; ">สีที่เลือกใช้</label>
-                            </div>
-                            <div class="col-3 d-flex justify-content-evenly">
-                                <div class="indigator" id="colorItem_1"></div>
-                                <div class="indigator" id="colorItem_2"></div>
-                                <div class="indigator" id="colorItem_3"></div>
-                                <div class="indigator" id="colorItem_4"></div>
-                            </div>
-                            <div class="col-1 d-flex justify-content-center align-items-center h-100 ">
-                                <i class="fas fa-sync-alt d-flex justify-content-center align-items-center bg-white cursor-pointer"
-                                style="width:45px; height: 45px; font-size:35px;" onclick="random_colorCategories();"></i>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center align-items-center">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="indigator" id="color_item_Code_Ex"></div>
-                                    </div>
-                                    <div class="col-9">
-                                        <input style="margin-top:5px;" type="text" class="form-control w-100"
-                                            id="code_colorCategorie" name="code_colorCategorie" placeholder="color code" oninput="add_color_item_Code_Categorie();">
-                                    </div>
-                                    {{-- <div id="" class="col-12 mt-2 " style="height: 20px;">
-                                        <span class="text-danger" id="textAlertInvalidCC"></span>
-                                    </div> --}}
-                                </div>
-                            </div>
-                            <div class="col-2 d-flex justify-content-end align-items-center">
-                                <i class="fa-solid fa-circle-info d-flex justify-content-center align-items-center cursor-pointer"
-                                    style="width:45px; height: 45px; font-size:35px; " onclick=""></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
 <style>
     #content_title_category{
@@ -402,7 +353,7 @@
                             <span class="h2" style="font-weight: bold;">สถานะการแสดงผล</span>
                         </div>
                         <div class="col-3 align-content-end">
-                            <span class="h5 " style="float: right;">แสดงผล 1</span>
+                            <span class="h5 " id="sub_active" style="float: right;"></span>
                         </div>
                     </div>
                     <div class="  w-100 d-flex px-3">
@@ -428,60 +379,7 @@
                         }
                     </script>
                     <div id="content_title_category">
-                        {{-- #1 --}}
-                        <div class="w-100 d-flex align-items-center px-4  py-2 my-3 ">
-                            <div class=" d-flex w-100">
-                                <div class="d-flex align-content-center">
-                                    <span style="font-size: 24px; color:#000000;">คอมพิวเตอร์</span>
-                                </div>
-
-                            </div>
-                            <div class="align-content-center justify-content-center float-right">
-                                <div class="button r mx-2" id="button-3">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs"></div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                            <button style="float: right;" class="float-right btn btn-danger" href="#" onclick="this.parentElement.remove();">ลบ</button>
-                        </div>
-
-                        {{-- #2 --}}
-                        <div class="w-100 d-flex align-items-center px-4  py-2 my-3 ">
-                            <div class=" d-flex w-100">
-                                <div class="d-flex align-content-center">
-                                    <span style="font-size: 24px; color:#000000;">เครื่องพิมพ์</span>
-                                </div>
-
-                            </div>
-                            <div class="align-content-center justify-content-center float-right">
-                                <div class="button r mx-2" id="button-3">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs"></div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                            <button style="float: right;" class="float-right btn btn-danger" href="#" onclick="this.parentElement.remove();">ลบ</button>
-                        </div>
-
-                        {{-- #3 --}}
-                        <div class="w-100 d-flex align-items-center px-4  py-2 my-3 ">
-                            <div class=" d-flex w-100">
-                                <div class="d-flex align-content-center">
-                                    <span style="font-size: 24px; color:#000000;">เครื่องพิมพ์</span>
-                                </div>
-
-                            </div>
-                            <div class="align-content-center justify-content-center float-right">
-                                <div class="button r mx-2" id="button-3">
-                                    <input type="checkbox" class="checkbox">
-                                    <div class="knobs"></div>
-                                    <div class="layer"></div>
-                                </div>
-                            </div>
-                            <button style="float: right;" class="float-right btn btn-danger" href="#" onclick="this.parentElement.remove();">ลบ</button>
-                        </div>
-
+                        <!-- data title_category -->
                     </div>
 
                 </div>
@@ -529,6 +427,249 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<button id="btn_modal_delete_sub_cat" type="button" class="d-none" data-toggle="modal" data-target="#modal_delete_sub_cat">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_delete_sub_cat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="modal_delete_sub_catLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_delete_sub_catLabel">ยืนยันการลบ ?</h5>
+            </div>
+            <div class="modal-body" id="body_modal_delete_sub_cat">
+                <!--  -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="close_modal_delete_sub_cat" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                <button type="button" id="btn_cf_delete_sub_cat" class="btn btn-primary">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // random_colorCategories();
+        get_sub_categorys();
+    });
+
+    function changr_color_categorys(){
+        let color = document.querySelector('#color_categorys').value ;
+            color = color.replace("#", "");
+        // console.log(color);
+
+        fetch("{{ url('/') }}/api/changr_color_categorys/" + color + "/" + "{{ $maintain_categorys->id }}")
+        .then(response => response.text())
+        .then(result => {
+            // console.log(result);
+        });
+
+    }
+
+    const arr_name_sub_cat = [];
+
+    function get_sub_categorys(){
+        let content_title_category = document.querySelector('#content_title_category');
+            content_title_category.innerHTML = '';
+
+        fetch("{{ url('/') }}/api/get_sub_categorys/" + "{{ $maintain_categorys->id }}")
+            .then(response => response.json())
+            .then(result => {
+                if(result){
+                    console.log(result);
+
+                    let count_active = 0;
+                    for (let i = 0; i < result.length; i++) {
+
+                        arr_name_sub_cat.push(result[i].name);
+
+                        let html_status = ``;
+                        if(result[i].status == "Active"){
+                            html_status = `
+                                <div class="align-content-center justify-content-center float-right" onclick="open_status_sub_categorys('`+result[i].id+`' , 'Inactive');">
+                                    <div class="button r mx-2" id="button-3">
+                                        <input type="checkbox" class="checkbox" checked>
+                                        <div class="knobs"></div>
+                                        <div class="layer"></div>
+                                    </div>
+                                </div>
+                            `;
+
+                            count_active = count_active + 1 ;
+                        }else{
+                            html_status = `
+                                <div id="checkbox_open_system_id_`+result[i].id+`" class="align-content-center justify-content-center float-right" onclick="open_status_sub_categorys('`+result[i].id+`' , 'Active');">
+                                    <div class="button r mx-2" id="button-3">
+                                        <input type="checkbox" class="checkbox">
+                                        <div class="knobs"></div>
+                                        <div class="layer"></div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        let html = `
+                            <div class="w-100 d-flex align-items-center px-4  py-2 my-3 " id="content_sub_cat_id_`+result[i].id+`">
+                                <div class=" d-flex w-100">
+                                    <div class="d-flex align-content-center">
+                                        <span style="font-size: 24px; color:#000000;">`+result[i].name+`</span>
+                                    </div>
+
+                                </div>
+                                `+html_status+`
+                                <button style="float: right;" class="float-right btn btn-danger" href="#" onclick="open_modal_delete_sub_cat(`+result[i].id+`,'`+result[i].name+`');">ลบ</button>
+                            </div>
+                        `;
+
+                        content_title_category.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        document.querySelector('#sub_active').innerHTML = "แสดงผล " + count_active ;
+                    }
+
+                }
+            });
+    }
+
+    function open_status_sub_categorys(sub_categorys_id , type){
+        fetch("{{ url('/') }}/api/open_status_sub_categorys/" + sub_categorys_id + "/" + type)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+            });
+    }
+
+    function open_modal_delete_sub_cat(sub_cat_id , name){
+
+        document.querySelector('#body_modal_delete_sub_cat').innerHTML = `
+            <h3>ยืนยันการลบ <b class="text-danger">`+name+`</b> ใช่หรือไม่</h3>
+        `;
+        document.querySelector('#btn_cf_delete_sub_cat').setAttribute('onclick' , "delete_sub_cat("+sub_cat_id+");")
+        document.querySelector('#btn_modal_delete_sub_cat').click();
+    }
+
+    function delete_sub_cat(sub_cat_id){
+
+        fetch("{{ url('/') }}/api/delete_sub_cat/" + sub_cat_id)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                if(result == "success"){
+                    document.querySelector('#content_sub_cat_id_'+sub_cat_id).remove();
+                    document.querySelector('#close_modal_delete_sub_cat').click();
+                }
+            });
+    }
+
+    function open_modal_ChangeGroupLine(){
+        console.log("open_modal_ChangeGroupLine");
+
+        let organization_id = "{{ Auth::user()->organization_id }}";
+
+        fetch("{{ url('/') }}/api/get_data_group_line_ower/" + organization_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let select_line_for_area = document.querySelector('#select_line_for_area');
+                    select_line_for_area.innerHTML = '';
+
+                let option_start ;
+                    option_start = document.createElement("option");
+                    option_start.text = 'เลือกกลุ่มไลน์';
+                    option_start.value = '';
+                    select_line_for_area.add(option_start);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = 'กลุ่มไลน์ : ' + item.groupName;
+                    option.value = item.id;
+                    
+                    select_line_for_area.add(option);             
+                }
+
+                document.querySelector('#iconModalChangeGroupLine').click();
+
+            });
+
+    }
+
+    function check_select_GroupLine(){
+        let select_line_for_area = document.querySelector('#select_line_for_area');
+        if(select_line_for_area.value){
+            document.querySelector('#cfPassWordGroupLine').removeAttribute('readonly');
+        }
+        else{
+            document.querySelector('#cfPassWordGroupLine').value = '';
+            document.querySelector('#cfPassWordGroupLine').setAttribute('readonly', true);
+        }
+    }
+
+    function check_ST_to_ChangeGroupLine(){
+        let input_ST = document.querySelector('#cfPassWordGroupLine').value ;
+        if(input_ST == "{{ $secret_token }}"){
+            document.querySelector('#btn_cf_ChangeGroupLine').removeAttribute('disabled');
+        }
+        else{
+            document.querySelector('#btn_cf_ChangeGroupLine').setAttribute('disabled', true);
+        }
+    }
+
+    function CF_ChangeGroupLine_categorie(){
+        let line_group_id = document.querySelector('#select_line_for_area').value ;
+            console.log(line_group_id);
+
+        const updatedData = {
+                id: "{{ $maintain_categorys->id }}",
+                line_group_id: line_group_id,
+                user_id: "{{ Auth::user()->id }}",
+            };
+
+            // ส่งข้อมูลไปยังเซิร์ฟเวอร์โดยใช้ fetch API
+            fetch("{{ url('/') }}/api/CF_ChangeGroupLine_categorie", {  
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    function input_for_cancel_GroupLine(){
+        let input_ST = document.querySelector('#st_for_cancel_GroupLine').value ;
+        if(input_ST == "{{ $secret_token }}"){
+            document.querySelector('#btn_for_cancel_GroupLine').removeAttribute('disabled');
+        }
+        else{
+            document.querySelector('#btn_for_cancel_GroupLine').setAttribute('disabled', true);
+        }
+    }
+
+    function CF_cancel_GroupLine(){
+        console.log('CF_cancel_GroupLine');
+
+        fetch("{{ url('/') }}/api/CF_cancel_GroupLine/" + "{{ $maintain_categorys->id }}" + "/{{ Auth::user()->id }}")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                if(result == 'success'){
+                    window.location.reload();
+                }
+            });
+    }
+
+</script>
+
 
 <!-- Add this script to your HTML file -->
 <script>
@@ -567,32 +708,70 @@
     function add_title_category(params) {
         let titlecat = document.querySelector('#titlecat').value;
 
-        let content_title_category = document.querySelector('#content_title_category');
-        let html_titlecat = `
-                    <div class="w-100 d-flex align-items-center px-4  py-2 my-3 ">
-                    <div class=" d-flex w-100">
-                        <div class="d-flex align-content-center">
-                            <span style="font-size: 24px; color:#000000;">${titlecat}</span>
-                        </div>
-                        
-                    </div>
-                    <div class="align-content-center justify-content-center float-right">
-                            <div class="button r mx-2" id="button-3">
-                                <input type="checkbox" class="checkbox">
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                    <button  style="float: right;" class="float-right btn btn-danger" href="#" onclick="this.parentElement.remove();">ลบ</button>
-                </div>`;
-        content_title_category.insertAdjacentHTML('beforeend', html_titlecat); // แทรกบนสุด
+        if (arr_name_sub_cat.includes(titlecat)) {
+            alert('มีหัวข้อนี้อยู่แล้ว');
+            document.querySelector('#titlecat').value = '';
+            document.querySelector('#titlecat').focus();
+        } else {
 
-        document.querySelector('#titlecat').value = "";
-        document.querySelector('#btn_add_title_cat').disabled = true;
+            arr_name_sub_cat.push(titlecat);
+
+            const updatedData = {
+                category_id: "{{ $maintain_categorys->id }}",
+                name: titlecat,
+                user_id: "{{ Auth::user()->id }}",
+            };
+
+            // ส่งข้อมูลไปยังเซิร์ฟเวอร์โดยใช้ fetch API
+            fetch("{{ url('/') }}/api/add_title_category", {  
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => response.json())
+            .then(data => {
+        
+                if(data['response'] == "success"){
+
+                    console.log(data['data']);
+                    let content_title_category = document.querySelector('#content_title_category');
+                    
+                    let html_titlecat = `
+                            <div class="w-100 d-flex align-items-center px-4  py-2 my-3 " id="content_sub_cat_id_`+data['data'].id+`">
+                            <div class=" d-flex w-100">
+                                <div class="d-flex align-content-center">
+                                    <span style="font-size: 24px; color:#000000;">`+data['data'].name+`</span>
+                                </div>
+
+                            </div>
+                            <div id="checkbox_open_system_id_`+data['data'].id+`" class="align-content-center justify-content-center float-right" onclick="open_status_sub_categorys('`+data['data'].id+`' , 'Active');">
+                                <div class="button r mx-2" id="button-3">
+                                    <input type="checkbox" class="checkbox">
+                                    <div class="knobs"></div>
+                                    <div class="layer"></div>
+                                </div>
+                            </div>
+                            <button style="float: right;" class="float-right btn btn-danger" href="#" onclick="open_modal_delete_sub_cat(`+data['data'].id+`,'`+data['data'].name+`');">ลบ</button>
+                        </div>
+                    `;
+
+                    content_title_category.insertAdjacentHTML('beforeend', html_titlecat); // แทรกบนสุด
+
+                    document.querySelector('#titlecat').value = "";
+                    document.querySelector('#btn_add_title_cat').disabled = true;
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
 
     }
     document.addEventListener('DOMContentLoaded', (event) => {
-        random_colorCategories(); //สุ่มสี ในหมวดเลือกสีแสดงในปฎิทิน
+        // random_colorCategories(); //สุ่มสี ในหมวดเลือกสีแสดงในปฎิทิน
 
         // Get the cancel button in modalChangeGroupLineConfirm
         const Cancel_modalChangeGroupLineConfirm = document.querySelector('#Cancel_modalChangeGroupLineConfirm');
@@ -622,15 +801,15 @@
         let changeCategorieDiv = document.querySelector('#changeCategorie');
         changeCategorieDiv.innerHTML = "";
         let html = `
-                        <div class="d-flex me-2 w-100">หมวดหมู่ :
-                            <div >
-                                <input class="form-control radius-10" list="" name="namecat" id="namecat" value=""
-                                    placeholder="แก้ไขหัวข้อของหมวดหมู่">
-                            </div>
-                            <div class="mx-2">
-                                <button class="btn btn-success w-100 radius-10" onclick="confirmCategorie()">ยืนยัน</button>
-                            </div>
-                        </div>`;
+                <div class="d-flex me-2 w-100">หมวดหมู่ :
+                    <div >
+                        <input class="form-control radius-10" list="" name="namecat" id="namecat" value=""
+                            placeholder="แก้ไขหัวข้อของหมวดหมู่">
+                    </div>
+                    <div class="mx-2">
+                        <button class="btn btn-success w-100 radius-10" onclick="confirmCategorie()">ยืนยัน</button>
+                    </div>
+                </div>`;
 
         changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
     }
@@ -640,17 +819,48 @@
         // changeCategorieDiv.innerHTML = "";
 
         let namecat = document.querySelector('#namecat').value;
-        console.log(namecat);
-        let html = `หมวดหมู่ :
-                        <b>${namecat}</b>
-                        <i class="fa-solid fa-pen-to-square cursor-pointer" style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>`;
 
-        changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+        const updatedData = {
+                category_id: "{{ $maintain_categorys->id }}",
+                name: namecat,
+                user_id: "{{ Auth::user()->id }}",
+            };
 
-        let lastItem = document.querySelector('#changeCategorie div:last-child');
-        if (lastItem) {
-            lastItem.remove();
-        }
+            // ส่งข้อมูลไปยังเซิร์ฟเวอร์โดยใช้ fetch API
+            fetch("{{ url('/') }}/api/edit_name_Categorie", {  
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                // console.log(data)
+                if(data == "success"){
+                    let html = `
+                            หมวดหมู่ :
+                            <b>${namecat}</b>
+                            <i class="fa-solid fa-pen-to-square cursor-pointer" style="width:45px; height: 45px; font-size:35px;" onclick="changeCategorie();"></i>
+                        `;
+
+                    changeCategorieDiv.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+
+                    let lastItem = document.querySelector('#changeCategorie div:last-child');
+                    if (lastItem) {
+                        lastItem.remove();
+                    }
+                }
+                else if(data == "มีอยู่แล้ว"){
+                    alert('หมวดหมู่นี้อยู่แล้ว');
+                    document.querySelector('#namecat').value = '' ;
+                    document.querySelector('#namecat').focus();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 </script>
 
