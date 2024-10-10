@@ -2235,7 +2235,7 @@ class LineApiController extends Controller
 
             // $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img,$string_json);
 
-            $img_qr_code = "https://www.viicheck.com/img/qr_reg_officer" . "/" . 'qr_code_' . $sos_partner_id . '.png';;
+            $img_qr_code = url('img/qr_reg_officer/qr_code_' . $sos_partner_id . '.png');
             $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",$img_qr_code,$string_json);
 
             $string_json = str_replace("ชื่อองค์กร",$sos_partner_name,$string_json);
