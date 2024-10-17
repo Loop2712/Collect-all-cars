@@ -49,18 +49,20 @@
     .main-shadow {
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
     }
+
     footer {
-   position:absolute;
-   bottom:0;
-   width:100%;
-}
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
     .main-radius {
       border-radius: 5px;
     }
 
     body {
       top: 0px !important;
-      padding-bottom:200px;
+      padding-bottom: 200px;
     }
 
     .goog-logo-link {
@@ -73,14 +75,22 @@
 
     .goog-te-banner-frame.skiptranslate {
       display: none !important;
-    }.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+    }
+
+    .VIpgJd-ZVi9od-l4eHX-hSRGPd {
       display: none !important;
-    }.VIpgJd-ZVi9od-aZ2wEe-wOHMyf{
+    }
+
+    .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
       display: none !important;
-    }.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    }
+
+    .VIpgJd-ZVi9od-ORHb-OEVmcd {
       display: none !important;
 
-    }#goog-gt-{
+    }
+
+    #goog-gt- {
       display: none !important;
 
     }
@@ -264,35 +274,63 @@
     }
 
     .goog-tooltip:hover {
-        display: none !important;
+      display: none !important;
     }
+
     .goog-text-highlight {
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
-    #goog-gt-tt, .goog-te-balloon-frame{display: none !important;}
-    .goog-text-highlight { background: none !important; box-shadow: none !important;}
-    .goog-logo-link{display: none !important;}
-    .goog-te-gadget{height: 28px !important;  overflow: hidden;}
+    #goog-gt-tt,
+    .goog-te-balloon-frame {
+      display: none !important;
+    }
 
+    .goog-text-highlight {
+      background: none !important;
+      box-shadow: none !important;
+    }
+
+    .goog-logo-link {
+      display: none !important;
+    }
+
+    .goog-te-gadget {
+      height: 28px !important;
+      overflow: hidden;
+    }
   </style>
 
 
 </head>
 
-<body class="bg-white">
+@if(Auth::user() && Auth::user()->id == '1')
+<style>
+  body {
+    background-color: #eaf1f7 !important;
+  }
+</style>
+@else
+<style>
+  body {
+    background-color: #fff !important;
+  }
+</style>
+@endif
+
+<body class="">
   <a id="a_up_short" style="margin-right:10px;margin-bottom: 15px;" href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
   </a>
 
   <!-- ============== COOKIE ============== -->
-<!-- Cookie Consent by https://www.cookiewow.com -->
-<script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script>
-<script id="cookieWow" type="text/javascript" src="https://cookiecdn.com/configs/B9xBa3fozaLCfhakLM3pgqtW" data-cwcid="B9xBa3fozaLCfhakLM3pgqtW"></script>
+  <!-- Cookie Consent by https://www.cookiewow.com -->
+  <script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script>
+  <script id="cookieWow" type="text/javascript" src="https://cookiecdn.com/configs/B9xBa3fozaLCfhakLM3pgqtW" data-cwcid="B9xBa3fozaLCfhakLM3pgqtW"></script>
 
-<!-- ======= Top Bar ======= -->
+  <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
@@ -343,8 +381,24 @@
         <div class="col-3 d-none d-lg-block">
           <a href="{{URL::to('/')}}"><img width="110%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
-        <div class="col-6 d-block d-lg-none">
-          <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
+        <div class="col-6 d-block d-lg-none d-flex">
+          <div class="d-flex align-items-center">
+            <a class="w-100" href="{{URL::to('/')}}">
+              <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+            </a>
+            <i class="fa-sharp fa-solid fa-xmark mx-3 h4 mb-0"></i>
+            <a class="w-100" href="{{URL::to('/')}}">
+              <img width="100%" src="{{ asset('/img/logo-partner/LogoSaver.png') }}">
+            </a>
+          </div>
+
+          <!-- <a class="w-100" href="{{URL::to('/')}}">
+            <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+          </a>
+          <span>X</span>
+          <a class="w-100" href="{{URL::to('/')}}">
+            <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+          </a> -->
         </div>
         <div class="col-6 d-block d-lg-none">
           @if(Auth::check() && url()->full() != url('/sos_map/create'))
@@ -362,7 +416,7 @@
       <a href="{{ url('/sos_map/create') }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
         <span class="d-block d-md-inline">SOS &nbsp;<i class="fa-solid fa-truck-medical"></i></span>
       </a>
-      <a  id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
+      <a id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
         <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
       </a>
       @endif
@@ -370,23 +424,23 @@
         <ul>
           <!-- <li><a class="nav-link scrollto" href="{{ url('/middle_price_car') }}"><b>เช็คราคากลาง</b></a></li> -->
           <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-1') }}">
-            <b><span class="text-danger">Vii</span>SOS</b></a>
+              <b><span class="text-danger">Vii</span>SOS</b></a>
           </li>
           <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-2') }}">
-            <b><span class="text-danger">Vii</span>MOVE</b></a>
+              <b><span class="text-danger">Vii</span>MOVE</b></a>
           </li>
           <li><a class="nav-link scrollto notranslate" href="{{ url('/#tab-3') }}">
-            <b><span class="text-danger">Vii</span>CARE</b></a>
+              <b><span class="text-danger">Vii</span>CARE</b></a>
           </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
 
           <li class="dropdown">
-              <a href="#">
-                <b>อื่นๆ</b>
-                <i class="bi bi-chevron-down"></i>
+            <a href="#">
+              <b>อื่นๆ</b>
+              <i class="bi bi-chevron-down"></i>
             </a>
-            <ul >
+            <ul>
               <a class="nav-link scrollto" href="{{ url('/how_to_use') }}">
                 <li>
                   <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/37.2.png') }}">&nbsp;
@@ -395,8 +449,8 @@
               </a>
               <a class="nav-link scrollto" href="{{ url('/faq') }}">
                 <li>
-                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/18.png') }}">&nbsp;
-                    <b>FAQ</b>
+                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/18.png') }}">&nbsp;
+                  <b>FAQ</b>
                 </li>
               </a>
               <!-- <a class="nav-link scrollto" href="#">
@@ -432,73 +486,73 @@
                 </li>
               </a>
               @if(Auth::check())
-                @switch (Auth::user()->role)
-                  @case("admin")
-                    <a href="{{ url('/dashboard') }}" target="blank">
-                      <li>
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
-                        Admin
-                      </li>
-                    </a>
-                  @break
-                  @case("admin-partner")
-
-                    @if(Auth::user()->sub_organization == "โรงพยาบาล")
-                    <a href="{{ url('/hospital_offices_index') }}">
-                    @else
-                    <a href="{{ url('/partner_index') }}">
-                    @endif
-                      <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
-                        admin-partner
-                      </li>
-                    </a>
-                  @break
-                  @case("admin-condo")
-                    <a href="{{ url('/partner_index') }}">
-                      <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
-                        For Corporation
-                      </li>
-                    </a>
-                  @break
-                  @case("partner")
-                    <a href="{{ url('/partner_index') }}" target="blank">
-                      <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
-                        partner
-                      </li>
-                    </a>
-                  @break
-                @endswitch
-              @endif
-
-            @if(in_array(Auth::user()->id, [1, 64, 11003429, 50]))
-              <a href="{{ url('/test_test') }}">
+              @switch (Auth::user()->role)
+              @case("admin")
+              <a href="{{ url('/dashboard') }}" target="blank">
                 <li>
-                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/12.png') }}">&nbsp; New Admin (soon)
+                  <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
+                  Admin
                 </li>
               </a>
-            @endif
+              @break
+              @case("admin-partner")
 
-            @if (Route::has('password.request'))
-            <a href="{{ route('password.request') }}">
-              <li>
-                <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/20.png') }}"> &nbsp;
-                เปลี่ยนรหัสผ่าน
-              </li>
-            </a>
-            @endif
-          <a id="btn_logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-            <li class="notranslate">
-              <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/5.png') }}"> &nbsp;{{ __('Logout') }}
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-              </form>
-            </li>
-          </a>
-        </ul>
-        </li>
+              @if(Auth::user()->sub_organization == "โรงพยาบาล")
+              <a href="{{ url('/hospital_offices_index') }}">
+                @else
+                <a href="{{ url('/partner_index') }}">
+                  @endif
+                  <li class="notranslate">
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
+                    admin-partner
+                  </li>
+                </a>
+                @break
+                @case("admin-condo")
+                <a href="{{ url('/partner_index') }}">
+                  <li class="notranslate">
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
+                    For Corporation
+                  </li>
+                </a>
+                @break
+                @case("partner")
+                <a href="{{ url('/partner_index') }}" target="blank">
+                  <li class="notranslate">
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
+                    partner
+                  </li>
+                </a>
+                @break
+                @endswitch
+                @endif
+
+                @if(in_array(Auth::user()->id, [1, 64, 11003429, 50]))
+                <a href="{{ url('/test_test') }}">
+                  <li>
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/12.png') }}">&nbsp; New Admin (soon)
+                  </li>
+                </a>
+                @endif
+
+                @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}">
+                  <li>
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/20.png') }}"> &nbsp;
+                    เปลี่ยนรหัสผ่าน
+                  </li>
+                </a>
+                @endif
+                <a id="btn_logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                  <li class="notranslate">
+                    <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/5.png') }}"> &nbsp;{{ __('Logout') }}
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                    </form>
+                  </li>
+                </a>
+            </ul>
+          </li>
         </ul>
         @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
         <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 5px;" width="40" src="{{ Auth::user()->avatar }}">
@@ -1237,17 +1291,17 @@
                   $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get();
                   @endphp
                   @foreach($partner as $item)
-                    @if($item->name == "Ocean Life")
-                      <div class="text-center item">
-                        <a href="https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver" target="bank">
-                          <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
-                        </a>
-                      </div>
-                    @else
-                      <div class="text-center item">
-                        <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
-                      </div>
-                    @endif
+                  @if($item->name == "Ocean Life")
+                  <div class="text-center item">
+                    <a href="https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver" target="bank">
+                      <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                    </a>
+                  </div>
+                  @else
+                  <div class="text-center item">
+                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                  </div>
+                  @endif
                   @endforeach
                 </div>
               </div>
@@ -1258,19 +1312,19 @@
         <div class="col-md-1 col-lg-1 col-12">
           <div class="row">
             <!-- <div class="col-4"> -->
-                <!-- include ('counter') เติม @ ด้วย -->
+            <!-- include ('counter') เติม @ ด้วย -->
             <!-- </div> -->
             <div class="col-12" style="font-size: 12px;">
               <div style="margin-left: -70px;margin-top: 12px;" class="text-center d-block d-md-none">
                 <span class="text-dark">WWW.ViiCHECK.com</span>
                 <br>
                 <span class="text-dark">•<span>
-                <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
-                <br>
-                <span class="text-dark">•<span>
-                <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
-                <br>
-                <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
+                    <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
+                    <br>
+                    <span class="text-dark">•<span>
+                        <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+                        <br>
+                        <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
               </div>
             </div>
           </div>
@@ -1282,11 +1336,11 @@
     <!-- คอม -->
     <div class="text-center d-none d-lg-block" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
       <span class="text-dark">WWW.ViiCHECK.com</span> <span class="text-dark">•<span>
-      <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
-      <span class="text-dark">•<span>
-      <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
-      <span class="text-dark">•<span>
-      <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
+          <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
+          <span class="text-dark">•<span>
+              <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+              <span class="text-dark">•<span>
+                  <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
     </div>
     <!-- Grid container -->
 
@@ -1314,7 +1368,7 @@
   <!-- Js Plugins -->
 
   <!-- <script src="{{ asset('js/car/bootstrap.min.js')}}"></script> -->
-  <script  src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <script src="{{ asset('js/car/jquery-3.3.1.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -1428,7 +1482,7 @@
     // console.log(language);
     let full_url = document.querySelector('#full_url').value;
     let url_sp = full_url.split("/");
-    let iii = url_sp.length - 1 ;
+    let iii = url_sp.length - 1;
     let url = url_sp[iii];
 
     if (country === "") {
@@ -1453,7 +1507,7 @@
 
   }
 
-  function check_nationalitie(nationalitie){
+  function check_nationalitie(nationalitie) {
     if (nationalitie === "") {
       document.querySelector('#btn_select_nationalitie').click();
 
@@ -1481,7 +1535,7 @@
     }, delayInMilliseconds);
 
     @if(Auth::check())
-      check_nationalitie('{{ Auth::user()->nationalitie }}');
+    check_nationalitie('{{ Auth::user()->nationalitie }}');
     @endif
 
   }
@@ -1604,61 +1658,62 @@
       });
   }
 
-  function func_arrivalTime(duration){
-        // assuming you have already obtained the duration from Google Maps API and stored it in a variable called `duration`
-        let date_now = new Date(); // get the current time
-        let travelTimeInSeconds = duration; // get the travel time in seconds
-        let arrivalTime = new Date(date_now.getTime() + (travelTimeInSeconds * 1000)); // add the travel time to the current time and create a new date object
-        // let formattedTime = arrivalTime.toLocaleTimeString(); // format the arrival time as a string in a readable format
-        let options = { hourCycle: 'h24' };
-        let formattedTime = arrivalTime.toLocaleTimeString('th-TH', options);
-            let timeWithoutSeconds = formattedTime.slice(0, -3); // ตัดวินาทีออก
-            let timeWithSuffix = `${timeWithoutSeconds} น.`; // เติม "น." เข้าไป
+  function func_arrivalTime(duration) {
+    // assuming you have already obtained the duration from Google Maps API and stored it in a variable called `duration`
+    let date_now = new Date(); // get the current time
+    let travelTimeInSeconds = duration; // get the travel time in seconds
+    let arrivalTime = new Date(date_now.getTime() + (travelTimeInSeconds * 1000)); // add the travel time to the current time and create a new date object
+    // let formattedTime = arrivalTime.toLocaleTimeString(); // format the arrival time as a string in a readable format
+    let options = {
+      hourCycle: 'h24'
+    };
+    let formattedTime = arrivalTime.toLocaleTimeString('th-TH', options);
+    let timeWithoutSeconds = formattedTime.slice(0, -3); // ตัดวินาทีออก
+    let timeWithSuffix = `${timeWithoutSeconds} น.`; // เติม "น." เข้าไป
 
-        return timeWithSuffix ;
-    }
-
+    return timeWithSuffix;
+  }
 </script>
 
 
 <script>
   function toggleAnimation() {
-      var animationClass = this.dataset.animationClass;
-      var iconElement = this.querySelector('i');
+    var animationClass = this.dataset.animationClass;
+    var iconElement = this.querySelector('i');
 
-      if (iconElement){
+    if (iconElement) {
       iconElement.classList.add(animationClass);
 
-        this.addEventListener('mouseleave', function() {
-          iconElement.classList.remove(animationClass);
-        });
+      this.addEventListener('mouseleave', function() {
+        iconElement.classList.remove(animationClass);
+      });
 
-        var parentElement = this.parentElement;
+      var parentElement = this.parentElement;
 
-        parentElement.addEventListener('mouseenter', function() {
-          iconElement.classList.remove(animationClass);
-        });
+      parentElement.addEventListener('mouseenter', function() {
+        iconElement.classList.remove(animationClass);
+      });
 
-        parentElement.addEventListener('mouseleave', function() {
-          iconElement.classList.remove(animationClass);
-        });
-      }
+      parentElement.addEventListener('mouseleave', function() {
+        iconElement.classList.remove(animationClass);
+      });
     }
+  }
 
   document.querySelectorAll('.btn').forEach(function(button) {
-      button.addEventListener('mouseenter', toggleAnimation);
+    button.addEventListener('mouseenter', toggleAnimation);
   });
 </script>
 
 <script>
-    function toggleAnimation(elementId, animationClass) {
-        var element = document.getElementById(elementId);
-        element.classList.add(animationClass);
+  function toggleAnimation(elementId, animationClass) {
+    var element = document.getElementById(elementId);
+    element.classList.add(animationClass);
 
-        element.addEventListener('mouseout', function() {
-            this.classList.remove(animationClass);
-        });
-    }
+    element.addEventListener('mouseout', function() {
+      this.classList.remove(animationClass);
+    });
+  }
 </script>
 </body>
 
