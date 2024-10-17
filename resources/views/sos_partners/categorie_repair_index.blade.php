@@ -362,17 +362,6 @@
         <!-- data categorie -->
     </div>
 </div>
-<!-- ปรับความยาว select -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    $('.select-area').change(function() {
-        var text = $(this).find('option:selected').text()
-        var $aux = $('<select/>').append($('<option/>').text(text))
-        $(this).after($aux)
-        $(this).width($aux.width() + 10)
-        $aux.remove()
-    }).change()
-</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -499,4 +488,16 @@
             });
     }
 </script>
+
+<!-- ปรับความยาว select -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('.select-area').change(function() {
+        let text = $(this).find('option:selected').text()
+        let $aux = $('<select/>').append($('<option/>').text(text))
+        $(this).after($aux)
+        $(this).width($aux.width() + 10)
+        $aux.remove()
+    }).change()
+</script> -->
 @endsection

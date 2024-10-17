@@ -152,8 +152,10 @@ Route::get('/send_pass_area/{line_group}/{num_pass_area}', 'API\PartnersControll
 Route::get('/submit_group_line/{line_group}/{id_partner}', 'API\PartnersController@submit_group_line');
 Route::get('/search_time_zone', 'API\PartnersController@search_time_zone');
 
+Route::get('/province_search', 'API\LocationController@province_search');
 Route::get('/show_amphoe/{province}', 'API\LocationController@amphoe_search');
 Route::get('/show_district/{amphoe}', 'API\LocationController@district_search');
+Route::get('/show_tambon/{province}/{amphoe}', 'API\LocationController@show_tambon');
 Route::get('/zoom_district/{district}', 'API\LocationController@zoom_district');
 
 Route::get('/view_marker/{name_partner}', 'API\LocationController@view_marker');

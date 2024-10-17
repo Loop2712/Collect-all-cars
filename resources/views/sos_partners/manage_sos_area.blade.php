@@ -323,7 +323,7 @@
     <div class="card-body">
         <div class="card-title d-flex justify-content-between">
             <h5 class="mb-0 "><b>รายชื่อพื้นที่ทั้งหมด</b></h5>
-            <a class="btn-add-categorie" href="{{ url('/demo_categorie_repair_create') }}" data-bs-toggle="modal" data-bs-target="#modalAddArea" id="btn_select_active_repair">
+            <a class="btn-add-categorie" data-bs-toggle="modal" data-bs-target="#modalAddArea" id="btn_select_active_repair">
                 <i class="bx bx-plus"></i>
                 <p class="text-btn">เพิ่มพื้นที่</p>
             </a>
@@ -631,8 +631,8 @@
                            
                         </td>
                         <td>
-                            <a id="" href="{{ url('/demo_management_view') }}" type="button" class="btn btn-warning active radius-15">
-                                <i class="fa-solid fa-plus"></i>ดูข้อมูล / แก้ไข
+                            <a id="" href="{{ url('/view_data_area') }}?id=`+result[i].id+`" type="button" class="btn btn-warning active radius-15">
+                                <i class="fa-duotone fa-solid fa-layer-group"></i> จัดการพื้นที่
                             </a>
                             <button id="" type="button" class="btn btn-danger active radius-15" onclick="click_delete_area('`+result[i].id+`','`+result[i].name_area+`')">
                                 <i class="fa-solid fa-trash"></i>ลบ

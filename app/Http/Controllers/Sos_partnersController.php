@@ -393,6 +393,28 @@ class Sos_partnersController extends Controller
         return view('sos_partners.categorie_repair_create', compact('area_id','data_area','data_Sos_partner'));
     }
 
+    public function view_data_area(Request $request)
+    {
+        $requestData = $request->all();
+        $area_id = $requestData['id'];
+
+        $data_area = Sos_partner_area::where('id' , $area_id)->first();
+        $data_Sos_partner = Sos_partner::where('id' , $data_area->sos_partner_id)->first();
+
+        return view('sos_partners.view_data_area', compact('area_id','data_area','data_Sos_partner'));
+    }
+
+    public function draw_area(Request $request)
+    {
+        $requestData = $request->all();
+        $area_id = $requestData['id'];
+
+        $data_area = Sos_partner_area::where('id' , $area_id)->first();
+        $data_Sos_partner = Sos_partner::where('id' , $data_area->sos_partner_id)->first();
+
+        return view('sos_partners.draw_area', compact('area_id','data_area','data_Sos_partner'));
+    }
+
     public function create_categorie_repair(Request $request)
     {
         $requestData = $request->all();

@@ -148,6 +148,17 @@ class LocationController extends Controller
         return $user_id;
     }
 
+    public function province_search()
+    {
+        $province_ = DB::table('lat_longs')
+                    ->select('changwat_th')
+                    ->groupBy('changwat_th')
+                    ->orderBy('changwat_th', 'asc')
+                    ->get();
+
+        return $province_;
+    }
+
     public function amphoe_search($province)
     {
         $amphoe = DB::table('lat_longs')
@@ -164,6 +175,19 @@ class LocationController extends Controller
     {
         $district = DB::table('lat_longs')
                     // ->select('tambon_th')
+                    ->where('amphoe_th', $amphoe)
+                    ->groupBy('tambon_th')
+                    ->orderBy('tambon_th', 'asc')
+                    ->get();
+
+        return $district;
+    }
+
+    public function show_tambon($province , $amphoe)
+    {
+        $district = DB::table('lat_longs')
+                    // ->select('tambon_th')
+                    ->where('changwat_th', $province)
                     ->where('amphoe_th', $amphoe)
                     ->groupBy('tambon_th')
                     ->orderBy('tambon_th', 'asc')

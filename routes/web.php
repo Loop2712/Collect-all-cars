@@ -30,9 +30,7 @@ Route::get('/demo_management_area', function () {
 Route::get('/demo_management_view', function () {
     return view('test_repair_admin/test_management_view');
 });
-Route::get('/demo_management_view', function () {
-    return view('test_repair_admin/test_management_view');
-});
+
 // Test การจัดการหมวดหมู่และกลุ่มไลน์
 Route::get('/demo_categorie_repair_index', function () {
     return view('test_repair_admin/test_categorie_repair_index');
@@ -399,6 +397,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 		Route::get('categorie_repair_index', 'Sos_partnersController@categorie_repair_index');
 		Route::get('categorie_repair_create', 'Sos_partnersController@categorie_repair_create');
 		Route::get('categorie_repair_view', 'Sos_partnersController@categorie_repair_view');
+		Route::get('view_data_area', 'Sos_partnersController@view_data_area');
+		Route::get('draw_area', 'Sos_partnersController@draw_area');
 
 	// >>>>>> END SOS PARTNER V2. <<<<<< //
 
