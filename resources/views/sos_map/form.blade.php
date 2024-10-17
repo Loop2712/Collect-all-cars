@@ -28,7 +28,21 @@
                         </p>
                     </div>
                     <div class="col-12 mb-4">
-                    @if(Auth::user() && Auth::user()->id == '1')
+
+                    @php
+                        $user_from = Auth::user()->user_from ;
+
+                        $user_from_array = explode(',', $user_from);
+                        $from_Ocean_Life = 'No';
+
+                        if (in_array('Ocean_Life', $user_from_array)) {
+                            $from_Ocean_Life = 'Yes';
+                        } else {
+                            $from_Ocean_Life = 'No';
+                        }
+                    @endphp
+
+                    @if($from_Ocean_Life == 'Yes')
                      <a href="https://www.ocean.co.th/oceanlife-saver">
                         <img src="{{url('img/more/button Ocean Life Saver.png')}}" alt="" style="width: 100%;">
                      </a>

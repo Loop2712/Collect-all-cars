@@ -306,7 +306,20 @@
 
 </head>
 
-@if(Auth::user() && Auth::user()->id == '1')
+@php
+    $data_user_from = Auth::user()->user_from ;
+
+    $data_user_from_array = explode(',', $data_user_from);
+    $check_from_Ocean_Life = 'No';
+
+    if (in_array('Ocean_Life', $data_user_from_array)) {
+        $check_from_Ocean_Life = 'Yes';
+    } else {
+        $check_from_Ocean_Life = 'No';
+    }
+@endphp
+
+@if($check_from_Ocean_Life == 'Yes')
 <style>
   body {
     background-color: #eaf1f7 !important;
@@ -383,6 +396,7 @@
         </div>
         <div class="col-6 d-block d-lg-none d-flex">
           <div class="d-flex align-items-center">
+            @if($check_from_Ocean_Life == 'Yes')
             <a class="w-100" href="{{URL::to('/')}}">
               <img width="100%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
             </a>
@@ -390,6 +404,11 @@
             <a class="w-100" href="{{URL::to('/')}}">
               <img width="100%" src="{{ asset('/img/logo-partner/LogoSaver.png') }}">
             </a>
+            @else
+            <a class="" href="{{URL::to('/')}}">
+              <img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}">
+            </a>
+            @endif
           </div>
 
           <!-- <a class="w-100" href="{{URL::to('/')}}">
