@@ -18,7 +18,7 @@
 
             </div>
 
-            <div class="col-12 p-3 mb-5 rounded " >
+            <div class="col-12 px-3 px-3 mb-5 rounded " >
                 <div class="row">
                     <div class="col-12 mt-2" id="location_user">
                         <br>
@@ -27,7 +27,13 @@
                             <span class="text-danger float-right notranslate" onclick="window.location.href = window.location.href;"><i class="fas fa-sync-alt"></i> refresh</span>
                         </p>
                     </div>
-
+                    <div class="col-12 mb-4">
+                    @if(Auth::user() && Auth::user()->id == '1')
+                     <a href="https://www.ocean.co.th/oceanlife-saver">
+                        <img src="{{url('img/more/button Ocean Life Saver.png')}}" alt="" style="width: 100%;">
+                     </a>
+                    @endif
+                    </div>
                     <div class="col-12  order-1">
                         <!-- a_help click modal -->
                         <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop" onclick="search_title_sos();"></a>

@@ -415,6 +415,7 @@ input:checked + .slider:before {
 				</select>
 
 				<select class="input-data-officer mt-3" id="vehicle_type" name="level">
+					<option class="notranslate font-weight-bold" value="หน่วยเคลื่อนที่เร็ว">หน่วยเคลื่อนที่เร็ว</option>
 					<option class="notranslate font-weight-bold" value="รถ">รถ</option>
 					<option class="notranslate font-weight-bold" value="อากาศยาน">อากาศยาน</option>
 					<option class="notranslate font-weight-bold" value="เรือ ป.1">เรือ ป.1</option>

@@ -10,6 +10,73 @@
         font-family: 'Kanit', sans-serif;
 
     }
+    
+    #btn_categorie_repair_create {
+        transition: all .15s ease-in-out;
+    }
+    .otp-input-fields {
+        margin: auto;
+        background-color: white;
+        /* box-shadow: 0px 0px 8px 0px #02025044; */
+        /* max-width: 400px; */
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 10px;
+        padding: 20px 0;
+    }
+
+    .otp-input-fields input {
+        height: 40px;
+        width: 40px;
+        background-color: transparent;
+        border-radius: 4px;
+        border: 1px solid #2f8f1f;
+        text-align: center;
+        outline: none;
+        font-size: 16px;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        &[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        &:focus {
+            border-width: 2px;
+            border-color: darken(#2f8f1f, 5%);
+            font-size: 20px;
+        }
+    }
+
+
+    .result {
+        max-width: 400px;
+        margin: auto;
+        padding: 24px;
+        text-align: center;
+
+        p {
+            font-size: 24px;
+            font-family: 'Antonio', sans-serif;
+            opacity: 1;
+            transition: color 0.5s ease;
+
+            &._ok {
+                color: green;
+            }
+
+            &._notok {
+                color: red;
+                border-radius: 3px;
+            }
+        }
+    }
 </style>
 @section('content')
 
@@ -24,11 +91,11 @@
         <div class="row mt-3">
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">ชื่อหมวดหมู่</label>
-                <input type="text" class="form-control" id="validationCustom01" value="">
+                <input type="text" class="form-control" id="categoryName" value="" oninput="check_categorie_repair_create();">
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">เลือกกลุ่มไลน์</label>
-                <select name="" class="form-control" id="select_line_for_area">
+                <select name="" class="form-control" id="select_line_for_area" oninput="check_categorie_repair_create();">
                     <!--  -->
                 </select>
             </div>
@@ -41,8 +108,32 @@
         </div>
         <div class="d-flex mt-3 justify-content-end">
 
-            <button class="btn btn-success px-3" data-toggle="modal" data-target="#modal_secret_token">ยืนยัน</button>
+            <button id="btn_categorie_repair_create" class="btn btn-success px-3" data-toggle="modal" data-target="#modal_secret_token" disabled>ยืนยัน</button>
         </div>
+        <script>
+        const categoryNameInput = document.getElementById('categoryName');
+        const lineGroupSelect = document.getElementById('select_line_for_area');
+        const btn_categorie_repair_create = document.getElementById('btn_categorie_repair_create');
+
+        // ฟังก์ชันตรวจสอบข้อมูลก่อนให้เปิด modal
+        function check_categorie_repair_create() {
+            if (categoryNameInput.value.trim() !== "" && lineGroupSelect.value !== "") {
+                btn_categorie_repair_create.disabled = false;
+            } else {
+                btn_categorie_repair_create.disabled = true;
+            }
+        }
+
+        // เปิด modal ด้วย JavaScript เมื่อข้อมูลถูกต้อง
+        btn_categorie_repair_create.addEventListener('click', function(event) {
+            if (categoryNameInput.value.trim() === "" || lineGroupSelect.value === "") {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วนก่อน');
+            } else {
+                // เปิด modal ถ้าข้อมูลถูกกรอกครบถ้วน
+                $('#modal_secret_token').modal('show');
+            }
+        });
+        </script>
 
         <div class="modal fade" id="modal_secret_token" tabindex="-1" role="dialog" aria-labelledby="modal_secret_token" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -55,71 +146,7 @@
                             <h4 class="mt-5 font-weight-bold">กรอก Secret Token</h4>
                             <p class="text-muted">กรุณากรอก Secret Token ขององค์กรณ์คุณเพื่อความปลอดภัย</p>
 
-                            <style>
-                                .otp-input-fields {
-                                    margin: auto;
-                                    background-color: white;
-                                    /* box-shadow: 0px 0px 8px 0px #02025044; */
-                                    /* max-width: 400px; */
-                                    width: 100%;
-                                    display: flex;
-                                    justify-content: space-evenly;
-                                    gap: 10px;
-                                    padding: 20px 0;
-                                }
 
-                                .otp-input-fields input {
-                                    height: 40px;
-                                    width: 40px;
-                                    background-color: transparent;
-                                    border-radius: 4px;
-                                    border: 1px solid #2f8f1f;
-                                    text-align: center;
-                                    outline: none;
-                                    font-size: 16px;
-
-                                    &::-webkit-outer-spin-button,
-                                    &::-webkit-inner-spin-button {
-                                        -webkit-appearance: none;
-                                        margin: 0;
-                                    }
-
-                                    /* Firefox */
-                                    &[type=number] {
-                                        -moz-appearance: textfield;
-                                    }
-
-                                    &:focus {
-                                        border-width: 2px;
-                                        border-color: darken(#2f8f1f, 5%);
-                                        font-size: 20px;
-                                    }
-                                }
-
-
-                                .result {
-                                    max-width: 400px;
-                                    margin: auto;
-                                    padding: 24px;
-                                    text-align: center;
-
-                                    p {
-                                        font-size: 24px;
-                                        font-family: 'Antonio', sans-serif;
-                                        opacity: 1;
-                                        transition: color 0.5s ease;
-
-                                        &._ok {
-                                            color: green;
-                                        }
-
-                                        &._notok {
-                                            color: red;
-                                            border-radius: 3px;
-                                        }
-                                    }
-                                }
-                            </style>
                             <form action="javascript: void(0)" class="otp-form" name="otp-form">
                                 <div class="otp-input-fields">
                                     <input type="number" class="otp__digit otp__field__1" disabled>
@@ -132,7 +159,7 @@
                                 <div id="timer-message" class="text-danger"></div>
                             </form>
                             <div class="d-grid gap-2">
-                                <a class="btn btn-white btn-lg" id="btn_close_modal_secret_token" data-dismiss="modal" aria-label="Close">
+                                <a class="btn btn-white btn-lg" id="btn_close_modal_secret_token" data-dismiss="modal" aria-label="Close" data-target="#modal_secret_token" >
                                     <i class="bx bx-arrow-back me-1"></i>ย้อนกลับ
                                 </a>
                             </div>
@@ -252,9 +279,7 @@
                     for (let i = 1; i <= 6; i++) {
                         document.querySelector(`.otp__field__${i}`).value = '';
                     }
-
-
-                    let name = document.querySelector('#validationCustom01').value;
+                    let name = document.querySelector('#categoryName').value;
                     let line_group_id = document.querySelector('#select_line_for_area').value;
                     let color = document.querySelector('#color_categorie').value;
                     let area_id = "{{ $area_id }}";
@@ -281,25 +306,23 @@
                     .catch(error => {
                         console.error('Error:', error);
                     });
-
-
+                    
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "บันทึกเรียบร้อย",
+                        text: "เพิ่มหมวดหมู่เสร็จสิ้น",
                         showConfirmButton: false,
                         timer: 1500
                     });
-
                     window.location.href = "{{ url('/') }}/categorie_repair_index?id={{ $area_id }}";
-
-
 
                 } else {
                     Swal.fire({
                         position: "center",
                         icon: "error",
                         title: "Secret Token ไม่ถูกต้อง",
+                        text: "Secret Token ไม่ถูกต้อง กรุณาลองให่อีกครั้ง หากลืมรหัสผ่านโปรติดต่อแอดมิน",
                         showConfirmButton: false,
                         timer: 1500
                     });

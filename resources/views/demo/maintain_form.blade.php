@@ -125,7 +125,7 @@
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="name" class="form-label">ชื่อ-นามสกุล</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <input type="text" class="form-control" id="maintain_notified_name" name="maintain_notified_name">
                                 </div>
                                 <div class="col-12">
                                     <label for="phone" class="form-label">เบอร์</label>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="position" class="form-label">ตำแหน่ง</label>
-                                    <input type="text" class="form-control" id="position">
+                                    <input type="text" class="form-control" id="position" name>
                                 </div>
                                 <div class="col-6">
                                     <label for="" class="form-label">แผนก</label>
