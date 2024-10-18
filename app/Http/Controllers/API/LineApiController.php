@@ -2066,7 +2066,6 @@ class LineApiController extends Controller
                 }
 
                 $string_json = str_replace("ID_SOS_HELP_CENTER",$show_code_officer,$string_json);
-                // $string_json = str_replace("ID_SOS_HELP_CENTER",$data_sos->operating_code,$string_json);
                 $string_json = str_replace("DATE_SOS_HELP_CENTER",$date_ex[0],$string_json);
                 $string_json = str_replace("TIME_SOS_HELP_CENTER",$time_ex[0].":".$time_ex[1],$string_json);
 
@@ -2095,37 +2094,36 @@ class LineApiController extends Controller
 
             // UPDATE DATA SOS 1669
             if ($answer == "go_to_help") {
-                // $data_create_form_color = [
-                //     "sos_help_center_id" => $id_sos_1669,
-                //     "sos_form_yellow_id" => $data_form_yellow->id,
-                //     "location_sos" => $data_sos->location_sos,
-                //     "symptom" => $data_sos->symptom,
-                // ];
+                $data_create_form_color = [
+                    "sos_help_center_id" => $id_sos_1669,
+                    "sos_form_yellow_id" => $data_form_yellow->id,
+                    "location_sos" => $data_sos->location_sos,
+                    "symptom" => $data_sos->symptom,
+                ];
                 
+                $form_color_name = null;
+                $form_color_id = null;
+                // ------------------------------------------------------------------
+                // สร้าง form สีต่างๆตามระดับ officer
+                if ($data_officers->level == 'ALS' or $data_officers->level == 'ILS') {
+                    # form_greens
+                    $data_form_green = Sos_1669_form_green::create($data_create_form_color);  
                 
-                // $form_color_name = null;
-                // $form_color_id = null;
-                // // ------------------------------------------------------------------
-                // // สร้าง form สีต่างๆตามระดับ officer
-                // if ($data_officers->level == 'ALS' or $data_officers->level == 'ILS') {
-                //     # form_greens
-                //     $data_form_green = Sos_1669_form_green::create($data_create_form_color);  
-                
-                //     $form_color_name = "green";
-                //     $form_color_id = $data_form_green->id;
-                // } elseif($data_officers->level == 'BLS') {
-                //     $data_form_pink = Sos_1669_form_pink::create($data_create_form_color);  
+                    $form_color_name = "green";
+                    $form_color_id = $data_form_green->id;
+                } elseif($data_officers->level == 'BLS') {
+                    $data_form_pink = Sos_1669_form_pink::create($data_create_form_color);  
                     
-                //     $form_color_name = "pink";
-                //     $form_color_id = $data_form_pink->id;
-                // }else{
-                //     // form_blues
-                //     $data_form_blue = Sos_1669_form_blue::create($data_create_form_color);  
+                    $form_color_name = "pink";
+                    $form_color_id = $data_form_pink->id;
+                }else{
+                    // form_blues
+                    $data_form_blue = Sos_1669_form_blue::create($data_create_form_color);  
                 
-                //     $form_color_name = "blue";
-                //     $form_color_id = $data_form_blue->id;
+                    $form_color_name = "blue";
+                    $form_color_id = $data_form_blue->id;
                     
-                // }
+                }
 
                 // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
                 DB::table('sos_help_centers')
@@ -2140,8 +2138,8 @@ class LineApiController extends Controller
                         'helper_id' => $data_user->id,
                         'time_go_to_help' => $date_now,
                         'wait' => null,
-                        // 'form_color_name' => $form_color_name,
-                        // 'form_color_id_user_1 ' => $form_color_id,      
+                        'form_color_name' => $form_color_name,
+                        'form_color_id_user_1 ' => $form_color_id,      
                     ]);
 
                 // UPDATE sos_1669_form_yellows
