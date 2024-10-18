@@ -2095,12 +2095,18 @@ class LineApiController extends Controller
 
             // UPDATE DATA SOS 1669
             if ($answer == "go_to_help") {
-                $data_create_form_color = [
-                    "sos_help_center_id" => $id_sos_1669,
-                    "sos_form_yellow_id" => $data_form_yellow->id,
-                    "location_sos" => $data_sos->location_sos,
-                    "symptom" => $data_sos->symptom,
-                ];
+                // $data_create_form_color = [
+                //     "sos_help_center_id" => $id_sos_1669,
+                //     "sos_form_yellow_id" => $data_form_yellow->id,
+                //     "location_sos" => $data_sos->location_sos,
+                //     "symptom" => $data_sos->symptom,
+                // ];
+
+                $data_create_form_color = [];
+                $data_create_form_color['sos_help_center_id'] = $id_sos_1669;
+                $data_create_form_color['sos_form_yellow_id'] = $data_form_yellow->id;
+                $data_create_form_color['location_sos'] = $data_sos->location_sos;
+                $data_create_form_color['symptom'] = $data_sos->symptom;
                 
                 
                 $form_color_name = null;
