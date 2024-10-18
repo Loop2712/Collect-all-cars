@@ -2038,7 +2038,7 @@ class LineApiController extends Controller
         $data_sos = Sos_help_center::where('id' , $id_sos_1669)->first();
 
         $data_unit = Data_1669_operating_unit::where('id' , $unit_id)->first();
-        // $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $id_sos_1669);
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $id_sos_1669);
 
         $data_officers = Data_1669_operating_officer::where('user_id', $officer_id)
                 ->where('operating_unit_id',$data_unit->id)
@@ -2066,6 +2066,7 @@ class LineApiController extends Controller
                 }
 
                 $string_json = str_replace("ID_SOS_HELP_CENTER",$show_code_officer,$string_json);
+                // $string_json = str_replace("ID_SOS_HELP_CENTER",$data_sos->operating_code,$string_json);
                 $string_json = str_replace("DATE_SOS_HELP_CENTER",$date_ex[0],$string_json);
                 $string_json = str_replace("TIME_SOS_HELP_CENTER",$time_ex[0].":".$time_ex[1],$string_json);
 
@@ -2100,6 +2101,7 @@ class LineApiController extends Controller
                     "location_sos" => $data_sos->location_sos,
                     "symptom" => $data_sos->symptom,
                 ];
+                
                 
                 $form_color_name = null;
                 $form_color_id = null;
