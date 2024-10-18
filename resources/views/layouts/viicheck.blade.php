@@ -307,17 +307,21 @@
 </head>
 
 @php
-    $data_user_from = Auth::user()->user_from ;
-
-    $data_user_from_array = explode(',', $data_user_from);
     $check_from_Ocean_Life = 'No';
 
-    if (in_array('Ocean_Life', $data_user_from_array)) {
-        $check_from_Ocean_Life = 'Yes';
-    } else {
-        $check_from_Ocean_Life = 'No';
+    if (Auth::check()) {
+        $data_user_from = Auth::user()->user_from;
+
+        if (!empty($data_user_from)) {  // เช็คว่ามีค่าหรือไม่
+            $data_user_from_array = explode(',', $data_user_from);
+
+            if (in_array('Ocean_Life', $data_user_from_array)) {
+                $check_from_Ocean_Life = 'Yes';
+            }
+        }
     }
 @endphp
+
 
 @if($check_from_Ocean_Life == 'Yes')
 <style>

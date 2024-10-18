@@ -30,15 +30,18 @@
                     <div class="col-12 mb-4">
 
                     @php
-                        $user_from = Auth::user()->user_from ;
-
-                        $user_from_array = explode(',', $user_from);
                         $from_Ocean_Life = 'No';
 
-                        if (in_array('Ocean_Life', $user_from_array)) {
-                            $from_Ocean_Life = 'Yes';
-                        } else {
-                            $from_Ocean_Life = 'No';
+                        if (Auth::check()) {
+                            $user_from = Auth::user()->user_from;
+
+                            if (!empty($user_from)) {  // เช็คว่ามีค่าหรือไม่
+                                $user_from_array = explode(',', $user_from);
+
+                                if (in_array('Ocean_Life', $user_from_array)) {
+                                    $from_Ocean_Life = 'Yes';
+                                }
+                            }
                         }
                     @endphp
 
