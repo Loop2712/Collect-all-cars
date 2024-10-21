@@ -20,7 +20,7 @@
                 <div class="col-md-6 ">
                     <div id="content_qr_code" class="">
                         <center>
-                            <img id="img_qr_code" width="250px" style="border:2px #000 solid; border-radius:10px;" src="{{ asset('img/qr_reg_officer/qr_code_'.$data_sos_partner->id.'.png') }}">
+                            <img id="img_qr_code" width="250px" style="border:2px #000 solid; border-radius:10px; padding:1rem;" src="{{ asset('img/qr_reg_officer/qr_code_'.$data_sos_partner->id.'.png') }}">
                             <br><br>
                             <a id="img_qr_code_download" href="" download="qr_code.png">
                                 <span class="btn btn-success"><i class="fa-solid fa-download"></i> ดาวน์โหลด QR-CODE</span>
@@ -70,10 +70,23 @@
             const ctx = canvas.getContext('2d');
 
             // ตั้งค่าขนาดของ canvas ให้เท่ากับรูปภาพ
-            canvas.width = imgElement.naturalWidth;
-            canvas.height = imgElement.naturalHeight;
+            const padding = 10; // ค่า padding ในหน่วยพิกเซล
 
-            ctx.drawImage(imgElement, 0, 0);
+            // ตั้งค่าขนาดของ canvas โดยเพิ่มค่า padding รอบ ๆ
+            canvas.width = imgElement.naturalWidth + padding * 2;
+            canvas.height = imgElement.naturalHeight + padding * 2;
+
+            // bg white
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // คำนวณตำแหน่งของ QR code เพื่อให้อยู่ตรงกลางแคนวาส
+            const xPosition = (canvas.width - imgElement.naturalWidth) / 2;
+            const yPosition = (canvas.height - imgElement.naturalHeight) / 2;
+
+            // วาดภาพ QR code ลงบนแคนวาสโดยให้อยู่ตรงกลาง
+            ctx.drawImage(imgElement, xPosition, yPosition);
+
             const dataURL = canvas.toDataURL('image/png');
 
             const downloadLink = document.querySelector('#img_qr_code_download');

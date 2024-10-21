@@ -80,9 +80,9 @@ class Maintain_notisController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Maintain_noti::create($requestData);
 
         return redirect('maintain_notis')->with('flash_message', 'Maintain_noti added!');
@@ -126,9 +126,9 @@ class Maintain_notisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $maintain_noti = Maintain_noti::findOrFail($id);
         $maintain_noti->update($requestData);
 
@@ -147,5 +147,14 @@ class Maintain_notisController extends Controller
         Maintain_noti::destroy($id);
 
         return redirect('maintain_notis')->with('flash_message', 'Maintain_noti deleted!');
+    }
+
+    function Maintain_officer (Request $request){
+
+        $maintain_id = $request->get('maintain_id');
+
+        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+
+        return view('test_repair_admin/test_officer_maintain',compact('data_maintains'));
     }
 }

@@ -464,6 +464,7 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::get('/CF_cancel_GroupLine/{categorys_id}/{user_id}', 'Sos_partnersController@CF_cancel_GroupLine');
     Route::post('/bind_groupLine_ViiFix', 'API\LineApiController@bind_groupLine_ViiFix');
     Route::get('/CF_delete_area/{area_id}', 'Sos_partnersController@CF_delete_area');
+    Route::get('/check_old_sos_partner_officer', 'Sos_partner_officersController@check_old_sos_partner_officer');
 // >>>>>> END SOS PARTNER V2. <<<<<< //
 
 // maintain

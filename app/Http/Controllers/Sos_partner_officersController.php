@@ -103,12 +103,22 @@ class Sos_partner_officersController extends Controller
 
     public function store(Request $request)
     {
-
         $requestData = $request->all();
+        $requestData['active'] = "Active";
 
-        Sos_partner_officer::create($requestData);
+        $data_old_sos_partner_officer = Sos_partner_officer::where('sos_partner_id', $requestData['sos_partner_id'])
+            ->where('user_id', $requestData['user_id'])
+            ->first();
 
-        // return redirect('sos_partner_officers')->with('flash_message', 'Sos_partner_officer added!');
+        if (!empty($data_old_sos_partner_officer)) {
+            // อัปเดตข้อมูลเจ้าหน้าที่หน่วยปฏิบัติการที่มีอยู่แล้ว
+            $data_old_sos_partner_officer->update($requestData);
+        } else {
+            // สร้างข้อมูลเจ้าหน้าที่หน่วยปฏิบัติการใหม่
+            Sos_partner_officer::create($requestData);
+        }
+
+
         return view('return_line');
     }
 
@@ -117,5 +127,24 @@ class Sos_partner_officersController extends Controller
         $data_sos_partner = Sos_partner::where('id', $organization_id)->first();
 
         return view('sos_partner_officers.qr_code_sos_partner_officer', compact('data_sos_partner'));
+    }
+
+    function check_old_sos_partner_officer(Request $request){
+        $user_id = $request->get('user_id');
+        $sos_partner_id = $request->get('sos_partner_id');
+
+        $sos_partner_officer = Sos_partner_officer::where('sos_partner_id',$sos_partner_id)
+        ->where('user_id',$user_id)
+        ->first();
+
+        $data_sos_partner_officer = [];
+
+        if ( empty($sos_partner_officer) ) {
+            $data_sos_partner_officer['data'] = 'ไม่มีข้อมูล' ;
+        }else{
+            $data_sos_partner_officer['data'] = $sos_partner_officer ;
+        }
+
+        return $data_sos_partner_officer;
     }
 }

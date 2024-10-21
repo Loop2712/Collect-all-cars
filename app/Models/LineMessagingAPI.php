@@ -2252,6 +2252,7 @@ class LineMessagingAPI extends Model
             case 'fix_flex_line':
 
                 $data_fix = [
+                    "maintain_id" => "1",
                     "name_category" => "ชื่อหมวดหมู่",
                     "sub_category" => "คอมพิวเตอร์",
                     "problem_fix_case" => "เปิดไม่ติด เปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติด..",
@@ -2312,7 +2313,7 @@ class LineMessagingAPI extends Model
                     // $string_json = str_replace("https://www.viicheck.com/connect_line_groups", "https://www.viicheck.com/connect_line_groups"."/".$groupId, $string_json);
                     break;
             case 'advice_ViiFix': //มาจาก postback ของ fix_flex_line
-                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_advice_viifix.json');
+                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_advice_sos.json');
                 $string_json = file_get_contents($template_path);
 
                 break;

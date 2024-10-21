@@ -16,6 +16,12 @@ use App\Http\Controllers\QrCodeGeneratorController;
 //DEMO
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
+/*
+|--------------------------------------------------------------------------
+| ViiFix
+|--------------------------------------------------------------------------
+*/
+
 // Test รับเรื่องแจ้งซ่อม
 Route::get('/demo_repair_admin_index', function () {
     return view('test_repair_admin/test_repair_admin_index');
@@ -86,6 +92,15 @@ Route::get('/demo_all_repair_fastest', function () {
 Route::get('/demo_all_used_repair', function () {
     return view('test_repair_admin/repair_dashboard/fix_used');
 });
+
+//VIIFIX เจ้าหน้าที่
+Route::get('/demo_officer_maintain', 'Maintain_notisController@Maintain_officer');
+
+/*
+|--------------------------------------------------------------------------
+| End ViiFix
+|--------------------------------------------------------------------------
+*/
 
 
 // VIICHECK.COM
