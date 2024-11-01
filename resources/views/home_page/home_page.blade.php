@@ -711,7 +711,7 @@
 <!-- thx_partner -->
 @include('home_page/thx_partner')
   <!-- section บริการ peddyhub -->
-  <section id="peddyhub" class="doctors d-none d-lg-block">
+  <section id="peddyhub" class="doctors d-none">
     <div class="container">
 
       <div class="section-title">
