@@ -1304,33 +1304,14 @@ class LineApiController extends Controller
     
     public function check_process_maintain($data_postback_explode , $provider_id , $event)
     {
-        $data_data = explode("/",$data_postback_explode);
 
-        $status_maintain = $data_data[0] ;
-        $id_maintain = $data_data[1] ;
-
-        // $id_sos_map = $data_data[0] ;
-        // $id_organization_helper = $data_data[1] ;
-        
-        $data_maintain = Maintain_noti::where('maintain_notis.id' , $id_maintain)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
-        ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
-        ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
-        ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
-        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id' ,'maintain_categorys.groupName as maintain_group_line_name')
-        ->first();
-
-        // dd(env('CHANNEL_ACCESS_TOKEN'));
-        $group_line = Group_line::findOrFail($data_maintain->maintain_group_line_id);
-        
-        
-        $template_path = storage_path('../public/json/helper_to_groupline.json');
+        $template_path = storage_path('../public/json/text_done.json');
         $string_json = file_get_contents($template_path);
-
 
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
-            "to" => $data_maintain->maintain_group_line_id,
+            "replyToken" => $event["replyToken"],
             "messages" => $messages,
         ];
 
@@ -1343,10 +1324,65 @@ class LineApiController extends Controller
                 //'timeout' => 60
             ]
         ];
-
+                            
         $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
+
+        // $data_data = explode("/",$data_postback_explode);
+
+        // $status_maintain = $data_data[0] ;
+        // $id_maintain = $data_data[1] ;
+
+        // // $id_sos_map = $data_data[0] ;
+        // // $id_organization_helper = $data_data[1] ;
+        
+        // $data_maintain = Maintain_noti::where('maintain_notis.id' , $id_maintain)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        // ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        // ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
+        // ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
+        // ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id' ,'maintain_categorys.groupName as maintain_group_line_name')
+        // ->first();
+
+        // // dd(env('CHANNEL_ACCESS_TOKEN'));
+        // $group_line = Group_line::findOrFail($data_maintain->maintain_group_line_id);
+        
+        
+        // $template_path = storage_path('../public/json/helper_to_groupline.json');
+        // $string_json = file_get_contents($template_path);
+
+
+        // $messages = [ json_decode($string_json, true) ];
+
+        // $body = [
+        //     "to" => $data_maintain->maintain_group_line_id,
+        //     "messages" => $messages,
+        // ];
+
+        // $opts = [
+        //     'http' =>[
+        //         'method'  => 'POST',
+        //         'header'  => "Content-Type: application/json \r\n".
+        //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+        //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+        //         //'timeout' => 60
+        //     ]
+        // ];
+
+        // $context  = stream_context_create($opts);
+        // $url = "https://api.line.me/v2/bot/message/push";
+        // $result = file_get_contents($url, false, $context);
+
+
+
+
+
+
+
+
+
+
 
         // $data_partner_helpers = Partner::findOrFail($id_organization_helper);
 
