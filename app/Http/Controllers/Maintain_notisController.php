@@ -308,7 +308,7 @@ class Maintain_notisController extends Controller
         $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
         $string_json = str_replace("phone",$data_maintain->phone,$string_json);
 
-        $string_json = str_replace("commandID",$data_maintain->id,$string_json);
+        $string_json = str_replace("maintain_ID",$data_maintain->id,$string_json);
 
 
         $messages = [ json_decode($string_json, true) ];
