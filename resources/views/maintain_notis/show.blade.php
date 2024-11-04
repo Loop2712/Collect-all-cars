@@ -13,7 +13,9 @@
         display: none !important;
     }
 
-
+.print:nth-child(2){
+    display: none;
+}
 
     .breadcrumb-title {
         font-size: 20px;
@@ -616,6 +618,7 @@
                                 </div>
                                 @endif
 
+                                @if(!empty($maintain_noti->datetime_process))
                                 <div class="tl-content">
                                     <div class="tl-header">
                                         <span class="tl-marker"></span>
@@ -623,7 +626,9 @@
                                             ดำเนินการ
                                         </p>
                                         <time class="tl-time" datetime="2023-06-14">
-                                            26 กรกฎาคม 2567 12:00 น. (1 วัน)
+                                            {{ thaidate("j F Y H:i น." , strtotime($maintain_noti->datetime_process)) }}
+                                            ({{ \Carbon\Carbon::parse($maintain_noti->datetime_start)->locale('th')->diffForHumans(\Carbon\Carbon::parse($maintain_noti->datetime_process), true) }})
+
                                         </time>
                                     </div>
                                     <div class="tl-body">
@@ -632,6 +637,7 @@
                                         </p>
                                     </div>
                                 </div>
+                                @endif
 
                                 @if(!empty($maintain_noti->datetime_success))
                                 <div class="tl-content tl-content-active">
@@ -641,14 +647,66 @@
                                             เสร็จสิ้น
                                         </p>
                                         <time class="tl-time" datetime="2023-06-14">
-                                            26 กรกฎาคม 2567 13:30 น. (1 ชั่วโมง 30นาที)
+                                            <!-- 26 กรกฎาคม 2567 13:30 น. (1 ชั่วโมง 30นาที) -->
+                                            {{ thaidate("j F Y H:i น." , strtotime($maintain_noti->datetime_success)) }}
+                                            ({{ \Carbon\Carbon::parse($maintain_noti->datetime_process)->locale('th')->diffForHumans(\Carbon\Carbon::parse($maintain_noti->datetime_success), true) }})
+
                                         </time>
                                     </div>
                                     <div class="tl-body">
                                         <p>
                                             ซ่อมบำรุงเสร็จสิ้น <br>
-                                            <b>ล่าช้ากว่าที่กำหนด 30 นาที</b><br>
-                                            <b>เร็วกว่าที่กำหนด 30 นาที</b>
+
+
+                                            @php
+                                                // เวลาที่คาดว่าจะเสร็จ
+                                                $datetimeEnd = strtotime($maintain_noti->datetime_end);
+                                                // เวลาที่เสร็จสิ้นจริง
+                                                $datetimeSuccess = strtotime($maintain_noti->datetime_success);
+
+                                                // คำนวณผลต่างของเวลาเป็นวินาที
+                                                $timeDifference = $datetimeSuccess - $datetimeEnd;
+
+                                                // แปลงผลต่างเป็นวัน, ชั่วโมง, นาที
+                                                $days = floor(abs($timeDifference) / (60 * 60 * 24));
+                                                $hours = floor((abs($timeDifference) % (60 * 60 * 24)) / (60 * 60));
+                                                $minutes = floor((abs($timeDifference) % (60 * 60)) / 60);
+
+                                                // ตรวจสอบว่าเร็วกว่าหรือล่าช้า
+                                                if ($timeDifference > 0) {
+                                                    // เสร็จช้ากว่ากำหนด
+                                                    $status = "ล่าช้ากว่าที่กำหนด";
+                                                } elseif ($timeDifference < 0) {
+                                                    // เสร็จเร็วกว่ากำหนด
+                                                    $status = "เร็วกว่าที่กำหนด";
+                                                } else {
+                                                    // ตรงเวลาพอดี
+                                                    $status = "เสร็จตรงตามเวลาที่กำหนด";
+                                                }
+
+                                                // สร้างข้อความผลลัพธ์
+                                                $timeText = '';
+                                                if ($days > 0) {
+                                                    $timeText .= $days . ' วัน ';
+                                                }
+                                                if ($hours > 0) {
+                                                    $timeText .= $hours . ' ชั่วโมง ';
+                                                }
+                                                if ($minutes > 0 || $timeText == '') {
+                                                    $timeText .= $minutes . ' นาที';
+                                                }
+                                            @endphp
+
+                                            <!-- แสดงผล -->
+                                            <b>{{ $status }} {{ $timeText }}</b>
+
+                                            <!-- เวลที่คาดว่าจะเสร็จ -->
+                                            <!-- {{ thaidate("j F Y H:i น." , strtotime($maintain_noti->datetime_end)) }} <br> -->
+                                            <!-- เวลที่เสร็จสิ้น -->
+                                            <!-- {{ thaidate("j F Y H:i น." , strtotime($maintain_noti->datetime_success)) }} -->
+
+                                            <!-- <b>ล่าช้ากว่าที่กำหนด 30 นาที</b>
+                                            <b>เร็วกว่าที่กำหนด 30 นาที</b> -->
                                         </p>
                                     </div>
                                 </div>
@@ -706,7 +764,9 @@
 
                     }
                 </style>
-                <a type="submit" class="btn btn-primary radius-50 btn-rating">ประเมินงานซ่อม</a>
+                @if(!empty($maintain_noti->status) && $maintain_noti->status == 'เสร็จสิ้น')
+                <a type="submit" href="{{ url('/maintain_notis_rating/' . $maintain_noti->id) }}" class="btn btn-primary radius-50 btn-rating">ประเมินงานซ่อม</a>
+                @endif
             </div>
         </div>
 

@@ -1,0 +1,273 @@
+{
+    "type": "flex",
+    "altText": "แจ้งซ่อม",
+    "contents":{
+      "type": "bubble",
+      "size": "giga",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://i.ibb.co/g4Bf8qJ/10.png",
+            "size": "full",
+            "aspectRatio": "2134:3363",
+            "aspectMode": "cover"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "name_category",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 1,
+                "wrap": true,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "70%",
+            "offsetTop": "10.5%",
+            "offsetStart": "22%",
+            "alignItems": "flex-start",
+            "height": "5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "อุปกรณ์ :",
+                    "align": "start",
+                    "weight": "bold",
+                    "adjustMode": "shrink-to-fit",
+                    "flex": 0,
+                    "color": "#ffffff"
+                  },
+                  {
+                    "type": "text",
+                    "text": "sub_category",
+                    "wrap": false,
+                    "scaling": true,
+                    "flex": 0,
+                    "color": "#ffffff",
+                    "offsetStart": "5px"
+                  }
+                ],
+                "position": "relative",
+                "alignItems": "center",
+                "width": "100%"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ปัญหา : ",
+                    "align": "start",
+                    "weight": "bold",
+                    "adjustMode": "shrink-to-fit",
+                    "flex": 0,
+                    "color": "#ffffff"
+                  },
+                  {
+                    "type": "text",
+                    "text": "problem",
+                    "wrap": true,
+                    "scaling": true,
+                    "flex": 0,
+                    "color": "#ffffff",
+                    "offsetStart": "5px",
+                    "maxLines": 2
+                  }
+                ],
+                "position": "relative",
+                "alignItems": "flex-start",
+                "width": "100%"
+              }
+            ],
+            "position": "absolute",
+            "width": "75%",
+            "offsetTop": "22.5%",
+            "offsetStart": "12%",
+            "alignItems": "flex-start",
+            "height": "11.8%",
+            "justifyContent": "flex-start",
+            "spacing": "5px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "สถานที่ : ",
+                    "align": "start",
+                    "weight": "bold",
+                    "adjustMode": "shrink-to-fit",
+                    "flex": 0,
+                    "color": "#ffffff"
+                  },
+                  {
+                    "type": "text",
+                    "text": "location",
+                    "wrap": false,
+                    "scaling": true,
+                    "flex": 0,
+                    "color": "#ffffff",
+                    "offsetStart": "5px"
+                  }
+                ],
+                "position": "relative",
+                "alignItems": "center",
+                "width": "100%"
+              },
+              {
+                "type": "text",
+                "text": "detail_location",
+                "weight": "regular",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 2,
+                "wrap": true,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "75%",
+            "offsetTop": "41.5%",
+            "offsetStart": "12%",
+            "alignItems": "flex-start",
+            "height": "11.8%",
+            "justifyContent": "flex-start",
+            "spacing": "5px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "D/M/Y",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 1,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "30%",
+            "offsetTop": "61%",
+            "offsetStart": "18%",
+            "alignItems": "center",
+            "height": "5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "H:I:S",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 1,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "30%",
+            "offsetTop": "61%",
+            "offsetStart": "52%",
+            "alignItems": "center",
+            "height": "5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ผู้แจ้ง : Name",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 1,
+                "wrap": true,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "75%",
+            "offsetTop": "72%",
+            "offsetStart": "12%",
+            "alignItems": "flex-start",
+            "height": "5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "เบอร์โทร : phone",
+                "weight": "bold",
+                "size": "md",
+                "color": "#ffffff",
+                "maxLines": 1,
+                "wrap": true,
+                "scaling": true
+              }
+            ],
+            "position": "absolute",
+            "width": "75%",
+            "offsetTop": "79%",
+            "offsetStart": "12%",
+            "alignItems": "flex-start",
+            "height": "5%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "position": "absolute",
+            "width": "85%",
+            "offsetTop": "87.3%",
+            "offsetStart": "7%",
+            "alignItems": "center",
+            "height": "9%",
+            "action": {
+              "type": "postback",
+              "label": "officer command",
+              "data": "maintain?/command/maintain_ID"
+            }
+          }
+        ],
+        "position": "relative",
+        "paddingAll": "0px"
+      }
+    }
+
+}

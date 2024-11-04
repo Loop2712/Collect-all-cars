@@ -127,24 +127,24 @@
                             <hr>
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="name" class="form-label">ชื่อ-นามสกุล</label>
-                                    <input type="text" class="form-control" id="name" name="maintain_notified_name" value="{{ isset($lest_data_maintain->name) ? $lest_data_maintain->name : ''}}">
+                                    <label for="name" class="form-label">ชื่อ-นามสกุล <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="maintain_notified_name" value="{{ isset($lest_data_maintain->name) ? $lest_data_maintain->name : ''}}" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="phone" class="form-label">เบอร์</label>
-                                    <input type="text" class="form-control" id="user_phone" name="user_phone" value="{{ isset($lest_data_maintain->phone) ? $lest_data_maintain->phone : ''}}">
+                                    <label for="phone" class="form-label">เบอร์ <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="user_phone" name="user_phone" value="{{ isset($lest_data_maintain->phone) ? $lest_data_maintain->phone : ''}}" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="mail" class="form-label">อีเมล</label>
-                                    <input type="email" class="form-control" id="user_email" name="user_email" value="{{ isset($lest_data_maintain->email) ? $lest_data_maintain->email : ''}}">
+                                    <label for="mail" class="form-label">อีเมล <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="user_email" name="user_email" value="{{ isset($lest_data_maintain->email) ? $lest_data_maintain->email : ''}}" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="position" class="form-label">ตำแหน่ง</label>
-                                    <input type="text" class="form-control" id="maintain_notified_position" name="maintain_notified_position" value="{{ isset($lest_data_maintain->position) ? $lest_data_maintain->position : ''}}">
+                                    <label for="position" class="form-label">ตำแหน่ง <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="maintain_notified_position" name="maintain_notified_position" value="{{ isset($lest_data_maintain->position) ? $lest_data_maintain->position : ''}}" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="" class="form-label">แผนก</label>
-                                    <input type="text" class="form-control" id="maintain_notified_department" name="maintain_notified_department" value="{{ isset($lest_data_maintain->department) ? $lest_data_maintain->department : ''}}">
+                                    <label for="" class="form-label">แผนก <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="maintain_notified_department" name="maintain_notified_department" value="{{ isset($lest_data_maintain->department) ? $lest_data_maintain->department : ''}}" required>
                                 </div>
                             </div>
                         </div>
@@ -161,28 +161,27 @@
                                 <h5 class="mb-0 text-danger">ข้อมูลการแจ้ง</h5>
                             </div>
                             <hr>
+                            <input type="text" class="d-none" name="area">
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="categoty" class="form-label">หมวดหมู่</label>
+                                    <label for="categoty" class="form-label">หมวดหมู่ <span class="text-danger">*</span></label>
                                     <!-- <input type="text" class="form-control" id="category_id" name="category_id"> -->
-                                    <select name="category_id" id="category_id"  class="form-control">
+                                    <select name="category_id" id="category_id"  class="form-control" disabled required>
                                         <option value="">-เลือกหมวดหมู่-</option>
-                                        @foreach($data_cat as $item)
-                                            <option value="{{$item->id}}">
-                                                {{$item->name}}
-                                            </option>
-                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="sub_category" class="form-label">หมวดหมู่ย่อย</label>
+                                    <label for="sub_category" class="form-label">หมวดหมู่ย่อย <span class="text-danger">*</span></label>
                                     <!-- <input type="text" class="form-control" id="sub_category_id" name="sub_category_id"> -->
-                                    <select name="sub_category_id" id="sub_category_id"  class="form-control" disabled>
+                                    <select name="sub_category_id" id="sub_category_id"  class="form-control" disabled required>
                                         <option value="">-เลือกหมวดหมู่ย่อย-</option>
                                     </select>
                                 </div>
+
+
                                 <script>
+                                    
                                    document.getElementById('category_id').addEventListener('change', function() {
                                         const categoryId = this.value;
                                         const subCategorySelect = document.getElementById('sub_category_id');
@@ -216,15 +215,21 @@
                                 </script>
                                 <div class="col-12">
                                     <label for="" class="form-label">สถานที่</label>
-                                    <input type="" class="form-control" id="" readonly value="{{ isset($data_user->partner_name) ? $data_user->partner_name : ''}}">
+
+                                    <!-- id สถานที่ใส่ตรงนี้ -->
+                                    <input class="d-none" name="area_id" type="text" id="area_id" value="1">
+                                    <!-- id สถานที่ -->
+
+                                    <input type="text" class="form-control" name="name_area" id="name_area" readonly value="">
+
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputAddress3" class="form-label">รายละเอียดสถานที่</label>
-                                    <textarea class="form-control" name="detail_location" id="detail_location" placeholder="กรอกรายละเอียดสถานที่ เช่น อาคาร ชั้น" rows="3"></textarea>
+                                    <label for="inputAddress3" class="form-label">รายละเอียดสถานที่ <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="detail_location" id="detail_location" placeholder="กรอกรายละเอียดสถานที่ เช่น อาคาร ชั้น" rows="3" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <label for="" class="form-label">ลักษณะของปัญหาหรือความเสียหาย</label>
-                                    <input class="form-control" name="title" type="text" id="title">
+                                    <label for="" class="form-label">ลักษณะของปัญหาหรือความเสียหาย <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="title" type="text" id="title" required placeholder="กรอกรายระเอียดของปัญหา เช่น เปิดไม่ติด">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputAddress3" class="form-label">รายละเอียดเพิ่มเติม</label>
@@ -247,6 +252,38 @@
                                 </div>
 
                                 <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                let areaID = document.querySelector('#area_id').value;  
+                                const CategorySelect = document.getElementById('category_id');
+
+                                fetch("{{ url('/') }}/api/get_data_area_maintain?area_id=" + areaID)
+                                    .then(response => response.json()) // แปลงข้อมูลเป็น JSON
+                                    .then(data => {
+                                        console.log(data); 
+                                        
+                                        // เปิดใช้งาน CategorySelect
+                                        CategorySelect.disabled = false;
+                                        
+                                        // ล้างตัวเลือกใน select ก่อนเพิ่มข้อมูลใหม่
+                                        CategorySelect.innerHTML = '<option value="">-เลือกหมวดหมู่-</option>';
+
+                                        // เข้าถึงข้อมูลหมวดหมู่ย่อยที่อยู่ใน data.maintain_cat
+                                        data.maintain_cat.forEach(category => {
+                                            const option = document.createElement('option');
+                                            option.value = category.id; // ตรวจสอบว่ามีฟิลด์ id หรือไม่
+                                            option.textContent = category.name; // ตรวจสอบว่ามีฟิลด์ name หรือไม่
+                                            CategorySelect.appendChild(option);
+                                        });
+
+                                        document.querySelector('#name_area').value = data.maintain_area[0].name_area;
+
+                                    })  
+                                    .catch(error => console.error('Error:', error));
+                            }, false);
+
+
+
+
                                 let imgCount = 1; // จำนวน input ที่ใช้งาน
                                 let maxImages = 10; // จำนวนสูงสุดของรูปภาพ
 
@@ -362,11 +399,6 @@
     <label for="partner_id" class="control-label">{{ 'Partner Id' }}</label>
     <input class="form-control" name="partner_id" type="text" id="partner_id" value="{{ isset($maintain_noti->partner_id) ? $maintain_noti->partner_id : ''}}">
     {!! $errors->first('partner_id', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group d-none {{ $errors->has('name_area') ? 'has-error' : ''}}">
-    <label for="name_area" class="control-label">{{ 'Name Area' }}</label>
-    <input class="form-control" name="name_area" type="text" id="name_area" value="{{ isset($maintain_noti->name_area) ? $maintain_noti->name_area : ''}}">
-    {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
 </div>
 <!-- <div class="form-group d-none {{ $errors->has('detail_location') ? 'has-error' : ''}}">
     <label for="detail_location" class="control-label">{{ 'Detail Location' }}</label>

@@ -469,5 +469,7 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
 
 // maintain
 Route::get('/get_sub_category', 'Maintain_notisController@get_sub_category');
+Route::post('/submit_rating_maintain', 'Maintain_notisController@submit_rating_maintain');
+Route::get('/get_data_area_maintain', 'Maintain_notisController@get_data_area_maintain');
 
 // END maintain

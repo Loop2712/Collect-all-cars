@@ -24,6 +24,7 @@ use App\Models\Sos_1669_form_yellow;
 use App\Models\Sos_1669_form_pink;
 use App\Models\Sos_1669_form_green;
 use App\Models\Sos_1669_form_blue;
+use App\Models\Maintain_noti;
 
 class LineApiController extends Controller
 {
@@ -158,6 +159,9 @@ class LineApiController extends Controller
                 $line->new_flex_2024(null, $event, "advice_ViiFix");
                 break;
             //=====End case by Junior Dear ติดต่อสอบถามได้ที่ Dear =====
+            case "maintain" :
+                $line->check_process_maintain($data_postback_explode[1] , $event["source"]["userId"] , $event);
+            break;
         }
 
     }
@@ -1296,6 +1300,270 @@ class LineApiController extends Controller
         }
 
     }
+
+    
+    public function check_process_maintain($data_postback_explode , $provider_id , $event)
+    {
+        $data_data = explode("/",$data_postback_explode);
+
+        $status_maintain = $data_data[0] ;
+        $id_maintain = $data_data[1] ;
+
+        // $id_sos_map = $data_data[0] ;
+        // $id_organization_helper = $data_data[1] ;
+        
+        $data_maintain = Maintain_noti::where('maintain_notis.id' , $id_maintain)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
+        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id' ,'maintain_categorys.groupName as maintain_group_line_name')
+        ->first();
+
+        // dd(env('CHANNEL_ACCESS_TOKEN'));
+        $group_line = Group_line::findOrFail($data_maintain->maintain_group_line_id);
+        
+        
+        $template_path = storage_path('../public/json/helper_to_groupline.json');
+        $string_json = file_get_contents($template_path);
+
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_maintain->maintain_group_line_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // $data_partner_helpers = Partner::findOrFail($id_organization_helper);
+
+        // $users = DB::table('users')->where('provider_id', $provider_id)->get();
+
+        // // ตรวจสอบ "การช่วยเหลือเสร็จสิ้น" แล้วหรือยัง
+        // if ($data_sos_map->help_complete == "Yes") { // การช่วยเหลือเสร็จสิ้น
+
+        //     // ส่งไลน์การช่วยเหลือนี้เสร็จสิ้นแล้ว
+        //     $this->This_help_is_done($data_partner_helpers, $event, "This_help_is_done");
+
+        // }else{ // การช่วยเหลือ อยู่ระหว่างดำเนินการ
+
+        //     // ตรวจสอบการเป็นสมาชิก ViiCHECK
+        //     if ($users != '[]') { // เป็นสมาชิก ViiCHECK
+
+        //         foreach ($users as $user) {
+        //             // ตรวจสอบสถานนะ role
+        //             if (!empty($user->role)) {
+        //                 DB::table('users')
+        //                     ->where('provider_id', $provider_id)
+        //                     ->update([
+        //                         'organization' => $data_partner_helpers->name,
+        //                 ]);
+        //             }else{
+        //                 DB::table('users')
+        //                     ->where('provider_id', $provider_id)
+        //                     ->update([
+        //                         'organization' => $data_partner_helpers->name,
+        //                         'role' => 'partner',
+        //                 ]);
+        //             }
+
+        //             // ตรวจสอบรายชื่อคนช่วยเหลือ
+        //             if (!empty($data_sos_map->helper)) {
+
+        //                 $explode_helper_id = explode(",",$data_sos_map->helper_id);
+        //                 for ($i=0; $i < count($explode_helper_id); $i++) {
+
+        //                     if ($explode_helper_id[$i] != $user->id) {
+        //                         $helper_double = "No";
+        //                     }else{
+        //                         $helper_double = "Yes";
+        //                         break;
+        //                     }
+
+        //                 }
+
+        //                 if ($helper_double != "Yes") {
+        //                     DB::table('sos_maps')
+        //                         ->where('id', $id_sos_map)
+        //                         ->update([
+        //                             'helper' => $data_sos_map->helper . ',' . $user->name,
+        //                             'helper_id' => $data_sos_map->helper_id . ',' . $user->id,
+        //                             'organization_helper' => $data_sos_map->organization_helper . ',' . $data_partner_helpers->name,
+        //                     ]);
+
+        //                     $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id) ;
+
+        //                 }else{
+        //                     // คุณได้ทำการกด "กำลังไปช่วยเหลือ" ซ้ำ
+        //                     $this->This_help_is_done($data_partner_helpers, $event , "helper_click_double");
+        //                 }
+
+        //             }else {
+        //                 DB::table('sos_maps')
+        //                     ->where('id', $id_sos_map)
+        //                     ->update([
+        //                         'helper' => $user->name,
+        //                         'helper_id' => $user->id,
+        //                         'organization_helper' => $data_partner_helpers->name,
+        //                         'time_go_to_help' => date('Y-m-d\TH:i:s'),
+        //                         'status' => 'กำลังไปช่วยเหลือ',
+        //                 ]);
+
+        //                 $this->_send_helper_to_groupline($data_sos_map , $data_partner_helpers , $user->name , $user->id , $condo_id);
+
+        //             }
+
+        //         }
+
+        //     }else{ // ไม่ได้เป็นสมาชิก ViiCHECK
+        //         // return redirect('login/line');
+        //         $this->_send_register_to_groupline($data_partner_helpers);
+        //     }
+        // }
+
+    }
+
+    protected function _send_maintain_to_groupline($data_maintain)
+    {
+        $data_line_group = DB::table('group_lines')
+                    ->where('groupName', $data_maintain->maintain_group_line_name)
+                    ->get();
+
+        foreach ($data_line_group as $key) {
+            $groupId = $key->groupId ;
+            $name_time_zone = $key->time_zone ;
+            $group_language = $key->language ;
+        }
+
+        //user
+        $data_users = DB::table('users')->where('id', $data_maintain->user_id)->get();
+        foreach ($data_users as $data_user) {
+
+            if (!empty($data_user->photo)) {
+                $photo_user = $data_user->photo ;
+            }
+            if (empty($data_user->photo)) {
+                $photo_user = $data_user->avatar ;
+            }
+        }
+
+        $officerIds = json_decode($data_maintain->officer_id, true); // แปลง JSON เป็น array
+
+    $lastOfficerId = end($officerIds); // ดึงค่าตัวสุดท้ายออกมา
+  
+        //helper
+        $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+        foreach ($data_helpers as $data_helper) {
+
+            if (!empty($data_helper->photo)) {
+                $photo_helper = $data_helper->photo ;
+            }
+            if (empty($data_helper->photo)) {
+                $photo_helper = $data_helper->avatar ;
+            }
+        }
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        // datetime
+        $time_zone_explode = explode(" ",$time_zone);
+
+        $date = $time_zone_explode[0] ;
+        $time = $time_zone_explode[1] ;
+        $utc = $time_zone_explode[3] ;
+
+        $data_topic = [
+                    "การขอความช่วยเหลือ",
+                    "เจ้าหน้าที่",
+                    "ดำเนินการช่วยเหลือ",
+                    "กำลังไปช่วยเหลือ",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) {
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+
+        $template_path = storage_path('../public/json/helper_to_groupline.json');
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+
+        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
+        $string_json = str_replace("ดำเนินการช่วยเหลือ",$data_topic[2],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
+
+        // // user
+        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+        $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
+        // helper
+        $string_json = str_replace("name_helper",$name_helper,$string_json);
+        $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
+
+        $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+        $string_json = str_replace("groupId",$groupId,$string_json);
+        $string_json = str_replace("date",$date,$string_json);
+        $string_json = str_replace("time",$time,$string_json);
+        $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
+
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "send_helper_to_groupline",
+            "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+        ];
+        MyLog::create($data);
+
+        // ส่งไลน์หา user ที่ขอความช่วยเหลือ
+        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id , $data_sos_map->id);
+
+    }
+
 
     public function reply_success_groupline_by_command($event , $data_postback , $id_sos_map, $name_command , $name_helper){
 
