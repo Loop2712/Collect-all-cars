@@ -1438,129 +1438,129 @@ class LineApiController extends Controller
 
     protected function _send_maintain_to_groupline($data_maintain)
     {
-        $data_line_group = DB::table('group_lines')
-                    ->where('groupName', $data_maintain->maintain_group_line_name)
-                    ->get();
+    //     $data_line_group = DB::table('group_lines')
+    //                 ->where('groupName', $data_maintain->maintain_group_line_name)
+    //                 ->get();
 
-        foreach ($data_line_group as $key) {
-            $groupId = $key->groupId ;
-            $name_time_zone = $key->time_zone ;
-            $group_language = $key->language ;
-        }
+    //     foreach ($data_line_group as $key) {
+    //         $groupId = $key->groupId ;
+    //         $name_time_zone = $key->time_zone ;
+    //         $group_language = $key->language ;
+    //     }
 
-        //user
-        $data_users = DB::table('users')->where('id', $data_maintain->user_id)->get();
-        foreach ($data_users as $data_user) {
+    //     //user
+    //     $data_users = DB::table('users')->where('id', $data_maintain->user_id)->get();
+    //     foreach ($data_users as $data_user) {
 
-            if (!empty($data_user->photo)) {
-                $photo_user = $data_user->photo ;
-            }
-            if (empty($data_user->photo)) {
-                $photo_user = $data_user->avatar ;
-            }
-        }
+    //         if (!empty($data_user->photo)) {
+    //             $photo_user = $data_user->photo ;
+    //         }
+    //         if (empty($data_user->photo)) {
+    //             $photo_user = $data_user->avatar ;
+    //         }
+    //     }
 
-        $officerIds = json_decode($data_maintain->officer_id, true); // แปลง JSON เป็น array
+    //     $officerIds = json_decode($data_maintain->officer_id, true); // แปลง JSON เป็น array
 
-    $lastOfficerId = end($officerIds); // ดึงค่าตัวสุดท้ายออกมา
+    // $lastOfficerId = end($officerIds); // ดึงค่าตัวสุดท้ายออกมา
   
-        //helper
-        $data_helpers = DB::table('users')->where('id', $helper_id)->get();
-        foreach ($data_helpers as $data_helper) {
+    //     //helper
+    //     $data_helpers = DB::table('users')->where('id', $helper_id)->get();
+    //     foreach ($data_helpers as $data_helper) {
 
-            if (!empty($data_helper->photo)) {
-                $photo_helper = $data_helper->photo ;
-            }
-            if (empty($data_helper->photo)) {
-                $photo_helper = $data_helper->avatar ;
-            }
-        }
+    //         if (!empty($data_helper->photo)) {
+    //             $photo_helper = $data_helper->photo ;
+    //         }
+    //         if (empty($data_helper->photo)) {
+    //             $photo_helper = $data_helper->avatar ;
+    //         }
+    //     }
 
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+    //     // TIME ZONE
+    //     $API_Time_zone = new API_Time_zone();
+    //     $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
-        // datetime
-        $time_zone_explode = explode(" ",$time_zone);
+    //     // datetime
+    //     $time_zone_explode = explode(" ",$time_zone);
 
-        $date = $time_zone_explode[0] ;
-        $time = $time_zone_explode[1] ;
-        $utc = $time_zone_explode[3] ;
+    //     $date = $time_zone_explode[0] ;
+    //     $time = $time_zone_explode[1] ;
+    //     $utc = $time_zone_explode[3] ;
 
-        $data_topic = [
-                    "การขอความช่วยเหลือ",
-                    "เจ้าหน้าที่",
-                    "ดำเนินการช่วยเหลือ",
-                    "กำลังไปช่วยเหลือ",
-                ];
+    //     $data_topic = [
+    //                 "การขอความช่วยเหลือ",
+    //                 "เจ้าหน้าที่",
+    //                 "ดำเนินการช่วยเหลือ",
+    //                 "กำลังไปช่วยเหลือ",
+    //             ];
 
-        for ($xi=0; $xi < count($data_topic); $xi++) {
+    //     for ($xi=0; $xi < count($data_topic); $xi++) {
 
-            $text_topic = DB::table('text_topics')
-                    ->select($group_language)
-                    ->where('th', $data_topic[$xi])
-                    ->where('en', "!=", null)
-                    ->get();
+    //         $text_topic = DB::table('text_topics')
+    //                 ->select($group_language)
+    //                 ->where('th', $data_topic[$xi])
+    //                 ->where('en', "!=", null)
+    //                 ->get();
 
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$xi] = $item_of_text_topic->$group_language ;
-            }
-        }
+    //         foreach ($text_topic as $item_of_text_topic) {
+    //             $data_topic[$xi] = $item_of_text_topic->$group_language ;
+    //         }
+    //     }
 
-        $template_path = storage_path('../public/json/helper_to_groupline.json');
-        $string_json = file_get_contents($template_path);
+    //     $template_path = storage_path('../public/json/helper_to_groupline.json');
+    //     $string_json = file_get_contents($template_path);
 
-        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+    //     $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
 
-        $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
-        $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
-        $string_json = str_replace("ดำเนินการช่วยเหลือ",$data_topic[2],$string_json);
-        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
+    //     $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
+    //     $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
+    //     $string_json = str_replace("ดำเนินการช่วยเหลือ",$data_topic[2],$string_json);
+    //     $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
-        // // user
-        $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
-        $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
-        // helper
-        $string_json = str_replace("name_helper",$name_helper,$string_json);
-        $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
+    //     // // user
+    //     $string_json = str_replace("name_user",$data_sos_map->name,$string_json);
+    //     $string_json = str_replace("TEXT_PHOTO_USER",$photo_user,$string_json);
+    //     // helper
+    //     $string_json = str_replace("name_helper",$name_helper,$string_json);
+    //     $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
 
-        $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
-        $string_json = str_replace("groupId",$groupId,$string_json);
-        $string_json = str_replace("date",$date,$string_json);
-        $string_json = str_replace("time",$time,$string_json);
-        $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
+    //     $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+    //     $string_json = str_replace("groupId",$groupId,$string_json);
+    //     $string_json = str_replace("date",$date,$string_json);
+    //     $string_json = str_replace("time",$time,$string_json);
+    //     $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
 
 
-        $messages = [ json_decode($string_json, true) ];
+    //     $messages = [ json_decode($string_json, true) ];
 
-        $body = [
-            "to" => $groupId,
-            "messages" => $messages,
-        ];
+    //     $body = [
+    //         "to" => $groupId,
+    //         "messages" => $messages,
+    //     ];
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
+    //     $opts = [
+    //         'http' =>[
+    //             'method'  => 'POST',
+    //             'header'  => "Content-Type: application/json \r\n".
+    //                         'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+    //             'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+    //             //'timeout' => 60
+    //         ]
+    //     ];
 
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
+    //     $context  = stream_context_create($opts);
+    //     $url = "https://api.line.me/v2/bot/message/push";
+    //     $result = file_get_contents($url, false, $context);
 
-        // SAVE LOG
-        $data = [
-            "title" => "send_helper_to_groupline",
-            "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
-        ];
-        MyLog::create($data);
+    //     // SAVE LOG
+    //     $data = [
+    //         "title" => "send_helper_to_groupline",
+    //         "content" => $name_helper . "กำลังไปช่วย" . $data_sos_map->name,
+    //     ];
+    //     MyLog::create($data);
 
-        // ส่งไลน์หา user ที่ขอความช่วยเหลือ
-        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id , $data_sos_map->id);
+    //     // ส่งไลน์หา user ที่ขอความช่วยเหลือ
+    //     $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id , $data_sos_map->id);
 
     }
 
