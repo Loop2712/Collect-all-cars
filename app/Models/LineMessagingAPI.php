@@ -2419,8 +2419,8 @@ class LineMessagingAPI extends Model
                     'datetime_command' => now(),  
                 ]);
 
-            $date_maintain = date('d/m/Y', $data_update);
-            $time_maintain = date('g:i:sa', $data_update);
+            $date_maintain = date('d/m/Y', strtotime(now()));
+            $time_maintain = date('g:i:sa', strtotime(now()));
             
             switch ($data_postback) {
                 case 'command':
