@@ -2410,7 +2410,7 @@ class LineMessagingAPI extends Model
         if($data_maintain->status == 'แจ้งซ่อม'){
 
 
-            DB::table('sos_help_centers')
+            DB::table('maintain_notis')
                 ->where([
                         ['id', $data_maintain->id],
                     ])
