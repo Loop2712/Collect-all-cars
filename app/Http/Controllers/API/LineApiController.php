@@ -160,7 +160,7 @@ class LineApiController extends Controller
                 break;
             //=====End case by Junior Dear ติดต่อสอบถามได้ที่ Dear =====
             case "maintain" :
-                $line->check_process_maintain($data_postback_explode[1] , $event["source"]["userId"] , $event);
+                $line->check_process_maintain($data_postback_explode[1] ,  $event);
             break;
         }
 

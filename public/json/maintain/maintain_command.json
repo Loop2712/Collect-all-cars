@@ -1,0 +1,191 @@
+{
+    "type": "flex",
+    "altText": "แจ้งซ่อม",
+    "contents":{
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://i.ibb.co/54f7MK9/9.png",
+              "size": "full",
+              "aspectRatio": "2134:2553",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "อุปกรณ์ : sub_category",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff",
+                  "maxLines": 2,
+                  "wrap": true,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "80%",
+              "offsetTop": "23.5%",
+              "offsetStart": "10%",
+              "alignItems": "center",
+              "height": "11%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "D/M/Y",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#ffffff",
+                  "maxLines": 1,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "42%",
+              "offsetStart": "18%",
+              "alignItems": "center",
+              "height": "5%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "H:I:S",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#ffffff",
+                  "maxLines": 1,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "42%",
+              "offsetStart": "52%",
+              "alignItems": "center",
+              "height": "5%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Name",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#ffffff",
+                  "maxLines": 1,
+                  "wrap": true,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "63%",
+              "offsetTop": "57%",
+              "offsetStart": "25.8%",
+              "alignItems": "flex-start",
+              "height": "5%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Name_officer",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#ffffff",
+                  "maxLines": 1,
+                  "wrap": true,
+                  "scaling": true
+                }
+              ],
+              "position": "absolute",
+              "width": "63%",
+              "offsetTop": "73%",
+              "offsetStart": "25.8%",
+              "alignItems": "flex-start",
+              "height": "5%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [],
+              "position": "absolute",
+              "width": "85%",
+              "offsetTop": "83.5%",
+              "offsetStart": "7%",
+              "alignItems": "center",
+              "height": "12%",
+              "action": {
+                "type": "uri",
+                "label": "ดำเนินการ",
+                "uri": "http://www.viicheck.com/"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                  "position": "absolute",
+                  "aspectRatio": "1:1",
+                  "aspectMode": "cover"
+                }
+              ],
+              "cornerRadius": "50px",
+              "width": "11%",
+              "height": "9%",
+              "position": "absolute",
+              "offsetTop": "53.1%",
+              "offsetStart": "12%"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                  "position": "absolute",
+                  "aspectRatio": "1:1",
+                  "aspectMode": "cover"
+                }
+              ],
+              "cornerRadius": "50px",
+              "width": "11%",
+              "height": "9%",
+              "position": "absolute",
+              "offsetTop": "69.5%",
+              "offsetStart": "12%"
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+
+}

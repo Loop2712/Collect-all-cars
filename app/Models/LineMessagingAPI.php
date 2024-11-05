@@ -2387,36 +2387,13 @@ class LineMessagingAPI extends Model
 
     }
     
-    public function check_process_maintain($data_postback_explode , $provider_id , $event)
+    public function check_process_maintain($data_postback_explode , $event)
     {
         switch ($data_postback_explode) {
             case 'maintain':
 
-                $data_fix = [
-                    "maintain_id" => "1",
-                    "name_category" => "ชื่อหมวดหมู่",
-                    "sub_category" => "คอมพิวเตอร์",
-                    "problem_fix_case" => "เปิดไม่ติด เปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติดเปิดไม่ติด..",
-                    "location" => "A",
-                    "detail_location" => "โครงการมาร์เช่กรุงเทพกรีฑา เลขที่ 252/5 แขวงหัวหมาก เขตบางกะปิ กรุงเทพฯ 10240",
-                    "D/M/Y" => "29/9/2022",
-                    "H:I:S" => "02:30:57",
-                    "name_informer" => "thanakorn tungkasopa",
-                    "phone_informer" => "081-234-5678",
-                ];
-
-                $template_path = storage_path('../public/json/flex-repair/flex-fix_new/flex_line_repair.json');
+                $template_path = storage_path('../public/json/maintain/maintain_command.json');
                 $string_json = file_get_contents($template_path);
-
-                $string_json = str_replace("name_category", $data_fix['name_category'], $string_json);
-                $string_json = str_replace("sub_category", $data_fix['sub_category'], $string_json);
-                $string_json = str_replace("problem_fix_case", $data_fix['problem_fix_case'], $string_json);
-                $string_json = str_replace("location", $data_fix['location'], $string_json);
-                $string_json = str_replace("detail_location", $data_fix['detail_location'], $string_json);
-                $string_json = str_replace("D/M/Y", $data_fix['D/M/Y'], $string_json);
-                $string_json = str_replace("H:I:S", $data_fix['H:I:S'], $string_json);
-                $string_json = str_replace("name_informer", $data_fix['name_informer'], $string_json);
-                $string_json = str_replace("phone_informer", $data_fix['phone_informer'], $string_json);
 
 
                 break;
