@@ -88,7 +88,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "Name",
+                  "text": "Name_officer",
                   "weight": "bold",
                   "size": "md",
                   "color": "#ffffff",
@@ -111,7 +111,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "Name_officer",
+                  "text": "Name",
                   "weight": "bold",
                   "size": "md",
                   "color": "#ffffff",
@@ -141,7 +141,7 @@
               "action": {
                 "type": "uri",
                 "label": "ดำเนินการ",
-                "uri": "http://www.viicheck.com/"
+                "uri": "http://www.viicheck.com/command_maintain/maintain_id"
               }
             },
             {

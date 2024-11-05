@@ -2392,24 +2392,63 @@ class LineMessagingAPI extends Model
 
         $data_postback_explode = explode("/",$data);
         $data_postback = $data_postback_explode[0] ;
+        $maintain_id = $data_postback_explode[1] ;
 
-        switch ($data_postback) {
-            case 'command':
+        // $template_path = storage_path('../public/json/text_success.json');
+        // $string_json = file_get_contents($template_path);
 
-                $template_path = storage_path('../public/json/maintain/maintain_command.json');
-                $string_json = file_get_contents($template_path);
+        // $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ปฏิเสธเรียบร้อยแล้ว",$string_json);
+
+        $data_maintain = Maintain_noti::where('maintain_notis.id' , $maintain_id)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
+        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
+        ->first();
+
+        
+        if($data_maintain->status == 'แจ้งซ่อม'){
 
 
-                break;
-            default:
-                //SAVE LOG
-                $data_not_found_flex = [
-                    "title" => "not_found_flex",
-                    "content" => "ไม่พบชื่อตามเงื่อนไข",
-                ];
-                MyLog::create($data_not_found_flex);
-                break;
+            
+            
+            switch ($data_postback) {
+                case 'command':
+                    $template_path = storage_path('../public/json/maintain/maintain_command.json');
+                    $string_json = file_get_contents($template_path);
+    
+                    $string_json = file_get_contents($template_path); 
+        
+                    $string_json = str_replace("sub_category","$data_maintain->name_sub_categorys",$string_json);
+            
+                    $string_json = str_replace("D/M/Y",'วัน',$string_json);
+                    $string_json = str_replace("H:I:S",'เวลา',$string_json);
+            
+            
+                    $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
+                    $string_json = str_replace("phone",$data_maintain->phone,$string_json);
+                    $string_json = str_replace("maintain_id",$data_maintain->id,$string_json);
+            
+
+                    $messages = [ json_decode($string_json, true) ];
+
+
+                    break;
+                default:
+                    //SAVE LOG
+                    $data_not_found_flex = [
+                        "title" => "not_found_flex",
+                        "content" => "ไม่พบชื่อตามเงื่อนไข",
+                    ];
+                    MyLog::create($data_not_found_flex);
+                    break;
+            }
+
+
+
         }
+
+       
 
         $messages = [ json_decode($string_json, true) ];
 
