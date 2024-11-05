@@ -2403,10 +2403,14 @@ class LineMessagingAPI extends Model
         ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
         ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
-        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
+        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' , 'users.photo as user_profile' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
         ->first();
 
-        
+        if (!empty($data_maintain->user_profile)) {
+            $photo_profile = "https://www.viicheck.com/storage/".$data_maintain->user_profile ;
+        }else{
+            $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+        }
         if($data_maintain->status == 'แจ้งซ่อม'){
 
 
@@ -2419,7 +2423,9 @@ class LineMessagingAPI extends Model
                     'datetime_command' => now(),  
                 ]);
                 
-            
+                $date_maintain = date('d/m/Y', strtotime(now()));
+                $time_maintain = date('g:i', strtotime(now()));
+
             switch ($data_postback) {
                 case 'command':
                     $template_path = storage_path('../public/json/maintain/maintain_command.json');
@@ -2429,13 +2435,14 @@ class LineMessagingAPI extends Model
         
                     $string_json = str_replace("sub_category","$data_maintain->name_sub_categorys",$string_json);
             
-                    $string_json = str_replace("D/M/Y",'วัน',$string_json);
-                    $string_json = str_replace("H:I:S",'เวลา',$string_json);
+                    $string_json = str_replace("D/M/Y",$date_maintain,$string_json);
+                    $string_json = str_replace("H:I:S",$time_maintain,$string_json);
             
             
                     $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
                     $string_json = str_replace("phone",$data_maintain->phone,$string_json);
                     $string_json = str_replace("maintain_id",$data_maintain->id,$string_json);
+                    $string_json = str_replace("https://www.viicheck.com/user_profile",$photo_profile,$string_json);
             
 
                     $messages = [ json_decode($string_json, true) ];
