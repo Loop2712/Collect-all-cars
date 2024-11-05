@@ -2453,6 +2453,11 @@ class LineMessagingAPI extends Model
 
 
 
+        }else{
+                $template_path = storage_path('../public/json/text_success.json');
+                $string_json = file_get_contents($template_path);
+
+                $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้ได้รับการตอบรับเรียบร้อยแล้ว",$string_json);
         }
 
        
