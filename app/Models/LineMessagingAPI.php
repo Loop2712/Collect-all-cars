@@ -2417,6 +2417,19 @@ class LineMessagingAPI extends Model
         $officer = User::where('provider_id' , $event["source"]['userId'])->first();
         $data_officer = Sos_partner_officer::where('user_id' , $officer->id)->first();
 
+        // ดึงข้อมูล officer_id ที่มีอยู่ในฐานข้อมูล
+        $existingOfficerIds = $data_maintain->officer_id ? json_decode($data_maintain->officer_id) : [];
+            
+        // ตรวจสอบว่ามี id นี้แล้วหรือยัง ถ้ายังไม่มี ให้เพิ่มเข้าไป
+        if (!in_array($data_officer->id, $existingOfficerIds)) {
+            $existingOfficerIds[] = $data_officer->id;
+        }
+
+        if (!empty($officer->photo)) {
+            $officer_profile = "https://www.viicheck.com/storage/".$officer->photo ;
+        }else{
+            $officer_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
+        }
 
         if($data_maintain->status == 'แจ้งซ่อม'){
 
@@ -2428,7 +2441,7 @@ class LineMessagingAPI extends Model
                 ->update([
                     'status' => "รอดำเนินการ",
                     'datetime_command' => now(),  
-                    'officer_id' => $data_officer->id,  
+                    'officer_id' => json_encode($existingOfficerIds),  
                 ]);
                 
                 $date_maintain = date('d/m/Y', strtotime(now()));
@@ -2446,12 +2459,17 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("D/M/Y",$date_maintain,$string_json);
                     $string_json = str_replace("H:I:S",$time_maintain,$string_json);
             
+                    $string_json = str_replace("Name_officer",$data_officer->full_name,$string_json);
+                    $string_json = str_replace("https://www.viicheck.com/officer_profile",$officer_profile,$string_json);
+
             
                     $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
                     $string_json = str_replace("phone",$data_maintain->phone,$string_json);
                     $string_json = str_replace("maintain_id",$data_maintain->id,$string_json);
                     $string_json = str_replace("https://www.viicheck.com/user_profile",$photo_profile,$string_json);
-            
+
+
+
 
                     $messages = [ json_decode($string_json, true) ];
 
