@@ -471,5 +471,12 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
 Route::get('/get_sub_category', 'Maintain_notisController@get_sub_category');
 Route::post('/submit_rating_maintain', 'Maintain_notisController@submit_rating_maintain');
 Route::get('/get_data_area_maintain', 'Maintain_notisController@get_data_area_maintain');
-
+Route::get('/WorkCalendar/{officer_id}', 'Maintain_notisController@WorkCalendar'); // Create By Junior Dear --> ข้อมูลตารางงานของเจ้าหน้าที่
+Route::get('/getAmountMaintainDashboard', 'MaintainDashboardController@getAmountMaintainDashboard'); //Create By Junior Dear --> 4 bubble + 1 table Dashboard
+Route::get('/get_5_ListMaintains', 'MaintainDashboardController@get_5_ListMaintains'); // Create By Junior Dear -->  "จำนวนการแจ้งซ่อม 5 ลำดับล่าสุด" ใน Dashboard
+Route::get('/get_5_FastestMaintains', 'MaintainDashboardController@get_5_FastestMaintains'); // Create By Junior Dear --> "รายการแจ้งที่เร็วสุด 5 ลำดับล่าสุด" ใน Dashboard
+Route::get('/get_5_SlowestMaintains', 'MaintainDashboardController@get_5_SlowestMaintains'); // Create By Junior Dear --> "รายการแจ้งที่ช้าสุด 5 ลำดับล่าสุด" ใน Dashboard
+Route::get('/get_cateChartMaintains', 'MaintainDashboardController@get_cateChartMaintains'); // Create By Junior Dear --> "กราฟแสดงการแจ้งซ่อมตามหมวดหมู่ + หมวดหมู่ย่อย" ใน Dashboard
+Route::get('/get_areaAmountChartMaintains', 'MaintainDashboardController@get_areaAmountChartMaintains'); // Create By Junior Dear --> "กราฟแสดงการแจ้งแต่ละพื้นที่" ใน Dashboard
+Route::get('/WorkCalendarDashboard/{partner_id}', 'MaintainDashboardController@WorkCalendarDashboard'); // Create By Junior Dear --> ข้อมูลตารางงานของ Dashboard
 // END maintain

@@ -1,7 +1,9 @@
 @extends('layouts.partners.theme_partner_new')
+{{-- @extends('layouts.viicheck') --}}
 
 @section('content')
     <style>
+
         #generatePdf{
             text-align: justify ,
         }
@@ -35,7 +37,7 @@
         <a class="btn btn-success float-end me-1" onclick="SaveImageGlobal('section2')">บันทึกภาพ section 2</a>
     </div>
 
-    <div id="generatePdf" class="container-fluid p-2">
+    <div id="generatePdf" class="container p-2">
 
         <div id="section1" class="my-3">
             @include ('test_repair_admin.repair_dashboard.fix_dashboard_sec1')

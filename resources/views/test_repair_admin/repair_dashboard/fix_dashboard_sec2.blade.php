@@ -99,6 +99,8 @@
     <div class="col-12 col-md-8 col-lg-8 mb-3">
         <div class="card radius-10 h-100 ">
             <div class="card-body">
+
+
                 <div class="row d-flex align-items-start mb-3">
                     <div class="col-12 col-md-9">
                         <h5 class="mb-0 font-weight-bold">จำนวนแจ้งซ่อมแยกตามหมวดหมู่</h5>
@@ -109,12 +111,15 @@
                                 <button id="btn_dropdown_health_type" class="btn dropdownToggleDB dropdown-toggle"
                                     type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     onclick="adjustDropdownWidth()">
-                                    <span class="button-text">ViiCHECK พระนครศรีอยุธยา</span>
+                                    <span class="button-text">{{ $data_partner_area->first()->name_area ?? 'เลือกพื้นที่' }}</span>
                                 </button>
                                 <div id="item_dropdown" class="dropdown-menu radius-10"
                                     aria-labelledby="btn_dropdown_health_type" style="cursor: pointer;">
-                                    <a class="dropdown-item" onclick="change_select_area('นครนายก')">ViiCHECK
-                                        นครนายก</a>
+                                    @foreach($data_partner_area as $area)
+                                        <a class="dropdown-item" onclick="change_select_area('{{ $area->name_area }}'); cateChart('{{ $area->id }}','selected');">
+                                            {{ $area->name_area }}
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -125,9 +130,16 @@
                                 let dropdownMenu = document.getElementById('item_dropdown');
                                 dropdownMenu.style.width = button.offsetWidth + 'px';
                             }
+
+                            function change_select_area(selectedArea) {
+                                // เปลี่ยนข้อความในปุ่ม dropdown
+                                let buttonText = document.querySelector('.button-text');
+                                buttonText.innerText = selectedArea; // เปลี่ยนข้อความให้ตรงกับพื้นที่ที่เลือก
+                            }
                         </script>
                     </div>
                 </div>
+
                 <div class=" w-100 ">
                     <div id="chartCate"></div>
                 </div>
@@ -177,286 +189,273 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/th.js"></script>
 
 <script>
+
+
     document.addEventListener('DOMContentLoaded', (event) => {
-        cateChart();
-        subcateChart();
+        cateChart(null,"DOM");
+        subcateChart(null, null, "DOM");
         areaAmountChart();
     })
 
-    const cateChart = () => {
-        // fetch("{{ url('/') }}/api/API_dashboard_count_treatment?user_id=" + user_id)
-        // .then(response => response.json())
-        // .then(result => {
-        // console.log(result);
+    const cateChart = (selected_area_id,form) => {
+        let area_id = "";
+        if (form === "DOM") {
+            area_id = String('{{ $data_partner_area->first()->id ?? 1 }}'); // ใช้ String() แปลงเป็น string
+            console.log("areaId: " + area_id);
+        } else {
+            area_id = String(selected_area_id); // แปลง selected_area_id เป็น string
+        }
 
-        const data = [{
-                label: 'อุปกรณ์สำนักงาน',
-                value: 93,
-                color: '#FF5733',
-                subcate: [{
-                        label: 'คอมพิวเตอร์',
-                        value: 40
-                    },
-                    {
-                        label: 'เครื่องพิมพ์',
-                        value: 13
-                    },
-                    {
-                        label: 'เครื่องสำรองไฟ',
-                        value: 40
-                    },
-                ],
-            },
-            {
-                label: 'ระบบไฟฟ้า',
-                value: 15,
-                color: '#33FF57',
-                subcate: [{
-                        label: 'subCate 1',
-                        value: 7
-                    },
-                    {
-                        label: 'subCate 2',
-                        value: 8
-                    },
-                ],
-            },
-            {
-                label: 'ระบบประปา',
-                value: 44,
-                color: '#3357FF',
-                subcate: [{
-                        label: 'subCate 1',
-                        value: 22
-                    },
-                    {
-                        label: 'subCate 2',
-                        value: 22
-                    },
-                ],
-            },
-            {
-                label: 'เฟอร์นิเจอร์',
-                value: 55,
-                color: '#F333FF',
-                subcate: [{
-                        label: 'subCate 1',
-                        value: 30
-                    },
-                    {
-                        label: 'subCate 2',
-                        value: 25
-                    },
-                ],
-            },
-            {
-                label: 'ระบบปรับอากาศ',
-                value: 41,
-                color: '#33FFF3',
-                subcate: [{
-                        label: 'subCate 1',
-                        value: 21
-                    },
-                    {
-                        label: 'subCate 2',
-                        value: 20
-                    },
-                ],
-            },
-            {
-                label: 'อื่นๆ',
-                value: 17,
-                color: '#FF33A1',
-                subcate: [{
-                        label: 'subCate 1',
-                        value: 9
-                    },
-                    {
-                        label: 'subCate 2',
-                        value: 8
-                    },
-                ],
-            },
-        ];
-        const labels = data.map(item => item.label);
-        const series = data.map(item => item.value);
-        const colors = data.map(item => item.color);
+        // ล้างข้อมูลใน div ก่อน
+        document.querySelector("#chartCate").innerHTML = ""; // clear กราฟ cateChart
+        document.querySelector('#chartSubCate').innerHTML = ""; // clear กราฟ subcateChart
+        document.querySelector('#cardBodySubCate').innerHTML = ""; // clear กราฟ subcateChart
+        document.querySelector('#titleSubCate').innerHTML = ""; // clear หัวข้อ กราฟ subcateChart
 
-        let options = {
-            series: [{
-                data: series
-            }],
-            chart: {
-                height: '100%',
-                type: 'bar',
-                background: '#fff', // #e6eefa เปลี่ยนสีพื้นหลังที่นี่
-                toolbar: {
-                    tools: {
-                        download: false // ปิดปุ่ม download SVG, PNG, CSV
+        subcateChart(null, null, "DOM"); //ทำฟังก์ชันใหม่เพื่อไม่ให้ text บางจุดหายไป
+
+        fetch("{{ url('/') }}/api/get_cateChartMaintains?area_id=" + area_id)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network ตอบสนองไม่ OK " + response.statusText);
+                // แสดงไอคอนตกใจใน chartCate เมื่อเกิดข้อผิดพลาด
+                let chartCate_body = document.getElementById("chartCate");
+                chartCate_body.innerHTML = `
+                    <div class="text-center text-danger font-20" onclick="cateChart(null,'DOM');">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </div>
+                `;
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log("result cateChareData");
+            console.log(result);
+
+            const labels = result.map(item => item.name ?? ""); // ใช้ค่าเป็น string ว่างหาก name เป็น null
+            const series = result.map(item => item.count ? parseInt(item.count) : 0); // แปลง count เป็น 0 หากเป็น null
+            const colors = result.map(item => item.color ? `#${item.color}` : "#000000"); // ใช้สีดำเป็นค่าเริ่มต้นหาก color เป็น null หรือค่าว่าง
+
+            let options = {
+                series: [{
+                    data: series
+                }],
+                chart: {
+                    height: '100%',
+                    type: 'bar',
+                    background: '#fff', // #e6eefa เปลี่ยนสีพื้นหลังที่นี่
+                    toolbar: {
+                        tools: {
+                            download: false // ปิดปุ่ม download SVG, PNG, CSV
+                        }
+                    },
+                    events: {
+                        click: function(event, chartContext, config) {
+                            // ดึงข้อมูล index ของแท่งกราฟที่ถูกคลิก
+                            let dataIndex = config.dataPointIndex;
+
+                            // ถ้า index เป็น valid (ไม่ใช่ -1)
+                            if (dataIndex !== -1) {
+                                // ดึงข้อมูลจาก data ตาม index ที่ถูกคลิก
+                                let selectedData = result[dataIndex];
+                                // ดึงหัวข้อของ index เช่น "cate 1"
+                                let categoryTitle = selectedData.name;
+
+                                // เรียกฟังก์ชัน subCate พร้อมส่งข้อมูล subcate ไปด้วย
+                                subcateChart(selectedData.subcate, categoryTitle , "event");
+                            }
+                        }
+
                     }
                 },
-                events: {
-                    click: function(event, chartContext, config) {
-                        // ดึงข้อมูล index ของแท่งกราฟที่ถูกคลิก
-                        let dataIndex = config.dataPointIndex;
-
-                        // ถ้า index เป็น valid (ไม่ใช่ -1)
-                        if (dataIndex !== -1) {
-                            // ดึงข้อมูลจาก data ตาม index ที่ถูกคลิก
-                            let selectedData = data[dataIndex];
-                            // ดึงหัวข้อของ index เช่น "cate 1"
-                            let categoryTitle = selectedData.label;
-
-                            // เรียกฟังก์ชัน subCate พร้อมส่งข้อมูล subcate ไปด้วย
-                            subcateChart(selectedData.subcate, categoryTitle);
+                colors: colors,
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%',
+                        distributed: true,
+                        borderRadius: 3,
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    distributed: false,
+                    style: {
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                    },
+                    background: {
+                        borderRadius: 10,
+                    }
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: labels,
+                    labels: {
+                        style: {
+                            colors: '#000000',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
                         }
                     }
-                }
-            },
-            colors: colors,
-            plotOptions: {
-                bar: {
-                    columnWidth: '45%',
-                    distributed: true,
-                    borderRadius: 3,
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                distributed: false,
-                style: {
-                    fontSize: '18px',
-                    fontWeight: 'bold',
                 },
-                background: {
-                    borderRadius: 10,
-                }
-            },
-            legend: {
-                show: false
-            },
-            xaxis: {
-                categories: labels,
-                labels: {
-                    style: {
-                        colors: '#000000',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                        }
+                    }
+                },
+                tooltip: {
+                    custom: function({
+                        series,
+                        seriesIndex,
+                        dataPointIndex,
+                        w
+                    }) {
+                        const label = labels[dataPointIndex];
+                        const value = series[seriesIndex][dataPointIndex];
+                        return `
+                            <div class="tooltip-custom">
+                                ${label}: ${value}
+                            </div>
+                        `;
                     }
                 }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                    }
-                }
-            },
-            tooltip: {
-                custom: function({
-                    series,
-                    seriesIndex,
-                    dataPointIndex,
-                    w
-                }) {
-                    const label = labels[dataPointIndex];
-                    const value = series[seriesIndex][dataPointIndex];
-                    return `
-                        <div class="tooltip-custom">
-                            ${label}: ${value}
-                        </div>
-                    `;
-                }
-            }
-        };
+            };
 
-        var chartCate = new ApexCharts(document.querySelector("#chartCate"), options);
-        chartCate.render();
+            var chartCate = new ApexCharts(document.querySelector("#chartCate"), options);
+            chartCate.render();
 
-        //     })
+        }).catch(error => {
+            console.error("เกิดข้อผิดพลาดในการดึงข้อมูล :", error);
+
+            // แสดงไอคอนตกใจใน chartCate เมื่อเกิดข้อผิดพลาด
+            let chartCate_body = document.getElementById("chartCate");
+            chartCate_body.innerHTML = `
+                <div class="text-center text-danger font-20">
+                    <i class="fas fa-exclamation-triangle"></i> เกิดข้อผิดพลาดในการดึงข้อมูล
+                </div>
+            `;
+        });
     }
 
-    const subcateChart = (data, title) => {
+    const subcateChart = (data, title, form) => {
+        // ล้างข้อมูลใน div ก่อน
         document.querySelector('#chartSubCate').innerHTML = "";
         document.querySelector('#cardBodySubCate').innerHTML = "";
-        // console.log(data);
-        if (!data) {
+
+        if(form === "DOM"){
+            // แสดงข้อความเตือนให้เลือกกราฟ
             document.querySelector('#chartSubCate').classList.add('d-none');
             document.querySelector('#cardBodySubCate').classList.remove('d-none');
 
             document.querySelector('#cardBodySubCate').innerHTML = `
+                <div class="h-100 d-flex justify-content-center align-items-center">
+                    <span class="textWarning blink" >
+                        คลิกที่แท่งกราฟหมวดหมู่เพื่อแสดงข้อมูล
+                    </span>
+                </div>`;
+        }else{
+            if (!data || data.length === 0) {  // เช็คทั้งกรณีที่ data เป็น null หรือกรณีที่ data ไม่มีข้อมูล
+                // ตั้งค่า title ของกราฟ
+                document.querySelector('#titleSubCate').innerHTML =
+                    `<h6 class="mb-0 font-weight-bold">หมวดหมู่ : <a class="text-danger">${title}</a></h6>`;
+
+                // แสดงข้อความเตือนให้เลือกกราฟ
+                document.querySelector('#chartSubCate').classList.add('d-none');
+                document.querySelector('#cardBodySubCate').classList.remove('d-none');
+
+                document.querySelector('#cardBodySubCate').innerHTML = `
                     <div class="h-100 d-flex justify-content-center align-items-center">
-                        <span class="textWarning blink">
-                            คลิกที่แท่งกราฟหมวดหมู่เพื่อแสดงข้อมูล
+                        <span class="text-primary" style="font-weight:bold;">
+                            ไม่มีข้อมูลหมวดหมู่ย่อย
                         </span>
                     </div>`;
-        } else {
-            document.querySelector('#cardBodySubCate').classList.add('d-none');
-            document.querySelector('#chartSubCate').classList.remove('d-none');
+            } else {
+                // แสดงกราฟถ้ามีข้อมูล
+                document.querySelector('#cardBodySubCate').classList.add('d-none');
+                document.querySelector('#chartSubCate').classList.remove('d-none');
 
-            const labels = data.map(item => item.label);
-            const series = data.map(item => item.value);
-            // const colors = data.map(item => item.color);
-            const colors = data.map(() => getRandomColor());
+                // ตรวจสอบค่าของ labels และ series
+                const labels = data.map(item => item.name ?? "ไม่มีชื่อ"); // กรณีไม่มีชื่อให้ใส่ "ไม่มีชื่อ"
+                const series = data.map(item => item.count ? parseInt(item.count) : 0); // แปลง count เป็น 0 ถ้าเป็น null
+                const colors = data.map(() => getRandomColor()); // กำหนดสีแบบสุ่ม
 
-            document.querySelector('#titleSubCate').innerHTML =
-            `<h6 class="mb-0 font-weight-bold">หมวดหมู่ : <a class="text-danger">` + title + `</a></h6>`;
+                // ตั้งค่า title ของกราฟ
+                document.querySelector('#titleSubCate').innerHTML =
+                    `<h6 class="mb-0 font-weight-bold">หมวดหมู่ : <a class="text-danger">${title}</a></h6>`;
 
-            let options = {
-                series: series,
-                chart: {
-                    type: 'pie',
-                    // background: '#fff', // #f0f0f0 เปลี่ยนสีพื้นหลังที่นี่
-                },
-                labels: labels,
-                colors: colors,
-                theme: {
-                    monochrome: {
-                        enabled: false,
+                let options = {
+                    series: series,
+                    chart: {
+                        type: 'pie',
                     },
-                },
-                plotOptions: {
-                    pie: {
-                        dataLabels: {
-                            offset: -5,
+                    labels: labels,
+                    colors: colors,
+                    theme: {
+                        monochrome: {
+                            enabled: false,
                         },
                     },
-                },
-                grid: {
-                    padding: {
-                        top: 0,
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
+                    plotOptions: {
+                        pie: {
+                            dataLabels: {
+                                offset: -5,
+                            },
+                        },
                     },
-                },
-                dataLabels: {
-                    formatter(val, opts) {
-                        const name = opts.w.globals.labels[opts.seriesIndex];
-                        const value = series[opts.seriesIndex];
-                        return [name, `${val.toFixed(1)}% (${value})`];
+                    grid: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                        },
                     },
-                },
-                legend: {
-                    show: false,
-                },
-            };
+                    dataLabels: {
+                        formatter(val, opts) {
+                            const name = opts.w.globals.labels[opts.seriesIndex];
+                            const value = series[opts.seriesIndex];
+                            return [name, `${val.toFixed(1)}% (${value})`];
+                        },
+                    },
+                    legend: {
+                        show: false,
+                    },
+                };
 
-            var chartSubCate = new ApexCharts(document.querySelector("#chartSubCate"), options);
-            chartSubCate.render();
+                // สร้างกราฟ pie chart
+                var chartSubCate = new ApexCharts(document.querySelector("#chartSubCate"), options);
+                chartSubCate.render();
+            }
         }
     };
 
+
     const areaAmountChart = () => {
-        var options = {
-            series: [{
-                name: 'ViiCHECK พระนครศรีอยุธยา',
-                data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-            }, {
-                name: 'ViiCHECK นครนายก',
-                data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-            }],
+        fetch("{{ url('/') }}/api/get_areaAmountChartMaintains?partner_id=" + partner_id)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network ตอบสนองไม่ OK " + response.statusText);
+                // แสดงไอคอนตกใจใน chartCate เมื่อเกิดข้อผิดพลาด
+                let chartCate_body = document.getElementById("chartCate");
+                chartCate_body.innerHTML = `
+                    <div class="text-center text-danger font-20" onclick="areaAmountChart()">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </div>
+                `;
+            }
+            return response.json();
+        })
+        .then(result => {
+            // console.log("result areaAmountChart");
+            // console.log(result);
+
+            var options = {
+            series: result,
             chart: {
                 type: 'bar',
                 height: 350,
@@ -490,7 +489,7 @@
                 colors: ['transparent']
             },
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             },
             yaxis: {
                 title: {
@@ -511,6 +510,20 @@
 
         let areaAmountChart = new ApexCharts(document.querySelector("#areaAmountChart"), options);
         areaAmountChart.render();
+
+        }).catch(error => {
+            console.error("เกิดข้อผิดพลาดในการดึงข้อมูล :", error);
+
+            // แสดงไอคอนตกใจใน chartCate เมื่อเกิดข้อผิดพลาด
+            let chartCate_body = document.getElementById("chartCate");
+            chartCate_body.innerHTML = `
+                <div class="text-center text-danger font-20">
+                    <i class="fas fa-exclamation-triangle"></i> เกิดข้อผิดพลาดในการดึงข้อมูล
+                </div>
+            `;
+        });
+
+
     }
 
 

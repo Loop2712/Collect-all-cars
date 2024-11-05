@@ -27,5 +27,8 @@ class Maintain_sub_category extends Model
      */
     protected $fillable = ['name', 'category_id', 'user_id', 'status', 'count'];
 
-    
+    public function maintain_categories(){
+        return $this->belongsTo('App\Models\Maintain_category', 'category_id' ,'id');
+    }
+
 }

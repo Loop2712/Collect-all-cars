@@ -27,5 +27,12 @@ class Maintain_category extends Model
      */
     protected $fillable = ['name', 'user_id', 'area_id', 'line_group_id', 'status', 'count', 'color'];
 
-    
+    public function maintain_notis(){
+        return $this->hasMany('App\Models\Maintain_noti', 'category_id' , 'id');
+    }
+
+    public function maintain_sub_categories() {
+        return $this->hasMany('App\Models\Maintain_sub_category', 'category_id');
+    }
+
 }

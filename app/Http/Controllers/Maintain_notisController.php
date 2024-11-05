@@ -18,6 +18,9 @@ use App\Models\Mylog;
 use App\Models\Group_line;
 use App\Models\Sos_partner_area;
 use App\Models\Sos_partner_officer;
+use App\Models\Maintain_device_code;
+use App\Models\Sos_partner;
+
 
 use Illuminate\Http\Request;
 
@@ -34,7 +37,7 @@ class Maintain_notisController extends Controller
         $perPage = 25;
 
         $user = Auth::user();
-        
+
         $maintain_notis = Maintain_noti::where('maintain_notis.user_id' , $user->id)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
         ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->select('maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys')
@@ -46,7 +49,7 @@ class Maintain_notisController extends Controller
 
         // อัปเดตเวลาการเข้าดูใหม่ล่าสุดใน session
         session()->put('last_visit', now());
-            
+
 
         return view('maintain_notis.index', compact('maintain_notis' ,'lastVisit'));
     }
@@ -64,15 +67,15 @@ class Maintain_notisController extends Controller
         ->leftJoin('users', 'maintain_notified_users.user_id', '=', 'users.id')
         ->select('users.email' , 'users.phone' ,'maintain_notified_users.*')
         ->first();
-        
+
         $data_user = User::where('users.id', $user->id) // ระบุว่าคอลัมน์ id มาจากตาราง users
             ->leftJoin('partners', 'users.organization_id', '=', 'partners.id')
             ->select('users.*', 'partners.name as partner_name')
             ->first();
-        
+
         $data_cat = Maintain_category::where('area_id',$data_user->organization_id)
             ->get();
-        
+
         return view('maintain_notis.create' , compact('data_user','lest_data_maintain','data_cat'));
     }
 
@@ -85,7 +88,7 @@ class Maintain_notisController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
         $user = Auth::user();
         $requestData['user_id'] = $user->id ;
@@ -118,15 +121,15 @@ class Maintain_notisController extends Controller
             $request->validate([
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // กำหนดการตรวจสอบไฟล์
             ]);
-        
+
             if ($request->hasFile('photos')) {
                 $photoPaths = []; // สร้าง array สำหรับเก็บ path ของไฟล์
-                
+
                 foreach ($request->file('photos') as $file) {
                     // เก็บไฟล์ใน storage และเพิ่ม path ใน array
                     $photoPaths[] = $file->store('uploads', 'public');
                 }
-        
+
                 // แปลง array เป็น JSON และเก็บใน column photo
                 $requestData['photo'] = json_encode($photoPaths);
             }
@@ -182,9 +185,9 @@ class Maintain_notisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $maintain_noti = Maintain_noti::findOrFail($id);
         $maintain_noti->update($requestData);
 
@@ -206,17 +209,17 @@ class Maintain_notisController extends Controller
     }
 
     public function get_sub_category(Request $request)
-    { 
+    {
         $requestData = $request->all();
         $category_id =  $requestData['category_id'];
-        
+
         // ค้นหาหมวดหมู่ย่อยตาม category_id
         $maintain_sub_cat = Maintain_sub_category::where('category_id', $category_id)->get();
-    
+
         // ส่งคืนหมวดหมู่ย่อยในรูปแบบ JSON
         return response()->json($maintain_sub_cat);
     }
-    
+
     public function maintain_notis_rating($id)
     {
         $maintain_noti = Maintain_noti::where('maintain_notis.id' , $id)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
@@ -235,26 +238,26 @@ class Maintain_notisController extends Controller
         $ratingOperation = $request->input('rating_operation');
         $ratingImpression = $request->input('rating_impression');
         $ratingRemark = $request->input('rating_remark'); // รับข้อมูลคำแนะนำเพิ่มเติม
-    
+
         // ค้นหาข้อมูล maintain โดยใช้ maintain_id
         $maintain = Maintain_noti::where('id', $maintainId)->first();
-    
+
         if ($maintain) {
             // อัปเดตเรตติ้งลงในคอลัมน์ที่เกี่ยวข้อง
             $maintain->rating_maintain = $ratingMaintain;
             $maintain->rating_operation = $ratingOperation;
             $maintain->rating_impression = $ratingImpression;
-    
+
             // คำนวณค่าเฉลี่ยของทั้ง 3 คอลัมน์ และปัดให้เป็นทศนิยม 1 ตำแหน่ง
             $ratingSum = round(($ratingMaintain + $ratingOperation + $ratingImpression) / 3, 1);
             $maintain->rating_sum = $ratingSum;
-    
+
             // อัปเดตคำแนะนำเพิ่มเติมลงในฐานข้อมูล
             $maintain->rating_remark = $ratingRemark;
-    
+
             // บันทึกข้อมูล
             $maintain->save();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Ratings, average, and remark updated successfully!',
@@ -266,11 +269,11 @@ class Maintain_notisController extends Controller
             ]);
         }
     }
-    
+
 
     public function maintain_create_groupline($maintain_id)
     {
-    
+
         $data_maintain = Maintain_noti::where('maintain_notis.id' , $maintain_id)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
         ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
@@ -293,8 +296,8 @@ class Maintain_notisController extends Controller
         // ,$data_maintain->name_area);
 
         $template_path = storage_path('../public/json/maintain/maintain_create.json');
-        $string_json = file_get_contents($template_path); 
-        
+        $string_json = file_get_contents($template_path);
+
         $string_json = str_replace("name_category","$data_maintain->name_categorys",$string_json);
         $string_json = str_replace("sub_category","$data_maintain->name_sub_categorys",$string_json);
         $string_json = str_replace("problem","$data_maintain->title",$string_json);
@@ -344,25 +347,25 @@ class Maintain_notisController extends Controller
         return $result;
 
 
-        
+
 
     }
     public function get_data_area_maintain(Request $request)
     {
         $requestData = $request->all();
         $area_id = $requestData['area_id'];
-        
+
         // ค้นหาหมวดหมู่ย่อยตาม category_id
         $maintain_area = Sos_partner_area::where('id', $area_id)->get('name_area');
         $maintain_cat = Maintain_category::where('area_id', $area_id)->get(['id', 'name']);
 
-        
+
         // รวมข้อมูลทั้งสองก่อนส่งคืนในรูปแบบ JSON
         $response_data = [
             'maintain_area' => $maintain_area,
             'maintain_cat' => $maintain_cat
         ];
-    
+
         // ส่งคืนข้อมูลในรูปแบบ JSON
         return response()->json($response_data);
     }
@@ -372,28 +375,28 @@ class Maintain_notisController extends Controller
         // ดึงข้อมูล officer ที่ล็อกอินเข้ามา
         $officer = Auth::user();
         $data_officer = Sos_partner_officer::where('user_id', $officer->id)->first();
-    
+
         // ค้นหา record maintain_noti ที่ต้องการอัปเดต
         $maintain_noti = Maintain_noti::findOrFail($id);
-    
+
         // ดึงข้อมูล officer_id ที่มีอยู่ในฐานข้อมูล
         $existingOfficerIds = $maintain_noti->officer_id ? json_decode($maintain_noti->officer_id) : [];
-    
+
         // ตรวจสอบว่ามี id นี้แล้วหรือยัง ถ้ายังไม่มี ให้เพิ่มเข้าไป
         if (!in_array($data_officer->id, $existingOfficerIds)) {
             $existingOfficerIds[] = $data_officer->id;
         }
-    
+
         // เตรียมข้อมูลสำหรับการอัปเดต
         $dataCommand = [
             'officer_id' => json_encode($existingOfficerIds), // เก็บในรูปแบบ JSON
             'datetime_command' => now(), // บันทึกเวลาปัจจุบัน
             'status' => 'รอดำเนินการ' // บันทึกเวลาปัจจุบัน
         ];
-    
+
         // อัปเดตข้อมูลในฐานข้อมูล
         $maintain_noti->update($dataCommand);
-    
+
         return view('maintain_notis.maintain_officer_command', compact('maintain_noti'));
 
 
@@ -401,11 +404,73 @@ class Maintain_notisController extends Controller
 
     function Maintain_officer (Request $request){
 
+        $user_id = 2;
         $maintain_id = $request->get('maintain_id');
 
-        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+        $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
+        ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->join('sos_partners', 'maintain_notis.partner_id', '=', 'sos_partners.id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
+        ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->select('maintain_notis.*',
+        'maintain_categorys.name as name_categories',
+        'maintain_sub_categorys.name as name_subs_categories',
+        'sos_partners.name as name_area',
+        'maintain_notified_users.department as department_user',
+        'maintain_notified_users.position as position_user',
+        'users.email as mail_user',
+        'users.phone as phone_user',)
+        ->first();
 
-        return view('test_repair_admin/test_officer_maintain',compact('data_maintains'));
+        $data_officer = Sos_partner_officer::where('user_id',$user_id)
+        ->where('sos_partner_id',$data_maintains->partner_id)
+        ->first();
+
+        return view('test_repair_admin/test_officer_maintain',compact('data_maintains' ,'data_officer'));
     }
-    
+
+    public function Maintain_officer_Store(Request $request, $id) {
+        $maintain_noti = Maintain_noti::findOrFail($id); // ใช้ findOrFail เพื่อจัดการกรณีที่ไม่พบ id
+
+        // ตรวจสอบว่ามีการอัปโหลดรูปภาพ
+        if ($request->hasFile('photo_repair_costs')) {
+            $photo_repair_costs = [];
+
+            foreach ($request->file('photo_repair_costs') as $photo) {
+                // บันทึกรูปภาพในโฟลเดอร์ 'uploads' และรับเส้นทางของไฟล์ที่บันทึก
+                $path = $photo->store('uploads', 'public');
+                $photo_repair_costs[] = $path; // เพิ่มเส้นทางรูปภาพใน array
+            }
+
+            // แปลง array เป็น JSON เพื่อบันทึกในคอลัมน์ photo ในฐานข้อมูล
+            $maintain_noti->photo_repair_costs = json_encode($photo_repair_costs);
+        }
+
+        // ดึงข้อมูลอื่น ๆ โดยไม่รวม photo
+        $requestData = $request->except('photo_repair_costs');
+
+        // อัปเดตข้อมูลอื่นๆ ในฐานข้อมูล
+        $maintain_noti->update($requestData); // อัปเดตด้วยข้อมูลที่ไม่ซ้ำซ้อนกับคอลัมน์ photo
+
+        return redirect()->back();
+    }
+
+    public function WorkCalendar(Request $request, $officer_id) {
+        $officer_id_int = (int)$officer_id; // แปลงเป็น integer
+        $data_maintains = Maintain_noti::whereJsonContains('officer_id',$officer_id_int)
+        ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->join('maintain_device_codes', 'maintain_notis.device_code_id', '=', 'maintain_device_codes.id')
+        ->select('maintain_notis.*',
+        'maintain_categorys.name as name_categories',
+        'maintain_categorys.color as color_categories',
+        'maintain_sub_categorys.name as name_subs_categories',
+        'maintain_device_codes.name as name_device')
+        ->get();
+
+        return $data_maintains;
+    }
+
+
 }

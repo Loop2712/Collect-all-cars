@@ -210,7 +210,7 @@
               "action": {
                 "type": "postback",
                 "label": "ดำเนินการซ่อม",
-                "data": "fix_process?name_informer",
+                "data": "fix_process?sos_partner_id=&maintain_id=",
                 "displayText": "ดำเนินการซ่อม"
               }
             },
