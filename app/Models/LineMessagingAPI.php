@@ -2410,7 +2410,14 @@ class LineMessagingAPI extends Model
         if($data_maintain->status == 'แจ้งซ่อม'){
 
 
-            
+            DB::table('sos_help_centers')
+                ->where([
+                        ['id', $data_maintain->id],
+                    ])
+                ->update([
+                    'status' => "รอดำเนินการ",
+                    'datetime_command' => now(),  
+                ]);
             
             switch ($data_postback) {
                 case 'command':
