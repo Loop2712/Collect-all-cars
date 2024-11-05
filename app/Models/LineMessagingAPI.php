@@ -2420,7 +2420,7 @@ class LineMessagingAPI extends Model
                 ]);
 
             $date_maintain = date('d/m/Y', strtotime(now()));
-            $time_maintain = date('g:i:sa', strtotime(now()));
+            $time_maintain = date('g:i', strtotime(now()));
             
             switch ($data_postback) {
                 case 'command':
