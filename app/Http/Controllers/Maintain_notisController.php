@@ -275,7 +275,7 @@ class Maintain_notisController extends Controller
         ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
         ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
-        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone', 'users.photo as user_profile' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
+        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
         ->first();
 
         // dd(env('CHANNEL_ACCESS_TOKEN'));
@@ -286,12 +286,6 @@ class Maintain_notisController extends Controller
 
         $date_maintain = date('d/m/Y', $date_maintain_create);
         $time_maintain = date('g:i:sa', $date_maintain_create);
-
-        if (!empty($data_user->user_profile)) {
-            $photo_profile = "https://www.viicheck.com/storage"."/".$data_maintain->user_profile ;
-        }else{
-            $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
-        }
 
         // dd($data_maintain->name_categorys , $data_maintain->name_sub_categorys
         // ,$data_maintain->title
@@ -310,8 +304,6 @@ class Maintain_notisController extends Controller
         $string_json = str_replace("D/M/Y",$date_maintain,$string_json);
         $string_json = str_replace("H:I:S",$time_maintain,$string_json);
 
-
-        $string_json = str_replace("user_photo",$photo_profile,$string_json);
 
         $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
         $string_json = str_replace("phone",$data_maintain->phone,$string_json);
