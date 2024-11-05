@@ -150,7 +150,7 @@
               "contents": [
                 {
                   "type": "image",
-                  "url": "officer_photo",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
                   "aspectMode": "cover"
@@ -169,7 +169,7 @@
               "contents": [
                 {
                   "type": "image",
-                  "url": "user_photo",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
                   "position": "absolute",
                   "aspectRatio": "1:1",
                   "aspectMode": "cover"
