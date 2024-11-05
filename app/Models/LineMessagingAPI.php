@@ -2431,7 +2431,7 @@ class LineMessagingAPI extends Model
             $officer_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
         }
 
-        if($data_maintain->status == 'แจ้งซ่อม'){
+        // if($data_maintain->status == 'แจ้งซ่อม'){
 
 
             DB::table('maintain_notis')
@@ -2487,12 +2487,14 @@ class LineMessagingAPI extends Model
 
 
 
-        }else{
-                $template_path = storage_path('../public/json/text_success.json');
-                $string_json = file_get_contents($template_path);
+        // }
+        
+        // else{
+        //         $template_path = storage_path('../public/json/text_success.json');
+        //         $string_json = file_get_contents($template_path);
 
-                $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้ได้รับการตอบรับเรียบร้อยแล้ว",$string_json);
-        }
+        //         $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้ได้รับการตอบรับเรียบร้อยแล้ว",$string_json);
+        // }
 
        
 
