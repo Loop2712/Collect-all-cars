@@ -2410,7 +2410,7 @@ class LineMessagingAPI extends Model
         if($data_maintain->status == 'แจ้งซ่อม'){
 
 
-            DB::table('maintain_notis')
+            $data_update = DB::table('maintain_notis')
                 ->where([
                         ['id', $data_maintain->id],
                     ])
@@ -2418,6 +2418,9 @@ class LineMessagingAPI extends Model
                     'status' => "รอดำเนินการ",
                     'datetime_command' => now(),  
                 ]);
+
+            $date_maintain = date('d/m/Y', $data_update);
+            $time_maintain = date('g:i:sa', $data_update);
             
             switch ($data_postback) {
                 case 'command':
@@ -2428,8 +2431,8 @@ class LineMessagingAPI extends Model
         
                     $string_json = str_replace("sub_category","$data_maintain->name_sub_categorys",$string_json);
             
-                    $string_json = str_replace("D/M/Y",'วัน',$string_json);
-                    $string_json = str_replace("H:I:S",'เวลา',$string_json);
+                    $string_json = str_replace("D/M/Y",$date_maintain,$string_json);
+                    $string_json = str_replace("H:I:S",$time_maintain,$string_json);
             
             
                     $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
