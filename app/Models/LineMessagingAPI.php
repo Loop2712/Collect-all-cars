@@ -2387,10 +2387,14 @@ class LineMessagingAPI extends Model
 
     }
     
-    public function check_process_maintain($data_postback_explode , $event)
+    public function check_process_maintain($data , $event)
     {
-        switch ($data_postback_explode) {
-            case 'maintain':
+
+        $data_postback_explode = explode("/",$data);
+        $data_postback = $data_postback_explode[0] ;
+
+        switch ($data_postback) {
+            case 'command':
 
                 $template_path = storage_path('../public/json/maintain/maintain_command.json');
                 $string_json = file_get_contents($template_path);
@@ -2430,11 +2434,11 @@ class LineMessagingAPI extends Model
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
-        $data = [
+        $data_log = [
             "title" => "reply Success",
             "content" => "reply Success",
         ];
-        MyLog::create($data);
+        MyLog::create($data_log);
 
         return $result;
 

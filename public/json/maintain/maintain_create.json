@@ -261,7 +261,7 @@
             "action": {
               "type": "postback",
               "label": "officer command",
-              "data": "maintain?/command/maintain_ID"
+              "data": "maintain?command/maintain_ID"
             }
           }
         ],

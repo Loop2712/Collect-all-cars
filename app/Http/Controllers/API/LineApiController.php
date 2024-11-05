@@ -122,6 +122,7 @@ class LineApiController extends Controller
     {
         $line = new LineMessagingAPI();
 
+
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
 
