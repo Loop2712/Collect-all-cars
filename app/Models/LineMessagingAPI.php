@@ -18,6 +18,8 @@ use App\User;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Controllers\API\ImageController;
+use App\Models\Sos_partner_officer;
+
 
 class LineMessagingAPI extends Model
 {
@@ -2411,6 +2413,11 @@ class LineMessagingAPI extends Model
         }else{
             $photo_profile = "https://www.viicheck.com/img/stickerline/PNG/tab.png";
         }
+
+        $officer = User::where('provider_id' , $event["source"]['userId'])->first();
+        $data_officer = Sos_partner_officer::where('user_id' , $officer->id)->first();
+
+
         if($data_maintain->status == 'แจ้งซ่อม'){
 
 
@@ -2421,6 +2428,7 @@ class LineMessagingAPI extends Model
                 ->update([
                     'status' => "รอดำเนินการ",
                     'datetime_command' => now(),  
+                    'officer_id' => $data_officer->id,  
                 ]);
                 
                 $date_maintain = date('d/m/Y', strtotime(now()));
