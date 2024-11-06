@@ -465,6 +465,9 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::post('/bind_groupLine_ViiFix', 'API\LineApiController@bind_groupLine_ViiFix');
     Route::get('/CF_delete_area/{area_id}', 'Sos_partnersController@CF_delete_area');
     Route::get('/check_old_sos_partner_officer', 'Sos_partner_officersController@check_old_sos_partner_officer');
+    Route::get('/get_data_area_all/{sos_partner_id}', 'Sos_partnersController@get_data_area_all');
+    Route::post('/map_search_by_district', 'Sos_partnersController@map_search_by_district');
+    Route::post('/CF_New_Area', 'Sos_partnersController@CF_New_Area');
 // >>>>>> END SOS PARTNER V2. <<<<<< //
 
 // maintain
