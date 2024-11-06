@@ -80,7 +80,7 @@ Route::get('/demo_repair_maintenance_view', function () {
 Route::get('/demo_repair_dashboard', function () {
     return view('test_repair_admin/repair_dashboard/fix_dashboard_index');
 });
-Route::get('/dashboard_viifix', 'Maintain_notisController@dashboard_viifix_index');
+Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index');
 
 Route::get('/demo_all_repair', function () {
     return view('test_repair_admin/repair_dashboard/fix_all');
