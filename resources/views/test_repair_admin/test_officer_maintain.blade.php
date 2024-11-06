@@ -656,7 +656,7 @@
 
                 <div class="form-group">
                     <label for="remark_officer" class="control-label">{{ 'ข้อคิดเห็นจากช่างหรือผู้รับผิดชอบ' }}</label>
-                    <textarea class="form-control" name="remark_officer" type="text" id="remark_officer" value="{{ isset($data_maintains->remark_officer) ? $data_maintains->remark_officer : ''}}" ></textarea>
+                    <textarea class="form-control" name="remark_officer" type="text" id="remark_officer">{{ isset($data_maintains->remark_officer) ? $data_maintains->remark_officer : ''}}</textarea>
                 </div>
             </div>
         </div>
@@ -709,21 +709,21 @@
 
     });
 
-    function getOldImageOfficer (){
-        console.log("getOldImageOfficer");
-        fetch("{{ url('/') }}/api/WorkCalendar/" + officer_id)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
+    // function getOldImageOfficer (){
+    //     console.log("getOldImageOfficer");
+    //     fetch("{{ url('/') }}/api/WorkCalendar/" + officer_id)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             console.log(result);
 
-                if (Array.isArray(result.photo_repair_costs)) {
-                    loadOldImages(result.photo_repair_costs);
-                } else {
-                    console.error("photo_repair_costs data is not in expected format:", result.photo_repair_costs);
-                }
-            });
+    //             if (Array.isArray(result.photo_repair_costs)) {
+    //                 loadOldImages(result.photo_repair_costs);
+    //             } else {
+    //                 console.error("photo_repair_costs data is not in expected format:", result.photo_repair_costs);
+    //             }
+    //         });
 
-    }
+    // }
 
     // ฟังก์ชันนี้จะทำให้ datepicker ขึ้นเมื่อคลิกที่ input
     function initDateTimePickers() {
@@ -1008,6 +1008,7 @@
                         calendar.addEvent({
                             title: 'ชื่อ : '+event.name_device + ' , รหัส : '+event.device_code,
                             start: event.datetime_start,
+                            end: event.datetime_end,
                             color: '#' + event.color_categories + 'CC',
                         });
                     }
