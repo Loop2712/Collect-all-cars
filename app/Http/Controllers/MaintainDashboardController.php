@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class MaintainDashboardController extends Controller
 {
-    // ======================================= Test Dashboard =============================================================
 
     public function dashboard_viifix_index(Request $request)
     {
@@ -27,6 +26,35 @@ class MaintainDashboardController extends Controller
 
         return view('test_repair_admin/repair_dashboard/fix_dashboard_index',compact('data_partner','data_partner_area'));
     }
+
+    public function fix_all(Request $request)
+    {
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        return view('test_repair_admin/repair_dashboard/fix_all',compact('data_partner','data_partner_area'));
+    }
+
+    public function fix_fastest(Request $request)
+    {
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        return view('test_repair_admin/repair_dashboard/fix_fastest',compact('data_partner','data_partner_area'));
+    }
+
+    public function fix_used(Request $request)
+    {
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        return view('test_repair_admin/repair_dashboard/fix_used',compact('data_partner','data_partner_area'));
+    }
+
+    // ================= API ==================================
 
     public function getAmountMaintainDashboard(Request $request) {
         $partner_id = $request->get('partner_id');
@@ -62,6 +90,27 @@ class MaintainDashboardController extends Controller
         $data_fastest_maintains = Maintain_noti::where('partner_id', $partner_id)
             ->orderByRaw('TIMESTAMPDIFF(SECOND, datetime_success, datetime_command) DESC')
             ->limit(5)
+            ->get();
+
+        foreach ($data_fastest_maintains as $maintain) {
+            // ตรวจสอบว่า officer_id ไม่เป็น null และแปลงเป็น array
+            $officer_ids = !empty($maintain->officer_id) ? explode(',', $maintain->officer_id) : [];
+
+            // ค้นหา fullname ของ officer ที่เกี่ยวข้อง
+            $officer_fullnames = Sos_partner_officer::whereIn('id', $officer_ids)
+                ->pluck('full_name') // ใช้ pluck เพื่อดึงเฉพาะ full_name
+                ->toArray(); // แปลงผลลัพธ์เป็น array
+
+            $maintain->name_officer = implode(', ', $officer_fullnames); // แปลงเป็น string โดยคั่นด้วย comma
+        }
+        return $data_fastest_maintains;
+    }
+
+    public function getFastestMaintains(Request $request) {
+        $partner_id = $request->get('partner_id');
+
+        $data_fastest_maintains = Maintain_noti::where('partner_id', $partner_id)
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, datetime_success, datetime_command) DESC')
             ->get();
 
         foreach ($data_fastest_maintains as $maintain) {
@@ -176,6 +225,5 @@ class MaintainDashboardController extends Controller
         return $data_maintains;
     }
 
-    // ======================================= End Test Dashboard =========================================================
 
 }

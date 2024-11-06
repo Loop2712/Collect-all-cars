@@ -22,76 +22,13 @@
         margin-bottom: 10px;
     }
 
-    .square {
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        margin-right: 10px;
-        border:#000000 1px solid;
-    }
+
 
     /*======== Calendar =============*/
-    .event-container {
-        display: flex;
-        align-items: center;
-        padding-top: 2px;
-        overflow: hidden;
-    }
-
-    .event-circle {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        border:#000000 1px solid;
-        display: inline-block;
-        margin-right: 5px;
-        margin-left: 5px;
-        flex-shrink: 0;
-    }
-
-    .eventTitle{
-        color: #000000;
-        padding-left: 5px;
-        font-weight: normal;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    #sidebarWorkCalendar {
-        position: relative;
-        border-radius: 5px;
-        background-color: #d1e9ce;
-        padding: 15px;
-        right: -100%;
-        max-width: 400px;
-        transition: right 0.2s ease; /* เพิ่ม transition เพื่อให้เกิดแอนิเมชัน */
-        z-index: 1000; /* ให้ sidebar อยู่ด้านบน */
-        overflow: hidden;
-        display: none;
-    }
-
-    #sidebarWorkCalendar.open {
-        right: 0; /* แสดง sidebar โดยเลื่อนกลับมาที่ตำแหน่งเดิม */
-        display: block;
-    }
-
-    #close-sidebar {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 25px;
-        height: 25px;
-        border:#afaeae solid 1px;
-        border-radius: 10px;
-    }
-
     .calendar-header {
         text-align: center;
         margin-bottom: 20px;
     }
-
-
 
     .calendar {
         display: grid;
@@ -172,7 +109,7 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
         .day-cell {
             min-height: 100px;
             padding: 5px;
@@ -189,9 +126,20 @@
         .calendar {
             gap: 5px;
         }
+
+
+
+        .square {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            border:#000000 1px solid;
+        }
+
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {  /* มือถือ แท็บเล็ต*/
         #workCalendar{
             height: 70vh;
         }
@@ -205,6 +153,163 @@
             padding: 5px;
             font-size: 0.8rem;
         }
+
+        .fc-toolbar-title { /* อักษร header schedule */
+            font-size: 1rem !important;
+            font-family: 'Mitr', sans-serif !important;
+            font-weight: bold;
+        }
+
+        .fc .fc-button { /* ปุ่ม header schedule */
+            font-size: 0.75rem !important;
+            font-family: 'Mitr', sans-serif !important;
+        }
+
+        .fc-list-event .fc-list-event-dot { /* ทำให้จุดสีหมวดหมู่ใน ตารางงานเจ้าหน้าที่ซ่อมอยู่กึ่งกลางบรรทัด*/
+            margin-top: 0.4rem !important;
+        }
+
+        .fc-list-event-dot {
+            display: none;
+        }
+
+
+
+        .square {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 10px;
+            border:#000000 1px solid;
+            font-size: 1rem;
+
+        }
+
+
+        /* ปรับขนาดฟอนต์ของเหตุการณ์ใน listWeek */
+        .fc-list-item {
+    font-size: 12px; /* ลดขนาดฟอนต์ของเหตุการณ์ */
+}
+
+/* ปรับขนาดฟอนต์ของชื่อวันใน listWeek */
+.fc-list-day-cell {
+    font-size: 14px; /* ลดขนาดฟอนต์ของชื่อวัน */
+}
+/* ปรับความกว้างของคอลัมน์ใน listWeek */
+.fc-list-day {
+    width: 10%; /* ลดขนาดความกว้างของคอลัมน์ */
+}
+
+/* ลดขนาดของเหตุการณ์ใน listWeek */
+.fc-list-item {
+    padding: 4px 8px; /* ลดขนาดของ padding ของเหตุการณ์ */
+}
+/* ปรับขนาดของปุ่มใน header */
+.fc-prev-button, .fc-next-button, .fc-today-button {
+    font-size: 14px; /* ลดขนาดฟอนต์ของปุ่ม */
+    padding: 6px 12px; /* ลดขนาด padding ของปุ่ม */
+}
+/* ปรับขนาดของ dot ในเหตุการณ์ */
+.fc-list-event-dot {
+    width: 8px;  /* ลดขนาดของ dot */
+    height: 8px; /* ลดขนาดของ dot */
+}
+/* ลดขนาดฟอนต์ของเหตุการณ์ใน listWeek */
+.fc-list-item {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+/* ลดขนาดฟอนต์ของชื่อวัน */
+.fc-list-day-cell {
+    font-size: 14px;
+}
+
+/* ลดความกว้างของคอลัมน์ใน listWeek */
+.fc-list-day {
+    width: 10%;
+}
+
+/* ลดขนาด dot */
+.fc-list-event-dot {
+    width: 8px;
+    height: 8px;
+}
+
+    }
+
+    .event-container {
+        display: flex;
+        align-items: center;
+        padding-top: 2px;
+        overflow: hidden;
+        position: relative;
+        padding-right: 30px;
+    }
+
+    .event-circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border:#000000 1px solid;
+        display: inline-block;
+        margin-right: 5px;
+        margin-left: 5px;
+        flex-shrink: 0;
+    }
+
+    .eventTitle{
+        color: #000000;
+        padding-left: 5px;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .tooltip-custom {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: #32393f;
+        padding: 16px;
+        border-radius: 4px;
+        font-size: 12px;
+        max-width: 100%;
+        z-index: 1000;
+        display: none;
+    }
+
+    .event-left-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: calc(100% - 30px);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .event-right-content {
+        position: absolute;
+        right: 2px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .event-device, .event-officer {
+        font-size: 0.9em;
+        color: #333;
+    }
+
+    .event-deadline {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .event-action-button {
+        padding: 2px 6px;
+        color: #333;
+        text-decoration: none;
     }
 
     /*======== End Calendar =========*/
@@ -284,21 +389,18 @@
         <!-- เพิ่มหมวดหมู่เพิ่มเติมที่นี่ -->
     </div>
     <hr>
-
-
-
     <div class="my-4">
         <div class="row">
-            <div class="d-flex justify-content-end mb-4">
-                <div class="mx-1 d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-between mb-4">
+                <div class="mx-1 d-flex flex-column align-items-center">
                     <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
                     <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
                 </div>
-                <div class="mx-1 d-flex justify-content-center align-items-center">
+                <div class="mx-1 d-flex flex-column align-items-center">
                     <div class="square" style="background-color: rgb(230, 46, 46,0.5);"></div>
                     <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
                 </div>
-                <div class="mx-1 d-flex justify-content-center align-items-center">
+                <div class="mx-1 d-flex flex-column align-items-center">
                     <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
                     <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
                 </div>
@@ -307,17 +409,9 @@
             <div class="col-12" id="calendar-container">
                 <div id="workCalendar"></div>
             </div>
-
-            <div class="col-2" id="sidebarWorkCalendar" >
-                <button id="close-sidebar" class="d-flex justify-content-center align-items-center">
-                    <i class="fa-sharp fa-solid fa-xmark" style="font-size:12px;"></i>
-                </button>
-                <div id="sidebar-content">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
-            </div>
         </div>
     </div>
+
 
 </div>
 
@@ -564,41 +658,98 @@
                     dayMaxEvents: true, // อนุญาตให้แสดงปุ่ม more เพื่อดูข้อมูลทั้งหมด
                     events: [],
                     eventContent: function (arg) {
-                        let eventTitle = document.createElement('div');
-                        eventTitle.textContent = arg.event.title;
-                        eventTitle.setAttribute('class', 'eventTitle');
+                        // ======================= ฝั่งซ้าย ===============================
+                        let leftContent = document.createElement('div');
+                            leftContent.className = 'event-left-content';
 
-                        // ใช้ color จาก event.color_categories
+                        // สร้างวงกลมสี
                         let circle = document.createElement('span');
-                        circle.setAttribute('class', 'event-circle');
-                        circle.style.backgroundColor = '#' + arg.event.extendedProps.color_categories;
+                            circle.setAttribute('class', 'event-circle');
+                            circle.style.backgroundColor = '#' + arg.event.extendedProps.color_categories;
 
-                        // // เพิ่มปุ่มขวาสุด
+                        // สร้างชื่ออุปกรณ์
+                        let deviceName = document.createElement('span');
+                            deviceName.className = 'event-device';
+                            deviceName.textContent = `อุปกรณ์: ${arg.event.extendedProps.name_device}`;
+
+                        // สร้างชื่อเจ้าหน้าที่
+                        let officerName = document.createElement('span');
+                            officerName.className = 'event-officer';
+                            officerName.textContent = `เจ้าหน้าที่: ${arg.event.extendedProps.name_officer}`;
+
+                        // เพิ่มวงกลมสี ชื่ออุปกรณ์ และเจ้าหน้าที่ใน leftContent
+                        leftContent.appendChild(circle);
+                        leftContent.appendChild(deviceName);
+                        leftContent.appendChild(officerName);
+
+                        // ======================= ฝั่งขวา ===============================
+
+                        // สร้างคอนเทนต์ด้านขวา
+                        let rightContent = document.createElement('div');
+                            rightContent.className = 'event-right-content';
+
+
+                        if (arg.event.extendedProps.status !== "เสร็จสิ้น") { // ถ้าเคสเสริ็จสิ้น ไม่ต้องขึ้นแจ้งเตือน ครบเวลาของเคส
+                            // คำนวณเวลาที่เหลือ
+                            let currentDate = new Date();
+                            let endDate = new Date(arg.event.extendedProps.datetime_end);
+                            let timeDiff = endDate - currentDate;
+
+                                // ตรวจสอบว่าเหลือเวลาไม่เกิน 3 วัน (72 ชั่วโมง)
+                                if (timeDiff > 0 && timeDiff <= (3 * 24 * 60 * 60 * 1000)) { // 3 วัน = 3 * 24 * 60 * 60 * 1000 มิลลิวินาที
+
+                                    // เพิ่มไอคอนนาฬิกาแทนข้อความ "ครบกำหนด"
+                                    let deadlineIcon = document.createElement('span');
+                                        deadlineIcon.className = 'deadline-icon';
+                                        deadlineIcon.innerHTML = `<i class="fa-solid fa-clock" style="color: #ef2525;"></i>`; // ไอคอนนาฬิกา
+                                        deadlineIcon.style.cursor = 'pointer';
+
+                                    // เพิ่ม tooltip ให้แสดงข้อความ "ครบกำหนดใน"
+                                    deadlineIcon.addEventListener('mouseenter', function (e) {
+                                        let tooltip = document.createElement('div');
+                                        tooltip.className = 'tooltip-custom';
+                                        tooltip.innerHTML = `${calculateRemainingTime(arg.event.extendedProps.datetime_end,arg.event.extendedProps.datetime_end)}`;
+                                        document.body.appendChild(tooltip);
+
+                                        tooltip.style.display = 'block';
+
+                                        let al_offsetX = 10; // ระยะห่างในแนวนอน (จากเมาส์)
+                                        let al_offsetY = 10; // ระยะห่างในแนวตั้ง (จากเมาส์)
+
+                                        tooltip.style.left = e.pageX + al_offsetX + 'px';
+                                        tooltip.style.top = e.pageY + al_offsetY + 'px';
+
+                                        deadlineIcon.addEventListener('mousemove', function (e) {
+                                            tooltip.style.left = e.pageX + al_offsetX + 'px';
+                                            tooltip.style.top = e.pageY + al_offsetY + 'px';
+                                        });
+
+                                        deadlineIcon.addEventListener('mouseleave', function () {
+                                            tooltip.style.display = 'none';
+                                            document.body.removeChild(tooltip);
+                                        });
+                                    });
+
+                                    rightContent.appendChild(deadlineIcon); // ใส่ไอคอนนาฬิกาทางขวาสุด
+                                }
+                            }
+
+                        // สร้างปุ่มด้านขวาสุด
                         let actionButton = document.createElement('a');
-                        actionButton.className = 'event-action-button';
-                        actionButton.href = '{{ url('demo_repair_admin_view') }}'; // ใส่ URL ที่ต้องการลิงค์ไป
-                        actionButton.target = "_blank";
-                        actionButton.innerHTML = `<i class="fa-solid fa-chevrons-right"></i>`;
+                            actionButton.id = 'actionButton';
+                            actionButton.className = 'event-action-button';
+                            actionButton.href = "{{ url('demo_repair_admin_view') }}"; // URL ที่ต้องการลิงก์ไป
+                            actionButton.target = "_blank";
+                            actionButton.innerHTML = `<i class="fa-solid fa-chevron-right"></i>`;
 
-                        // เพิ่ม event สำหรับการซ่อน tooltip เมื่อชี้ปุ่ม
-                        actionButton.addEventListener('mouseenter', () => {
-                            const tooltip = document.querySelector('.tooltip-custom');
-                            if (tooltip) tooltip.style.display = 'none';
-                        });
-                        actionButton.addEventListener('mouseleave', () => {
-                            const tooltip = document.querySelector('.tooltip-custom');
-                            if (tooltip) tooltip.style.display = 'block';
-                        });
+                            rightContent.appendChild(actionButton);
 
+                        // ใส่เนื้อหาทั้งซ้ายและขวาใน container
                         let container = document.createElement('div');
-                        container.setAttribute('class', 'event-container');
+                            container.setAttribute('class', 'event-container');
+                            container.appendChild(leftContent);
+                            container.appendChild(rightContent);
 
-                        container.appendChild(circle);
-                        container.appendChild(eventTitle);
-                        container.appendChild(actionButton);
-
-                        // info.el.innerHTML = ''; // ลบเนื้อหาเดิมออก
-                        // info.el.appendChild(eventContainer); // เพิ่มเนื้อหาใหม่
 
                         return { domNodes: [container] };
                     },
@@ -608,41 +759,46 @@
                         info.el.style.backgroundColor = backgroundColor; // ตั้งค่าพื้นหลังของอีเวนต์
                         info.el.style.border = '1px solid #000'; // เพิ่มขอบสีดำ
 
-                        // ค้นหา element .eventTitle ภายใน info.el
-                        let eventTitle = info.el.querySelector('.eventTitle');
-                        if (eventTitle) {
+                        // ค้นหา .event-left-content ภายใน info.el เพื่อใช้งาน eventTitle
+                        let eventLeftContent = info.el.querySelector('.event-left-content');
+                        if (eventLeftContent) {
                             let tooltip;
 
-                            eventTitle.addEventListener('mouseenter', function (e) {
+                            // สร้าง tooltip เมื่อ mouseenter ไปที่ eventLeftContent
+                            eventLeftContent.addEventListener('mouseenter', function (e) {
                                 // สร้าง tooltip เมื่อมีการชี้ไปที่อีเวนต์
                                 tooltip = document.createElement('div');
                                 tooltip.className = 'tooltip-custom';
                                 tooltip.innerHTML = `
-                                    <strong>อุปกรณ์ : </strong>${info.event.extendedProps.name}<br>
-                                    <strong>เจ้าหน้าที่ : </strong>${info.event.extendedProps.officer}
+                                    <strong>อุปกรณ์: </strong>${info.event.extendedProps.name_device}<br>
+                                    <strong>เจ้าหน้าที่: </strong>${info.event.extendedProps.name_officer}
                                 `;
                                 document.body.appendChild(tooltip);
 
                                 // ตั้งตำแหน่งของ tooltip
                                 tooltip.style.display = 'block';
-                                tooltip.style.left = e.pageX + 'px';
-                                tooltip.style.top = e.pageY + 'px';
+
+                                let offsetX = 5; // ระยะห่างในแนวนอน (จากเมาส์)
+                                let offsetY = 5; // ระยะห่างในแนวตั้ง (จากเมาส์)
+
+                                tooltip.style.left = e.pageX + offsetX + 'px';
+                                tooltip.style.top = e.pageY + offsetY + 'px';
                             });
 
-                            eventTitle.addEventListener('mousemove', function (e) {
+                            eventLeftContent.addEventListener('mousemove', function (e) {
                                 // ปรับตำแหน่ง tooltip ตามการเคลื่อนที่ของเมาส์
                                 if (tooltip) {
-                                    tooltip.style.left = e.pageX + 'px';
-                                    tooltip.style.top = e.pageY + 'px';
+                                    tooltip.style.left = e.pageX + offsetX + 'px';
+                                    tooltip.style.top = e.pageY + offsetY + 'px';
                                 }
                             });
 
-                            eventTitle.addEventListener('mouseleave', function () {
+                            eventLeftContent.addEventListener('mouseleave', function () {
                                 // ซ่อนและลบ tooltip เมื่อออกจากพื้นที่อีเวนต์
                                 if (tooltip) {
                                     tooltip.style.display = 'none';
                                     document.body.removeChild(tooltip);
-                                    tooltip = null;  // ทำลาย tooltip
+                                    tooltip = null; // ทำลาย tooltip
                                 }
                             });
                         }
@@ -651,15 +807,15 @@
                 });
                 result.forEach(event => {
                     console.log("เข้า eventCalendar");
-                    // ตรวจสอบให้แน่ใจว่า datetime_start และ color_categories มีค่า
-                    if (event.datetime_start && event.color_categories) {
+                    // ตรวจสอบให้แน่ใจว่า datetime_start , datetime_end และ color_categories มีค่า
+                    if (event.datetime_start &&  event.datetime_end && event.color_categories) {
                         calendar.addEvent({
                             title: 'อุปกรณ์ : ' + event.name_device + ' , เจ้าหน้าที่ : ' + event.name_officer,
                             start: event.datetime_start,
                             end: event.datetime_end,
                             extendedProps: {
-                                name: event.name_device,
-                                officer: event.name_officer,
+                                name_device: event.name_device,
+                                name_officer: event.name_officer,
                                 status: event.status,
                                 datetime_end: event.datetime_end,
                                 color_categories: event.color_categories+'CC'
@@ -689,49 +845,31 @@
         // CSS สำหรับ tooltip
         const style = document.createElement('style');
         style.innerHTML = `
-            .tooltip-custom {
-                position: absolute;
-                background-color: rgba(0, 0, 0, 0.75);
-                color: #32393f;
-                padding: 8px;
-                border-radius: 4px;
-                font-size: 12px;
-                max-width: 100%;
-                z-index: 1000;
-                display: none;
-            }
 
-            .event-container {
-                position: relative;
-                padding-right: 30px;
-            }
-
-            .event-container a.event-action-button {
-                position: absolute;
-                right: 0;
-                padding: 2px 6px;
-            }
-
-
-            .event-title {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .event-action-button {
-                color: #007bff;
-                text-decoration: none;
-                margin-left: 10px;
-            }
-
-            .event-action-button i {
-                font-size: 12px;
-            }
         `;
         document.head.appendChild(style);
 
     }
+
+    // ฟังก์ชันคำนวณเวลาที่เหลืออยู่
+    function calculateRemainingTime(datetimeEnd) {
+        const currentDate = new Date();
+        const endDate = new Date(datetimeEnd);
+        const difference = endDate - currentDate;
+
+        if (difference <= 0) {
+            return "หมดเวลาครบกำหนด";
+        } else if (difference < 24 * 60 * 60 * 1000) {
+            const hours = Math.floor(difference / (60 * 60 * 1000));
+            const minutes = Math.floor((difference % (60 * 60 * 1000)) / (60 * 1000));
+            return `ครบกำหนดใน ${hours} ชม. ${minutes} น.`;
+        } else {
+            const days = Math.floor(difference / (24 * 60 * 60 * 1000));
+            const hours = Math.floor((difference % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            return `ครบกำหนดใน ${days} วัน ${hours} ชม.`;
+        }
+    }
+
 
     function getColorDeadLine(event) {
 

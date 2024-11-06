@@ -48,33 +48,20 @@
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
+    let partner_id = '{{ $data_partner->id }}';
+
     document.addEventListener('DOMContentLoaded', (event) => {
         get_data_repair();
     });
     const get_data_repair = (params) => {
-        // fetch("{{ url('/') }}/api/viisos_used/" + user_login_organization)
-        //     .then(response => response.json())
-        //     .then(data => {
-            // ข้อมูลการแจ้งซ่อมพร้อม `created_at`
-        let repairRequests = [
-            {
-                name_officer: "สมชาย ใจดี",
-                avg_time_success: "12 ชั่วโมง 50 นาที",
-                created_at: "2024-10-15 11:30:00"
-            },
-            {
-                name_officer: "สมหมาย ชาเย็น",
-                avg_time_success: "9 ชั่วโมง 50 นาที",
-                created_at: "2024-10-3 12:20:00"
-            },
-            {
-                name_officer: "สมศักดิ์ สง่างาม",
-                avg_time_success: "5 ชั่วโมง 50 นาที",
-                created_at: "2024-05-15 09:30:00"
-            },
-        ];
-            generate_field_data(repairRequests);
-        // }).catch(error => console.error('Error fetching data:', error));
+        fetch("{{ url('/') }}/api/getFastestMaintains/"+ "?partner_id=" + partner_id)
+            .then(response => response.json())
+            .then(data => {
+            console.log(data);
+            generate_field_data(data);
+            initializeDataTable(); // เรียกใช้ฟังก์ชันสร้าง datatable หลังดึงข้อมูลเสร็จ
+
+        }).catch(error => console.error('Error fetching data:', error));
     }
 
     const generate_field_data = (data_repair) => {
@@ -96,11 +83,18 @@
                             <tbody>`;
 
                     data_repair.forEach(item => {
+                        sum_time(item.datetime_success, item.datetime_command);
+
+                        // แปลง array ของ name_officer เป็น string ที่มี <br> เป็นตัวคั่น
+                        let fullNameDisplay = Array.isArray(item.name_officer)
+                            ? item.name_officer.join('<br>')
+                            : item.name_officer;
+
                         html += `
                             <tr>
                                 <td>${item.created_at ? item.created_at : "--"}</td>
-                                <td>${item.name_officer ? item.name_officer : "--"}</td>
-                                <td>${item.avg_time_success ? item.avg_time_success : "--"}</td>
+                                <td>${fullNameDisplay ? fullNameDisplay : "--"}</td>
+                                <td>${sTimeUnit ? sTimeUnit : "--"}</td>
                             </tr>`;
                     });
 
@@ -125,99 +119,102 @@
     let rowCount = 0; // ตัวแปรนับจำนวนแถวที่ตรงตามเงื่อนไข
     let pageLength = 5; // ใช้สำหรับแสดงข้อมูลในหนึงหน้า (มีใช้หลายที่)
 
-    $(document).ready(function () {
-        document.title = "ข้อมูลระยะเวลาการแจ้งซ่อมต่อเคส";
-        // Create search inputs in footer
-        $("#data_fastest_repair_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        data_fastest_repair_table = $("#data_fastest_repair_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            pageLength: pageLength,  // แสดง ... บรรทัดต่อหน้า
-            searching: true,  // ปิดการค้นหาด้านขวาบน
-            info: true, // ปิดข้อความ "Showing X to Y of Z entries"
-            language: {
-                info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
-                infoEmpty: "ไม่มีข้อมูลที่จะแสดง",
-                infoFiltered: "(กรองจากทั้งหมด _MAX_ รายการ)"
-            },
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "ดาวน์โหลดทั้งหมด",
-                    exportOptions: {
-                        modifier: {
-                            page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
-                        }
-                    }
+    // ฟังก์ชันสำหรับการ initial DataTable
+    const initializeDataTable = () => {
+        $(document).ready(function () {
+            document.title = "ข้อมูลระยะเวลาการแจ้งซ่อมต่อเคส";
+            // Create search inputs in footer
+            $("#data_fastest_repair_table tfoot th").each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            // DataTable initialisation
+            data_fastest_repair_table = $("#data_fastest_repair_table").DataTable({
+                dom: '<"dt-buttons"Bf><"clear">lirtp',
+                paging: true,
+                autoWidth: true,
+                pageLength: pageLength,  // แสดง ... บรรทัดต่อหน้า
+                searching: true,  // ปิดการค้นหาด้านขวาบน
+                info: true, // ปิดข้อความ "Showing X to Y of Z entries"
+                language: {
+                    info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                    infoEmpty: "ไม่มีข้อมูลที่จะแสดง",
+                    infoFiltered: "(กรองจากทั้งหมด _MAX_ รายการ)"
                 },
-                {
-                    extend: "excelHtml5",
-                    text: "ดาวน์โหลดหน้าปัจจุบัน",
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
+                lengthChange: false,
+                buttons: [
+                    {
+                        extend: "excelHtml5",
+                        text: "ดาวน์โหลดทั้งหมด",
+                        exportOptions: {
+                            modifier: {
+                                page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
+                            }
+                        }
+                    },
+                    {
+                        extend: "excelHtml5",
+                        text: "ดาวน์โหลดหน้าปัจจุบัน",
+                        exportOptions: {
+                            modifier: {
+                                page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
+                            }
                         }
                     }
+                ],
+                stripeClasses: ['odd-row', 'even-row'], // กำหนดคลาสสำหรับแถวสลับสี
+                initComplete: function (settings, json) {
+                    var footer = $("#data_fastest_repair_table tfoot tr");
+                    $("#data_fastest_repair_table thead").append(footer);
                 }
-            ],
-            stripeClasses: ['odd-row', 'even-row'], // กำหนดคลาสสำหรับแถวสลับสี
-            initComplete: function (settings, json) {
-                var footer = $("#data_fastest_repair_table tfoot tr");
-                $("#data_fastest_repair_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#data_fastest_repair_table thead").on("keyup", "input", function () {
-            data_fastest_repair_table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
             });
 
-        //=================== สร้างปุ่มตัวกรอง =======================
-        let filterButtons = `
-            <div id="date-filters">
-                <button id="filter-today" class="btn btn-outline-primary" style="box-shadow: none;">วันนี้</button>
-                <button id="filter-month"  class="btn btn-outline-primary" style="box-shadow: none;">เดือนนี้</button>
-                <button id="filter-year"  class="btn btn-outline-primary" style="box-shadow: none;">ปีนี้</button>
-                <button id="filter-all"  class="btn btn-outline-primary" style="box-shadow: none;">ทั้งหมด</button>
-            </div>
-        `;
-        $("#data_fastest_repair_table_wrapper").before(filterButtons);
+            // Apply the search
+            $("#data_fastest_repair_table thead").on("keyup", "input", function () {
+                data_fastest_repair_table.column($(this).parent().index())
+                    .search(this.value)
+                    .draw();
+                });
 
-        updateButtonClasses("filter-all"); //กำหนดให้โหลดหน้ามาใช้ filter ทั้งหมด
+            //=================== สร้างปุ่มตัวกรอง =======================
+            let filterButtons = `
+                <div id="date-filters">
+                    <button id="filter-today" class="btn btn-outline-primary" style="box-shadow: none;">วันนี้</button>
+                    <button id="filter-month"  class="btn btn-outline-primary" style="box-shadow: none;">เดือนนี้</button>
+                    <button id="filter-year"  class="btn btn-outline-primary" style="box-shadow: none;">ปีนี้</button>
+                    <button id="filter-all"  class="btn btn-outline-primary" style="box-shadow: none;">ทั้งหมด</button>
+                </div>
+            `;
+            $("#data_fastest_repair_table_wrapper").before(filterButtons);
 
-        // กำหนด event ให้กับปุ่มตัวกรอง
-        $("#filter-all").on("click", filterAll);
-        $("#filter-year").on("click", filterThisYear);
-        $("#filter-month").on("click", filterThisMonth);
-        $("#filter-today").on("click", filterToday);
+            updateButtonClasses("filter-all"); //กำหนดให้โหลดหน้ามาใช้ filter ทั้งหมด
 
-        // ใช้สำหรับ เช็ควันที่ปัจจุบัน กับปุ่มตัวกรอง
-        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-            // คอลัมน์วันที่อยู่ใน index ที่ 6 (index เริ่มจาก 0)
-            let dateColumn = new Date(data[0]);
+            // กำหนด event ให้กับปุ่มตัวกรอง
+            $("#filter-all").on("click", filterAll);
+            $("#filter-year").on("click", filterThisYear);
+            $("#filter-month").on("click", filterThisMonth);
+            $("#filter-today").on("click", filterToday);
 
-            // ถ้า startDate หรือ endDate ยังไม่ได้กำหนด
-            if (!startDate && !endDate) {
+            // ใช้สำหรับ เช็ควันที่ปัจจุบัน กับปุ่มตัวกรอง
+            $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+                // คอลัมน์วันที่อยู่ใน index ที่ 6 (index เริ่มจาก 0)
+                let dateColumn = new Date(data[0]);
+
+                // ถ้า startDate หรือ endDate ยังไม่ได้กำหนด
+                if (!startDate && !endDate) {
+                    return true;
+                }
+                if (startDate && dateColumn < startDate) {
+                    return false;
+                }
+                if (endDate && dateColumn > endDate) {
+                    return false;
+                }
+
                 return true;
-            }
-            if (startDate && dateColumn < startDate) {
-                return false;
-            }
-            if (endDate && dateColumn > endDate) {
-                return false;
-            }
-
-            return true;
+            });
         });
-    });
+    }
 
     // ตัวแปรสำหรับเก็บช่วงวันที่
     let startDate, endDate;
@@ -284,6 +281,36 @@
        document.getElementById(selectedButtonId).classList.remove('btn-outline-primary');
     }
 
+</script>
+
+<script>
+    function sum_time(time1 , time2) {
+        const sTimeSOSuccess = new Date(time1).getTime();
+        const sTimeCommand = new Date(time2).getTime();
+
+        const sTimeDifference = Math.abs(sTimeSOSuccess - sTimeCommand) / 1000;
+        if (sTimeDifference >= 86400) { // มากกว่า 24 ชั่วโมง
+            const sDays = Math.floor(sTimeDifference / 86400);
+            const sHours = Math.floor((sTimeDifference % 86400) / 3600);
+            const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
+            sTimeUnit = `${sDays} วัน ${sHours} ชั่วโมง ${sRemainingMinutes} นาที`;
+        } else if (sTimeDifference >= 3600) {
+            const sHours = Math.floor(sTimeDifference / 3600);
+            const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
+            const sRemainingSeconds = sTimeDifference % 60;
+
+            sTimeUnit = `${sHours} ชั่วโมง ${sRemainingMinutes} นาที ${sRemainingSeconds} วินาที`;
+        } else if (sTimeDifference >= 60) {
+            const sMinutes = Math.floor(sTimeDifference / 60);
+            const sSeconds = sTimeDifference % 60;
+
+            sTimeUnit = `${sMinutes} นาที ${sSeconds} วินาที`;
+        } else {
+            sTimeUnit = `${sTimeDifference} วินาที`;
+        }
+
+        return sTimeUnit
+    }
 </script>
 
 @endsection

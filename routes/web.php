@@ -81,18 +81,10 @@ Route::get('/demo_repair_dashboard', function () {
     return view('test_repair_admin/repair_dashboard/fix_dashboard_index');
 });
 Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index');
+Route::get('/demo_all_repair', 'MaintainDashboardController@fix_all');
+Route::get('/demo_all_repair_fastest', 'MaintainDashboardController@fix_fastest');
+Route::get('/demo_all_used_repair', 'MaintainDashboardController@fix_used');
 
-Route::get('/demo_all_repair', function () {
-    return view('test_repair_admin/repair_dashboard/fix_all');
-});
-
-Route::get('/demo_all_repair_fastest', function () {
-    return view('test_repair_admin/repair_dashboard/fix_fastest');
-});
-
-Route::get('/demo_all_used_repair', function () {
-    return view('test_repair_admin/repair_dashboard/fix_used');
-});
 
 //VIIFIX เจ้าหน้าที่
 Route::get('/demo_officer_maintain', 'Maintain_notisController@Maintain_officer');
