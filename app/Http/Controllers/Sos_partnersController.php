@@ -894,4 +894,46 @@ class Sos_partnersController extends Controller
         return "success" ;
     }
 
+    function get_data_area_all($sos_partner_id){
+        $data = Sos_partner_area::where('sos_partner_id' , $sos_partner_id)
+            ->where('status' ,"!=", 'd-none')
+            ->get();
+
+        return $data ;
+    }
+
+    public function map_search_by_district(Request $request)
+    {
+        $requestData = $request->all();
+        $location_P = $requestData['location_P'];
+        $location_A = $requestData['location_A'];
+        $location_T = $requestData['location_T'];
+
+        $data = DB::table('lat_longs')
+                    ->where('changwat_th', $location_P)
+                    ->where('amphoe_th', $location_A)
+                    ->where('tambon_th', $location_T)
+                    ->get();
+
+        return $data ;
+    }
+
+    function CF_New_Area(Request $request)
+    {
+        $requestData = $request->all();
+        $area_id = $requestData['area_id'];
+        $text_pathstr = $requestData['text_pathstr'];
+
+        DB::table('sos_partner_areas')
+            ->where([
+                    ['id', $area_id],
+                ])
+            ->update([
+                    'sos_area' => $text_pathstr,
+                ]);
+
+        return "success" ;
+
+    }
+
 }
