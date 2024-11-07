@@ -694,7 +694,7 @@ Route::resource('maintain_device_codes', 'Maintain_device_codesController');
 Route::resource('maintain_materials', 'Maintain_materialsController');
 Route::resource('maintain_use_materials', 'Maintain_use_materialsController');
 Route::get('maintain_notis_rating/{maintain_id}', 'Maintain_notisController@maintain_notis_rating');
-Route::get('command_maintain/{maintain_id}', 'Maintain_notisController@command_maintain');
+Route::get('command_maintain', 'Maintain_notisController@command_maintain');
 Route::post('/maintain_officer_Store/{id}', 'Maintain_notisController@Maintain_officer_Store'); //by junior dear
 Route::get('/mockup_video_call', function () {
     return view('nationalitie_sos/mockup_video_call');

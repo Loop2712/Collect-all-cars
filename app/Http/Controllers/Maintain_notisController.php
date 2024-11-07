@@ -370,53 +370,21 @@ class Maintain_notisController extends Controller
         return response()->json($response_data);
     }
 
-    public function command_maintain($id)
+    public function command_maintain(Request $request)
     {
-        // ดึงข้อมูล officer ที่ล็อกอินเข้ามา
-        $officer = Auth::user();
-        $data_officer = Sos_partner_officer::where('user_id', $officer->id)->first();
-
-        // ค้นหา record maintain_noti ที่ต้องการอัปเดต
-        $maintain_noti = Maintain_noti::findOrFail($id);
-
-        // ดึงข้อมูล officer_id ที่มีอยู่ในฐานข้อมูล
-        $existingOfficerIds = $maintain_noti->officer_id ? json_decode($maintain_noti->officer_id) : [];
-
-        // ตรวจสอบว่ามี id นี้แล้วหรือยัง ถ้ายังไม่มี ให้เพิ่มเข้าไป
-        if (!in_array($data_officer->id, $existingOfficerIds)) {
-            $existingOfficerIds[] = $data_officer->id;
-        }
-
-        // เตรียมข้อมูลสำหรับการอัปเดต
-        $dataCommand = [
-            'officer_id' => json_encode($existingOfficerIds), // เก็บในรูปแบบ JSON
-            'datetime_command' => now(), // บันทึกเวลาปัจจุบัน
-            'status' => 'รอดำเนินการ' // บันทึกเวลาปัจจุบัน
-        ];
-
-        // อัปเดตข้อมูลในฐานข้อมูล
-        $maintain_noti->update($dataCommand);
-
-        return view('maintain_notis.maintain_officer_command', compact('maintain_noti'));
-
-
-    }
-
-    function Maintain_officer (Request $request){
-
-        $user_id = 2;
+        $user_id = 1;
         $maintain_id = $request->get('maintain_id');
 
         $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
         ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
         ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
-        ->join('sos_partners', 'maintain_notis.partner_id', '=', 'sos_partners.id')
-        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
+        ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.user_id')
         ->join('users', 'maintain_notis.user_id', '=', 'users.id')
         ->select('maintain_notis.*',
         'maintain_categorys.name as name_categories',
         'maintain_sub_categorys.name as name_subs_categories',
-        'sos_partners.name as name_area',
+        'sos_partner_areas.name_area as name_area',
         'maintain_notified_users.department as department_user',
         'maintain_notified_users.position as position_user',
         'users.email as mail_user',
@@ -424,7 +392,38 @@ class Maintain_notisController extends Controller
         ->first();
 
         $data_officer = Sos_partner_officer::where('user_id',$user_id)
-        ->where('sos_partner_id',$data_maintains->partner_id)
+        // ->where('sos_partner_id',$data_maintains->partner_id)
+        ->first();
+
+
+        return view('maintain_notis.maintain_officer_command',compact('data_maintains' ,'data_officer'));
+
+
+    }
+
+    function Maintain_officer (Request $request){
+
+        $user_id = 1;
+        $maintain_id = $request->get('maintain_id');
+
+        $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
+        ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.user_id')
+        ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->select('maintain_notis.*',
+        'maintain_categorys.name as name_categories',
+        'maintain_sub_categorys.name as name_subs_categories',
+        'sos_partner_areas.name_area as name_area',
+        'maintain_notified_users.department as department_user',
+        'maintain_notified_users.position as position_user',
+        'users.email as mail_user',
+        'users.phone as phone_user',)
+        ->first();
+
+        $data_officer = Sos_partner_officer::where('user_id',$user_id)
+        // ->where('sos_partner_id',$data_maintains->partner_id)
         ->first();
 
         return view('test_repair_admin/test_officer_maintain',compact('data_maintains' ,'data_officer'));

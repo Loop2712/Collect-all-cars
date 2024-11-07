@@ -2469,8 +2469,6 @@ class LineMessagingAPI extends Model
                     $string_json = str_replace("https://www.viicheck.com/user_profile",$photo_profile,$string_json);
 
 
-
-
                     $messages = [ json_decode($string_json, true) ];
 
 
