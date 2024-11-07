@@ -387,6 +387,7 @@ class Maintain_notisController extends Controller
         'users.email as mail_user',
         'users.phone as phone_user',)
         ->first();
+        dd($data_maintains);
 
         $data_officer = Sos_partner_officer::where('user_id',$user_id)
         // ->where('sos_partner_id',$data_maintains->partner_id)
