@@ -304,24 +304,28 @@
                         <div class="row no-gutters mx-3">
                             <div class="owl-carousel deerCarousel owl-theme">
                                     @php
-                                        $photos = is_array($data_maintains->photo) ? $data_maintains->photo : json_decode($data_maintains->photo, true);  // ตรวจสอบและแปลงข้อมูล photo ให้เป็น array
-                                        $photosCount = count($photos);
+                                        if(!empty($data_maintains->photo)){
+                                            $photos = is_array($data_maintains->photo) ? $data_maintains->photo : json_decode($data_maintains->photo, true);  // ตรวจสอบและแปลงข้อมูล photo ให้เป็น array
+                                            $photosCount = count($photos);
+                                        }
                                     @endphp
-                                    @foreach($photos as $item)
 
-                                        {{-- <div class="gallery-item item ">
-                                            <a class="galelry-lightbox">
-                                                <img class="receipt_main_image" style="object-fit: cover; height: 150px;" src="{{ url('/').$item}}" alt="" class="img-cover" onclick="changeImage_receipt(this)">
-                                            </a>
-                                        </div> --}}
+                                    @if($data_maintains->photo)
+                                        @foreach($photos as $item)
 
-                                        <div class="gallery-item item">
-                                            <a class="galelry-lightbox">
-                                                <img class="receipt_main_image_officer" style="object-fit: cover; height: 150px;" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                            {{-- <div class="gallery-item item ">
+                                                <a class="galelry-lightbox">
+                                                    <img class="receipt_main_image" style="object-fit: cover; height: 150px;" src="{{ url('/').$item}}" alt="" class="img-cover" onclick="changeImage_receipt(this)">
+                                                </a>
+                                            </div> --}}
 
+                                            <div class="gallery-item item">
+                                                <a class="galelry-lightbox">
+                                                    <img class="receipt_main_image_officer" style="object-fit: cover; height: 150px;" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    @endif
                             </div>
                         </div>
                     </div>
