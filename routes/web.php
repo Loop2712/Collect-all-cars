@@ -487,6 +487,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('check_withdraw_form_sos', 'Sos_help_centerController@check_withdraw_form_sos');
 	Route::get('check_form_sos_pdf/{sos_id}', 'Sos_help_centerController@check_form_sos_pdf');
 
+	// >>>>>> SOS PARTNER V2. <<<<<< //
+		Route::get('page_check_area_repair', 'Sos_partnersController@page_check_area_repair');
+	// >>>>>> END SOS PARTNER V2. <<<<<< //
+
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');

@@ -468,6 +468,8 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::get('/get_data_area_all/{sos_partner_id}', 'Sos_partnersController@get_data_area_all');
     Route::post('/map_search_by_district', 'Sos_partnersController@map_search_by_district');
     Route::post('/CF_New_Area', 'Sos_partnersController@CF_New_Area');
+    Route::get('/search_polygon_area', 'Sos_partnersController@search_polygon_area');
+
 // >>>>>> END SOS PARTNER V2. <<<<<< //
 
 // maintain

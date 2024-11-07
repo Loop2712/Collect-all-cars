@@ -936,4 +936,13 @@ class Sos_partnersController extends Controller
 
     }
 
+    function page_check_area_repair(){
+        return view('maintain_notis.page_check_area_repair');
+    }
+
+    function search_polygon_area(){
+        $data = Sos_partner_area::where('sos_area' , '!=' , null)->where('status' , 'Active')->get();
+        return $data ;
+    }
+
 }
