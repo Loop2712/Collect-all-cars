@@ -284,11 +284,7 @@
                     <h4 class="mb-0 text-dark"><b>รายละเอียดการแจ้งซ่อม</b></h4>
                 </div>
                 <div>
-                    @if($data_maintains->created_at)
-                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;">{{ thaidate("lที่ j F Y" , strtotime($data_maintains->created_at)) }} เวลา {{ thaidate("H:i" , strtotime($data_maintains->created_at)) }} น.</span></b>
-                    @else
-                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;"> - </span></b>
-                    @endif
+                 
                 </div>
             </div>
 
