@@ -379,14 +379,11 @@ class Maintain_notisController extends Controller
         ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
         ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
-        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
         ->join('users', 'maintain_notis.user_id', '=', 'users.id')
         ->select('maintain_notis.*',
         'maintain_categorys.name as name_categories',
         'maintain_sub_categorys.name as name_subs_categories',
         'sos_partner_areas.name_area as name_area',
-        'maintain_notified_users.department as department_user',
-        'maintain_notified_users.position as position_user',
         'users.email as mail_user',
         'users.phone as phone_user',)
         ->first();
