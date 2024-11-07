@@ -104,7 +104,7 @@ class Maintain_notisController extends Controller
                 'user_id' => $requestData['user_id'],
             ]
         );
-        $requestData['maintain_notified_user_id'] = $data_maintain_notified_user->id ;
+        $requestData['maintain_notified_user_id'] = $data_maintain_notified_user->id;
         $requestData['name_user'] = $data_maintain_notified_user->name ;
         $requestData['status'] = 'แจ้งซ่อม' ;
 
@@ -379,7 +379,7 @@ class Maintain_notisController extends Controller
         ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
         ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
-        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.user_id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
         ->join('users', 'maintain_notis.user_id', '=', 'users.id')
         ->select('maintain_notis.*',
         'maintain_categorys.name as name_categories',
