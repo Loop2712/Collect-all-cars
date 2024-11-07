@@ -389,6 +389,11 @@ class Maintain_notisController extends Controller
         ->first();
         dd($data_maintains);
 
+        $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
+        ->first();
+        dd($data_maintains);
+
+
         $data_officer = Sos_partner_officer::where('user_id',$user_id)
         // ->where('sos_partner_id',$data_maintains->partner_id)
         ->first();
