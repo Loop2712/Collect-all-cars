@@ -2465,7 +2465,7 @@ class LineMessagingAPI extends Model
             
                     $string_json = str_replace("Name",$data_maintain->maintain_user_name,$string_json);
                     $string_json = str_replace("phone",$data_maintain->phone,$string_json);
-                    $string_json = str_replace("maintain_id",$data_maintain->id,$string_json);
+                    $string_json = str_replace("maintainID",$data_maintain->id,$string_json);
                     $string_json = str_replace("https://www.viicheck.com/user_profile",$photo_profile,$string_json);
 
 
