@@ -390,6 +390,8 @@ class Maintain_notisController extends Controller
         // dd($data_maintains);
 
         $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
+        ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
         ->first();
         dd($data_maintains);
 
