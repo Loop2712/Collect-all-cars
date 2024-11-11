@@ -49,58 +49,66 @@
 
 <script>
     let partner_id = '{{ $data_partner->id }}';
-
+    let sort = '{{ $sort }}';
     document.addEventListener('DOMContentLoaded', (event) => {
         get_data_repair();
     });
-    const get_data_repair = (params) => {
-        fetch("{{ url('/') }}/api/getFastestMaintains/"+ "?partner_id=" + partner_id)
-            .then(response => response.json())
-            .then(data => {
+    const get_data_repair = async (params) => {
+        try {
+            const response = await fetch("{{ url('/') }}/api/getFastestMaintains/" + "?partner_id=" + partner_id + "&sort="+ sort);
+            const data = await response.json();
+
             console.log(data);
-            generate_field_data(data);
-            initializeDataTable(); // เรียกใช้ฟังก์ชันสร้าง datatable หลังดึงข้อมูลเสร็จ
+            console.log("sort :"+ sort);
+            await generate_field_data(data); // รอให้ generate_field_data เสร็จ
+            initializeDataTable(); // เรียกใช้ initializeDataTable หลังจาก generate_field_data เสร็จ
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
-        }).catch(error => console.error('Error fetching data:', error));
-    }
 
-    const generate_field_data = (data_repair) => {
-        let data_fastest_repair_div = document.querySelector('#data_fastest_repair_div');
+    const generate_field_data = async (data_repair) => {
+        return new Promise((resolve) => {
+            let data_fastest_repair_div = document.querySelector('#data_fastest_repair_div');
 
-        // ล้างเนื้อหาก่อนหน้า
-        data_fastest_repair_div.innerHTML = '';
+            // ล้างเนื้อหาก่อนหน้า
+            data_fastest_repair_div.innerHTML = '';
 
-        let html = `
-                    <div class="table-responsive mt-4 mb-4">
-                        <table id="data_fastest_repair_table" class="table align-middle mb-0">
-                            <thead>
-                                <tr>
-                                    <th>วันที่สร้าง</th>
-                                    <th>ผู้รับผิดชอบ</th>
-                                    <th>ระยะเวลา</th>
-                                </tr>
-                            </thead>
-                            <tbody>`;
+            let html = `
+                        <div class="table-responsive mt-4 mb-4">
+                            <table id="data_fastest_repair_table" class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>date</th>
+                                        <th>วันที่สร้าง</th>
+                                        <th>ผู้รับผิดชอบ</th>
+                                        <th>ระยะเวลา</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
 
-                    data_repair.forEach(item => {
-                        sum_time(item.datetime_success, item.datetime_command);
+            data_repair.forEach(item => {
+                sum_time(item.datetime_success, item.datetime_command);
 
-                        // แปลง array ของ name_officer เป็น string ที่มี <br> เป็นตัวคั่น
-                        let fullNameDisplay = Array.isArray(item.name_officer)
-                            ? item.name_officer.join('<br>')
-                            : item.name_officer;
+                // แปลง array ของ name_officer เป็น string ที่มี <br> เป็นตัวคั่น
+                let fullNameDisplay = Array.isArray(item.name_officer)
+                    ? item.name_officer.join('<br>')
+                    : item.name_officer;
 
-                        html += `
-                            <tr>
-                                <td>${item.created_at ? item.created_at : "--"}</td>
-                                <td>${fullNameDisplay ? fullNameDisplay : "--"}</td>
-                                <td>${sTimeUnit ? sTimeUnit : "--"}</td>
-                            </tr>`;
-                    });
+                html += `
+                    <tr>
+                        <td>${item.created_at ? item.created_at : "--"}</td>
+                        <td style="padding-left:1rem;">${item.created_at ? new Date(item.created_at).toLocaleDateString('th-TH') : "--" }</td>
+                        <td>${fullNameDisplay ? fullNameDisplay : "--"}</td>
+                        <td>${sTimeUnit ? sTimeUnit : "--"}</td>
+                    </tr>`;
+            });
 
             html += `       </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>date</th>
                                     <th>วันที่สร้าง</th>
                                     <th>ผู้รับผิดชอบ</th>
                                     <th>ระยะเวลา</th>
@@ -109,9 +117,12 @@
                         </table>
                     </div>`;
 
-                    data_fastest_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
-                    updateButtonClasses("filter-all");
-    }
+            data_fastest_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+
+            resolve(); // บอกว่า generate_field_data ทำงานเสร็จแล้ว
+        });
+    };
+
 </script>
 
 <script>
@@ -131,6 +142,7 @@
             // DataTable initialisation
             data_fastest_repair_table = $("#data_fastest_repair_table").DataTable({
                 dom: '<"dt-buttons"Bf><"clear">lirtp',
+                ordering: false, // ปิดการเรียงลำดับจาก DataTable
                 paging: true,
                 autoWidth: true,
                 pageLength: pageLength,  // แสดง ... บรรทัดต่อหน้า
@@ -149,7 +161,8 @@
                         exportOptions: {
                             modifier: {
                                 page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
-                            }
+                            },
+                            columns: [1, 2, 3]  // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
                         }
                     },
                     {
@@ -158,7 +171,8 @@
                         exportOptions: {
                             modifier: {
                                 page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
-                            }
+                            },
+                            columns: [1, 2, 3]  // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
                         }
                     }
                 ],
@@ -166,12 +180,19 @@
                 initComplete: function (settings, json) {
                     var footer = $("#data_fastest_repair_table tfoot tr");
                     $("#data_fastest_repair_table thead").append(footer);
-                }
+                },
+                columnDefs: [  // คำเตือน จะไปมีผลในช่อง search ให้ใส่ (colIndex + 1) ตรง data_fastest_repair_table.column(colIndex + 1) เพื่อให้ข้อมูลตรงกัน
+                    {
+                        targets: 0,     // ซ่อนคอลัมน์ที่ 0
+                        visible: false
+                    }
+                ]
             });
 
             // Apply the search
             $("#data_fastest_repair_table thead").on("keyup", "input", function () {
-                data_fastest_repair_table.column($(this).parent().index())
+                let colIndex = $(this).parent().index();
+                data_fastest_repair_table.column(colIndex + 1) // เพิ่ม +1 เพื่อเลื่อน index ให้ตรงกับคอลัมน์ที่แสดง
                     .search(this.value)
                     .draw();
                 });

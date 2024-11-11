@@ -173,8 +173,6 @@
             display: none;
         }
 
-
-
         .square {
             width: 10px;
             height: 10px;
@@ -185,56 +183,55 @@
 
         }
 
-
         /* ปรับขนาดฟอนต์ของเหตุการณ์ใน listWeek */
         .fc-list-item {
-    font-size: 12px; /* ลดขนาดฟอนต์ของเหตุการณ์ */
-}
+            font-size: 12px; /* ลดขนาดฟอนต์ของเหตุการณ์ */
+        }
 
-/* ปรับขนาดฟอนต์ของชื่อวันใน listWeek */
-.fc-list-day-cell {
-    font-size: 14px; /* ลดขนาดฟอนต์ของชื่อวัน */
-}
-/* ปรับความกว้างของคอลัมน์ใน listWeek */
-.fc-list-day {
-    width: 10%; /* ลดขนาดความกว้างของคอลัมน์ */
-}
+        /* ปรับขนาดฟอนต์ของชื่อวันใน listWeek */
+        .fc-list-day-cell {
+            font-size: 14px; /* ลดขนาดฟอนต์ของชื่อวัน */
+        }
+        /* ปรับความกว้างของคอลัมน์ใน listWeek */
+        .fc-list-day {
+            width: 10%; /* ลดขนาดความกว้างของคอลัมน์ */
+        }
 
-/* ลดขนาดของเหตุการณ์ใน listWeek */
-.fc-list-item {
-    padding: 4px 8px; /* ลดขนาดของ padding ของเหตุการณ์ */
-}
-/* ปรับขนาดของปุ่มใน header */
-.fc-prev-button, .fc-next-button, .fc-today-button {
-    font-size: 14px; /* ลดขนาดฟอนต์ของปุ่ม */
-    padding: 6px 12px; /* ลดขนาด padding ของปุ่ม */
-}
-/* ปรับขนาดของ dot ในเหตุการณ์ */
-.fc-list-event-dot {
-    width: 8px;  /* ลดขนาดของ dot */
-    height: 8px; /* ลดขนาดของ dot */
-}
-/* ลดขนาดฟอนต์ของเหตุการณ์ใน listWeek */
-.fc-list-item {
-    font-size: 12px;
-    padding: 4px 8px;
-}
+        /* ลดขนาดของเหตุการณ์ใน listWeek */
+        .fc-list-item {
+            padding: 4px 8px; /* ลดขนาดของ padding ของเหตุการณ์ */
+        }
+        /* ปรับขนาดของปุ่มใน header */
+        .fc-prev-button, .fc-next-button, .fc-today-button {
+            font-size: 14px; /* ลดขนาดฟอนต์ของปุ่ม */
+            padding: 6px 12px; /* ลดขนาด padding ของปุ่ม */
+        }
+        /* ปรับขนาดของ dot ในเหตุการณ์ */
+        .fc-list-event-dot {
+            width: 8px;  /* ลดขนาดของ dot */
+            height: 8px; /* ลดขนาดของ dot */
+        }
+        /* ลดขนาดฟอนต์ของเหตุการณ์ใน listWeek */
+        .fc-list-item {
+            font-size: 12px;
+            padding: 4px 8px;
+        }
 
-/* ลดขนาดฟอนต์ของชื่อวัน */
-.fc-list-day-cell {
-    font-size: 14px;
-}
+        /* ลดขนาดฟอนต์ของชื่อวัน */
+        .fc-list-day-cell {
+            font-size: 14px;
+        }
 
-/* ลดความกว้างของคอลัมน์ใน listWeek */
-.fc-list-day {
-    width: 10%;
-}
+        /* ลดความกว้างของคอลัมน์ใน listWeek */
+        .fc-list-day {
+            width: 10%;
+        }
 
-/* ลดขนาด dot */
-.fc-list-event-dot {
-    width: 8px;
-    height: 8px;
-}
+        /* ลดขนาด dot */
+        .fc-list-event-dot {
+            width: 8px;
+            height: 8px;
+        }
 
     }
 
@@ -391,7 +388,7 @@
     <hr>
     <div class="my-4">
         <div class="row">
-            <div class="d-flex justify-content-between mb-4">
+            <div class="d-flex justify-content-between mb-4 d-block d-md-none">
                 <div class="mx-1 d-flex flex-column align-items-center">
                     <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
                     <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
@@ -401,6 +398,21 @@
                     <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
                 </div>
                 <div class="mx-1 d-flex flex-column align-items-center">
+                    <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mb-4">
+                <div class="mx-1 d-flex justify-content-center align-items-center">
+                    <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
+                </div>
+                <div class="mx-1 d-flex justify-content-center align-items-center">
+                    <div class="square" style="background-color: rgb(230, 46, 46,0.5);"></div>
+                    <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
+                </div>
+                <div class="mx-1 d-flex justify-content-center align-items-center">
                     <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
                     <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
                 </div>
@@ -430,7 +442,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/demo_all_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_all_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -476,7 +488,7 @@
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item"
-                                        href="{{ url('/demo_all_repair_fastest') }}" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                                        href="{{ url('/dashboard_all_repair_fastest') }}?sort=DESC" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                                 </div>
                             </div>
                         </div>
@@ -513,7 +525,7 @@
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item"
-                                        href="{{ url('/demo_all_repair_fastest') }}" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                                        href="{{ url('/dashboard_all_repair_fastest') }}?sort=ASC" target="_blank">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                                 </div>
                             </div>
                         </div>
@@ -551,7 +563,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/demo_all_used_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_all_used_repair') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>

@@ -38,11 +38,12 @@ class MaintainDashboardController extends Controller
 
     public function fix_fastest(Request $request)
     {
+        $sort = $request->get('sort');
         $data_user = Auth::user();
         $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
         $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
 
-        return view('test_repair_admin/repair_dashboard/fix_fastest',compact('data_partner','data_partner_area'));
+        return view('test_repair_admin/repair_dashboard/fix_fastest',compact('data_partner','data_partner_area','sort'));
     }
 
     public function fix_used(Request $request)
@@ -84,6 +85,17 @@ class MaintainDashboardController extends Controller
         return $data_fix;
     }
 
+    public function get_ListMaintains(Request $request) {
+        $partner_id = $request->get('partner_id');
+        $data_fix = Maintain_device_code::join('sos_partner_areas', 'maintain_device_codes.area_id', '=', 'sos_partner_areas.id')
+        ->orderByRaw('CAST(maintain_device_codes.count AS UNSIGNED) DESC') // แปลง count เป็น ตัวเลขแบบไม่ติดลบ เพื่อใช้ในการเรียงลำดับ
+        ->select('maintain_device_codes.*',
+        'sos_partner_areas.name_area as sos_name_area')
+        ->get();
+
+        return $data_fix;
+    }
+
     public function get_5_FastestMaintains(Request $request) {
         $partner_id = $request->get('partner_id');
 
@@ -108,9 +120,10 @@ class MaintainDashboardController extends Controller
 
     public function getFastestMaintains(Request $request) {
         $partner_id = $request->get('partner_id');
+        $sort = $request->get('sort');
 
         $data_fastest_maintains = Maintain_noti::where('partner_id', $partner_id)
-            ->orderByRaw('TIMESTAMPDIFF(SECOND, datetime_success, datetime_command) DESC')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, datetime_success, datetime_command) ' . $sort)
             ->get();
 
         foreach ($data_fastest_maintains as $maintain) {

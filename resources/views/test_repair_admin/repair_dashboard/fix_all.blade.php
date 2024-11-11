@@ -53,69 +53,81 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         get_data_repair();
     });
-    const get_data_repair = (params) => {
-        fetch("{{ url('/') }}/api/getAmountMaintainDashboard"+ "?partner_id=" + partner_id)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                generate_field_data(data);
-                initializeDataTable(); // เรียกใช้ฟังก์ชันสร้าง datatable หลังดึงข้อมูลเสร็จ
-            }).catch(error => console.error('Error fetching data:', error));
-    }
 
-    const generate_field_data = (data_repair) => {
+    const get_data_repair = async (params) => {
+        try {
+            const response = await fetch("{{ url('/') }}/api/getAmountMaintainDashboard/" + "?partner_id=" + partner_id);
+            const data = await response.json();
+
+            console.log(data);
+
+            await generate_field_data(data); // รอให้ generate_field_data เสร็จ
+            initializeDataTable(); // เรียกใช้ initializeDataTable หลังจาก generate_field_data เสร็จ
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const generate_field_data = async (data_repair) => {
+        return new Promise((resolve) => {
         let data_repair_div = document.querySelector('#data_repair_div');
 
         // ล้างเนื้อหาก่อนหน้า
         data_repair_div.innerHTML = '';
 
         let html = `
-                    <div class="table-responsive mt-4 mb-4">
-                        <table id="data_repair_table" class="table align-middle mb-0">
-                            <thead>
-                                <tr>
-                                    <th>วันที่แจ้งซ่อม</th>
-                                    <th>ผู้แจ้งซ่อม</th>
-                                    <th>รหัสอุปกรณ์</th>
-                                    <th>พื้นที่</th>
-                                    <th>หมวดหมู่</th>
-                                    <th>หมวดหมู่ย่อย</th>
-                                    <th>สถานะ</th>
-                                </tr>
-                            </thead>
-                            <tbody>`;
-
-                    data_repair.forEach(item => {
-                        html += `
+                <div class="table-responsive mt-4 mb-4">
+                    <table id="data_repair_table" class="table align-middle mb-0">
+                        <thead>
                             <tr>
-                                <td >${item.created_at ? item.created_at : "--"}</td>
-                                <td>${item.name_user ? item.name_user : "--"}</td>
-                                <td>${item.device_code ? item.device_code : "--"}</td>
-                                <td>${item.name_area ? item.name_area : "--"}</td>
-                                <td>${item.name_categories ? item.name_categories : "--"}</td>
-                                <td>${item.name_subs_categories ? item.name_subs_categories : "--"}</td>
-                                <td>${item.status ? item.status : "--"}</td>
-                            </tr>`;
-                    });
+                                <th>date</th>
+                                <th>วันที่แจ้งซ่อม</th>
+                                <th>ผู้แจ้งซ่อม</th>
+                                <th>รหัสอุปกรณ์</th>
+                                <th>พื้นที่</th>
+                                <th>หมวดหมู่</th>
+                                <th>หมวดหมู่ย่อย</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
 
-            html += `       </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>วันที่แจ้งซ่อม</th>
-                                    <th>ผู้แจ้งซ่อม</th>
-                                    <th>รหัสอุปกรณ์</th>
-                                    <th>พื้นที่</th>
-                                    <th>หมวดหมู่</th>
-                                    <th>หมวดหมู่ย่อย</th>
-                                    <th>สถานะ</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>`;
+                data_repair.forEach(item => {
+                    html += `
+                        <tr>
+                            <td>${item.created_at ? item.created_at : "--"}</td>
+                            <td style="padding-left:1rem;">${item.created_at ? new Date(item.created_at).toLocaleDateString('th-TH') : "--" }</td>
+                            <td>${item.name_user ? item.name_user : "--"}</td>
+                            <td>${item.device_code ? item.device_code : "--"}</td>
+                            <td>${item.name_area ? item.name_area : "--"}</td>
+                            <td>${item.name_categories ? item.name_categories : "--"}</td>
+                            <td>${item.name_subs_categories ? item.name_subs_categories : "--"}</td>
+                            <td>${item.status ? item.status : "--"}</td>
+                        </tr>`;
+                });
 
-                    data_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+        html += `       </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>date</th>
+                                <th>วันที่แจ้งซ่อม</th>
+                                <th>ผู้แจ้งซ่อม</th>
+                                <th>รหัสอุปกรณ์</th>
+                                <th>พื้นที่</th>
+                                <th>หมวดหมู่</th>
+                                <th>หมวดหมู่ย่อย</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>`;
 
-    }
+                data_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+
+                resolve(); // บอกว่า generate_field_data ทำงานเสร็จแล้ว
+        });
+    };
+
 </script>
 
 <script>
@@ -153,7 +165,8 @@
                         exportOptions: {
                             modifier: {
                                 page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
-                            }
+                            },
+                            columns: [1, 2, 3, 4, 5, 6, 7]  // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
                         }
                     },
                     {
@@ -162,20 +175,29 @@
                         exportOptions: {
                             modifier: {
                                 page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
-                            }
+                            },
+                            columns: [1, 2, 3, 4, 5, 6, 7]  // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
                         }
+
                     }
                 ],
                 stripeClasses: ['odd-row', 'even-row'], // กำหนดคลาสสำหรับแถวสลับสี
                 initComplete: function (settings, json) {
                     var footer = $("#data_repair_table tfoot tr");
                     $("#data_repair_table thead").append(footer);
-                }
+                },
+                columnDefs: [  // คำเตือน จะไปมีผลในช่อง search ให้ใส่ (colIndex + 1) ตรง data_repair_table.column(colIndex + 1) เพื่อให้ข้อมูลตรงกัน
+                    {
+                        targets: 0,     // ซ่อนคอลัมน์ที่ 0
+                        visible: false
+                    }
+                ]
             });
 
             // Apply the search
             $("#data_repair_table thead").on("keyup", "input", function () {
-                data_repair_table.column($(this).parent().index())
+                let colIndex = $(this).parent().index();
+                data_repair_table.column(colIndex + 1) // เพิ่ม +1 เพื่อเลื่อน index ให้ตรงกับคอลัมน์ที่แสดง
                     .search(this.value)
                     .draw();
                 });

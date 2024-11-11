@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-12 col-md-12">
             <h3 style="font-weight: bold;" class="float-start">
-                ข้อมูลจำนวนการซ่อมแซมอุปกรณ์
+                ข้อมูลจำนวนการซ่อมอุปกรณ์
             </h3>
         </div>
     </div>
@@ -48,42 +48,27 @@
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
+    let partner_id = '{{ $data_partner->id }}';
+
     document.addEventListener('DOMContentLoaded', (event) => {
         get_data_repair();
     });
-    const get_data_repair = (params) => {
-        // fetch("{{ url('/') }}/api/viisos_used/" + user_login_organization)
-        //     .then(response => response.json())
-        //     .then(data => {
-            // ข้อมูลการแจ้งซ่อมพร้อม `created_at`
-        let repairRequests = [
-            {
-                device_code: "AB0014",
-                name: "คอมพิวเตอร์ ชั้น 2",
-                category: "อุปกรณ์สำนักงาน",
-                amount_repair: 22,
-                created_at: "2024-10-15 12:30:00"
-            },
-            {
-                device_code: "AB0015",
-                name: "คอมพิวเตอร์ ชั้น 4",
-                category: "อุปกรณ์สำนักงาน",
-                amount_repair: 25,
-                created_at: "2024-10-3 14:20:00"
-            },
-            {
-                device_code: "AB0019",
-                name: "เครื่องปริ้น ชั้น 4",
-                category: "อุปกรณ์สำนักงาน",
-                amount_repair: 12,
-                created_at: "2024-05-15 09:30:00"
-            },
-        ];
-            generate_field_data(repairRequests);
-        // }).catch(error => console.error('Error fetching data:', error));
-    }
+    const get_data_repair = async (params) => {
+        try {
+            const response = await fetch("{{ url('/') }}/api/get_ListMaintains/" + "?partner_id=" + partner_id);
+            const data = await response.json();
 
-    const generate_field_data = (data_repair) => {
+            console.log(data);
+
+            await generate_field_data(data); // รอให้ generate_field_data เสร็จ
+            initializeDataTable(); // เรียกใช้ initializeDataTable หลังจาก generate_field_data เสร็จ
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const generate_field_data = async (data_repair) => {
+        return new Promise((resolve) => {
         let data_all_used_repair_div = document.querySelector('#data_all_used_repair_div');
 
         // ล้างเนื้อหาก่อนหน้า
@@ -94,10 +79,11 @@
                         <table id="data_all_used_repair_table" class="table align-middle mb-0">
                             <thead>
                                 <tr>
+                                    <th>date</th>
                                     <th>วันที่สร้าง</th>
                                     <th>รหัสอุปกรณ์</th>
                                     <th>ชื่อ</th>
-                                    <th>หมวดหมู่</th>
+                                    <th>พื้นที่</th>
                                     <th>จำนวนการซ่อมบำรุง/ครั้ง</th>
                                 </tr>
                             </thead>
@@ -107,29 +93,32 @@
                         html += `
                             <tr>
                                 <td>${item.created_at ? item.created_at : "--"}</td>
-                                <td>${item.device_code ? item.device_code : "--"}</td>
+                                <td style="padding-left:1rem;">${item.created_at ? new Date(item.created_at).toLocaleDateString('th-TH') : "--" }</td>
+                                <td>${item.code ? item.code : "--"}</td>
                                 <td>${item.name ? item.name : "--"}</td>
-                                <td>${item.category ? item.category : "--"}</td>
-                                <td>${item.amount_repair ? item.amount_repair : "--"}</td>
+                                <td>${item.sos_name_area ? item.sos_name_area : "--"}</td>
+                                <td>${item.count ? item.count : "--"}</td>
                             </tr>`;
                     });
 
             html += `       </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>date</th>
                                     <th>วันที่สร้าง</th>
                                     <th>รหัสอุปกรณ์</th>
                                     <th>ชื่อ</th>
-                                    <th>หมวดหมู่</th>
+                                    <th>พื้นที่</th>
                                     <th>จำนวนการซ่อมบำรุง/ครั้ง</th>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>`;
 
-                    data_all_used_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
-                    updateButtonClasses("filter-all");
-    }
+            data_all_used_repair_div.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+            resolve(); // บอกว่า generate_field_data ทำงานเสร็จแล้ว
+        });
+    };
 </script>
 
 <script>
@@ -137,99 +126,111 @@
     let rowCount = 0; // ตัวแปรนับจำนวนแถวที่ตรงตามเงื่อนไข
     let pageLength = 5; // ใช้สำหรับแสดงข้อมูลในหนึงหน้า (มีใช้หลายที่)
 
-    $(document).ready(function () {
-        document.title = "ข้อมูลจำนวนการซ่อมแซมอุปกรณ์";
-        // Create search inputs in footer
-        $("#data_all_used_repair_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        data_all_used_repair_table = $("#data_all_used_repair_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            pageLength: pageLength,  // แสดง ... บรรทัดต่อหน้า
-            searching: true,  // ปิดการค้นหาด้านขวาบน
-            info: true, // ปิดข้อความ "Showing X to Y of Z entries"
-            language: {
-                info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
-                infoEmpty: "ไม่มีข้อมูลที่จะแสดง",
-                infoFiltered: "(กรองจากทั้งหมด _MAX_ รายการ)"
-            },
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "ดาวน์โหลดทั้งหมด",
-                    exportOptions: {
-                        modifier: {
-                            page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
-                        }
-                    }
+    // ฟังก์ชันสำหรับการ initial DataTable
+    const initializeDataTable = () => {
+        $(document).ready(function () {
+            document.title = "ข้อมูลจำนวนการซ่อมแซมอุปกรณ์";
+            // Create search inputs in footer
+            $("#data_all_used_repair_table tfoot th").each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            // DataTable initialisation
+            data_all_used_repair_table = $("#data_all_used_repair_table").DataTable({
+                dom: '<"dt-buttons"Bf><"clear">lirtp',
+                paging: true,
+                autoWidth: true,
+                pageLength: pageLength,  // แสดง ... บรรทัดต่อหน้า
+                searching: true,  // ปิดการค้นหาด้านขวาบน
+                info: true, // ปิดข้อความ "Showing X to Y of Z entries"
+                language: {
+                    info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                    infoEmpty: "ไม่มีข้อมูลที่จะแสดง",
+                    infoFiltered: "(กรองจากทั้งหมด _MAX_ รายการ)"
                 },
-                {
-                    extend: "excelHtml5",
-                    text: "ดาวน์โหลดหน้าปัจจุบัน",
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
+                lengthChange: false,
+                buttons: [
+                    {
+                        extend: "excelHtml5",
+                        text: "ดาวน์โหลดทั้งหมด",
+                        exportOptions: {
+                            modifier: {
+                                page: 'all'  // ส่งออกข้อมูลทั้งหมดใน DataTable
+                            },
+                            columns: [1, 2, 3, 4, 5]  // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
+                        }
+                    },
+                    {
+                        extend: "excelHtml5",
+                        text: "ดาวน์โหลดหน้าปัจจุบัน",
+                        exportOptions: {
+                            modifier: {
+                                page: 'current'  // ส่งออกเฉพาะข้อมูลในหน้าปัจจุบัน
+                            },
+                            columns: [1, 2, 3, 4, 5]   // ระบุเลขคอลัมน์ที่ต้องการส่งออก (ไม่รวมคอลัมน์ที่ 0)
                         }
                     }
-                }
-            ],
-            stripeClasses: ['odd-row', 'even-row'], // กำหนดคลาสสำหรับแถวสลับสี
-            initComplete: function (settings, json) {
-                var footer = $("#data_all_used_repair_table tfoot tr");
-                $("#data_all_used_repair_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#data_all_used_repair_table thead").on("keyup", "input", function () {
-            data_all_used_repair_table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
+                ],
+                stripeClasses: ['odd-row', 'even-row'], // กำหนดคลาสสำหรับแถวสลับสี
+                initComplete: function (settings, json) {
+                    var footer = $("#data_all_used_repair_table tfoot tr");
+                    $("#data_all_used_repair_table thead").append(footer);
+                },
+                columnDefs: [  // คำเตือน จะไปมีผลในช่อง search ให้ใส่ (colIndex + 1) ตรง data_all_used_repair_table.column(colIndex + 1) เพื่อให้ข้อมูลตรงกัน
+                    {
+                        targets: 0,     // ซ่อนคอลัมน์ที่ 0
+                        visible: false
+                    }
+                ]
             });
 
-        //=================== สร้างปุ่มตัวกรอง =======================
-        let filterButtons = `
-            <div id="date-filters">
-                <button id="filter-today" class="btn btn-outline-primary" style="box-shadow: none;">วันนี้</button>
-                <button id="filter-month"  class="btn btn-outline-primary" style="box-shadow: none;">เดือนนี้</button>
-                <button id="filter-year"  class="btn btn-outline-primary" style="box-shadow: none;">ปีนี้</button>
-                <button id="filter-all"  class="btn btn-outline-primary" style="box-shadow: none;">ทั้งหมด</button>
-            </div>
-        `;
-        $("#data_all_used_repair_table_wrapper").before(filterButtons);
+            // Apply the search
+            $("#data_all_used_repair_table thead").on("keyup", "input", function () {
+                let colIndex = $(this).parent().index();
+                data_all_used_repair_table.column(colIndex + 1) // เพิ่ม +1 เพื่อเลื่อน index ให้ตรงกับคอลัมน์ที่แสดง
+                    .search(this.value)
+                    .draw();
+                });
 
-        updateButtonClasses("filter-all"); //กำหนดให้โหลดหน้ามาใช้ filter ทั้งหมด
+            //=================== สร้างปุ่มตัวกรอง =======================
+            let filterButtons = `
+                <div id="date-filters">
+                    <button id="filter-today" class="btn btn-outline-primary" style="box-shadow: none;">วันนี้</button>
+                    <button id="filter-month"  class="btn btn-outline-primary" style="box-shadow: none;">เดือนนี้</button>
+                    <button id="filter-year"  class="btn btn-outline-primary" style="box-shadow: none;">ปีนี้</button>
+                    <button id="filter-all"  class="btn btn-outline-primary" style="box-shadow: none;">ทั้งหมด</button>
+                </div>
+            `;
+            $("#data_all_used_repair_table_wrapper").before(filterButtons);
 
-        // กำหนด event ให้กับปุ่มตัวกรอง
-        $("#filter-all").on("click", filterAll);
-        $("#filter-year").on("click", filterThisYear);
-        $("#filter-month").on("click", filterThisMonth);
-        $("#filter-today").on("click", filterToday);
+            updateButtonClasses("filter-all"); //กำหนดให้โหลดหน้ามาใช้ filter ทั้งหมด
 
-        // ใช้สำหรับ เช็ควันที่ปัจจุบัน กับปุ่มตัวกรอง
-        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-            // คอลัมน์วันที่อยู่ใน index ที่ 6 (index เริ่มจาก 0)
-            let dateColumn = new Date(data[0]);
+            // กำหนด event ให้กับปุ่มตัวกรอง
+            $("#filter-all").on("click", filterAll);
+            $("#filter-year").on("click", filterThisYear);
+            $("#filter-month").on("click", filterThisMonth);
+            $("#filter-today").on("click", filterToday);
 
-            // ถ้า startDate หรือ endDate ยังไม่ได้กำหนด
-            if (!startDate && !endDate) {
+            // ใช้สำหรับ เช็ควันที่ปัจจุบัน กับปุ่มตัวกรอง
+            $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+                // คอลัมน์วันที่อยู่ใน index ที่ 6 (index เริ่มจาก 0)
+                let dateColumn = new Date(data[0]);
+
+                // ถ้า startDate หรือ endDate ยังไม่ได้กำหนด
+                if (!startDate && !endDate) {
+                    return true;
+                }
+                if (startDate && dateColumn < startDate) {
+                    return false;
+                }
+                if (endDate && dateColumn > endDate) {
+                    return false;
+                }
+
                 return true;
-            }
-            if (startDate && dateColumn < startDate) {
-                return false;
-            }
-            if (endDate && dateColumn > endDate) {
-                return false;
-            }
-
-            return true;
+            });
         });
-    });
+    }
 
     // ตัวแปรสำหรับเก็บช่วงวันที่
     let startDate, endDate;

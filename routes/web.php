@@ -76,15 +76,6 @@ Route::get('/demo_repair_maintenance_view', function () {
     return view('test_repair_admin/test_repair_maintenance_view');
 });
 
-//VIIFIX Dashboard
-Route::get('/demo_repair_dashboard', function () {
-    return view('test_repair_admin/repair_dashboard/fix_dashboard_index');
-});
-Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index');
-Route::get('/demo_all_repair', 'MaintainDashboardController@fix_all');
-Route::get('/demo_all_repair_fastest', 'MaintainDashboardController@fix_fastest');
-Route::get('/demo_all_used_repair', 'MaintainDashboardController@fix_used');
-
 
 //VIIFIX เจ้าหน้าที่
 Route::get('/demo_officer_maintain', 'Maintain_notisController@Maintain_officer');
@@ -703,6 +694,11 @@ Route::post('/maintain_officer_Store/{id}', 'Maintain_notisController@Maintain_o
 Route::get('/mockup_video_call', function () {
     return view('nationalitie_sos/mockup_video_call');
 });
+
+Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index'); //by junior dear
+Route::get('/dashboard_all_repair', 'MaintainDashboardController@fix_all'); //by junior dear
+Route::get('/dashboard_all_repair_fastest', 'MaintainDashboardController@fix_fastest'); //by junior dear
+Route::get('/dashboard_all_used_repair', 'MaintainDashboardController@fix_used'); //by junior dear
 
 // Route::get('user_video_call/sos_help_center', function () {
 //     return view('sos_help_center/user_video_call');
