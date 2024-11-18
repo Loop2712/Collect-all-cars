@@ -702,6 +702,7 @@ Route::get('/dashboard_all_used_repair', 'MaintainDashboardController@fix_used')
 
 Route::get('/viifix_repair_quality/index', 'Maintain_notisController@viifix_repair_quality_index'); //by junior dear
 Route::get('/viifix_repair_quality/view/{officer_id}', 'Maintain_notisController@viifix_repair_quality_view'); //by junior dear
+Route::get('/viifix_repair_quality/detail', 'Maintain_notisController@viifix_repair_quality_detail'); //by junior dear
 
 Route::get('/demo_detail_repair_quality', function () {
     return view('test_repair_admin/demo_detail_repair_quality');

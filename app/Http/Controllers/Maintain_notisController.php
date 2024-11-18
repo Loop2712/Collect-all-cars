@@ -502,6 +502,13 @@ class Maintain_notisController extends Controller
         return view('test_repair_admin/viifix_repair_quality/view',compact('data_officer' ,'data_partner'));
     }
 
+    function viifix_repair_quality_detail(Request $request ){
+        $maintain_id = $request->get('maintain_id');
+        $officer_id = strval($request->get('officer_id')); // แปลงเป็น string
+
+        return view('test_repair_admin/viifix_repair_quality/detail',compact('maintain_id' ,'officer_id'));
+    }
+
     public function create_data_officer_quality_repiar_index(Request $request) {
 
         $partner_id = $request->get('partner_id');
@@ -598,6 +605,44 @@ class Maintain_notisController extends Controller
         // นำ maintain_data ใส่ใน data['maintain']
         $data['maintain'] = $maintain_data;
         $data['count'] = $data_maintains->count();
+
+        return $data;
+    }
+
+    public function create_data_officer_quality_repiar_detail(Request $request) {
+
+        $maintain_id = $request->get('maintain_id');
+        $officer_id = strval($request->get('officer_id')); // แปลงเป็น string
+
+        // ดึงข้อมูลเจ้าหน้าที่
+        $data = Sos_partner_officer::join('users', 'sos_partner_officers.user_id', '=', 'users.id')
+            ->where('sos_partner_officers.id', $officer_id)
+            ->select('sos_partner_officers.*', 'users.photo as photo_officer')
+            ->first();
+
+        $data_maintains = Maintain_noti::where('maintain_notis.id',$maintain_id)
+            ->join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+            ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+            ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+            ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+            ->select('maintain_notis.*',
+            'maintain_categorys.name as name_categories',
+            'maintain_sub_categorys.name as name_subs_categories',
+            'sos_partner_areas.name_area as name_area',)
+            ->first();
+
+        // แปลง officer_id ใน Maintain ให้อยู่ในรูปแบบ array ของ ID
+        $officer_ids = collect(json_decode($data_maintains->officer_id))->pluck('officer_id')->toArray();
+
+        // ดึงข้อมูลเจ้าหน้าที่ที่มี ID ตรงกับ officer_ids
+        $officer_data = Sos_partner_officer::whereIn('id', $officer_ids)
+            ->select('full_name') // เลือกเฉพาะ id และ full_name
+            ->get();
+
+
+        // นำ maintain_data ใส่ใน data['maintain']
+        $data['maintain'] = $data_maintains;
+        $data['officer'] = $officer_data;
 
         return $data;
     }

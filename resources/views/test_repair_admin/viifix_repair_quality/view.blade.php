@@ -130,8 +130,7 @@
                     rating_sum = '-';
                     star = generateStars(0);
                 }
-
-                // url_item = `<a href="{{ url('viifix_repair_quality/view/') }}/${item.id}" target="_blank" class="btn btn-outline-primary radius-15">ดูเพิ่มเติม</a>`;
+                let url_item = `<a href="{{ url('viifix_repair_quality/detail') }}?maintain_id=${item.id}&officer_id=${officer_id}" target="_blank" class="btn btn-outline-primary w-100 mt-3">ดูเพิ่มเติม</a>`;
                 const htmlContent = `
                     <div class="col">
                         <div class="card radius-15">
@@ -195,9 +194,7 @@
                                         </div>
                                         <h6 class="text-primary mb-0">${rating_sum} คะแนน</h6>
                                     </div>
-                                    <a class="btn btn-outline-primary w-100 mt-3" href="{{url('/demo_detail_repair_quality')}}">
-                                        ดูเพิ่มเติม
-                                    </a>
+                                    ${url_item}
                                 </div>
                             </div>
                         </div>

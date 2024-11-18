@@ -492,3 +492,4 @@ Route::get('/WorkCalendarDashboard/{partner_id}', 'MaintainDashboardController@W
 // quality_maintain
 Route::post('/create_data_officer_quality_repiar_index', 'Maintain_notisController@create_data_officer_quality_repiar_index'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน index
 Route::post('/create_data_officer_quality_repiar_view', 'Maintain_notisController@create_data_officer_quality_repiar_view'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน view
+Route::post('/create_data_officer_quality_repiar_detail', 'Maintain_notisController@create_data_officer_quality_repiar_detail'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน detail
