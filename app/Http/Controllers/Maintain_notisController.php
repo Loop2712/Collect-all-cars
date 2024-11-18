@@ -479,5 +479,121 @@ class Maintain_notisController extends Controller
         return $data_maintains;
     }
 
+    function viifix_repair_quality_index(Request $request){
+
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+
+        $data_maintains = Maintain_noti::where('partner_id',$data_partner->id)->get();
+
+        return view('test_repair_admin/viifix_repair_quality/index',compact('data_maintains' ,'data_partner'));
+    }
+
+    function viifix_repair_quality_view(Request $request ,$officer_id){
+
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+
+        $data_officer = Sos_partner_officer::where('id',$officer_id)->first();
+
+        return view('test_repair_admin/viifix_repair_quality/view',compact('data_officer' ,'data_partner'));
+    }
+
+    public function create_data_officer_quality_repiar_index(Request $request) {
+
+        $partner_id = $request->get('partner_id');
+        $officer_id = $request->get('officer_id');
+
+        // ดึงข้อมูลเจ้าหน้าที่
+        $data = Sos_partner_officer::join('users', 'sos_partner_officers.user_id', '=', 'users.id')
+            ->where('sos_partner_officers.sos_partner_id', $partner_id)
+            ->select('sos_partner_officers.*', 'users.photo as photo_officer')
+            ->get();
+
+        foreach ($data as $key => $value) {
+            // ดึงข้อมูล maintain_notis ที่ officer_id ตรงกับเจ้าหน้าที่
+            // ใช้ whereJsonContains เพื่อค้นหาว่า id ของเจ้าหน้าที่อยู่ใน array ของ officer_id
+            $data_maintains = Maintain_noti::whereJsonContains('officer_id', ['officer_id' => $value->id])
+                ->select('maintain_notis.*')  // เลือกเฉพาะสถานะ
+                ->get();
+
+            // นับจำนวนสถานะใน data_maintains
+            $status_count = $data_maintains->groupBy('status')->map->count();
+
+            // ใส่ข้อมูลจำนวน status ลงใน maintain ของเจ้าหน้าที่
+            $value->maintain = [
+                'success' => $status_count->get('เสร็จสิ้น', 0),
+                'pending' => $status_count->get('รอดำเนินการ', 0),
+                'in_progress' => $status_count->get('ดำเนินการ', 0)
+            ];
+
+            //======================================================
+
+            // กรองข้อมูล maintain_notis ที่มี status = 'เสร็จสิ้น'
+            $completed_maintains = $data_maintains->filter(function ($item) {
+                return $item->status === 'เสร็จสิ้น';
+            });
+
+            // คำนวณค่าเฉลี่ยของ rating
+            $total_sum = $completed_maintains->sum('rating_sum');
+            $total_impression = $completed_maintains->sum('rating_impression');
+            $total_operation = $completed_maintains->sum('rating_operation');
+            $total_maintain = $completed_maintains->sum('rating_maintain');
+
+            $count = $completed_maintains->count();
+
+            // คำนวณค่าเฉลี่ยถ้ามีข้อมูล
+            $value->rating = [
+                'rating_sum' => $count > 0 ? round($total_sum / $count, 2) : 0,
+                'rating_impression' => $count > 0 ? round($total_impression / $count, 2) : 0,
+                'rating_operation' => $count > 0 ? round($total_operation / $count, 2) : 0,
+                'rating_maintain' => $count > 0 ? round($total_maintain / $count, 2) : 0
+            ];
+
+
+        }
+
+        return $data;
+    }
+
+    public function create_data_officer_quality_repiar_view(Request $request) {
+
+        $partner_id = $request->get('partner_id');
+        $officer_id = strval($request->get('officer_id')); // แปลงเป็น string
+
+        // ดึงข้อมูลเจ้าหน้าที่
+        $data = Sos_partner_officer::join('users', 'sos_partner_officers.user_id', '=', 'users.id')
+            ->where('sos_partner_officers.id', $officer_id)
+            ->select('sos_partner_officers.*', 'users.photo as photo_officer')
+            ->first();
+
+        $data_maintains = Maintain_noti::whereJsonContains('officer_id', ['officer_id' => $data->id])->get();
+
+        // สร้างอาเรย์สำหรับเก็บข้อมูล maintain
+        $maintain_data = [];
+
+        // นำข้อมูลจาก data_maintains ใส่ใน maintain_data
+        foreach ($data_maintains as $maintain) {
+            $maintain_data[] = [
+                'id' => $maintain->id,
+                'status' => $maintain->status,
+                'title' => $maintain->title,
+                'datetime_command' => $maintain->datetime_command,
+                'detail_title' => $maintain->detail_title,
+                'rating_sum' => $maintain->rating_sum,
+                'rating_impression' => $maintain->rating_impression,
+                'rating_operation' => $maintain->rating_operation,
+                'rating_maintain' => $maintain->rating_maintain,
+                // เพิ่มข้อมูลที่ต้องการจาก maintain_notis
+            ];
+        }
+
+        // นำ maintain_data ใส่ใน data['maintain']
+        $data['maintain'] = $maintain_data;
+        $data['count'] = $data_maintains->count();
+
+        return $data;
+    }
+
 
 }

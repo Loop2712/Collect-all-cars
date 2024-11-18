@@ -19,12 +19,21 @@ class MaintainDashboardController extends Controller
     public function dashboard_viifix_index(Request $request)
     {
         $data_user = Auth::user();
-
         $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
-
         $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
 
-        return view('test_repair_admin/repair_dashboard/fix_dashboard_index',compact('data_partner','data_partner_area'));
+        // ตรวจสอบว่าเป็น PC, Android หรือ iOS
+        $userAgent = $request->header('User-Agent');
+        $deviceType = 'PC'; // กำหนดค่าเริ่มต้นเป็น PC
+
+        // ตรวจสอบว่าเป็น Android หรือ iOS
+        if (strpos($userAgent, 'Android') !== false) {
+            $deviceType = 'Android';
+        } elseif (strpos($userAgent, 'iPhone') !== false || strpos($userAgent, 'iPad') !== false) {
+            $deviceType = 'iOS';
+        }
+
+        return view('test_repair_admin/repair_dashboard/fix_dashboard_index',compact('data_partner','data_partner_area','deviceType'));
     }
 
     public function fix_all(Request $request)

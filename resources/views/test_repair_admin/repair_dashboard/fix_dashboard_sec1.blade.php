@@ -1,29 +1,5 @@
 
 <style>
-    .category {
-        display: flex;
-        align-items: center;
-        /* justify-content: center; */
-        flex-wrap: wrap;
-    }
-
-    .circle {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    .category-item {
-        display: flex;
-        align-items: center;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-
-
-
     /*======== Calendar =============*/
     .calendar-header {
         text-align: center;
@@ -127,7 +103,81 @@
             gap: 5px;
         }
 
+        /*==== ปรับแต่งใน event ======*/
+        .event-container {
+            display: flex;
+            align-items: center;
+            padding-top: 2px;
+            overflow: hidden;
+            position: relative;
+            padding-right: 30px;
+        }
 
+        .event-circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border:#000000 1px solid;
+            display: inline-block;
+            margin-right: 5px;
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+
+        .eventTitle{
+            color: #000000;
+            padding-left: 5px;
+            font-weight: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tooltip-custom {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #32393f;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            max-width: 100%;
+            z-index: 1000;
+            display: none;
+        }
+
+        .event-left-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: calc(100% - 30px);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .event-right-content {
+            position: absolute;
+            right: 2px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .event-device, .event-officer {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .event-deadline {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .event-action-button {
+            padding: 2px 6px;
+            color: #333;
+            text-decoration: none;
+        }
+        /*====จบส่วน ปรับแต่งใน event ======*/
 
         .square {
             width: 20px;
@@ -135,6 +185,28 @@
             display: inline-block;
             margin-right: 10px;
             border:#000000 1px solid;
+        }
+
+        .category {
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+            flex-wrap: wrap;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-bottom: 10px;
         }
 
     }
@@ -149,9 +221,90 @@
             gap: 5px;
         }
 
+        .category {
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+            flex-wrap: wrap;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+
         .day-header {
             padding: 5px;
             font-size: 0.8rem;
+        }
+
+
+        .event-container {
+            display: flex;             /* ใช้ flexbox ในการจัดตำแหน่ง */
+            justify-content: space-between; /* ให้เนื้อหาฝั่งซ้ายและขวาอยู่ห่างกัน */
+            align-items: center;       /* จัดให้เนื้อหาทั้งสองฝั่งอยู่กลางแนวตั้ง */
+            width: 100%;               /* ให้ความกว้างเต็มที่ */
+        }
+
+        .event-left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            border-right: 2px solid #ccc; /* ใส่เส้นขวาให้ฝั่งซ้าย */
+            padding-right: 10px;  /* เพิ่มระยะห่างระหว่างเนื้อหากับเส้น */
+        }
+
+        .event-right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+            width: auto;
+        }
+
+        .event-circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border:#000000 1px solid;
+            display: inline-block;
+            margin-right: 5px;
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+
+        .event-action-button {
+            padding: 2px 6px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .eventTitle{
+            color: #000000;
+            padding-left: 5px;
+        }
+
+        .fc-list-day { /* ทำให้ fc-list-day อยู่ด้านบนสุดเมื่อเลื่อน */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #fff;
+        }
+
+        .fc-event { /* เพิ่ม z-index ให้กับ fc-event เพื่อให้เนื้อหาอยู่ด้านล่าง */
+            z-index: 1;
         }
 
         .fc-toolbar-title { /* อักษร header schedule */
@@ -165,12 +318,33 @@
             font-family: 'Mitr', sans-serif !important;
         }
 
+        .fc-list-event { /* ทำให้จุดสีหมวดหมู่ใน ตารางงานเจ้าหน้าที่ซ่อมอยู่กึ่งกลางบรรทัด*/
+            color: #000;
+        }
+
         .fc-list-event .fc-list-event-dot { /* ทำให้จุดสีหมวดหมู่ใน ตารางงานเจ้าหน้าที่ซ่อมอยู่กึ่งกลางบรรทัด*/
             margin-top: 0.4rem !important;
         }
 
         .fc-list-event-dot {
-            display: none;
+            display: none !important;
+        }
+
+        .fc-list-event-title {
+
+            word-wrap: break-word;  /* ให้ข้อความยาวขึ้นบรรทัดใหม่ */
+            white-space: normal;    /* ทำให้ข้อความสามารถพับไปได้ */
+        }
+
+        .fc-list-week {
+            max-width: 100% !important;
+            overflow-x: auto; /* เพิ่มการเลื่อนในแนวนอน */
+        }
+
+        .fc-list-item {
+            word-wrap: break-word; /* จัดการให้ข้อความที่ยาวเกินไปไม่ทะลุขอบ */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .square {
@@ -183,130 +357,6 @@
 
         }
 
-        /* ปรับขนาดฟอนต์ของเหตุการณ์ใน listWeek */
-        .fc-list-item {
-            font-size: 12px; /* ลดขนาดฟอนต์ของเหตุการณ์ */
-        }
-
-        /* ปรับขนาดฟอนต์ของชื่อวันใน listWeek */
-        .fc-list-day-cell {
-            font-size: 14px; /* ลดขนาดฟอนต์ของชื่อวัน */
-        }
-        /* ปรับความกว้างของคอลัมน์ใน listWeek */
-        .fc-list-day {
-            width: 10%; /* ลดขนาดความกว้างของคอลัมน์ */
-        }
-
-        /* ลดขนาดของเหตุการณ์ใน listWeek */
-        .fc-list-item {
-            padding: 4px 8px; /* ลดขนาดของ padding ของเหตุการณ์ */
-        }
-        /* ปรับขนาดของปุ่มใน header */
-        .fc-prev-button, .fc-next-button, .fc-today-button {
-            font-size: 14px; /* ลดขนาดฟอนต์ของปุ่ม */
-            padding: 6px 12px; /* ลดขนาด padding ของปุ่ม */
-        }
-        /* ปรับขนาดของ dot ในเหตุการณ์ */
-        .fc-list-event-dot {
-            width: 8px;  /* ลดขนาดของ dot */
-            height: 8px; /* ลดขนาดของ dot */
-        }
-        /* ลดขนาดฟอนต์ของเหตุการณ์ใน listWeek */
-        .fc-list-item {
-            font-size: 12px;
-            padding: 4px 8px;
-        }
-
-        /* ลดขนาดฟอนต์ของชื่อวัน */
-        .fc-list-day-cell {
-            font-size: 14px;
-        }
-
-        /* ลดความกว้างของคอลัมน์ใน listWeek */
-        .fc-list-day {
-            width: 10%;
-        }
-
-        /* ลดขนาด dot */
-        .fc-list-event-dot {
-            width: 8px;
-            height: 8px;
-        }
-
-    }
-
-    .event-container {
-        display: flex;
-        align-items: center;
-        padding-top: 2px;
-        overflow: hidden;
-        position: relative;
-        padding-right: 30px;
-    }
-
-    .event-circle {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        border:#000000 1px solid;
-        display: inline-block;
-        margin-right: 5px;
-        margin-left: 5px;
-        flex-shrink: 0;
-    }
-
-    .eventTitle{
-        color: #000000;
-        padding-left: 5px;
-        font-weight: normal;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .tooltip-custom {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.75);
-        color: #32393f;
-        padding: 16px;
-        border-radius: 4px;
-        font-size: 12px;
-        max-width: 100%;
-        z-index: 1000;
-        display: none;
-    }
-
-    .event-left-content {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        width: calc(100% - 30px);
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    .event-right-content {
-        position: absolute;
-        right: 2px;
-        display: flex;
-        align-items: center;
-        gap: 3px;
-    }
-
-    .event-device, .event-officer {
-        font-size: 0.9em;
-        color: #333;
-    }
-
-    .event-deadline {
-        font-size: 0.9em;
-        color: #666;
-    }
-
-    .event-action-button {
-        padding: 2px 6px;
-        color: #333;
-        text-decoration: none;
     }
 
     /*======== End Calendar =========*/
@@ -380,7 +430,8 @@
         </div>
     </div>
 </div>
-<!--======= ตารางงานช่าง - รูปแบบปฎิทิน ============-->
+<!--======= ตารางงานช่าง - รูปแบบปฎิทิน ============--> <!-- PC View -->
+@if($deviceType == "PC")
 <div class="card p-4 ">
     <div id="cateDiv" class="category">
         <!-- เพิ่มหมวดหมู่เพิ่มเติมที่นี่ -->
@@ -388,44 +439,56 @@
     <hr>
     <div class="my-4">
         <div class="row">
-            <div class="d-flex justify-content-between mb-4 d-block d-md-none">
-                <div class="mx-1 d-flex flex-column align-items-center">
-                    <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
-                </div>
-                <div class="mx-1 d-flex flex-column align-items-center">
-                    <div class="square" style="background-color: rgb(230, 46, 46,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
-                </div>
-                <div class="mx-1 d-flex flex-column align-items-center">
-                    <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
-                </div>
-            </div>
 
-            <div class="d-flex justify-content-end mb-4">
-                <div class="mx-1 d-flex justify-content-center align-items-center">
-                    <div class="square" style="background-color: rgb(94, 216, 240 ,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="mx-1 d-flex justify-content-center align-items-center">
+                        <div class="square" style="background-color: rgba(94, 216, 240, 0.5);"></div>
+                        <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
+                    </div>
+                    <div class="mx-1 d-flex justify-content-center align-items-center">
+                        <div class="square" style="background-color: rgba(230, 46, 46, 0.5);"></div>
+                        <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
+                    </div>
+                    <div class="mx-1 d-flex justify-content-center align-items-center">
+                        <div class="square" style="background-color: rgba(41, 204, 57, 0.5);"></div>
+                        <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
+                    </div>
                 </div>
-                <div class="mx-1 d-flex justify-content-center align-items-center">
-                    <div class="square" style="background-color: rgb(230, 46, 46,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
-                </div>
-                <div class="mx-1 d-flex justify-content-center align-items-center">
-                    <div class="square" style="background-color: rgb(41, 204, 57 ,0.5);"></div>
-                    <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
-                </div>
-            </div>
 
             <div class="col-12" id="calendar-container">
                 <div id="workCalendar"></div>
             </div>
         </div>
     </div>
-
-
 </div>
+@endif
+<!--======= ตารางงานช่าง - รูปแบบปฎิทิน ============--><!-- Mobile View -->
+@if($deviceType == "Android" || $deviceType == "iOS")
+    <div class="card p-4">
+        <div class="d-flex justify-content-between">
+            <div class="mx-1 d-flex flex-column align-items-center">
+                <div class="square" style="background-color: rgba(94, 216, 240, 0.5);"></div>
+                <span style="font-weight: bold; color:#000000;">กำลังดำเนินการ</span>
+            </div>
+            <div class="mx-1 d-flex flex-column align-items-center">
+                <div class="square" style="background-color: rgba(230, 46, 46, 0.5);"></div>
+                <span style="font-weight: bold; color:#000000;">เลยกำหนด</span>
+            </div>
+            <div class="mx-1 d-flex flex-column align-items-center">
+                <div class="square" style="background-color: rgba(41, 204, 57, 0.5);"></div>
+                <span style="font-weight: bold; color:#000000;">เสร็จสิ้น</span>
+            </div>
+        </div>
+        <hr>
+        <div id="cateDiv" class="category">
+            <!-- เพิ่มหมวดหมู่เพิ่มเติมที่นี่ -->
+        </div>
+    </div>
+
+    <div class="col-12 mb-4" id="calendar-container">
+        <div id="workCalendar"></div>
+    </div>
+@endif
 
 <!--======= รายการแจ้งซ่อม 10 ลำดับ ล่าสุด ============-->
 <div class="row ">
@@ -593,7 +656,7 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 <script>
     let partner_id = '{{ $data_partner->id }}';
-
+    let type_device = '{{ $deviceType }}';
     document.addEventListener('DOMContentLoaded', function () {
         createWorkCalendar();
 
@@ -707,8 +770,10 @@
                             let endDate = new Date(arg.event.extendedProps.datetime_end);
                             let timeDiff = endDate - currentDate;
 
-                                // ตรวจสอบว่าเหลือเวลาไม่เกิน 3 วัน (72 ชั่วโมง)
-                                if (timeDiff > 0 && timeDiff <= (3 * 24 * 60 * 60 * 1000)) { // 3 วัน = 3 * 24 * 60 * 60 * 1000 มิลลิวินาที
+                            // ตรวจสอบว่าเหลือเวลาไม่เกิน 3 วัน (72 ชั่วโมง)
+                            if (timeDiff > 0 && timeDiff <= (3 * 24 * 60 * 60 * 1000)) { // 3 วัน = 3 * 24 * 60 * 60 * 1000 มิลลิวินาที
+                                if (type_device === "PC") {
+                                    console.log("if typeDevice :"+type_device);
 
                                     // เพิ่มไอคอนนาฬิกาแทนข้อความ "ครบกำหนด"
                                     let deadlineIcon = document.createElement('span');
@@ -743,8 +808,38 @@
                                     });
 
                                     rightContent.appendChild(deadlineIcon); // ใส่ไอคอนนาฬิกาทางขวาสุด
+
                                 }
+                                else {
+                                    console.log("else typeDevice :"+type_device);
+                                    // ค้นหา element ที่มี class เป็น fc-list-day และเพิ่ม deadline-icon เข้าไปใต้หัวข้อวันที่
+                                    setTimeout(() => {
+                                        // ค้นหา element <tr> ที่มี data-date ตรงกับวันที่ของ event
+                                        let dayElement = document.querySelector(`tr.fc-list-day[data-date="${event.startStr}"]`);
+
+                                        // ตรวจสอบว่า dayElement ถูกพบหรือไม่
+                                        if (dayElement) {
+                                            // ค้นหา <th> หรือ <div> ภายใน dayElement เพื่อเพิ่มไอคอน
+                                            let dayContent = dayElement.querySelector('.fc-list-day-cushion');
+
+                                            // ตรวจสอบว่า deadline-icon ถูกสร้างแล้วหรือยัง
+                                            if (dayContent && !dayContent.querySelector('.deadline-icon')) {
+                                                // สร้าง element สำหรับ deadline-icon
+                                                let deadlineIcon = document.createElement('span');
+                                                deadlineIcon.className = 'deadline-icon';
+                                                deadlineIcon.innerHTML = `<i class="fa-solid fa-clock" style="color: #ef2525;"></i>`; // ไอคอนนาฬิกา
+                                                deadlineIcon.style.cursor = 'pointer';
+
+                                                // เพิ่ม deadlineIcon ใน dayContent
+                                                dayContent.appendChild(deadlineIcon);
+                                            }
+                                        }
+                                    }, 3000);
+
+                                }
+
                             }
+                        }
 
                         // สร้างปุ่มด้านขวาสุด
                         let actionButton = document.createElement('a');
@@ -865,6 +960,7 @@
 
     // ฟังก์ชันคำนวณเวลาที่เหลืออยู่
     function calculateRemainingTime(datetimeEnd) {
+        console.log("calculateRemainingTime");
         const currentDate = new Date();
         const endDate = new Date(datetimeEnd);
         const difference = endDate - currentDate;

@@ -488,3 +488,7 @@ Route::get('/get_cateChartMaintains', 'MaintainDashboardController@get_cateChart
 Route::get('/get_areaAmountChartMaintains', 'MaintainDashboardController@get_areaAmountChartMaintains'); // Create By Junior Dear --> "กราฟแสดงการแจ้งแต่ละพื้นที่" ใน Dashboard
 Route::get('/WorkCalendarDashboard/{partner_id}', 'MaintainDashboardController@WorkCalendarDashboard'); // Create By Junior Dear --> ข้อมูลตารางงานของ Dashboard
 // END maintain
+
+// quality_maintain
+Route::post('/create_data_officer_quality_repiar_index', 'Maintain_notisController@create_data_officer_quality_repiar_index'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน index
+Route::post('/create_data_officer_quality_repiar_view', 'Maintain_notisController@create_data_officer_quality_repiar_view'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน view
