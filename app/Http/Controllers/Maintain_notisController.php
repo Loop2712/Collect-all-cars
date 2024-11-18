@@ -479,14 +479,17 @@ class Maintain_notisController extends Controller
         return $data_maintains;
     }
 
+    //=============== คุณภาพการซ่อม =======================
+
     function viifix_repair_quality_index(Request $request){
 
         $data_user = Auth::user();
         $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
 
         $data_maintains = Maintain_noti::where('partner_id',$data_partner->id)->get();
 
-        return view('test_repair_admin/viifix_repair_quality/index',compact('data_maintains' ,'data_partner'));
+        return view('test_repair_admin/viifix_repair_quality/index',compact('data_maintains' ,'data_partner','data_partner_area'));
     }
 
     function viifix_repair_quality_view(Request $request ,$officer_id){
@@ -502,13 +505,17 @@ class Maintain_notisController extends Controller
     public function create_data_officer_quality_repiar_index(Request $request) {
 
         $partner_id = $request->get('partner_id');
-        $officer_id = $request->get('officer_id');
+        $area_id = $request->get('area_id');
 
         // ดึงข้อมูลเจ้าหน้าที่
         $data = Sos_partner_officer::join('users', 'sos_partner_officers.user_id', '=', 'users.id')
-            ->where('sos_partner_officers.sos_partner_id', $partner_id)
-            ->select('sos_partner_officers.*', 'users.photo as photo_officer')
-            ->get();
+        ->join('sos_partner_areas', 'sos_partner_officers.area_id', '=', 'sos_partner_areas.id')
+        ->when($area_id, function ($query, $area_id) {
+            return $query->where('sos_partner_officers.area_id', $area_id);
+        })
+        ->where('sos_partner_officers.sos_partner_id', $partner_id)
+        ->select('sos_partner_officers.*', 'users.photo as photo_officer', 'sos_partner_areas.name_area as area_officer')
+        ->get();
 
         foreach ($data as $key => $value) {
             // ดึงข้อมูล maintain_notis ที่ officer_id ตรงกับเจ้าหน้าที่
@@ -595,5 +602,6 @@ class Maintain_notisController extends Controller
         return $data;
     }
 
+    //=============== จบส่วน คุณภาพการซ่อม =======================
 
 }
