@@ -431,49 +431,53 @@
         console.log('api_1669');
 
         const url = 'https://api-data-integration-gateway.fm-sp.com/api/v1/form/v1_pre_opreration';
-        const token = '04ecba8fa6243acbdf0d1e6ca12e769127f20f93f72a15cd46de6f9b6431e5f3';
-        const data = {
-            informer: "self",
-            phone: "0891234567",
-            cid: "1234567890123",
-            firstname: "สมชาย",
-            lastname: "ใจดี",
-            gender: "M",
-            age: 35,
-            symptom_type: 13,
-            symptom_detail: "ทดสอบ",
-            location: "ถนนสุขุมวิท ซอย 3 ใกล้กับสถานีรถไฟฟ้า",
-            province_code: "10",
-            district_code: "1029",
-            sub_district_code: "102901",
-            latitude: 13.736717,
-            longitude: 100.523186,
-            cbd_code: 25, 
-            num_victims: 1,
-            risk_of_recurrence: false,
-            platform: "iOS 14.4"
-        };
+const username = 'idems-gateway-api';
+const password = 'YXBpLW9wZXI6YXBpLW9wZXJAcGVybWlzaW9u';
+const token = btoa(`${username}:${password}`); // แปลง username และ password เป็น Base64
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-token': token
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(result => {
-            console.log('Success:', result);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+const data = {
+    informer: "self",
+    phone: "0891234567",
+    cid: "1234567890123",
+    firstname: "สมชาย",
+    lastname: "ใจดี",
+    gender: "M",
+    age: 35,
+    symptom_type: 13,
+    symptom_detail: "บาดเจ็บที่ขาและแขน",
+    location: "ถนนสุขุมวิท ซอย 3 ใกล้กับสถานีรถไฟฟ้า",
+    province_code: "10",
+    district_code: "1029",
+    sub_district_code: "102901",
+    latitude: 13.736717,
+    longitude: 100.523186,
+    cbd_code: 25,
+    num_victims: 1,
+    risk_of_recurrence: false,
+    platform: "iOS 14.4"
+};
+
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${token}` // ใส่ Authentication Header
+    },
+    body: JSON.stringify(data)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+})
+.then(result => {
+    console.log('Success:', result);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
 
     }
 
