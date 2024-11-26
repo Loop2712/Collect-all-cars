@@ -246,18 +246,24 @@
     }
 
     function get_countryCode(){
-        fetch("{{ url('/') }}/api/get_countryCode")
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                // console.log(result['countryCode']);
 
-                if(result.status = "success"){
-                    countryCode = result['countryCode'] ;
-                    get_phone_sos_general(countryCode);
-                    show_btn_sos(countryCode);
-                }
-            });
+
+        countryCode = "TH" ;
+        get_phone_sos_general(countryCode);
+        show_btn_sos(countryCode);
+
+        // fetch("{{ url('/') }}/api/get_countryCode")
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.log(result);
+        //         // console.log(result['countryCode']);
+
+        //         if(result.status = "success"){
+        //             countryCode = result['countryCode'] ;
+        //             get_phone_sos_general(countryCode);
+        //             show_btn_sos(countryCode);
+        //         }
+        //     });
     }
 
     function show_btn_sos(countryCode){
