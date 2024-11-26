@@ -140,7 +140,8 @@ class SosmapController extends Controller
                 'phone' => $phone,
         ]);
 
-         return redirect('/sos_map/create')->with('flash_message', 'Sos_map added!');
+         // return redirect('/sos_map/create')->with('flash_message', 'Sos_map added!');
+         return redirect('/sos_organization')->with('flash_message', 'Sos_map added!');
          
     }
 

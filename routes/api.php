@@ -469,6 +469,9 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::post('/map_search_by_district', 'Sos_partnersController@map_search_by_district');
     Route::post('/CF_New_Area', 'Sos_partnersController@CF_New_Area');
     Route::get('/search_polygon_area', 'Sos_partnersController@search_polygon_area');
+    Route::get('/get_countryCode', 'Sos_partnersController@get_countryCode');
+    Route::get('/get_phone_sos_general/{countryCode}', 'Sos_partnersController@get_phone_sos_general');
+    Route::get('/get_phone_embassy/{nationalitie}/{countryCode}', 'Sos_partnersController@get_phone_embassy');
 
 // >>>>>> END SOS PARTNER V2. <<<<<< //
 

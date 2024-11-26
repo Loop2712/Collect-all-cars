@@ -1454,4 +1454,21 @@ class Sos_mapController extends Controller
         return response()->json($groupedSubsidiaries);
     }
 
+    public function sos_organization(Request $request)
+    {
+        $condo_id = $request->get('condo_id');
+        $text_sos = $request->get('text');
+
+        $user = Auth::user();
+        if (!empty($user->nationalitie)){
+            $nationalitie = Nationality::where('nationality',$user->nationalitie)->get();
+            foreach ($nationalitie as $item) {
+                $nationalitie_tel = $item->tel;
+            }
+            return view('sos_partners.sos_organization', compact('user','text_sos','nationalitie_tel', 'condo_id'));
+        }
+        
+        return view('sos_partners.sos_organization', compact('user','text_sos', 'condo_id'));
+    }
+
 }

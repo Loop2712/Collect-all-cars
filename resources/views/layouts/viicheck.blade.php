@@ -425,7 +425,7 @@
         </div>
         <div class="col-6 d-block d-lg-none">
           @if(Auth::check() && url()->full() != url('/sos_map/create'))
-          <a class="notranslate" href="{{ url('/sos_map/create') }}" style="font-size: 18px;position: absolute;bottom: 1%;">
+          <a id="btn_sos_on_navbar" class="notranslate" href="{{ url('/sos_map/create') }}" style="font-size: 18px;position: absolute;bottom: 1%;">
             <span class="btn btn-danger main-shadow main-radius">
               SOS <i class="fa-solid fa-truck-medical"></i>
             </span>
@@ -1645,40 +1645,42 @@
 
   function show_logo_partner() {
 
-    fetch("{{ url('/') }}/api/show_logo_partner")
-      .then(response => response.json())
-      .then(result => {
-        // console.log(result);
+    if( document.querySelector('#foot_logo_partner') ){
+      fetch("{{ url('/') }}/api/show_logo_partner")
+        .then(response => response.json())
+        .then(result => {
+          // console.log(result);
 
-        let foot_logo_partner = document.querySelector('#foot_logo_partner');
+          let foot_logo_partner = document.querySelector('#foot_logo_partner');
 
-        for (var iii = 0; iii < result.length; iii++) {
-          // div
-          let div_img = document.createElement("div");
-          let div_class = document.createAttribute("class");
-          div_class.value = "text-center";
-          div_img.setAttributeNode(div_class);
+          for (var iii = 0; iii < result.length; iii++) {
+            // div
+            let div_img = document.createElement("div");
+            let div_class = document.createAttribute("class");
+            div_class.value = "text-center";
+            div_img.setAttributeNode(div_class);
 
-          // img
-          let img = document.createElement("img");
-          let img_class = document.createAttribute("class");
-          img_class.value = "p-md-3 p-lg-3";
-          img.setAttributeNode(img_class);
-          let img_style = document.createAttribute("style");
-          img_style.value = "width: 20%;object-fit: contain;";
-          img.setAttributeNode(img_style);
-          let img_src = document.createAttribute("src");
-          img_src.value = "{{ url('storage')}}/" + result[iii]['logo'];
-          img.setAttributeNode(img_src);
-          // เพิ่ม img เข้า div เล็ก
-          div_img.appendChild(img);
+            // img
+            let img = document.createElement("img");
+            let img_class = document.createAttribute("class");
+            img_class.value = "p-md-3 p-lg-3";
+            img.setAttributeNode(img_class);
+            let img_style = document.createAttribute("style");
+            img_style.value = "width: 20%;object-fit: contain;";
+            img.setAttributeNode(img_style);
+            let img_src = document.createAttribute("src");
+            img_src.value = "{{ url('storage')}}/" + result[iii]['logo'];
+            img.setAttributeNode(img_src);
+            // เพิ่ม img เข้า div เล็ก
+            div_img.appendChild(img);
 
-          // เพิ่มเข้า div ใหญ่
-          foot_logo_partner.prepend(div_img);
+            // เพิ่มเข้า div ใหญ่
+            foot_logo_partner.prepend(div_img);
 
-        }
+          }
 
-      });
+        });
+    }
   }
 
   function func_arrivalTime(duration) {

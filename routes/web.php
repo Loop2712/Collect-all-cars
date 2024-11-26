@@ -480,6 +480,7 @@ Route::middleware(['auth'])->group(function () {
 
 	// >>>>>> SOS PARTNER V2. <<<<<< //
 		Route::get('page_check_area_repair', 'Sos_partnersController@page_check_area_repair');
+		Route::get('sos_organization', 'Sos_mapController@sos_organization');
 	// >>>>>> END SOS PARTNER V2. <<<<<< //
 
 });
@@ -780,6 +781,8 @@ Route::get('/demo/set_group_line', function () {
 Route::get('/demo/register_organization', function () {
     return view('demo/register_organization');
 });
+
+Route::resource('sos_phone_country', 'Sos_phone_countryController');
 
 // Route::resource('sos_partners', 'Sos_partnersController');
 Route::resource('sos_partner_areas', 'Sos_partner_areasController');

@@ -17,6 +17,7 @@ use App\Models\Maintain_category;
 use App\Models\Maintain_sub_category;
 use Milon\Barcode\DNS2D;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Sos_phone_country;
 
 class Sos_partnersController extends Controller
 {
@@ -941,8 +942,66 @@ class Sos_partnersController extends Controller
     }
 
     function search_polygon_area(){
-        $data = Sos_partner_area::where('sos_area' , '!=' , null)->where('status' , 'Active')->get();
+        // $data = Sos_partner_area::where('sos_area' , '!=' , null)->where('status' , 'Active')->get();
+
+        $data = DB::table('sos_partner_areas')
+            ->leftJoin('sos_partners', 'sos_partners.id', '=', 'sos_partner_areas.sos_partner_id')
+            ->select('sos_partner_areas.*', 'sos_partners.logo', 'sos_partners.name')
+            ->where('sos_partner_areas.sos_area' , '!=' , null)
+            ->where('sos_partner_areas.status' , 'Active')
+            ->get();
+
         return $data ;
+    }
+
+    public function get_countryCode()
+    {
+        // ดึง IP ภายนอกด้วย ipify
+        $externalIp = file_get_contents('https://api.ipify.org');
+        
+        // ตรวจสอบว่าได้ IP address จริงหรือไม่
+        if ($externalIp && filter_var($externalIp, FILTER_VALIDATE_IP)) {
+            // ใช้ cURL เรียก ip-api ด้วย IP ที่ดึงมา
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'http://ip-api.com/php/' . $externalIp);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            // แปลงผลลัพธ์จากการเรียก ip-api
+            $query = @unserialize($response);
+
+            if ($query && $query['status'] === 'success') {
+                return $query;
+            } else {
+                return [
+                    'status' => 'fail',
+                    'message' => 'ไม่สามารถดึงข้อมูลตำแหน่งที่ตั้งได้'
+                ];
+            }
+        } else {
+            return [
+                'status' => 'fail',
+                'message' => 'ไม่สามารถดึง IP ภายนอกได้'
+            ];
+        }
+    }
+
+    function get_phone_sos_general($countryCode){
+        $data = Sos_phone_country::where('countryCode' , $countryCode)->get();
+        return $data ;
+    }
+
+    function get_phone_embassy($nationalitie , $countryCode){
+
+        if($countryCode != "Thai"){
+            $data = DB::table('nationalities')->where('nationality', $nationalitie)->get();
+            return $data ;
+        }
+        else if($countryCode == "Thai"){
+
+        }
+        
     }
 
 }
