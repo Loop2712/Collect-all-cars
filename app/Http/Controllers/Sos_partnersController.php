@@ -956,14 +956,13 @@ class Sos_partnersController extends Controller
 
     public function get_countryCode()
     {
-        // ดึง IP ภายนอกด้วย ipify
-        $externalIp = file_get_contents('https://api.ipify.org');
-        
-        // ตรวจสอบว่าได้ IP address จริงหรือไม่
-        if ($externalIp && filter_var($externalIp, FILTER_VALIDATE_IP)) {
-            // ใช้ cURL เรียก ip-api ด้วย IP ที่ดึงมา
+        $userIp = getUserIP();
+
+        // ตรวจสอบว่าได้ IP จริงหรือไม่
+        if ($userIp && filter_var($userIp, FILTER_VALIDATE_IP)) {
+            // ใช้ cURL เรียก ip-api ด้วย IP ของผู้ใช้งาน
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://ip-api.com/php/' . $externalIp);
+            curl_setopt($ch, CURLOPT_URL, 'http://ip-api.com/php/' . $userIp);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $response = curl_exec($ch);
             curl_close($ch);
@@ -982,9 +981,20 @@ class Sos_partnersController extends Controller
         } else {
             return [
                 'status' => 'fail',
-                'message' => 'ไม่สามารถดึง IP ภายนอกได้'
+                'message' => 'ไม่สามารถดึง IP ของผู้ใช้งานได้'
             ];
         }
+    }
+
+    function getUserIP() {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
     }
 
     function get_phone_sos_general($countryCode){
@@ -1002,6 +1012,14 @@ class Sos_partnersController extends Controller
 
         }
         
+    }
+
+    public function sos_idems(Request $request)
+    {
+        $requestData = $request->all();
+        $pre_operation_id = $requestData['pre_operation_id'] ;
+
+        return view('idems.sos_idems', compact('pre_operation_id'));
     }
 
 }

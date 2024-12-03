@@ -30,7 +30,7 @@
     </div>
 
     <!-- Section 2 Photo By Partner -->
-    <div id="Photo_By_Partner" class="col-12">
+    <div id="Photo_By_Partner" class="col-12 d-none">
         <div class="col-12 mb-4">
             <a href="https://www.ocean.co.th/oceanlife-saver">
                 <img src="http://localhost/Collect-all-cars/public/img/more/button Ocean Life Saver.png" alt="" style="width: 100%;">
@@ -205,7 +205,7 @@
                                     <div class="justify-content-center col-12">
                                         <b>
                                             <span class="d-block notranslate">` + area.name + `</span>
-                                            <span id="name_area_id_` + area.id + `" class="d-block notranslate">` + area.name_area + `</span>
+                                            <span id="area_linegroup_`+area.sos_group_line_id+`" class="d-block notranslate">` + area.name_area + `</span>
                                         </b>
                                     </div>
                                 </div>
@@ -216,9 +216,9 @@
                     content_Area_supervisor.insertAdjacentHTML("beforeend", html);
                 } else {
                     // If area.name is duplicate, remove the specific span element
-                    let spanElement = document.querySelector('#name_area_id_' + area.id);
+                    let spanElement = document.querySelector('#area_linegroup_'+area.sos_group_line_id);
                     if (spanElement) {
-                        spanElement.remove(); // Remove the span element if it exists
+                        spanElement.innerHTML = "";
                     }
                 }
 
@@ -247,23 +247,24 @@
 
     function get_countryCode(){
 
+        console.log("get_countryCode");
 
-        countryCode = "TH" ;
-        get_phone_sos_general(countryCode);
-        show_btn_sos(countryCode);
+        // countryCode = "TH" ;
+        // get_phone_sos_general(countryCode);
+        // show_btn_sos(countryCode);
 
-        // fetch("{{ url('/') }}/api/get_countryCode")
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         // console.log(result);
-        //         // console.log(result['countryCode']);
+        fetch("{{ url('/') }}/api/get_countryCode")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                console.log(result['countryCode']);
 
-        //         if(result.status = "success"){
-        //             countryCode = result['countryCode'] ;
-        //             get_phone_sos_general(countryCode);
-        //             show_btn_sos(countryCode);
-        //         }
-        //     });
+                if(result.status = "success"){
+                    countryCode = result['countryCode'] ;
+                    get_phone_sos_general(countryCode);
+                    show_btn_sos(countryCode);
+                }
+            });
     }
 
     function show_btn_sos(countryCode){
@@ -430,55 +431,63 @@
     async function api_1669() {
         console.log('api_1669');
 
-        const url = 'https://api-data-integration-gateway.fm-sp.com/api/v1/form/v1_pre_opreration';
-        const username = ' idems-gateway-api';
-        const password = 'YXBpLW9wZXI6YXBpLW9wZXJAcGVybWlzaW9u';
-        const token = '04ecba8fa6243acbdf0d1e6ca12e769127f20f93f72a15cd46de6f9b6431e5f3';
+        let myHeaders = new Headers();
+            myHeaders.append("x-token", "04ecba8fa6243acbdf0d1e6ca12e769127f20f93f72a15cd46de6f9b6431e5f3");
+            myHeaders.append("Authorization", "Basic aWRlbXMtZ2F0ZXdheS1hcGk6WVhCcExXOXdaWEk2WVhCcExXOXdaWEpBY0dWeWJXbHphVzl1");
+            myHeaders.append("Content-Type", "application/json");
 
-        const data = {
-            "informer": "self", 
-            "phone": "0891234567",
-            "cid": "1234567890123",
-            "firstname": "สมชาย",
-            "lastname": "ใจดี",
-            "gender": "M",
-            "age": 35,
-            "symptom_type": 13,
-            "symptom_detail": "บาดเจ็บที่ขาและแขน",
-            "location": "ถนนสุขุมวิท ซอย 3 ใกล้กับสถานีรถไฟฟ้า",
-            "province_code": "10",
-            "district_code": "1029",
-            "sub_district_code": "102901",
-            "latitude": 13.736717,
-            "longitude": 100.523186,
-            "cbd_code": 25,
-            "num_victims": 1,
-            "risk_of_recurrence": false,
-            "platform": "iOS 14.4"
-        };
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + btoa(`${username}:${password}`),
-                    'x-token': token // Header เพิ่มเติม
-                },
-                body: JSON.stringify(data) // แปลงข้อมูล JSON เป็น string
+            let raw = JSON.stringify({
+                "informer":"self",
+                "phone":"0891234567",
+                "cid":"1234567890123",
+                "firstname":"สมชาย",
+                "lastname":"ใจดี",
+                "gender":"M",
+                "age":35,
+                "symptom_type":13,
+                "symptom_detail":"บาดเจ็บที่ขาและแขน",
+                "location":"ถนนสุขุมวิท ซอย 3 ใกล้กับสถานีรถไฟฟ้า",
+                "province_code":"10",
+                "district_code":"1029",
+                "sub_district_code":"102901",
+                "latitude":13.736717,
+                "longitude":100.523186,
+                "cbd_code":25,
+                "num_victims":1,
+                "risk_of_recurrence":false,
+                "platform":"iOS 14.4"
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            let requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
 
-            const result = await response.json(); // รอการแปลง response เป็น JSON
-            console.log('Response:', result); // แสดงผลลัพธ์ใน console
-        } catch (error) {
-            console.error('Error:', error); // แสดง error ถ้ามีข้อผิดพลาด
-        }
+            fetch("https://api-data-integration-gateway.fm-sp.com/api/v1/form/v1_pre_opreration", requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    console.log('Response:', result);
+                    // ตรวจสอบ success == true
+                    if (result.success === true) {
+                        // console.log("Success! Calling check_status_case_1669...");
+                        // check_status_case_1669(result); // เรียกฟังก์ชันพร้อมส่ง result
+                        let pre_operation_id = result['result']['_id'] ;
+                        window.location.href = `{{ url('/') }}/sos_idems?pre_operation_id=${pre_operation_id}`;
+                    } else {
+                        console.log("Success is false. Handle accordingly.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
     }
-
 
 </script>
 
@@ -486,7 +495,7 @@
 
 <br><br><br><br>
 @if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429' || Auth::user()->id == '50')
-<div style="display:block;">
+<div style="display:none;">
 @else
 <div style="display:none;">
 @endif
