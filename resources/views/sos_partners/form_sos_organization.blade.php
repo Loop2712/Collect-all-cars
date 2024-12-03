@@ -247,35 +247,29 @@
 
     function get_countryCode(){
 
-        console.log("get_countryCode");
-
-        // countryCode = "TH" ;
-        // get_phone_sos_general(countryCode);
-        // show_btn_sos(countryCode);
-
-        // fetch("{{ url('/') }}/api/get_countryCode")
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log(result);
-        //         console.log(result['countryCode']);
-
-        //         if(result.status = "success"){
-        //             countryCode = result['countryCode'] ;
-        //             get_phone_sos_general(countryCode);
-        //             show_btn_sos(countryCode);
-        //         }
-        //     });
-
         fetch("{{ url('/') }}/api/get_countryCode")
-            .then(response => response.text()) // ใช้ text() แทน json() เพื่อตรวจสอบผลลัพธ์ดิบ
-            .then(result => {
-                console.log("Raw Response:", result); // ตรวจสอบว่า response คืออะไร
-                const jsonData = JSON.parse(result); // แปลงเป็น JSON (ถ้าเป็นไปได้)
-                console.log("Parsed JSON:", jsonData);
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); // แปลง response เป็น JSON
             })
-            .catch(error => console.error('Error:', error));
+            .then(result => {
+                // console.log("Parsed JSON:", result);
+                if (result.status === "success") {
+                    const countryCode = result['countryCode'];
+                    get_phone_sos_general(countryCode);
+                    show_btn_sos(countryCode);
+                }
+                else{
+                    countryCode = "TH" ;
+                    get_phone_sos_general(countryCode);
+                    show_btn_sos(countryCode);
+                }
+            })
+            .catch(error => console.error('Fetch Error:', error));
+    }
 
-            }
 
     function show_btn_sos(countryCode){
         console.log("สัญชาติ >> " + nationalitie);
