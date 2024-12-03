@@ -253,19 +253,29 @@
         // get_phone_sos_general(countryCode);
         // show_btn_sos(countryCode);
 
-        fetch("{{ url('/') }}/api/get_countryCode")
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                console.log(result['countryCode']);
+        // fetch("{{ url('/') }}/api/get_countryCode")
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.log(result);
+        //         console.log(result['countryCode']);
 
-                if(result.status = "success"){
-                    countryCode = result['countryCode'] ;
-                    get_phone_sos_general(countryCode);
-                    show_btn_sos(countryCode);
-                }
-            });
-    }
+        //         if(result.status = "success"){
+        //             countryCode = result['countryCode'] ;
+        //             get_phone_sos_general(countryCode);
+        //             show_btn_sos(countryCode);
+        //         }
+        //     });
+
+        fetch("{{ url('/') }}/api/get_countryCode")
+            .then(response => response.text()) // ใช้ text() แทน json() เพื่อตรวจสอบผลลัพธ์ดิบ
+            .then(result => {
+                console.log("Raw Response:", result); // ตรวจสอบว่า response คืออะไร
+                const jsonData = JSON.parse(result); // แปลงเป็น JSON (ถ้าเป็นไปได้)
+                console.log("Parsed JSON:", jsonData);
+            })
+            .catch(error => console.error('Error:', error));
+
+            }
 
     function show_btn_sos(countryCode){
         console.log("สัญชาติ >> " + nationalitie);

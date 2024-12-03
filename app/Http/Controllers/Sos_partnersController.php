@@ -956,7 +956,7 @@ class Sos_partnersController extends Controller
 
     public function get_countryCode()
     {
-        $userIp = getUserIP();
+        $userIp = $this->getUserIP();
 
         // ตรวจสอบว่าได้ IP จริงหรือไม่
         if ($userIp && filter_var($userIp, FILTER_VALIDATE_IP)) {
