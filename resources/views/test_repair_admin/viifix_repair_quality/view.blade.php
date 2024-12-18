@@ -92,8 +92,8 @@
 
             data['maintain'].forEach((item) => {
                 let photo_officer;
-                if (item.photo_officer) {
-                    photo_officer = '{{ url("/") }}/storage/' + item.photo_officer;
+                if (data.photo_officer) {
+                    photo_officer = '{{ url("/") }}/storage/' + data.photo_officer;
                 } else {
                     photo_officer = "{{url('img/stickerline/PNG/1.png')}}";
                 }

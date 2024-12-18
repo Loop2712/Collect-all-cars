@@ -1,5 +1,5 @@
 @php
-	$date_now = date("Y-m-d "); 
+	$date_now = date("Y-m-d ");
 
     $day_now = date("d");
     $month_now = date("m");
@@ -56,7 +56,9 @@
 @if( $month_now == "12" and $day_now >= "10" and $day_now <= 24)
 	<div>
 		<div id="snow"></div>
-		<img style="margin-top:-30px;" width="100%" src="{{ asset('/img/festival/hero-bg_12.jpg') }}">
+            <div class="w-100 d-flex justify-content-center">
+                <img style="margin-top:-30px;max-width: 728px;" width="100%"  src="{{ asset('/img/festival/hero-bg_12.jpg') }}">
+            </div>
 		<br><br><br>
 	</div>
 @endif
@@ -70,7 +72,7 @@
     </div>
 	<div class="card-img-overlay text-center" style="padding-top:0px;">
 		<img width="60%"class="animated fadeInRight" src="{{ asset('/img/stickerline/PNG/29.png') }}">
-		
+
 		<h1 class="mb-3 h2" style="margin-top:10px;margin-bottom:0px;color:black;font-family: 'Pattaya', sans-serif;-webkit-text-stroke: 0.5px black;font-size:30px;">สวัสดีปีใหม่ไทย</h1>
 	</div>
 	<img style="position:absolute;width: 100%; top: 0px;" src="{{ url('/') }}/img/festival/flower2.gif">

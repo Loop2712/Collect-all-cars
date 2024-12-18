@@ -19,6 +19,7 @@ use App\Models\Group_line;
 use App\Models\Sos_partner_area;
 use App\Models\Sos_partner_officer;
 use App\Models\Maintain_device_code;
+use App\Models\Maintain_material;
 use App\Models\Sos_partner;
 
 
@@ -479,7 +480,253 @@ class Maintain_notisController extends Controller
         return $data_maintains;
     }
 
-    //=============== คุณภาพการซ่อม =======================
+    //=============== หน้าแอดมิน viifix =======================
+
+    function viifix_repair_admin_index(Request $request){
+
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+
+        $data_maintains = Maintain_noti::join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->where('maintain_notis.partner_id',$data_partner->id)
+        ->select('maintain_notis.*','maintain_categorys.id as id_categories','maintain_categorys.name as name_categories')
+        ->get();
+
+        // จัดกลุ่มข้อมูลตาม 'name_categories' และดึงเฉพาะ category_id และ name_categories
+        $data_categories = $data_maintains
+        ->groupBy('name_categories')
+        ->map(function ($group) {
+            return [
+                'category_id' => $group->first()->category_id,
+                'name_categories' => $group->first()->name_categories,
+            ];
+        });
+
+        return view('test_repair_admin/viifix_repair_admin/index',compact('data_maintains','data_partner','data_categories'));
+    }
+
+    function viifix_repair_admin_view(Request $request ,$maintain_id){
+
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        $data_maintains = Maintain_noti::join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
+        ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->where('maintain_notis.id', $maintain_id)
+        ->select('maintain_notis.*',
+        'maintain_categorys.name as name_categories',
+        'maintain_sub_categorys.name as name_subs_categories',
+        'sos_partner_areas.name_area as name_area',
+        'users.phone as phone_user',
+        'users.email as email_user',
+        'maintain_notified_users.position as position_user',
+        'maintain_notified_users.department as department_user',)
+        ->first();
+
+        $officer_ids = json_decode($data_maintains->officer_id, true);
+
+        if (is_array($officer_ids)) {
+            // ดึงข้อมูลเจ้าหน้าที่ที่เกี่ยวข้อง
+            $officer_data = Sos_partner_officer::whereIn('id', array_column($officer_ids, 'officer_id'))
+                ->select('id', 'full_name','department','position','sos_partner_id')
+                ->get();
+
+            // ดึง sos_partner_id ของเจ้าหน้าที่ที่เกี่ยวข้องทั้งหมด
+            $sos_partner_ids = $officer_data->pluck('sos_partner_id')->toArray(); // ดึง sos_partner_id จาก $officer_data
+
+            // ดึงข้อมูลเจ้าหน้าที่ที่ไม่เกี่ยวข้อง และต้องมี sos_partner_id ตรงกับเจ้าหน้าที่ใน $officer_data
+            $remain_officer_data = Sos_partner_officer::whereNotIn('id', array_column($officer_ids, 'officer_id'))
+                ->whereIn('sos_partner_id', $sos_partner_ids) // เพิ่มเงื่อนไขการตรวจสอบ sos_partner_id
+                ->select('id', 'full_name', 'department', 'position')
+                ->get();
+
+            // เพิ่มข้อมูลเจ้าหน้าที่ในแต่ละรายการ
+            $data_maintains->officers = $officer_data;
+            $data_maintains->remain_officers = $remain_officer_data;
+        } else {
+            $data_maintains->officers = [];
+            // ดึงข้อมูลเจ้าหน้าที่ทั้งหมดในกรณีที่ไม่มี officer_ids
+            $data_maintains->remain_officers = Sos_partner_officer::select('id', 'full_name', 'department', 'position')->get();
+        }
+
+
+        return view('test_repair_admin/viifix_repair_admin/view',compact('data_maintains','data_partner'));
+    }
+
+
+    public function create_data_maintain_admin_index(Request $request) {
+
+        $partner_id = $request->get('partner_id');
+        $categorie_id = $request->get('categorie');
+        $status = $request->get('status');
+
+        $data = Maintain_noti::join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+            ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+            ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+            ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
+            ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+            ->where('maintain_notis.partner_id', $partner_id)
+            ->when($categorie_id, function ($query, $categorie_id) {
+                return $query->where('maintain_notis.category_id', $categorie_id);
+            })
+            ->when($status, function ($query, $status) {
+                return $query->where('maintain_notis.status', $status);
+            })
+            ->select('maintain_notis.*',
+            'maintain_categorys.name as name_categories',
+            'maintain_sub_categorys.name as name_subs_categories',
+            'sos_partner_areas.name_area as name_area',
+            'users.phone as phone_user',
+            'users.email as email_user',
+            'maintain_notified_users.position as position_user',
+            'maintain_notified_users.department as department_user',)
+            ->get();
+
+        // แปลง officer_id ในแต่ละรายการของ $data ให้อยู่ในรูปแบบ array
+        foreach ($data as $key => $item) {
+            $officer_ids = json_decode($item->officer_id, true);
+
+            if (is_array($officer_ids)) {
+                // ดึงข้อมูลเจ้าหน้าที่ที่เกี่ยวข้อง
+                $officer_data = Sos_partner_officer::whereIn('id', array_column($officer_ids, 'officer_id'))
+                    ->select('id', 'full_name','department','position')
+                    ->get();
+
+                // เพิ่มข้อมูลเจ้าหน้าที่ในแต่ละรายการ
+                $item->officers = $officer_data;
+            } else {
+                $item->officers = [];
+            }
+        }
+
+        return $data;
+    }
+
+    public function create_timeline_maintain_admin_view(Request $request) {
+        $maintain_id = $request->get('maintain_id');
+
+        $data = Maintain_noti::join('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->join('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+        ->join('maintain_notified_users', 'maintain_notis.maintain_notified_user_id', '=', 'maintain_notified_users.id')
+        ->join('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->where('maintain_notis.id', $maintain_id)
+        ->select('maintain_notis.*',
+        'maintain_categorys.name as name_categories',
+        'maintain_sub_categorys.name as name_subs_categories',
+        'sos_partner_areas.name_area as name_area',
+        'users.phone as phone_user',
+        'users.email as email_user',
+        'maintain_notified_users.position as position_user',
+        'maintain_notified_users.department as department_user',)
+        ->first();
+
+        $officer_ids = json_decode($data->officer_id, true);
+
+        if (is_array($officer_ids)) {
+            // ดึงข้อมูลเจ้าหน้าที่ที่เกี่ยวข้อง
+            $officer_data = Sos_partner_officer::join('users', 'sos_partner_officers.user_id', '=', 'users.id')
+                ->whereIn('sos_partner_officers.id', array_column($officer_ids, 'officer_id'))
+                ->select('sos_partner_officers.id',
+                'sos_partner_officers.full_name',
+                'sos_partner_officers.department',
+                'sos_partner_officers.position',
+                'users.photo',
+                'users.phone')
+                ->get();
+
+            // เรียงข้อมูลจากล่าสุดไปแรกสุด
+            $officer_data = $officer_data->reverse();
+            // เพิ่มข้อมูลเจ้าหน้าที่ในแต่ละรายการ
+            $data->officers = $officer_data;
+        } else {
+            $data->officers = [];
+        }
+
+        return $data;
+    }
+
+    function change_status_maintain(Request $request){
+        $maintain_id = $request->get('maintain_id');
+        $status = $request->get('status');
+
+        if ($status == "เสร็จสิ้น") {
+            DB::table('maintain_notis')
+                ->where('id', $maintain_id)
+                ->update([
+                    'status' => $status,
+                    'datetime_success' => now(), // หากสถานะเป็น "เสร็จสิ้น ให้ใส่เวลาปัจจุบัน
+                ]);
+        } else {
+            DB::table('maintain_notis')
+                ->where('id', $maintain_id)
+                ->update([
+                    'status' => $status, // หากไม่ใช่ "เสร็จสิ้น ให้เพียงอัปเดตสถานะ
+                ]);
+        }
+
+        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+
+        return $data_maintains;
+    }
+
+    function change_priority_maintain(Request $request){
+        $maintain_id = $request->get('maintain_id');
+        $priority = $request->get('priority');
+
+        DB::table('maintain_notis')
+            ->where([
+                    ['id', $maintain_id]
+                ])
+            ->update([
+                    'priority' => $priority,
+                ]);
+
+        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+
+        return $data_maintains;
+    }
+
+    function change_remark_admin_maintain(Request $request){
+        $maintain_id = $request->get('maintain_id');
+        $remark_admin = $request->get('remark_admin');
+
+        DB::table('maintain_notis')
+            ->where([
+                    ['id', $maintain_id]
+                ])
+            ->update([
+                    'remark_admin' => $remark_admin,
+                ]);
+
+        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+
+        return $data_maintains;
+    }
+
+    function confirm_forward_maintain(Request $request){
+        $maintain_id = $request->get('maintain_id');
+
+        DB::table('maintain_notis')
+            ->where([
+                    ['id', $maintain_id]
+                ])
+            ->update([
+                    'status' => "เสร็จสิ้น",
+                    'datetime_success' => now(),
+                ]);
+
+        $data_maintains = Maintain_noti::where('id',$maintain_id)->first();
+
+        return $data_maintains;
+    }
+
+
+    //=============== คุณภาพการซ่อม viifix =======================
 
     function viifix_repair_quality_index(Request $request){
 
@@ -648,5 +895,191 @@ class Maintain_notisController extends Controller
     }
 
     //=============== จบส่วน คุณภาพการซ่อม =======================
+
+    function time_repair_index(Request $request){
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        $data_maintains = Maintain_noti::where('partner_id',$data_partner->id)->get();
+        // ใช้ count() ของ Collection โดยตรง
+        $data_maintains_count = $data_maintains->count();
+
+         // คำนวณปีปัจจุบันและย้อนหลัง 2 ปี
+        $currentYear = date('Y');
+        $years = [
+            $currentYear,
+            $currentYear - 1,
+            $currentYear - 2,
+        ];
+
+        return view('test_repair_admin/viifix_repair_quality/time_repair_index',compact('data_partner','data_maintains','data_partner_area','data_maintains_count','years'));
+    }
+
+    function create_data_time_repair(Request $request){
+        $partner_id = $request->get('partner_id');
+
+        $area_id = $request->get('area_id');
+        $year = $request->get('year');
+        $month = $request->get('month');
+
+        $data = Maintain_noti::join('sos_partner_areas', 'maintain_notis.partner_id', '=', 'sos_partner_areas.id')
+            ->select('maintain_notis.id',
+            'maintain_notis.area_id',
+            'maintain_notis.datetime_command',
+            'sos_partner_areas.name_area as name_area',)
+            ->where('maintain_notis.partner_id',$partner_id)
+            ->when($area_id, function ($query, $area_id) {
+                return $query->where('maintain_notis.area_id', $area_id);
+            })
+            ->when($year, function ($query, $year) {
+                return $query->whereYear('maintain_notis.datetime_command', $year);
+            })
+            ->when($month, function ($query, $month) {
+                return $query->whereMonth('maintain_notis.datetime_command', $month);
+            })
+            ->get();
+
+        $data['count'] = $data->count();
+        return $data;
+    }
+
+    // Test การจัดการวัสดุ / อุปกรณ์ที่ใช้ในการซ่อม
+    function viifix_repair_material_index(Request $request){
+        $data_user = Auth::user();
+        $data_partner = Sos_partner::where('id',$data_user->organization_id)->first();
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$data_partner->id)->get();
+
+        return view('test_repair_admin/viifix_repair_material/index' , compact('data_partner'));
+    }
+
+    function viifix_repair_material_view(Request $request){
+        return view('test_repair_admin/viifix_repair_material/view');
+    }
+
+    function get_material_maintain(Request $request){
+        $partner_id = $request->get('partner_id');
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$partner_id)->get();
+
+        $data_material = Maintain_material::
+        // whereIn(
+        //     'area_id',
+        //     $data_partner_area->pluck('id')->toArray()
+        // )
+        get();
+
+        return $data_material;
+    }
+
+    function create_material_maintain(Request $request){
+        $partner_id = $request->get('partner_id');
+        $material_name = $request->get('material_name');
+        $material_amount = $request->get('material_amount');
+
+         // แทรกข้อมูลลงในตาราง maintain_materials
+        DB::table('maintain_materials')->insert([
+            'name' => $material_name,
+            'amount' => $material_amount,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $data_partner_area = Sos_partner_area::where('sos_partner_id',$partner_id)->get();
+        $data_material = Maintain_material::
+        // whereIn(
+        //     'area_id',
+        //     $data_partner_area->pluck('id')->toArray()
+        // )->
+        get();
+
+        return $data_material;
+    }
+
+    protected function chang_status_maintain(Request $request)
+    {
+        $requestData = $request->all();
+        $id_maintain =  $requestData['id_maintain'];
+        $status_maintain =  $requestData['status_maintain'];
+
+
+        // $data_maintain = Maintain_noti::findOrFail($id_maintain);
+        $data_maintain = Maintain_noti::where('maintain_notis.id' , $id_maintain)->leftjoin('maintain_categorys', 'maintain_notis.category_id', '=', 'maintain_categorys.id')
+        ->leftjoin('maintain_sub_categorys', 'maintain_notis.sub_category_id', '=', 'maintain_sub_categorys.id')
+        ->leftJoin('users', 'maintain_notis.user_id', '=', 'users.id')
+        ->leftJoin('maintain_notified_users', 'maintain_notis.user_id', '=', 'maintain_notified_users.user_id')
+        ->select('maintain_notified_users.name as maintain_user_name','users.email' , 'users.phone' ,'maintain_notis.*','maintain_sub_categorys.name as name_sub_categorys','maintain_categorys.name as name_categorys' ,'maintain_categorys.line_group_id as maintain_group_line_id')
+        ->first();
+
+        $data_users = User::findOrFail($data_maintain->user_id);
+        $date_now = date('Y-m-d\TH:i:s');
+
+
+        DB::table('maintain_notis')
+        ->where('id', $id_maintain)
+        ->update([
+            'status' => $status_maintain,
+        ]);
+
+
+        if ($status_maintain == 'รอดำเนินการ') {
+            $template_path = storage_path('../public/json/maintain/timeline/command.json');
+
+        } else if ($status_maintain == 'กำลังดำเนินการ') {
+            $template_path = storage_path('../public/json/maintain/timeline/process.json');
+
+        }
+        else if ($status_maintain == 'เสร็จสิ้น') {
+            $template_path = storage_path('../public/json/maintain/timeline/success.json');
+
+        }
+        else if ($status_maintain == 'ไม่สามารถดำเนินการได้') {
+            $template_path = storage_path('../public/json/text_success.json');
+        }
+
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("name_cat",$data_maintain->name_sub_categorys,$string_json);
+
+
+        if($status_maintain == 'รอดำเนินการ' && $status_maintain == 'กำลังดำเนินการ' && $status_maintain == 'เสร็จสิ้น'){
+
+        }if($status_maintain == 'กำลังดำเนินการ' && $status_maintain == 'เสร็จสิ้น'){
+
+        }if($status_maintain == 'เสร็จสิ้น'){
+
+        }if($status_maintain == 'ไม่สามารถดำเนินการได้'){
+
+            $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","มีการเปลี่ยนเจ้าหน้าที่ใหม่สำหรับการแจ้งซ่อมนี้ กรุณารอกำหนดแจ้งซ่อมจากเจ้าหน้าที่ใหม่",$string_json);
+        }
+
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_users->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer ' . env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "แบบฟอร์มให้คะแนนการช่วยเหลือ",
+            "content" => $data_users->name,
+        ];
+        MyLog::create($data);
+    }
 
 }

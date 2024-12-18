@@ -9,7 +9,7 @@
   #img_bg_2{
     background-image: url("{{ asset('/img/bg car/pm.png') }}");
     background-size: cover;
-    
+
   }
   #img_bg_3{
     background-image: url("{{ asset('/img/more/0112.jpg') }}");
@@ -140,21 +140,21 @@
                       <b style="font-size: 15px;">PM</b>
                       </a>
                   </li>
-              
+
               </ul>
             </div>
         </div>
         <div class="d-none d-lg-block " id="chartpc"></div>
         <div class="d-block d-md-none"id="chart1111"><div  id="chartmobileam"></div></div>
         <div class="d-block d-md-none" id="chart2222"><div id="chartmobilepm"></div></div>
-        
-        
+
+
         <!-- <div class="card-body">
           <div class="row main-shadow main-radius" id="img_bg_3">
               <div class="col-md-6" style="z-index: 10; ">
                 <center>
                   <canvas id="canvas_1" width="185px" height="185" style="margin-top:140px"></canvas>
-                  
+
                 </center>
               </div>
               <div class="col-md-6" style="z-index: 10;">
@@ -284,7 +284,7 @@
           x: {
             format: 'HH:mm'
           },
-          
+
         },
         };
 
@@ -315,7 +315,7 @@
           x: {
             format: 'HH:mm'
           },
-          
+
         },
         };
 
@@ -345,7 +345,7 @@
           x: {
             format: 'HH:mm'
           },
-          
+
         },
         };
 
@@ -353,7 +353,7 @@
         chart.render();
 </script>
 <script>
-          
+
 </script>
 <script>
   function select_area(){
@@ -469,7 +469,7 @@
         minute=(12.56);
         drawHand_2(ctx, minute, radius*0.8, radius*0.07);
       }
-      
+
   }
 
   function drawHand(ctx, pos, length, width) {
