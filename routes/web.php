@@ -696,22 +696,24 @@ Route::get('/mockup_video_call', function () {
     return view('nationalitie_sos/mockup_video_call');
 });
 
+//==== ส่วน dashboard ViiFix =====
 Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index'); //by junior dear
 Route::get('/dashboard_all_repair', 'MaintainDashboardController@fix_all'); //by junior dear
 Route::get('/dashboard_all_repair_fastest', 'MaintainDashboardController@fix_fastest'); //by junior dear
 Route::get('/dashboard_all_used_repair', 'MaintainDashboardController@fix_used'); //by junior dear
 
+Route::get('/viifix_repair_admin/index', 'Maintain_notisController@viifix_repair_admin_index'); //by junior dear
+Route::get('/viifix_repair_admin/view/{maintain_id}', 'Maintain_notisController@viifix_repair_admin_view'); //by junior dear
+
 Route::get('/viifix_repair_quality/index', 'Maintain_notisController@viifix_repair_quality_index'); //by junior dear
 Route::get('/viifix_repair_quality/view/{officer_id}', 'Maintain_notisController@viifix_repair_quality_view'); //by junior dear
 Route::get('/viifix_repair_quality/detail', 'Maintain_notisController@viifix_repair_quality_detail'); //by junior dear
+Route::get('/time_repair_index', 'Maintain_notisController@time_repair_index'); //by junior dear
 
-Route::get('/demo_detail_repair_quality', function () {
-    return view('test_repair_admin/demo_detail_repair_quality');
-});
+Route::get('/viifix_repair_material/index', 'Maintain_notisController@viifix_repair_material_index'); //by junior dear
+Route::get('/viifix_repair_material/view', 'Maintain_notisController@viifix_repair_material_view'); //by junior dear
 
-// Route::get('user_video_call/sos_help_center', function () {
-//     return view('sos_help_center/user_video_call');
-// });
+
 
 ////////////////////////////
 //////// Agora Chat ////////

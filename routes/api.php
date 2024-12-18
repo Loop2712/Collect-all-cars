@@ -479,6 +479,12 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
 Route::get('/get_sub_category', 'Maintain_notisController@get_sub_category');
 Route::post('/submit_rating_maintain', 'Maintain_notisController@submit_rating_maintain');
 Route::get('/get_data_area_maintain', 'Maintain_notisController@get_data_area_maintain');
+Route::post('/create_data_maintain_admin_index', 'Maintain_notisController@create_data_maintain_admin_index'); // Create By Junior Dear --> ข้อมูลงานซ่อมในหน้า admin --route--> /viifix_repair_admin/index
+Route::post('/create_timeline_maintain_admin_view', 'Maintain_notisController@create_timeline_maintain_admin_view'); // Create By Junior Dear --> ข้อมูลงานซ่อมตรงส่วนไทม์ไลน์ในหน้า view --route--> /viifix_repair_admin/view
+Route::post('/change_status_maintain_admin_view', 'Maintain_notisController@change_status_maintain'); // Create By Junior Dear --> เปลี่ยนสถานะในหน้า view --route--> /viifix_repair_admin/view
+Route::post('/change_priority_maintain_admin_view', 'Maintain_notisController@change_priority_maintain'); // Create By Junior Dear --> เปลี่ยนความเร่งด่วนในหน้า view --route--> /viifix_repair_admin/view
+Route::post('/change_remark_admin_maintain_admin_view', 'Maintain_notisController@change_remark_admin_maintain'); // Create By Junior Dear --> เปลี่ยน remark_admin ในหน้า view --route--> /viifix_repair_admin/view
+Route::post('/confirm_forward_maintain_admin_view', 'Maintain_notisController@confirm_forward_maintain'); // Create By Junior Dear --> ดำเนินการจัดซื้อขัดจ้าง ในหน้า view --route--> /viifix_repair_admin/view
 
 Route::get('/WorkCalendar/{officer_id}', 'Maintain_notisController@WorkCalendar'); // Create By Junior Dear --> ข้อมูลตารางงานของเจ้าหน้าที่
 Route::get('/getAmountMaintainDashboard', 'MaintainDashboardController@getAmountMaintainDashboard'); //Create By Junior Dear --> 4 bubble + 1 table Dashboard
@@ -496,3 +502,10 @@ Route::get('/WorkCalendarDashboard/{partner_id}', 'MaintainDashboardController@W
 Route::post('/create_data_officer_quality_repiar_index', 'Maintain_notisController@create_data_officer_quality_repiar_index'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน index
 Route::post('/create_data_officer_quality_repiar_view', 'Maintain_notisController@create_data_officer_quality_repiar_view'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน view
 Route::post('/create_data_officer_quality_repiar_detail', 'Maintain_notisController@create_data_officer_quality_repiar_detail'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน detail
+
+// material_maintain
+Route::post('/get_material_maintain', 'Maintain_notisController@get_material_maintain'); // Create By Junior Dear --> ข้อมูลวัสดุ/อุปกรณ์ใน viifix_repair_material/index
+Route::post('/create_material_maintain', 'Maintain_notisController@create_material_maintain'); // Create By Junior Dear --> เพิ่ม ข้อมูลวัสดุ/อุปกรณ์ใน viifix_repair_material/index
+
+// time_repair viifix
+Route::post('/create_data_time_repair', 'Maintain_notisController@create_data_time_repair'); // Create By Junior Dear --> ข้อมูลงานซ่อมของ officer ใน detail
