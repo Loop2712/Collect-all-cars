@@ -398,7 +398,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 		Route::get('categorie_repair_view', 'Sos_partnersController@categorie_repair_view');
 		Route::get('view_data_area', 'Sos_partnersController@view_data_area');
 		Route::get('draw_area', 'Sos_partnersController@draw_area');
-
+		Route::get('sos_idems', 'Sos_partnersController@sos_idems');
+		
 	// >>>>>> END SOS PARTNER V2. <<<<<< //
 
 

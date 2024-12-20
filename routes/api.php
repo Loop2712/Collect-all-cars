@@ -472,6 +472,7 @@ Route::post('/create_redeem_code_excel/{privilege_id}/{amount_privilege}', 'Priv
     Route::get('/get_countryCode', 'Sos_partnersController@get_countryCode');
     Route::get('/get_phone_sos_general/{countryCode}', 'Sos_partnersController@get_phone_sos_general');
     Route::get('/get_phone_embassy/{nationalitie}/{countryCode}', 'Sos_partnersController@get_phone_embassy');
+    Route::get('/test_cut_json', 'Sos_partnersController@test_cut_json');
 
 // >>>>>> END SOS PARTNER V2. <<<<<< //
 
