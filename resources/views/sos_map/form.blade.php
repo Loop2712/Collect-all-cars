@@ -1927,7 +1927,7 @@
 @if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
 <div style="display:block;">
 @else
-<div style="display:block;">
+<div style="display:none;">
 @endif
     <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
         <label for="content" class="control-label">{{ 'Content' }}</label>
