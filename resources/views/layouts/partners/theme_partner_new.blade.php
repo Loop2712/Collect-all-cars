@@ -2771,17 +2771,19 @@
     });
 
     function change_text(text, change_text) {
-        // ใช้ Regular Expression เพื่อให้ค้นหาคำที่ตรงกับ text
-        const bodyText = document.body.innerHTML;
+        // ค้นหาและเปลี่ยนข้อความในเนื้อหาที่ไม่ใช่ input หรือ script
+        const nodes = document.body.querySelectorAll("*:not(input):not(script)");
 
-        // สร้าง Regular Expression ที่สนับสนุนข้อความที่ต้องการเปลี่ยน
-        const regex = new RegExp(text, "g");
-        
-        // แทนที่ข้อความที่กำหนดด้วยข้อความใหม่
-        const updatedText = bodyText.replace(regex, change_text);
-
-        // อัปเดตเนื้อหาในเอกสาร
-        document.body.innerHTML = updatedText;
+        nodes.forEach(node => {
+            // ตรวจสอบว่ามีข้อความลูกที่เป็น Text Node หรือไม่
+            node.childNodes.forEach(child => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    // แทนที่ข้อความใน Text Node
+                    const regex = new RegExp(text, "g");
+                    child.textContent = child.textContent.replace(regex, change_text);
+                }
+            });
+        });
     }
 
     // function Theme_check_refuse_and_call(text_url_all) {
