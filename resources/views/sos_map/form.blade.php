@@ -2540,11 +2540,6 @@
             let phone = document.querySelector("#phone");
             let user_id = document.querySelector("#user_id");
 
-            if(test_kawasaki == "Yes"){
-                document.querySelector("#lat").value = "6.1377531";
-                document.querySelector("#lng").value = "101.2497791";
-            }
-
             let lat = document.querySelector("#lat");
             let lng = document.querySelector("#lng");
 
@@ -2635,6 +2630,7 @@
                         "amphoe" : district_A,
                         "tambon" : district_T,
                         "all_address" : response.results[0].formatted_address,
+                        "test_kawasaki" : test_kawasaki,
                     }
                     // console.log(data_sos_1669);
 
@@ -2648,6 +2644,7 @@
                     formData.append('amphoe', data_sos_1669.amphoe);
                     formData.append('tambon', data_sos_1669.tambon);
                     formData.append('all_address', data_sos_1669.all_address);
+                    formData.append('test_kawasaki', data_sos_1669.test_kawasaki);
 
                     fetch("{{ url('/') }}/api/create_new_sos_by_user", {
                         method: 'POST',

@@ -458,18 +458,35 @@ class Sos_help_centerController extends Controller
             $requestData['photo_sos'] = $path ;
         }
 
-        // ค้นหาเจ้าหน้าที่ที่พร้อมและเลขน้อยที่สุด
-        $data_officer_command = Data_1669_officer_command::where('status' , 'Standby')
-            ->where('number','!=',null)
-            ->where('area' , $province_name)
-            ->orderBy('number' , 'ASC')
-            ->first();
+        if($requestData['test_kawasaki'] == "Yes"){
+            // ค้นหาเจ้าหน้าที่ที่พร้อมและเลขน้อยที่สุด
+            $data_officer_command = Data_1669_officer_command::where('status' , 'Standby')
+                ->where('number','!=',null)
+                ->where('area' ,  "ยะลา")
+                ->orderBy('number' , 'ASC')
+                ->first();
 
-        if(!empty($data_officer_command)){
-            $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
-        }else{
-            $requestData['notify'] = '0 - '.$province_name;
+            if(!empty($data_officer_command)){
+                $requestData['notify'] = $data_officer_command->id .' - '. "ยะลา";
+            }else{
+                $requestData['notify'] = '0 - '. "ยะลา";
+            }
         }
+        else{
+            // ค้นหาเจ้าหน้าที่ที่พร้อมและเลขน้อยที่สุด
+            $data_officer_command = Data_1669_officer_command::where('status' , 'Standby')
+                ->where('number','!=',null)
+                ->where('area' , $province_name)
+                ->orderBy('number' , 'ASC')
+                ->first();
+
+            if(!empty($data_officer_command)){
+                $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
+            }else{
+                $requestData['notify'] = '0 - '.$province_name;
+            }
+        }
+
 
         $requestData['create_by'] = "user - " . $requestData['user_id'];
         $requestData['status'] = 'รับแจ้งเหตุ';
