@@ -69,6 +69,7 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         getLocation();
+        test_cut_json();
         // get_countryCode();
     });
 
@@ -243,6 +244,21 @@
         }
 
         return isInside;
+    }
+
+    function test_cut_json(){
+
+        fetch("{{ url('/') }}/api/test_cut_json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); // แปลง response เป็น JSON
+            })
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => console.error('Fetch Error:', error));
     }
 
     function get_countryCode(){

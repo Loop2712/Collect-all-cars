@@ -2766,7 +2766,23 @@
 			@endif
 		@endif
 
+        change_text("ยะลา" , "Kawasaki");
+
     });
+
+    function change_text(text, change_text) {
+        // ใช้ Regular Expression เพื่อให้ค้นหาคำที่ตรงกับ text
+        const bodyText = document.body.innerHTML;
+
+        // สร้าง Regular Expression ที่สนับสนุนข้อความที่ต้องการเปลี่ยน
+        const regex = new RegExp(text, "g");
+        
+        // แทนที่ข้อความที่กำหนดด้วยข้อความใหม่
+        const updatedText = bodyText.replace(regex, change_text);
+
+        // อัปเดตเนื้อหาในเอกสาร
+        document.body.innerHTML = updatedText;
+    }
 
     // function Theme_check_refuse_and_call(text_url_all) {
 
@@ -2972,7 +2988,7 @@
     	fetch("{{ url('/') }}/api/check_data_partner/" + user_organization)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 // console.log(result[0]['class_color_menu']);
                 let delayInMilliseconds = 200;
 
@@ -2998,8 +3014,14 @@
                 }
 
                 if (user_sub_organization) {
-                	document.querySelector('#span_sub_partner').innerHTML = user_sub_organization ;
-                	document.querySelector('#span_sub_partner').classList.remove('d-none');
+                    if(user_sub_organization == "ยะลา"){
+                        document.querySelector('#h4_name_partner').innerHTML = "Kawasaki";
+                        document.querySelector('#span_sub_partner').classList.add('d-none');
+                    }
+                    else{
+                    	document.querySelector('#span_sub_partner').innerHTML = user_sub_organization ;
+                    	document.querySelector('#span_sub_partner').classList.remove('d-none');
+                    }
                 }
 
 		});

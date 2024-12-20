@@ -1,0 +1,179 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "แจ้งซ่อม",
+                "size": "xxs",
+                "gravity": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "cornerRadius": "30px",
+                    "height": "12px",
+                    "width": "12px",
+                    "borderColor": "#EF454D",
+                    "borderWidth": "2px"
+                  },
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "flex": 0
+              },
+              {
+                "type": "text",
+                "text": "date_maintain",
+                "gravity": "center",
+                "flex": 4,
+                "size": "sm"
+              }
+            ],
+            "spacing": "lg",
+            "cornerRadius": "30px",
+            "margin": "xl"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "รับแจ้ง",
+                    "gravity": "center",
+                    "size": "xxs"
+                  }
+                ],
+                "flex": 1
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "cornerRadius": "30px",
+                    "width": "12px",
+                    "height": "12px",
+                    "borderWidth": "2px",
+                    "borderColor": "#6486E3"
+                  },
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "flex": 0
+              },
+              {
+                "type": "text",
+                "text": "date_command",
+                "gravity": "center",
+                "flex": 4,
+                "size": "xs"
+              }
+            ],
+            "spacing": "lg",
+            "cornerRadius": "30px"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "เสร็จสิ้น",
+                    "gravity": "center",
+                    "size": "10px"
+                  }
+                ],
+                "flex": 1
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "cornerRadius": "30px",
+                    "width": "12px",
+                    "height": "12px",
+                    "borderWidth": "2px",
+                    "borderColor": "#28a745"
+                  },
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "flex": 0
+              },
+              {
+                "type": "text",
+                "text": "date_success",
+                "gravity": "center",
+                "flex": 4,
+                "size": "sm"
+              }
+            ],
+            "spacing": "lg",
+            "cornerRadius": "30px"
+          }
+        ]
+      }
+    ]
+  }
+}
+}

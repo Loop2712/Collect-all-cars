@@ -130,13 +130,13 @@
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
-                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                            <img id="img_for_help" src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center col-9 text-center">
                                         <div class="justify-content-center col-12">
                                             <b>
-                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                                <span id="name_for_help" class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
                                                 <span id="name_area_1669" class="d-block" style="color: #ffffff;"></span>
                                             </b>
                                             
@@ -1783,18 +1783,18 @@
 
                     </script>
 
-                    <span class="mail-shadow btn btn-md btn-block mt-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
+                    <span id="modal_btn_ask_1669" class="mail-shadow btn btn-md btn-block mt-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
                         <div class="d-flex">
                             <div class="col-3 p-0 d-flex align-items-center">
                                 <div class="justify-content-center col-12 p-0">
-                                    <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                    <img id="modal_img_for_help" src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
                                 </div>
                             </div>
                             <div class="d-flex align-items-center col-9 text-center">
                                 <div class="justify-content-center col-12">
                                     <b>
-                                        <span class="d-block" style="color: #ffffff;">ขอความช่วยเหลือ</span>
-                                        <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                        <span id="modal_name_for_help" class="d-block" style="color: #ffffff;">ขอความช่วยเหลือ</span>
+                                        <span id="modal_name_area_1669" class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
                                     </b>
                                 </div>
                             </div>
@@ -2440,10 +2440,38 @@
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
                                 // console.log('You inside area 1669!!');
-                                document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
-                                btn_ask_1669.classList.remove('d-none');
-                                document.querySelector('#btn_tel_1669').classList.add('d-none');
-                                break;
+                                if( result[ii]['province_name'] == "ยะลา" ){
+                                    document.querySelector('#btn_ask_1669').setAttribute(
+                                        "style",
+                                        "font-family: 'Kanit', sans-serif; border-radius: 10px; color: white; background-color: #e4211c;"
+                                    );
+                                    document.querySelector('#img_for_help').setAttribute(
+                                        "src",
+                                        "{{ asset('/img/logo-partner/kawasaki.png') }}"
+                                    );
+                                    document.querySelector('#name_for_help').innerHTML = "ขอความช่วยเหลือ";
+                                    document.querySelector('#name_area_1669').innerHTML = "Kawasaki";
+                                    btn_ask_1669.classList.remove('d-none');
+                                    document.querySelector('#btn_tel_1669').classList.add('d-none');
+
+                                    document.querySelector('#modal_name_for_help').innerHTML = "ขอความช่วยเหลือ";
+                                    document.querySelector('#modal_name_area_1669').innerHTML = "Kawasaki";
+                                    document.querySelector('#modal_img_for_help').setAttribute(
+                                        "src",
+                                        "{{ asset('/img/logo-partner/kawasaki.png') }}"
+                                    );
+                                    document.querySelector('#modal_btn_ask_1669').setAttribute(
+                                        "style",
+                                        "font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#e4211c;width: 90%;"
+                                    );
+                                    break;
+                                }
+                                else{
+                                    document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
+                                    btn_ask_1669.classList.remove('d-none');
+                                    document.querySelector('#btn_tel_1669').classList.add('d-none');
+                                    break;
+                                }
                             }else{
                                 // console.log('You NO inside ');
                                 btn_ask_1669.classList.add('d-none');

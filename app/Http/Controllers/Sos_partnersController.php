@@ -954,8 +954,30 @@ class Sos_partnersController extends Controller
         return $data ;
     }
 
+    function test_cut_json() {
+
+        // อ่านข้อมูลจากไฟล์ JSON
+        $template_path = storage_path('../public/json/test_json/test_cut.json');
+        $json_data = file_get_contents($template_path);
+        $data = json_decode($json_data, true);
+
+        // ลบส่วนที่ระบุใน JSON
+        // $data = removeSpecificSection($data);
+
+        // ตรวจสอบว่า contents มีข้อมูลหรือไม่
+        if (isset($data['contents'][0]['body']['contents'][0])) {
+            // ลบส่วนที่ต้องการออกจาก contents
+            unset($data['contents'][0]['body']['contents'][0]);
+        }
+
+        // ส่งข้อมูลที่ถูกตัดออกแล้วกลับ
+        return response()->json($data);
+    }
+
+
     public function get_countryCode()
     {
+
         $userIp = $this->getUserIP();
 
         // ตรวจสอบว่าได้ IP จริงหรือไม่
