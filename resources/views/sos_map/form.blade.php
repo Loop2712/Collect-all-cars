@@ -1927,7 +1927,7 @@
 @if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
 <div style="display:block;">
 @else
-<div style="display:none;">
+<div style="display:block;">
 @endif
     <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
         <label for="content" class="control-label">{{ 'Content' }}</label>
@@ -2395,6 +2395,7 @@
 
 <!-- //// SOS 1669 //// -->
 <script>
+    var test_kawasaki = "No";
 
     function check_user_in_area(position) {
         let btn_ask_1669 = document.querySelector('#btn_ask_1669');
@@ -2441,6 +2442,7 @@
                             if ( inside_1669([ lat, lng ], area_arr) ) {
                                 // console.log('You inside area 1669!!');
                                 if( result[ii]['province_name'] == "ยะลา" ){
+                                    test_kawasaki = "Yes" ;
                                     document.querySelector('#btn_ask_1669').setAttribute(
                                         "style",
                                         "font-family: 'Kanit', sans-serif; border-radius: 10px; color: white; background-color: #e4211c;"
@@ -2537,8 +2539,18 @@
             let name = document.querySelector("#name");
             let phone = document.querySelector("#phone");
             let user_id = document.querySelector("#user_id");
-            let lat = document.querySelector("#lat");
-            let lng = document.querySelector("#lng");
+
+            let lat ;
+            let lng ;
+
+            if(test_kawasaki == "Yes"){
+                lat = "6.1377531";
+                lng = "101.2497791";
+            }
+            else{
+                lat = document.querySelector("#lat");
+                lng = document.querySelector("#lng");
+            }
             let type_reporter = document.querySelector("#type_reporter");
             // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
