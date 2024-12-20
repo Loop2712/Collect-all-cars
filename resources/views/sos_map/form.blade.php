@@ -2540,17 +2540,14 @@
             let phone = document.querySelector("#phone");
             let user_id = document.querySelector("#user_id");
 
-            let lat ;
-            let lng ;
-
             if(test_kawasaki == "Yes"){
-                lat = "6.1377531";
-                lng = "101.2497791";
+                document.querySelector("#lat").value = "6.1377531";
+                document.querySelector("#lng").value = "101.2497791";
             }
-            else{
-                lat = document.querySelector("#lat");
-                lng = document.querySelector("#lng");
-            }
+
+            let lat = document.querySelector("#lat");
+            let lng = document.querySelector("#lng");
+
             let type_reporter = document.querySelector("#type_reporter");
             // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
