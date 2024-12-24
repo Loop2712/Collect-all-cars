@@ -15,20 +15,23 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'], // รวมเส้นทางที่ต้องการอนุญาต CORS
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['*'], // สามารถใช้ได้ทุกเมธอด
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [
+        'https://viicheck.com', 
+        'https://app.viicheck.com',
+    ], // ระบุโดเมนที่อนุญาตให้เข้าถึง
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['*'], // อนุญาตทุก header
 
-    'exposed_headers' => false,
+    'exposed_headers' => [],
 
-    'max_age' => false,
+    'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true, // รองรับคุกกี้ข้ามโดเมน
 
 ];

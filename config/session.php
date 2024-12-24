@@ -92,9 +92,11 @@ return [
     | Session Cache Store
     |--------------------------------------------------------------------------
     |
-    | When using the "apc", "memcached", or "dynamodb" session drivers you may
+    | While using one of the framework's cache driven session backends you may
     | list a cache store that should be used for these sessions. This value
     | must match with one of the application's configured cache "stores".
+    |
+    | Affects: "apc", "dynamodb", "memcached", "redis"
     |
     */
 
@@ -153,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN', '.viicheck.com'), // ใช้ .viicheck.com เพื่อแชร์ session ข้ามโดเมน
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', true),
+    'secure' => env('SESSION_SECURE_COOKIE', true), // ใช้ true หากใช้ HTTPS
 
     /*
     |--------------------------------------------------------------------------
@@ -188,12 +190,11 @@ return [
     |
     | This option determines how your cookies behave when cross-site requests
     | take place, and can be used to mitigate CSRF attacks. By default, we
-    | do not enable this as other CSRF protection services are in place.
+    | will set this value to "lax" since this is a secure default value.
     |
-    | Supported: "lax", "strict", "none"
+    | Supported: "lax", "strict", "none", null
     |
     */
 
-    'same_site' => null,
-
+    'same_site' => 'lax', // ตั้งค่า SameSite ให้เหมาะสม
 ];
