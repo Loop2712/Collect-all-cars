@@ -20,11 +20,26 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail_proposal;
 
 use Illuminate\Support\Facades\Http;
+use App\Models\Sos_1669_form_yellow;
+use App\Models\Sos_help_center;
 
 class test_for_devController extends Controller
 {
     public function main_test()
     {
+
+        $data_yellow = Sos_1669_form_yellow::get();
+
+        foreach($data_yellow as $item){
+            echo $item->id ;
+            echo "<br>" ;
+            $data_help_center = Sos_help_center::where('id', $item->sos_help_center_id)->first();
+            echo $data_help_center->id ;
+            echo "<br>" ;
+        }
+
+        exit();
+
         $provider_id = $event['joined']['members'][0]['userId'];
         $group_id = $event['source']['groupId'];
 
