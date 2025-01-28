@@ -620,7 +620,8 @@ class Sos_help_centerController extends Controller
 
             $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$check_data->id)->first();
 
-            $check_data->be_notified = $data_form_yellow->be_notified;
+            // $check_data->be_notified = $data_form_yellow->be_notified;
+            $check_data->be_notified = isset($data_form_yellow->be_notified) ? $data_form_yellow->be_notified : 'วิธีอื่นๆ';
             $check_data->idc = $data_form_yellow->idc;
             $check_data->rc = $data_form_yellow->rc;
             $check_data->rc_black_text = $data_form_yellow->rc_black_text;
