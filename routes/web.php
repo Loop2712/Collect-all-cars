@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QrCodeGeneratorController;
+use Illuminate\Support\Facades\Cookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use App\Http\Controllers\QrCodeGeneratorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/clear-cookies', function () {
+    Cookie::queue(Cookie::forget('laravel_session'));
+    return "Cookies cleared!";
+});
+
+
 //DEMO
 Route::get('/demo_sos_1669_api', 'Sos_help_centerController@demo');
 
