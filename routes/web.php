@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Cookie;
 */
 
 
-Route::get('/clear-cookies', function () {
+Route::get('/clear-cookies', function (Request $request) {
+    // ลบคุกกี้จากโดเมนหลัก
     Cookie::queue(Cookie::forget('laravel_session'));
+
+    // ลบคุกกี้จากโดเมนย่อย (เช่น .example.com)
+    Cookie::queue(Cookie::forget('laravel_session', '/', '.viicheck.com'));
+
     return "Cookies cleared!";
 });
 
