@@ -249,4 +249,27 @@
     </div>
 </div>
 <br>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("START");
+        // ฟังก์ชันลบคุกกี้
+        function deleteCookie(name, domain) {
+            document.cookie = name + "=; path=/; domain=" + domain + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        }
+
+        // console.log(document.cookie);
+
+        // ตรวจสอบว่ามีคุกกี้ 'laravel_session' ที่มาจาก '.viicheck.com' หรือไม่
+        if (document.cookie.includes("laravel_session")) {
+            deleteCookie("laravel_session", ".viicheck.com");
+            console.log("Deleted laravel_session cookie");
+        } else {
+            console.log("laravel_session cookie not found");
+        }
+
+    });
+
+</script>
 @endsection
