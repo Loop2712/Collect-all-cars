@@ -1384,30 +1384,10 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_4 }} data-idc="ขาว(ทั่วไป)" name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>
-											ขาว(ทั่วไป)    
-										</b>
-									</div>
-								</label>
-							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
 									<input type="radio" {{ $check_idc_2 }} data-idc="เหลือง(เร่งด่วน)" name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
 									<div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เหลือง(เร่งด่วน)  
-										</b>
-									</div>
-								</label>
-							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_idc_5 }} data-idc="ดำ(รับบริการสาธารณสุขอื่น)" name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
-									<div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
-										<b>
-											ดำ(รับบริการสาธารณสุขอื่น)  
 										</b>
 									</div>
 								</label>
@@ -1422,6 +1402,27 @@
 									</div>
 								</label>
 							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_4 }} data-idc="ขาว(ทั่วไป)" name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_5 }} data-idc="ดำ(รับบริการสาธารณสุขอื่น)" name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+									<div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ดำ(รับบริการสาธารณสุขอื่น)  
+										</b>
+									</div>
+								</label>
+							</div>
+							
 						</div>
 					</div>
 
@@ -1991,16 +1992,6 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_4 }} name="rc" data-rc="ขาว(ทั่วไป)" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>
-											ขาว(ทั่วไป)    
-										</b>
-									</div>
-								</label>
-							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
 									<input type="radio" {{ $check_rc_2 }} name="rc" data-rc="เหลือง(เร่งด่วน)" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body  text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
@@ -2009,13 +2000,22 @@
 									</div>
 								</label>
 							</div>
-							
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_rc_3 }} name="rc" data-rc="เขียว(ไม่รุนแรง)" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body  text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_4 }} name="rc" data-rc="ขาว(ทั่วไป)" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
 										</b>
 									</div>
 								</label>
