@@ -3,7 +3,7 @@
 <div class="d-none" id="btn_tel"></div>
 
 <!-- SOS ไทย -->
-<div id="sos_TH" class="row notranslate d-none" style="margin-top:10px">
+<div id="sos_TH" class="row  d-none" style="margin-top:10px">
     @if( !empty($user->nationalitie) && !empty($nationalitie_tel) && $user->nationalitie != "Thai")
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','{{ $nationalitie_tel }}');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp;Embassy of {{$user->nationalitie}}
@@ -96,7 +96,7 @@
 <!-- จบ SOS ไทย -->
 
 <!-- SOS ลาว -->
-<div id="sos_LA" class="row notranslate align-items-center d-none" style="margin-top:10px">
+<div id="sos_LA" class="row  align-items-center d-none" style="margin-top:10px">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศลาว
@@ -191,7 +191,7 @@
 <!-- จบ SOS ลาว -->
 
 <!-- SOS พม่า -->
-<div id="sos_MM" class="row notranslate  align-items-center d-none" style="margin-top:10px;">
+<div id="sos_MM" class="row   align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศเมียนม่า
@@ -291,7 +291,7 @@
 <!-- จบ SOS พม่า -->
 
 <!-- SOS บรูไน -->
-<div id="sos_BN" class="row notranslate align-items-center d-none" style="margin-top:10px;">
+<div id="sos_BN" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศบรูไน
@@ -386,7 +386,7 @@
 <!-- จบ SOS บรูไน -->
 
 <!-- SOS กัมพูชา -->
-<div id="sos_KH" class="row notranslate align-items-center d-none" style="margin-top:10px;">
+<div id="sos_KH" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศกัมพูชา
@@ -481,7 +481,7 @@
 
 
 <!-- SOS อินโดนีเซีย -->
-<div id="sos_ID" class="row notranslate align-items-center d-none" style="margin-top:10px;">
+<div id="sos_ID" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศอินโดนีเซีย
@@ -575,7 +575,7 @@
 <!-- จบ SOS อินโดนีเซีย -->
 
 <!-- SOS มาเลเซีย -->
-<div id="sos_MY" class="row d-none align-items-center notranslate" style="margin-top:10px;">
+<div id="sos_MY" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศมาเลเซีย
@@ -670,7 +670,7 @@
 
 
 <!-- SOS ฟิลิปปินส์ -->
-<div id="sos_PH" class="row d-none align-items-center notranslate" style="margin-top:10px;">
+<div id="sos_PH" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศฟิลิปปินส์
@@ -764,7 +764,7 @@
 </div>
 <!-- จบ SOS ฟิลิปปินส์ -->
 <!-- SOS สิงคโปร์ -->
-<div id="sos_SG" class="row d-none align-items-center notranslate" style="margin-top:10px;">
+<div id="sos_SG" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศสิงคโปร์
@@ -857,7 +857,7 @@
 </div>
 <!-- จบ SOS สิงคโปร์ -->
 <!-- SOS เวียดนาม -->
-<div id="sos_VN" class="row d-none align-items-center notranslate" style="margin-top:10px;">
+<div id="sos_VN" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศเวียดนาม
@@ -949,7 +949,7 @@
 </div>
 <!-- จบ SOS เวียดนาม -->
 <!-- SOS ไต้หวัน -->
-<div id="sos_TW" class="row notranslate align-items-center d-none" style="margin-top:10px;">
+<div id="sos_TW" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
         <span class="text-danger">
             * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศไต้หวัน
