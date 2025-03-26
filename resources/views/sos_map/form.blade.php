@@ -520,10 +520,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area">
+                                                    <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_1669">
                                                         <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
                                                             <div class="form-group my-2" id="add_select_img_1669_api">
-                                                                <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_1669_api').src = window.URL.createObjectURL(this.files[0]);check_add_img_1669_api();document.querySelector('#btn_help_area').disabled = false;">
+                                                                <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_1669_api').src = window.URL.createObjectURL(this.files[0]);check_add_img_1669_api();document.querySelector('#btn_help_area').disabled = false;">
                                                                 <div class="text-center">
                                                                     <center>
                                                                         <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;width: 100px;" src="https://www.viicheck.com/img/stickerline/PNG/37.2.png" class="card-img-top center">
@@ -1090,13 +1090,14 @@
                             <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area" >
                                 <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
                                     <div class="form-group my-2"id="add_select_img_area">
-                                        <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);check_add_img_area();document.querySelector('#btn_help_area').disabled = false;">
+                                        <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="check_add_img_area();document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);document.querySelector('#btn_help_area').disabled = false;">
                                         <div  class="text-center">
                                             <center>
                                                 <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;width: 100px;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
                                             </center>
                                             <h5 class="text-center  mt-2 mb-0">
                                                 <b>เพิ่มภาพถ่าย "คลิก"</b> 
+                                                <!-- SOS เอกชน -->
                                             </h5>
                                         </div>
                                         
@@ -1161,6 +1162,7 @@
                                     // }
 
                                     function check_add_img_area() {
+                                        console.log('check_add_img_area');
                                         document.querySelector('#show_photo_sos_area').classList.remove('d-none');
                                         document.querySelector('#add_select_img_area').classList.add('d-none');
                                     }
