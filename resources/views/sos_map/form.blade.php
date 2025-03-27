@@ -2380,8 +2380,8 @@
         setTimeout(function() {
             let language = "{{ Auth::user()->language }}";
             trocarIdioma(language);
-            console.log("trocarIdioma >> " . language);
-        }, 2500);
+            console.log("trocarIdioma >> " + language);
+        }, 2000);
 
     }
 
