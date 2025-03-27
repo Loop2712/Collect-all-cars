@@ -2281,24 +2281,19 @@
             .then(result => {
                 // console.log(result);
 
-                if (result['check_data'] == "Yes data") {
-                    const processItems = new Promise((resolve) => {
-                        for (let item of result['sos_map_title']) {
-                            let option = document.createElement("option");
-                            option.text = item.title;
-                            option.value = item.title;
-                            title_sos.add(option);
+                if(result['check_data'] == "Yes data"){
+                    for(let item of result['sos_map_title']){
+                        let option = document.createElement("option");
+                        option.text = item.title;
+                        option.value = item.title;
+                        title_sos.add(option);
 
-                            let option_class = document.createAttribute("class");
+                        let option_class = document.createAttribute("class");
                             option_class.value = "translate";
-                            option.setAttributeNode(option_class);
-                        }
-                        resolve(); // เมื่อลูปเสร็จสิ้น
-                    });
+                         
+                        option.setAttributeNode(option_class);
 
-                    processItems.then(() => {
-                        googleTranslateElementInit(); // เรียกเมื่อลูปเสร็จสมบูรณ์
-                    });
+                    }
                 }
 
                 if(name_partner != "กลุ่มดิจิทัล สพฉ"){
