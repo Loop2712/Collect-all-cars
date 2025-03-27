@@ -1432,7 +1432,6 @@
       }, 'google_translate_element');
 
       comboGoogleTradutor = document.getElementById("google_translate_element").querySelector(".goog-te-combo");
-      console.log(comboGoogleTradutor);
     }
 
     function changeEvent(el) {
@@ -1447,6 +1446,8 @@
     }
 
     function trocarIdioma(sigla) {
+      console.log("trocarIdioma");
+      console.log(sigla);
       if (comboGoogleTradutor) {
         comboGoogleTradutor.value = sigla;
         changeEvent(comboGoogleTradutor); //Dispara a troca
