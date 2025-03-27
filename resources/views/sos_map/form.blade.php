@@ -2339,20 +2339,27 @@
             .then(result => {
                 // console.log(result);
 
-                if(result['check_data'] == "Yes data"){
-                    for(let item of result['sos_map_title']){
-                        let option = document.createElement("option");
-                        option.text = item.title;
-                        option.value = item.title;
-                        title_sos.add(option);
+                async function processSosMap(result, sigla) {
+                    if (result['check_data'] === "Yes data") {
+                        // รอให้ลูปเพิ่ม option เสร็จสิ้น
+                        for (let item of result['sos_map_title']) {
+                            let option = document.createElement("option");
+                            option.text = item.title;
+                            option.value = item.title;
+                            title_sos.add(option);
 
-                        let option_class = document.createAttribute("class");
+                            let option_class = document.createAttribute("class");
                             option_class.value = "translate";
-                         
-                        option.setAttributeNode(option_class);
+                            option.setAttributeNode(option_class);
+                        }
 
+                        // รอให้ trocarIdioma(sigla) ทำงานเสร็จ (ถ้ามันเป็น async function)
+                        await trocarIdioma(sigla);
                     }
                 }
+
+                // เรียกใช้ฟังก์ชันนี้
+                processSosMap(result, sigla);
 
                 if(name_partner != "กลุ่มดิจิทัล สพฉ"){
 
