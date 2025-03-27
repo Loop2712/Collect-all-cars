@@ -1425,6 +1425,7 @@
     var comboGoogleTradutor = 'null'; //Varialvel global
 
     function googleTranslateElementInit() {
+      console.log("googleTranslateElementInit");
       new google.translate.TranslateElement({
         pageLanguage: 'po',
         // includedLanguages: 'th,en,zh-TW,ja,ko,es',
