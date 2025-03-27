@@ -2353,12 +2353,13 @@
                             option.setAttributeNode(option_class);
                         }
 
-                        let language = "{{ Auth::user()->language }}";
 
                         // รอให้ trocarIdioma(language) ทำงานเสร็จ (ถ้ามันเป็น async function)
                         await trocarIdioma(language);
                     }
                 }
+
+                let language = "{{ Auth::user()->language }}";
 
                 // เรียกใช้ฟังก์ชันนี้
                 processSosMap(result, language);
