@@ -2323,64 +2323,120 @@
 
     }
 
-    function search_title_sos(){
+    // function search_title_sos(){
 
+    //     let title_sos = document.querySelector('#title_sos');
+    //         title_sos.innerHTML = '' ;
+    //     let name_partner = document.querySelector('#area_help').innerText ;
+    //         // console.log(name_partner);
+
+    //     if(!name_partner){
+    //         name_partner = "all_area" ;
+    //     }
+
+    //     fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             console.log(result);
+
+    //             if (result['check_data'] == "Yes data") {
+    //                 for (let item of result['sos_map_title']) {
+    //                     let option = document.createElement("option");
+    //                     option.text = item.title;
+    //                     option.value = item.title;
+    //                     title_sos.add(option);
+
+    //                     let option_class = document.createAttribute("class");
+    //                     option_class.value = "translate";
+    //                     option.setAttributeNode(option_class);
+    //                 }
+    //             }
+
+    //             if(name_partner != "กลุ่มดิจิทัล สพฉ"){
+
+    //                 let option_other = document.createElement("option");
+    //                     option_other.text = "อื่นๆ";
+    //                     option_other.value = "อื่นๆ";
+    //                     title_sos.add(option_other); 
+
+    //                     let option_other_class = document.createAttribute("class");
+    //                         option_other_class.value = "translate";
+                         
+    //                     option_other.setAttributeNode(option_other_class); 
+    //             }
+
+    //             let html_option = `
+    //                     <option class="translate" value="การขอความช่วยเหลือ" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+    //                     <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
+    //                     <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
+    //                     <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
+    //                 `;
+
+    //             title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
+
+    //         });
+
+
+    //     let language = "{{ Auth::user()->language }}";
+    //     trocarIdioma(language);
+    //     console.log("trocarIdioma >> " + language);
+
+    // }
+
+    async function search_title_sos() {
         let title_sos = document.querySelector('#title_sos');
-            title_sos.innerHTML = '' ;
-        let name_partner = document.querySelector('#area_help').innerText ;
-            // console.log(name_partner);
+        title_sos.innerHTML = '';
+        let name_partner = document.querySelector('#area_help').innerText;
 
-        if(!name_partner){
-            name_partner = "all_area" ;
+        if (!name_partner) {
+            name_partner = "all_area";
         }
 
-        fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
+        try {
+            const response = await fetch("{{ url('/') }}/api/search_title_sos/" + name_partner);
+            const result = await response.json();
+            console.log(result);
 
-                if (result['check_data'] == "Yes data") {
-                    for (let item of result['sos_map_title']) {
-                        let option = document.createElement("option");
-                        option.text = item.title;
-                        option.value = item.title;
-                        title_sos.add(option);
+            if (result['check_data'] == "Yes data") {
+                for (let item of result['sos_map_title']) {
+                    let option = document.createElement("option");
+                    option.text = item.title;
+                    option.value = item.title;
+                    title_sos.add(option);
 
-                        let option_class = document.createAttribute("class");
-                        option_class.value = "translate";
-                        option.setAttributeNode(option_class);
-                    }
+                    let option_class = document.createAttribute("class");
+                    option_class.value = "translate";
+                    option.setAttributeNode(option_class);
                 }
+            }
 
-                if(name_partner != "กลุ่มดิจิทัล สพฉ"){
+            if (name_partner != "กลุ่มดิจิทัล สพฉ") {
+                let option_other = document.createElement("option");
+                option_other.text = "อื่นๆ";
+                option_other.value = "อื่นๆ";
+                title_sos.add(option_other);
 
-                    let option_other = document.createElement("option");
-                        option_other.text = "อื่นๆ";
-                        option_other.value = "อื่นๆ";
-                        title_sos.add(option_other); 
+                let option_other_class = document.createAttribute("class");
+                option_other_class.value = "translate";
+                option_other.setAttributeNode(option_other_class);
+            }
 
-                        let option_other_class = document.createAttribute("class");
-                            option_other_class.value = "translate";
-                         
-                        option_other.setAttributeNode(option_other_class); 
-                }
+            let html_option = `
+                <option class="translate" value="การขอความช่วยเหลือ" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+                <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
+                <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
+                <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
+            `;
 
-                let html_option = `
-                        <option class="translate" value="การขอความช่วยเหลือ" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
-                        <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
-                        <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
-                        <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
-                    `;
+            title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
 
-                title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
-                
-                let language = "{{ Auth::user()->language }}";
-                trocarIdioma(language);
-
-            });
-
-        
-
+            // ทำงานส่วนนี้หลังจาก fetch เสร็จสมบูรณ์
+            let language = "{{ Auth::user()->language }}";
+            trocarIdioma(language);
+            console.log("trocarIdioma >> " + language);
+        } catch (error) {
+            console.error("เกิดข้อผิดพลาดในการ fetch:", error);
+        }
     }
 
 </script>
