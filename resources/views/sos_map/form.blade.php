@@ -2324,7 +2324,6 @@
     }
 
     function search_title_sos(){
-        console.log("search_title_sos");
 
         let title_sos = document.querySelector('#title_sos');
             title_sos.innerHTML = '' ;
@@ -2340,30 +2339,18 @@
             .then(result => {
                 // console.log(result);
 
-                async function processSosMap(result, language) {
-                    if (result['check_data'] === "Yes data") {
-                        // รอให้ลูปเพิ่ม option เสร็จสิ้น
-                        for (let item of result['sos_map_title']) {
-                            let option = document.createElement("option");
-                            option.text = item.title;
-                            option.value = item.title;
-                            title_sos.add(option);
+                if (result['check_data'] == "Yes data") {
+                    for (let item of result['sos_map_title']) {
+                        let option = document.createElement("option");
+                        option.text = item.title;
+                        option.value = item.title;
+                        title_sos.add(option);
 
-                            let option_class = document.createAttribute("class");
-                            option_class.value = "translate";
-                            option.setAttributeNode(option_class);
-                        }
-
-
-                        // รอให้ trocarIdioma(language) ทำงานเสร็จ (ถ้ามันเป็น async function)
-                        await trocarIdioma(language);
+                        let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                        option.setAttributeNode(option_class);
                     }
                 }
-
-                let language = "{{ Auth::user()->language }}";
-
-                // เรียกใช้ฟังก์ชันนี้
-                processSosMap(result, language);
 
                 if(name_partner != "กลุ่มดิจิทัล สพฉ"){
 
@@ -2389,6 +2376,12 @@
 
 
             });
+
+        setTimeout(function() {
+            let language = "{{ Auth::user()->language }}";
+            trocarIdioma(language);
+            console.log("trocarIdioma >> " . language);
+        }, 2500);
 
     }
 
