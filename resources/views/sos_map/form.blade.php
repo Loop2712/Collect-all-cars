@@ -2324,6 +2324,7 @@
     }
 
     function search_title_sos(){
+        console.log("search_title_sos");
 
         let title_sos = document.querySelector('#title_sos');
             title_sos.innerHTML = '' ;
