@@ -2340,11 +2340,7 @@
                 console.log(result);
 
                 if (result['check_data'] == "Yes data") {
-                    console.log(result['sos_map_title'].length);
-                    let iii = 0 ;
                     for (let item of result['sos_map_title']) {
-                        iii = iii + 1  ;
-                        console.log(iii);
                         let option = document.createElement("option");
                         option.text = item.title;
                         option.value = item.title;
@@ -2377,15 +2373,13 @@
                     `;
 
                 title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
-
+                
+                let language = "{{ Auth::user()->language }}";
+                trocarIdioma(language);
 
             });
 
-        setTimeout(function() {
-            let language = "{{ Auth::user()->language }}";
-            trocarIdioma(language);
-            console.log("trocarIdioma >> " + language);
-        }, 2000);
+        
 
     }
 
