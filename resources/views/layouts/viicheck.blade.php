@@ -1446,8 +1446,8 @@
     }
 
     function trocarIdioma(sigla) {
-      console.log("trocarIdioma");
-      console.log(sigla);
+      // console.log("trocarIdioma");
+      // console.log(sigla);
       if (comboGoogleTradutor) {
         comboGoogleTradutor.value = sigla;
         changeEvent(comboGoogleTradutor); //Dispara a troca

@@ -2395,7 +2395,7 @@
         try {
             const response = await fetch("{{ url('/') }}/api/search_title_sos/" + name_partner);
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
 
             if (result['check_data'] == "Yes data") {
                 for (let item of result['sos_map_title']) {
@@ -2433,7 +2433,7 @@
             // ทำงานส่วนนี้หลังจาก fetch เสร็จสมบูรณ์
             let language = "{{ Auth::user()->language }}";
             trocarIdioma(language);
-            console.log("trocarIdioma >> " + language);
+            // console.log("trocarIdioma >> " + language);
         } catch (error) {
             console.error("เกิดข้อผิดพลาดในการ fetch:", error);
         }

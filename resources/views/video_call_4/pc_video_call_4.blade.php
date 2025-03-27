@@ -2343,7 +2343,7 @@
                                         }else if (type_user_sos == "เจ้าหน้าที่"){
                                             window.history.back();
                                         } else if(type_user_sos == "ผู้ขอความช่วยเหลือ"){
-                                            window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_user') }}";
+                                            window.location.href = "{{ url('/sos_map/user_view_officer/' . $sos_id ) }}";
                                         }else{
                                             window.history.back();
                                         }
