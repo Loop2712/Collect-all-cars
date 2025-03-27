@@ -2339,7 +2339,7 @@
             .then(result => {
                 // console.log(result);
 
-                async function processSosMap(result, sigla) {
+                async function processSosMap(result, language) {
                     if (result['check_data'] === "Yes data") {
                         // รอให้ลูปเพิ่ม option เสร็จสิ้น
                         for (let item of result['sos_map_title']) {
@@ -2355,13 +2355,13 @@
 
                         let language = "{{ Auth::user()->language }}";
 
-                        // รอให้ trocarIdioma(sigla) ทำงานเสร็จ (ถ้ามันเป็น async function)
+                        // รอให้ trocarIdioma(language) ทำงานเสร็จ (ถ้ามันเป็น async function)
                         await trocarIdioma(language);
                     }
                 }
 
                 // เรียกใช้ฟังก์ชันนี้
-                processSosMap(result, sigla);
+                processSosMap(result, language);
 
                 if(name_partner != "กลุ่มดิจิทัล สพฉ"){
 
