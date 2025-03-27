@@ -2337,7 +2337,7 @@
         fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if (result['check_data'] == "Yes data") {
                     console.log(result['sos_map_title'].length);
