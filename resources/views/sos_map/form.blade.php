@@ -2353,8 +2353,10 @@
                             option.setAttributeNode(option_class);
                         }
 
+                        let language = "{{ Auth::user()->language }}";
+
                         // รอให้ trocarIdioma(sigla) ทำงานเสร็จ (ถ้ามันเป็น async function)
-                        await trocarIdioma(sigla);
+                        await trocarIdioma(language);
                     }
                 }
 
