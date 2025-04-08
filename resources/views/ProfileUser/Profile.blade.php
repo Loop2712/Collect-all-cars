@@ -64,17 +64,19 @@
                                         fetch('https://www.aims.viicheck.com/api/receive-data', {
                                             method: 'POST',
                                             headers: {
-                                                'Content-Type': 'application/json'  // ระบุว่าเราจะส่งข้อมูลแบบ JSON
+                                                'Content-Type': 'application/json'
                                             },
-                                            body: JSON.stringify({
-                                                name: 'John',
-                                                email: 'john@example.com'
-                                            })
+                                            body: JSON.stringify({ name: 'John', email: 'john@example.com' })
                                         })
-                                        .then(response => response.json())
+                                        .then(response => response.json())  // แปลงข้อมูลเป็น JSON
                                         .then(data => {
-                                            // ตัวอย่างการรับข้อมูลที่ส่งกลับจาก server
-                                            console.log(data);
+                                            // เมื่อได้รับการตอบกลับจากเซิร์ฟเวอร์ ให้ทำการ redirect
+                                            if (data.redirect_url) {
+                                                window.location.href = data.redirect_url;  // เปลี่ยนเส้นทางไปยัง URL ที่ได้รับจากเซิร์ฟเวอร์
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
                                         });
                                     }
                                 </script>
