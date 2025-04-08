@@ -55,11 +55,29 @@
                             <h4 class="text-primary notranslate"><b>{{ $data->name }}</b></h4>
 
                             @if(Auth::user()->id == "1" || Auth::user()->id == "4")
-                                <form action="https://www.aims.viicheck.com/api/receive-data" method="POST">
-                                    <input type="hidden" name="name" value="John Doe">
-                                    <input type="hidden" name="email" value="john@example.com">
-                                    <button type="submit">TEST API</button>
-                                </form>
+                                <button class="btn btn-sm btn-warning" onclick="send_test_api();">
+                                    TEST API
+                                </button>
+                                <script>
+                                    function send_test_api(){
+                                        // ตัวอย่างฝั่ง Third Party ที่ส่งข้อมูล
+                                        fetch('https://www.aims.viicheck.com/api/receive-data', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'  // ระบุว่าเราจะส่งข้อมูลแบบ JSON
+                                            },
+                                            body: JSON.stringify({
+                                                name: 'John',
+                                                email: 'john@example.com'
+                                            })
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // ตัวอย่างการรับข้อมูลที่ส่งกลับจาก server
+                                            console.log(data);
+                                        });
+                                    }
+                                </script>
                             @endif
 
                             <span class="text-dark">
