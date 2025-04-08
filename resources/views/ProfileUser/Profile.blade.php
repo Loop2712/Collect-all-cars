@@ -53,6 +53,15 @@
                             @endif
                             <br><br>
                             <h4 class="text-primary notranslate"><b>{{ $data->name }}</b></h4>
+
+                            @if(Auth::user()->id == "1" || Auth::user()->id == "4")
+                                <form action="https://www.aims.viicheck.com/api/receive-data" method="POST">
+                                    <input type="hidden" name="name" value="John Doe">
+                                    <input type="hidden" name="email" value="john@example.com">
+                                    <button type="submit">TEST API</button>
+                                </form>
+                            @endif
+
                             <span class="text-dark">
                                 <i class="fas fa-map-marker-alt text-danger"></i> <b>{{ $data->location_A }} {{ $data->location_P }}</b>
                             </span>
