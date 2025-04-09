@@ -55,31 +55,14 @@
                             <h4 class="text-primary notranslate"><b>{{ $data->name }}</b></h4>
 
                             @if(Auth::user()->id == "1" || Auth::user()->id == "4")
-                                <button class="btn btn-sm btn-warning" onclick="send_test_api();">
-                                    TEST API
-                                </button>
-                                <script>
-                                    function send_test_api(){
-                                        // ตัวอย่างฝั่ง Third Party ที่ส่งข้อมูล
-                                        fetch('https://www.aims.viicheck.com/api/receive-data', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            },
-                                            body: JSON.stringify({ name: 'John', email: 'john@example.com' })
-                                        })
-                                        .then(response => response.json())  // แปลงข้อมูลเป็น JSON
-                                        .then(data => {
-                                            // เมื่อได้รับการตอบกลับจากเซิร์ฟเวอร์ ให้ทำการ redirect
-                                            if (data.redirect_url) {
-                                                window.location.href = data.redirect_url;  // เปลี่ยนเส้นทางไปยัง URL ที่ได้รับจากเซิร์ฟเวอร์
-                                            }
-                                        })
-                                        .catch(error => {
-                                            console.error('Error:', error);
-                                        });
-                                    }
-                                </script>
+                                <form action="https://www.aims.viicheck.com/api/receive-data" method="POST">
+                                    <input type="hidden" name="report_platform" value="Line OA Hello">
+                                    <input type="hidden" name="name_reporter" value="Benz">
+                                    <input type="hidden" name="type_reporter" value="ผู้ขอความช่วยเหลือ">
+                                    <input type="hidden" name="phone_reporter" value="0999999999">
+                                    <button type="submit">TEST API</button>
+                                </form>
+
                             @endif
 
                             <span class="text-dark">
