@@ -55,7 +55,7 @@
                             <h4 class="text-primary notranslate"><b>{{ $data->name }}</b></h4>
 
                             @if(Auth::user()->id == "1" || Auth::user()->id == "4")
-                                <form action="https://www.aims.viicheck.com/receive-data" method="POST">
+                                <form action="https://www.aims.viicheck.com/api/receive-data" method="POST">
                                     <input type="hidden" name="report_platform" value="Line OA Hello">
                                     <input type="hidden" name="name_reporter" value="Benz">
                                     <input type="hidden" name="type_reporter" value="ผู้ขอความช่วยเหลือ">
