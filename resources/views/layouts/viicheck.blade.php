@@ -1299,7 +1299,6 @@
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
           <div class="text-center">
             <!-- ตำแหน่ง DBD -->
-            <!-- <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank"> -->
             <a href="#" target="bank">
               <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
             </a>
@@ -1387,7 +1386,6 @@
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
 
   <!-- DBD -->
-  <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
 
   <!-- Js Plugins -->
 
