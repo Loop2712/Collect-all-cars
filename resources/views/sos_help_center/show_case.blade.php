@@ -844,6 +844,15 @@ input:focus {
 
         <!-- ////////////////////////////////////////// MENU 1 EDIT FORM ////////////////////////////////////////// -->
         <div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
+
+        	@if( $data_sos->status == "เสร็จสิ้น" )
+        	<menu class="col-12 " >
+                <button onclick="document.querySelector('#tag_a_switch_standby').click();" class="btn btn-update-status btn-info main-shadow main-radius" style="width:100%;">
+                    สรุปการดำเนินการ
+                </button>
+            </menu>
+            @endif
+
             <menu class="col-12 " >
                 <button  class="btn btn-update-status btn-primary main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalDataDetailFormYellow" onclick="check_data_form_yellow_show_case('detail')">
                     รายละเอียดเคส
