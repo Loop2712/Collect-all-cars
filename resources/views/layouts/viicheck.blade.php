@@ -1299,7 +1299,7 @@
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
           <div class="text-center">
             <!-- ตำแหน่ง DBD -->
-            <a href="#" target="bank">
+            <a href="https://dbdregistered.dbd.go.th/api/public/trustmarkinfo/0235553000163/72026" target="bank">
               <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
             </a>
           </div>
