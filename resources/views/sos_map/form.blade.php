@@ -147,7 +147,8 @@
                             </span>
                             <!-- /////// END BTN SOS 1669 /////// -->
 
-                            <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#Modal_ask_to_tel_1669" onclick="open_content_1669_api();">
+                            <!-- <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#Modal_ask_to_tel_1669" onclick="open_content_1669_api();"> -->
+                            <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none mb-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" href="tel:1669">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
