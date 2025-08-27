@@ -1,0 +1,591 @@
+{
+    "type": "flex",
+    "altText": "แจ้งซ่อมเสร็จสิ้น",
+    "contents": {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "การแจ้งซ่อม",
+                            "color": "#ffffff66",
+                            "size": "sm"
+                        },
+                        {
+                            "type": "text",
+                            "text": "name_cat",
+                            "color": "#ffffff",
+                            "size": "xl",
+                            "flex": 4,
+                            "weight": "bold",
+                            "maxLines": 2
+                        }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "เจ้าหน้าที่",
+                            "color": "#ffffff66",
+                            "size": "sm"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "image",
+                                            "url": "https://viicheck.com/officer_img",
+                                            "size": "full",
+                                            "aspectMode": "cover"
+                                        }
+                                    ],
+                                    "width": "50px",
+                                    "height": "50px",
+                                    "cornerRadius": "100px"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "name_officer",
+                                    "offsetStart": "15px",
+                                    "align": "start",
+                                    "color": "#ffffff",
+                                    "wrap": true,
+                                    "maxLines": 2
+                                }
+                            ],
+                            "width": "100%",
+                            "alignItems": "center",
+                            "height": "60px",
+                            "offsetTop": "2px"
+                        }
+                    ]
+                }
+            ],
+            "paddingAll": "20px",
+            "backgroundColor": "#0367D3",
+            "spacing": "md",
+            "paddingTop": "22px"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "แจ้งซ่อม",
+                                    "size": "xxs",
+                                    "gravity": "center"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "filler"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [],
+                                            "cornerRadius": "30px",
+                                            "height": "12px",
+                                            "width": "12px",
+                                            "borderColor": "#EF454D",
+                                            "borderWidth": "2px"
+                                        },
+                                        {
+                                            "type": "filler"
+                                        }
+                                    ],
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "date_maintain",
+                                    "gravity": "center",
+                                    "flex": 4,
+                                    "size": "sm"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "cornerRadius": "30px",
+                            "margin": "xl"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "day_mainain",
+                                                    "wrap": true,
+                                                    "size": "xxs",
+                                                    "align": "end"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "hour_maintain",
+                                                    "wrap": true,
+                                                    "size": "xxs",
+                                                    "align": "end"
+                                                }
+                                            ],
+                                            "flex": 1,
+                                            "alignItems": "flex-end",
+                                            "justifyContent": "center"
+                                        }
+                                    ],
+                                    "flex": 1,
+                                    "alignItems": "flex-end",
+                                    "justifyContent": "center"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "filler"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "2px",
+                                                    "backgroundColor": "#B7B7B7"
+                                                },
+                                                {
+                                                    "type": "filler"
+                                                }
+                                            ],
+                                            "flex": 1
+                                        }
+                                    ],
+                                    "width": "12px"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [],
+                                    "flex": 4
+                                }
+                            ],
+                            "spacing": "lg",
+                            "height": "64px"
+                        }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "รับแจ้ง",
+                                            "gravity": "center",
+                                            "size": "xxs"
+                                        }
+                                    ],
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "filler"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [],
+                                            "cornerRadius": "30px",
+                                            "width": "12px",
+                                            "height": "12px",
+                                            "borderWidth": "2px",
+                                            "borderColor": "#6486E3"
+                                        },
+                                        {
+                                            "type": "filler"
+                                        }
+                                    ],
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "date_command",
+                                    "gravity": "center",
+                                    "flex": 4,
+                                    "size": "xs"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "cornerRadius": "30px"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "day_command",
+                                            "wrap": true,
+                                            "size": "xxs",
+                                            "align": "end"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "hour_command",
+                                            "wrap": true,
+                                            "size": "xxs",
+                                            "align": "end"
+                                        }
+                                    ],
+                                    "flex": 1,
+                                    "alignItems": "flex-end",
+                                    "justifyContent": "center"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "filler"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "2px",
+                                                    "backgroundColor": "#B7B7B7"
+                                                },
+                                                {
+                                                    "type": "filler"
+                                                }
+                                            ],
+                                            "flex": 1
+                                        }
+                                    ],
+                                    "width": "12px"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "คาดว่าจะเริ่ม date_start",
+                                            "size": "xxs"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "และเสร็จสิ้น date_end",
+                                            "size": "xxs"
+                                        }
+                                    ],
+                                    "flex": 4,
+                                    "justifyContent": "center"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "height": "64px"
+                        }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "ดำเนินการ",
+                                            "gravity": "center",
+                                            "size": "10px"
+                                        }
+                                    ],
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "filler"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [],
+                                            "cornerRadius": "30px",
+                                            "width": "12px",
+                                            "height": "12px",
+                                            "borderWidth": "2px",
+                                            "borderColor": "#ffc107"
+                                        },
+                                        {
+                                            "type": "filler"
+                                        }
+                                    ],
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "date_process",
+                                    "gravity": "center",
+                                    "flex": 4,
+                                    "size": "sm"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "cornerRadius": "30px"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "day_process",
+                                            "wrap": true,
+                                            "size": "xxs",
+                                            "align": "end"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "hour_process",
+                                            "wrap": true,
+                                            "size": "xxs",
+                                            "align": "end"
+                                        }
+                                    ],
+                                    "flex": 1,
+                                    "alignItems": "flex-end",
+                                    "justifyContent": "center"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "filler"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "2px",
+                                                    "backgroundColor": "#B7B7B7"
+                                                },
+                                                {
+                                                    "type": "filler"
+                                                }
+                                            ],
+                                            "flex": 1
+                                        }
+                                    ],
+                                    "width": "12px"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "count_time_process",
+                                            "size": "xxs"
+                                        }
+                                    ],
+                                    "flex": 4,
+                                    "justifyContent": "center"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "height": "64px"
+                        }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "เสร็จสิ้น",
+                                            "gravity": "center",
+                                            "size": "10px"
+                                        }
+                                    ],
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "filler"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [],
+                                            "cornerRadius": "30px",
+                                            "width": "12px",
+                                            "height": "12px",
+                                            "borderWidth": "2px",
+                                            "borderColor": "#28a745"
+                                        },
+                                        {
+                                            "type": "filler"
+                                        }
+                                    ],
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "date_success",
+                                    "gravity": "center",
+                                    "flex": 4,
+                                    "size": "sm"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "cornerRadius": "30px"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "contents": [
+                                        {
+                                            "type": "filler"
+                                        }
+                                    ],
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "filler"
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [],
+                                                    "width": "2px",
+                                                    "backgroundColor": "#B7B7B7"
+                                                },
+                                                {
+                                                    "type": "filler"
+                                                }
+                                            ],
+                                            "flex": 1
+                                        }
+                                    ],
+                                    "width": "12px"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "cont_time_success",
+                                            "size": "xxs"
+                                        }
+                                    ],
+                                    "flex": 4,
+                                    "justifyContent": "center"
+                                }
+                            ],
+                            "spacing": "lg",
+                            "height": "64px"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

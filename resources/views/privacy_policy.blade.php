@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.viicheck_new')
 
 @section('content')
 <br><br><br><br><br><br>

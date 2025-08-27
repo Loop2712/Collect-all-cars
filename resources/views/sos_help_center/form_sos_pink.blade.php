@@ -1305,7 +1305,7 @@
                         <div class="card-title d-flex align-items-center">
 							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
 							</div>
-							<h5 class="mb-0 text-primary">การประเมิน/รับรองการนำส่ง(โดยแพทย์ พยาบาล ประจำโรงพยาบาลที่รับดูแลต่อ)</h5>
+							<h5 class="mb-0 text-primary">การประเมิน/รับรองการนำส่ง (โดยแพทย์ พยาบาล ประจำโรงพยาบาลที่รับดูแลต่อ)</h5>
 						</div>
 						<hr>
                         <div class="row">
@@ -1655,7 +1655,7 @@
                         <div class="card-title d-flex align-items-center">
 							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
 							</div>
-							<h5 class="mb-0 text-primary">ผลการรักษาที่/ในโรงพยาบาล(ติดตามผลในวันสิ้นเดือน)</h5>
+							<h5 class="mb-0 text-primary">ผลการรักษาที่/ในโรงพยาบาล (ติดตามผลในวันสิ้นเดือน)</h5>
 						</div>
 						<hr>
                         <div class="row">

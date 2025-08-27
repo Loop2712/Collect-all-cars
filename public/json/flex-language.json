@@ -10,9 +10,9 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://i.postimg.cc/MZCbNCCV/flex-line-language-01.png",
+            "url": "https://i.ibb.co/8pnwX9G/02-01.png",
             "size": "full",
-            "aspectRatio": "4:3",
+            "aspectRatio": "2223:2221",
             "aspectMode": "cover"
           },
           {
@@ -21,7 +21,7 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
+            "height": "25%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -34,7 +34,7 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
+            "height": "25%",
             "offsetStart": "25%",
             "action": {
               "type": "postback",
@@ -48,7 +48,7 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
+            "height": "25%",
             "offsetStart": "50%",
             "action": {
               "type": "uri",
@@ -62,7 +62,7 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
+            "height": "25%",
             "offsetStart": "75%",
             "action": {
               "type": "uri",
@@ -76,8 +76,8 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "33.3333%",
+            "height": "25%",
+            "offsetTop": "25%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -90,8 +90,8 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "33.3333%",
+            "height": "25%",
+            "offsetTop": "25%",
             "offsetStart": "25%",
             "action": {
               "type": "uri",
@@ -105,8 +105,8 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "33.3333%",
+            "height": "25%",
+            "offsetTop": "25%",
             "offsetStart": "50%",
             "action": {
               "type": "uri",
@@ -120,9 +120,23 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "33.3333%",
+            "height": "25%",
+            "offsetTop": "25%",
             "offsetStart": "75%",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/api/change_language_fromline/fr/user_id"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "width": "25%",
+            "position": "absolute",
+            "height": "25%",
+            "offsetTop": "50%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -135,8 +149,9 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "66.6666%",
+            "height": "25%",
+            "offsetTop": "50%",
+            "offsetStart": "25%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -149,9 +164,9 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "66.6666%",
-            "offsetStart": "25%",
+            "height": "25%",
+            "offsetTop": "50%",
+            "offsetStart": "50%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -164,9 +179,38 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "66.6666%",
-            "offsetStart": "50%",
+            "height": "25%",
+            "offsetTop": "50%",
+            "offsetStart": "75%",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/api/change_language_fromline/ms/user_id"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "width": "25%",
+            "position": "absolute",
+            "height": "25%",
+            "offsetTop": "75%",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.viicheck.com/api/change_language_fromline/vi/user_id"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "width": "25%",
+            "position": "absolute",
+            "height": "25%",
+            "offsetTop": "75%",
+            "offsetStart": "25%",
             "action": {
               "type": "uri",
               "label": "action",
@@ -179,9 +223,9 @@
             "contents": [],
             "width": "25%",
             "position": "absolute",
-            "height": "33.3333%",
-            "offsetTop": "66.6666%",
-            "offsetStart": "75%",
+            "height": "25%",
+            "offsetTop": "75%",
+            "offsetStart": "50%",
             "action": {
               "type": "uri",
               "label": "action",

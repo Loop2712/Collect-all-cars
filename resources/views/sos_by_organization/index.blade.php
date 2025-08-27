@@ -29,6 +29,7 @@
         transition: all .15s ease-in-out;
         position: absolute;
         right: -18px;
+        top:3px;
     }
 
     .btn-organization:hover .btnEdit-Delete{
@@ -54,7 +55,7 @@
                         <div class="d-flex justify-content-between pt-3 pb-1" style="border-bottom: 1px solid #db2d2e;">
                             <div >
                                 <a href="http://localhost/Collect-all-cars/public">
-                                    <img width="50px" src="{{ asset('img/logo/VII-check-LOGO-W-v1.png') }}"">
+                                    <img width="50px" src="{{ asset('img/logo/VII-check-LOGO-W-v1.png') }}">
                                 </a>
                             </div>
                             <div class="d-flex align-items-center ">
@@ -64,7 +65,9 @@
                                 <i style="font-size: 10px;" class="fa-solid fa-chevron-down"></i>
                             </div>
                         </div>
-                        <div style="width: 100%; height: 200px; background-color: #bfcddc;margin-top: 10px;border-radius: 10px;"></div>
+                        <div style="width: 100%; height: 200px; background-color: #bfcddc;margin-top: 10px;border-radius: 10px;background-image: url('img/logo/VII-check-LOGO-W-v1.png');">
+                        <img style="border-radius: 10px;" width="100%" src="{{ asset('img/icon/map.png') }}">
+                        </div>
                         <p class="mb-0 mt-3">
                             {{Auth::user()->organization}}
                         </p>
@@ -78,17 +81,35 @@
                                     </div>
 
                                     
-                                    <a class="d-flex align-items-center col-9 text-center"@if(!empty($item->phone)) href="tel:{{$item->phone}}" @endif >
+                                    <div class="d-flex align-items-center col-9 text-center" >
                                         <div class="justify-content-center col-12">
                                             <b>
                                                 <span style="font-size: 12px;" class="d-block">
                                                     ขอความช่วยเหลือ
                                                 </span>
-                                                <span style="font-size: 12px;" class="d-block notranslate" id="area_help">{{$item->name_sub_organization}}</span>
+                                                <span style="font-size: 12px;" class="d-block notranslat" id="name_sub_organization_{{$item->id}}">{{$item->name_sub_organization}}</span>
+                                                <div class="px-3 d-none"id="edit_name_sub_organization_{{$item->id}}">
+                                                    <form style="position: relative;" method="POST" action="{{ url('/sos_by_organization/' . $item->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                                        {{ method_field('PATCH') }}
+                                                        {{ csrf_field() }}
+                                                        @php 
+                                                            $formMode = 'edit';
+                                                        @endphp
+                                                        <input style="font-size: 12px;"  class="form-control" name="name_sub_organization" type="text" id="name_sub_organization" value="{{ isset($item->name_sub_organization) ? $item->name_sub_organization : ''}}" >
+                                                        <!-- <input   type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}"> -->
+                                                        <!-- <button class="btn btn-success p-1 text-center" type="submit" style="position: absolute;top: 0;right: 0; font-size: 11.3px;">
+                                                        <i class="fa-solid fa-check"></i>
+                                                        </button> -->
+
+                                                        <button class="btn btn-success" style="position: absolute;top: 2px  ;right: 5px;font-size: 10px;display: block;padding: 2px;margin-top: 3px;" type="submit"><i class="fa-solid fa-check"style="font-size: 10px;margin:auto"></i></button>
+                                                    </form>
+                                                </div> 
+
                                             </b>
                                         </div>
                                         <div class="btnEdit-Delete">
-                                            <a href="{{ url('/sos_by_organization/' . $item->id . '/edit') }}" class="btn btn-warning" style="font-size: 10px;display: block;padding: 2px;"><i class="fa-solid fa-pen-to-square"style="font-size: 10px;margin:auto"></i></a>
+                                            <!-- <a href="{{ url('/sos_by_organization/' . $item->id . '/edit') }}" class="btn btn-warning" style="font-size: 10px;display: block;padding: 2px;"><i class="fa-solid fa-pen-to-square"style="font-size: 10px;margin:auto"></i></a> -->
+                                            <button onclick="document.querySelector('#name_sub_organization_{{$item->id}}').classList.toggle('d-none');  document.querySelector('#edit_name_sub_organization_{{$item->id}}').classList.toggle('d-none');" class="btn btn-warning" style="font-size: 10px;display: block;padding: 2px;"><i class="fa-solid fa-pen-to-square"style="font-size: 10px;margin:auto"></i></button>
 
                                             <form method="POST" action="{{ url('/sos_by_organization' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
@@ -97,7 +118,7 @@
                                             </form>
                                             
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -142,7 +163,7 @@
                                 {!! $errors->first('name_sub_organization', '<p class="help-block">:message</p>') !!}
                             </div>
 
-                            <div class="mydict mb-3">
+                            <!-- <div class="mydict mb-3">
                                 <label class="label_toggle_type" onclick="">
                                     <input class="radio_toggle_type" type="radio" name="radio" checked="" onchange="document.querySelector('#div_phone_number').classList.toggle('d-none');document.querySelector('#div_group_line').classList.toggle('d-none');">
                                     <span>phone</span>
@@ -206,22 +227,22 @@
                                     border-radius: 0 .375em .375em 0;
                                     margin-left: -5px;
                                 }
-                            </style>
-                            <div id="div_phone_number" class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+                            </style> -->
+                            <!-- <div id="div_phone_number" class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}"> -->
                                 <!-- <label for="phone" class="control-label">{{ 'Phone' }}</label> -->
-                                <input class="form-control" name="phone" type="text" id="phone" placeholder="กรอกหมายเลขโทรศัพท์" value="{{ isset($sos_by_organization->phone) ? $sos_by_organization->phone : ''}}" >
-                                {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-                            </div>
-                            <div id="div_group_line" class="form-group {{ $errors->has('group_line_id') ? 'has-error' : ''}} d-none">
+                                <!-- <input class="form-control" name="phone" type="text" id="phone" placeholder="กรอกหมายเลขโทรศัพท์" value="{{ isset($sos_by_organization->phone) ? $sos_by_organization->phone : ''}}" > -->
+                                <!-- //{!! $errors->first('phone', '<p class="help-block">:message</p>') !!} -->
+                            <!-- </div> -->
+                            <!-- <div id="div_group_line" class="form-group {{ $errors->has('group_line_id') ? 'has-error' : ''}} d-none"> -->
                                 <!-- <label for="group_line_id" class="control-label">{{ 'Group Line Id' }}</label> -->
-                                <select class="form-select" id="" aria-label="Example select with button addon">
+                                <!-- <select class="form-select" id="" aria-label="Example select with button addon">
                                     <option value="" selected>กรุณาเลือกกลุ่มไลน์</option>
                                     <option value="">กลุ่มไลน์ทิพย์ 1</option>
                                     <option value="">กลุ่มไลน์ทิพย์ 2</option>
-                                </select>
-                                <!-- <input class="form-control" name="group_line_id" type="number" id="group_line_id" value="{{ isset($sos_by_organization->group_line_id) ? $sos_by_organization->group_line_id : ''}}" >
-                                {!! $errors->first('group_line_id', '<p class="help-block">:message</p>') !!} -->
-                            </div>
+                                </select> -->
+                              <!-- // <input class="form-control" name="group_line_id" type="number" id="group_line_id" value="{{ isset($sos_by_organization->group_line_id) ? $sos_by_organization->group_line_id : ''}}" >
+                                //{!! $errors->first('group_line_id', '<p class="help-block">:message</p>') !!} -->
+                            <!-- </div> -->
                             
 
                             @if($count_partner <= 2)

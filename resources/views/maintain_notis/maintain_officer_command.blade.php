@@ -4,6 +4,11 @@
 @section('content')
 
 <style>
+    *:not(i) {
+        font-family: 'Kanit', sans-serif;
+
+    }
+
     footer,
     header,
     #topbar {
@@ -39,8 +44,8 @@
 
     /* End Carousel */
 
-     /* Next & previous buttons */
-     .prev,
+    /* Next & previous buttons */
+    .prev,
     .next {
         cursor: pointer;
         position: absolute;
@@ -86,24 +91,30 @@
     /* The Modal (background) */
     .modal-light-box.modal {
         display: none;
-        position: fixed !important;
-        z-index: 999999999999999999999999999999999999999999999999999999 !important;
-        padding-top: 100px;
+        position: fixed;
+        z-index: 1;
+        /* padding-top: 100px; */
         left: 0;
         top: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw !important;
+        height: 100vh !important;
         overflow: auto;
         background-color: black;
+    }
+
+    .modal {
+        z-index: 999 !important;
+        position: absolute;
     }
 
     /* Modal Content */
     .modal-light-box .modal-content {
         position: relative;
-        background-color: #fefefe;
+        background-color: #000;
         margin: auto;
         padding: 0;
         width: 90%;
+        height: 100vh !important;
         max-width: 1200px;
     }
 
@@ -125,18 +136,30 @@
     }
 
     .mySlides {
+
         display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
     }
 
     .mySlides img {
         opacity: 1;
         border-radius: 0;
+        max-height: 100vh !important;
+
     }
 
     .mySlides img:hover {
         opacity: 1;
     }
 
+
+    .cursor {
+        cursor: pointer;
+    }
 
     .cursor {
         cursor: pointer;
@@ -172,7 +195,7 @@
         display: none;
     } */
 
-    .bg_warning_missed_data{
+    .bg_warning_missed_data {
         background-color: #f37151;
     }
 
@@ -200,22 +223,28 @@
         font-size: 50px;
         z-index: 1;
     }
-    .img-preview{
+
+    .img-preview {
         background-color: #fff !important;
     }
 
-    #glightbox-body{
+    #glightbox-body {
         /* display: none !important; */
     }
 
+    body {
+        background-color: #f0f3f9 !important;
+        overflow-x: hidden;
+    }
 </style>
+
 
 <link rel="stylesheet" href="path/to/owl.carousel.min.css">
 <link rel="stylesheet" href="path/to/owl.theme.default.min.css">
 
 <!-- Modal ตารางงานช่าง -->
 <div class="modal fade" id="modal_schedule" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_btn_open_modal_schedule" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title notranslate" id="Label_btn_open_modal_schedule">
@@ -229,11 +258,8 @@
                 <!-- CONTENT -->
             </div>
             <hr>
-            <div>
-                <center>
-                    <span style="width:35%;" type="button" class="btn btn-primary" data-dismiss="modal">ปิด</span>
-                </center>
-                <br>
+            <div class="w-100 d-flex justify-content-end mb-3 pe-3">
+                <span style="width:150px;" type="button" class="btn btn-primary" data-dismiss="modal">ปิด</span>
             </div>
         </div>
     </div>
@@ -253,6 +279,19 @@
             </div>
             <div class="modal-body notranslate" id="modal_material_content">
                 <div id="material-inputs">
+                    @if(!empty($data_maintains->material))
+                    @php
+                    // แปลง JSON เป็นอาร์เรย์
+                    $materials = json_decode($data_maintains->material, true);
+                    @endphp
+
+                    @foreach($materials as $material)
+                    <div class="form-group d-flex justify-content-between material-row">
+                        <input class="form-control" style="width: 70%;" type="text" name="material_name[]" placeholder="ชื่อ" value="{{ $material['material'] }}">
+                        <input class="form-control" style="width: 25%;" type="number" name="material_quantity[]" placeholder="จำนวน" value="{{ $material['quantity'] }}">
+                    </div>
+                    @endforeach
+                    @endif
                     <div class="form-group d-flex justify-content-between material-row">
                         <input class="form-control" style="width: 70%;" type="text" name="material_name[]" placeholder="ชื่อ">
                         <input class="form-control" style="width: 25%;" type="number" name="material_quantity[]" placeholder="จำนวน">
@@ -264,7 +303,7 @@
             <div>
                 <center>
                     <span style="width:35%;" type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</span>
-                    <span style="width:35%;" type="button" class="btn btn-primary" id="save-materials" >บันทึก</span>
+                    <span style="width:35%;" type="button" class="btn btn-primary" id="save-materials">บันทึก</span>
                 </center>
                 <br>
             </div>
@@ -272,403 +311,659 @@
     </div>
 </div>
 
-
-
-<div class="col-12 col-md-12 col-lg-12 my-4">
-    <div id="cardInfo" class="card radius-10 mb-2">
-        <div class="row p-4">
-
-            <div class="d-flex my-3 justify-content-between flex-wrap">
-                <div class="d-flex">
-                    <i class="fa-regular fa-screwdriver-wrench me-1 text-dark" style="font-size: 22px;"></i>
-                    <h4 class="mb-0 text-dark"><b>รายละเอียดการแจ้งซ่อม</b></h4>
-                </div>
-                <div>
-                    @if($data_maintains->created_at)
-                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;">{{ thaidate("lที่ j F Y" , strtotime($data_maintains->created_at)) }} เวลา {{ thaidate("H:i" , strtotime($data_maintains->created_at)) }} น.</span></b>
-                    @else
-                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;"> - </span></b>
-                    @endif
-                </div>
+<div class="modal fade h-100 modalReceipt" id="imageModalOfficer" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <button type="button" class="btn-closes" data-bs-dismiss="modal">&times;</button>
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content position-relative p-0" style="background-color: transparent;">
+            <div class="modal-body d-flex justify-content-center align-items-center p-0" style="width:100%;">
+                <img id="modal_main_image_receipt" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100 h-100 px-4 ">
+                <span id="imageCounterReceiptOfficer" class="numbertext " style="font-weight: bold; font-size:16px;left: 25px;"></span>
+                <a class="BTNprev" id="prevImageReceipt">&#10094;</a>
+                <a class="BTNnext" id="nextImageReceipt">&#10095;</a>
             </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#imageModalOfficer').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+</script>
+<div class="row p-3">
 
-            <div class="w-100 p-2">
-                <p class="h5" style="font-weight: bold; color:#000000;">หมวดหมู่ : {{$data_maintains->name_categories ? $data_maintains->name_categories : "-"}}</p>
-                <p class="h5 mr-2 " style="font-weight: bold; color:#000000;">หมวดหมู่ย่อย : <span class="text-danger">{{$data_maintains->name_subs_categories ? $data_maintains->name_subs_categories  : "-"}}</span></p>
+    <div class="col-12 col-lg-8">
+        <div id="cardInfo" class="card radius-15 mb-2" style="border-radius: 15px;">
+            <div class="row p-4">
 
-                <p style="font-weight: bold;font-size: 18px; color:#000000;">รหัสอุปกรณ์ : <span class="text-primary">{{$data_maintains->device_code ? $data_maintains->device_code : "-"}}</span></p>
-                <button id="btn_ModalReceipt_Officer" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#imageModalOfficer">Modal Open</button>
+                <div class="d-flex mb-3 mt-1 justify-content-between flex-wrap">
+                    <div class="d-flex">
+                        <i class="fa-regular fa-screwdriver-wrench me-1 text-dark" style="font-size: 22px;"></i>
+                        <h4 class="mb-0 text-dark"><b>รายละเอียดการแจ้งซ่อม</b></h4>
+                    </div>
+                    <div>
+                        @if($data_maintains->created_at)
+                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;">{{ thaidate("lที่ j F Y" , strtotime($data_maintains->created_at)) }} เวลา {{ thaidate("H:i" , strtotime($data_maintains->created_at)) }} น.</span></b>
+                        @else
+                        <b style="font-size: 16px; color:#000000;">วันที่แจ้ง : <span style="font-weight: normal; color:#6c757d;"> - </span></b>
+                        @endif
+                    </div>
+                </div>
 
-                <div class=" row mt-4">
-                    <div class="container mb-2">
-                        <div class="row no-gutters mx-3">
-                            <div class="owl-carousel deerCarousel owl-theme">
+                <div class="w-100 p-2">
+                    <p class="h5" style="font-weight: bold; color:#000000;">หมวดหมู่ : {{$data_maintains->name_categories ? $data_maintains->name_categories : "-"}}</p>
+                    <p class="h5 mr-2 " style="font-weight: bold; color:#000000;">หมวดหมู่ย่อย : <span class="text-danger">{{$data_maintains->name_subs_categories ? $data_maintains->name_subs_categories  : "-"}}</span></p>
+
+                    <p style="font-weight: bold;font-size: 18px; color:#000000;">รหัสอุปกรณ์ : <span class="text-primary">{{$data_maintains->device_code ? $data_maintains->device_code : "-"}}</span></p>
+                    <button id="btn_ModalReceipt_Officer" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#imageModalOfficer">Modal Open</button>
+
+                    <div class=" row mt-4">
+                        <div class="container mb-2">
+                            <div class="row no-gutters mx-3">
+                                <div class="owl-carousel deerCarousel owl-theme">
                                     @php
-                                        if(!empty($data_maintains->photo)){
-                                            $photos = is_array($data_maintains->photo) ? $data_maintains->photo : json_decode($data_maintains->photo, true);  // ตรวจสอบและแปลงข้อมูล photo ให้เป็น array
-                                            $photosCount = count($photos);
-                                        }
+                                    if(!empty($data_maintains->photo)){
+                                    $photos = is_array($data_maintains->photo) ? $data_maintains->photo : json_decode($data_maintains->photo, true); // ตรวจสอบและแปลงข้อมูล photo ให้เป็น array
+                                    $photosCount = count($photos);
+                                    }
                                     @endphp
 
                                     @if($data_maintains->photo)
-                                        @foreach($photos as $item)
+                                    @foreach($photos as $item)
 
-                                            {{-- <div class="gallery-item item ">
-                                                <a class="galelry-lightbox">
-                                                    <img class="receipt_main_image" style="object-fit: cover; height: 150px;" src="{{ url('/').$item}}" alt="" class="img-cover" onclick="changeImage_receipt(this)">
-                                                </a>
-                                            </div> --}}
 
-                                            <div class="gallery-item item">
-                                                <a class="galelry-lightbox">
-                                                    <img class="receipt_main_image_officer" style="object-fit: cover; height: 150px;" src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="img-cover" onclick="changeImage_receipt(this)">
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                    <img src="{{ url('storage')}}/{{$item}}" onclick='openModal();currentSlide({{ $loop->iteration }})' class="active" alt="" data-slide="1" style="object-fit: cover; height: 150px;">
+
+                                    @endforeach
                                     @endif
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <!-- modal แสดงภาพใหญ่ รูปอุปกรณ์ -->
+                    <div id="myModal" class="modal modal-light-box mt-0 pt-0">
+                        <span class="close cursor" onclick="closeModal()">&times;</span>
+                        <div class="modal-content">
+                            @if($data_maintains->photo)
+                            @foreach($photos as $item)
 
-                <style>
-                    /* The Modal (background) */
-                    .modalReceipt.modal {
-                        display: none;
-                        width: 100%;
-                        height: 100%;
-                        overflow: auto;
-                        background-color: black;
-                    }
-
-                    /* Modal Content */
-                    .modalReceipt .modal-content {
-                        position: relative;
-                        background-color: #fefefe;
-                        margin: auto;
-                        padding: 0;
-                        width: 90%;
-                        max-width: 1200px;
-                    }
-
-                    .btn-closes {
-                        position: absolute;
-                        top: 40px;
-                        right: 20px;
-                        transform: translate(-50%, -50%);
-                        color: #fff !important;
-                        z-index: 9999999;
-                        font-size: 40px;
-                        background-color: transparent;
-                        border: none;
-                    }
-
-                    .BTNprev,
-                    .BTNnext {
-                        position: absolute;
-                        cursor: pointer;
-                        position: absolute;
-                        top: 50%;
-                        width: auto;
-                        padding: 16px;
-                        color: #fff !important;
-                        font-weight: bold;
-                        font-size: 20px;
-                        transition: 0.6s ease;
-                        border-radius: 0 3px 3px 0;
-                        user-select: none;
-                        -webkit-user-select: none;
-                        background-color: rgba(0, 0, 0, 0.2);
-                    }
-
-                    .BTNprev {
-                        left: 20px;
-
-                    }
-
-                    .BTNnext {
-                        right: 20px;
-                    }
-
-                    .BTNprev:hover,
-                    .BTNnext:hover {
-                        background-color: rgba(0, 0, 0, 0.8);
-                    }
-                </style>
-                <div class="modal fade h-100 modalReceipt" id="imageModalOfficer" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                    <button type="button" class="btn-closes" data-bs-dismiss="modal">&times;</button>
-                    <div class="modal-dialog modal-xl modal-dialog-centered">
-                        <div class="modal-content position-relative p-0" style="background-color: transparent;">
-
-                            <div class="modal-body d-flex justify-content-center align-items-center p-0" style="width:100%;">
-                                <img id="modal_main_image_receipt" src="https://www.ofm.co.th/blog/wp-content/uploads/2021/09/%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B9%89%E0%B8%99.jpg" alt="" class="img-fluid w-100 h-100 px-4 ">
-                                <!-- <button type="button" class="prev" id="prevImageReceipt" style="width: 120px;">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                </button>
-                                <span id="imageCounterReceiptOfficer" class="numbertext " style="font-weight: bold; font-size:16px;"></span>
-                                <button type="button" class="next" id="nextImageReceipt" style="width: 120px;">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button> -->
-                                <span id="imageCounterReceiptOfficer" class="numbertext " style="font-weight: bold; font-size:16px;left: 25px;"></span>
-
-                                <a class="BTNprev" id="prevImageReceipt">&#10094;</a>
-                                <a class="BTNnext" id="nextImageReceipt">&#10095;</a>
+                            <div class="mySlides">
+                                <div class="numbertext">{{ $loop->iteration }} / {{$photosCount}}</div>
+                                <img src="{{ url('storage')}}/{{$item}}" style="width:100%;position: relative;">
                             </div>
 
-                            <!-- <div class="modal-footer d-flex justify-content-center">
-                                <button type="button" class="btn btn-secondary" id="prevImageReceipt" style="width: 120px;">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                </button>
-                                <span id="imageCounterReceiptOfficer" class="mx-3 " style="font-weight: bold; font-size:16px;"></span>
-                                <button type="button" class="btn btn-secondary" id="nextImageReceipt" style="width: 120px;">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div> -->
+                            @endforeach
+                            @endif
+
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
                         </div>
                     </div>
-                </div>
+                    <script>
+                        // Wrap every letter in a span
+                        var textWrapper = document.querySelector('.ml12');
+                        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+                        anime.timeline({
+                                loop: true
+                            })
+                            .add({
+                                targets: '.ml12 .letter',
+                                translateX: [40, 0],
+                                translateZ: 0,
+                                opacity: [0, 1],
+                                easing: "easeOutExpo",
+                                duration: 1200,
+                                delay: (el, i) => 500 + 40 * i
+                            }).add({
+                                targets: '.ml12 .letter',
+                                translateX: [0, -30],
+                                opacity: [1, 0],
+                                easing: "easeInExpo",
+                                duration: 1100,
+                                delay: (el, i) => 5000 + 30 * i
+                            });
 
 
-                <div class="repair_detail row">
-                    <div class="col-12 col-md-4 mb-2">
-                        <div>
-                            <h5 class="mb-0 text-danger" style="font-weight: bolder;">สถานที่และปัญหา</h5>
-                            <hr class="my-2">
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ปัญหา : <b class="text-secondary">{{ $data_maintains->title ? $data_maintains->title : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">รายละเอียด : <b class="text-secondary">{{ $data_maintains->detail_title ? $data_maintains->detail_title : "-" }}</b></p>
-                            <p class="overflow-dot mb-0 mt-2" style="font-weight: bold; color:#000000;">สถานที่ : <b class="text-secondary">{{ $data_maintains->name_area ? $data_maintains->name_area : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">รายละเอียดสถานที่ : <b class="text-secondary">{{ $data_maintains->detail_location ? $data_maintains->detail_location : "-" }}</b></p>
+                        ////////////////////////////////////////////////////////////////////
+                        function openModal() {
+                            document.getElementById("myModal").style.display = "block";
+                        }
+
+                        function closeModal() {
+                            document.getElementById("myModal").style.display = "none";
+                        }
+
+                        var slideIndex = 1;
+                        showSlides(slideIndex);
+
+                        function plusSlides(n) {
+                            showSlides(slideIndex += n);
+                        }
+
+                        function currentSlide(n) {
+                            showSlides(slideIndex = n);
+                        }
+
+                        function showSlides(n) {
+                            var i;
+                            var slides = document.getElementsByClassName("mySlides");
+                            var dots = document.getElementsByClassName("demo");
+                            var captionText = document.getElementById("caption");
+                            if (n > slides.length) {
+                                slideIndex = 1
+                            }
+                            if (n < 1) {
+                                slideIndex = slides.length
+                            }
+                            for (i = 0; i < slides.length; i++) {
+                                slides[i].style.display = "none";
+                            }
+                            for (i = 0; i < dots.length; i++) {
+                                dots[i].className = dots[i].className.replace(" active", "");
+                            }
+                            slides[slideIndex - 1].style.display = "block";
+                            dots[slideIndex - 1].className += " active";
+                            captionText.innerHTML = dots[slideIndex - 1].alt;
+                        }
+                    </script>
+
+                    <div class="repair_detail row mt-3">
+                        <div class="col-12 col-md-6 mb-2">
+                            <div>
+                                <h5 class="mb-0 text-danger" style="font-weight: bolder;">สถานที่และปัญหา</h5>
+                                <hr class="my-2">
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ปัญหา : <b class="text-secondary">{{ $data_maintains->title ? $data_maintains->title : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">รายละเอียด : <b class="text-secondary">{{ $data_maintains->detail_title ? $data_maintains->detail_title : "-" }}</b></p>
+                                <p class="overflow-dot mb-0 mt-2" style="font-weight: bold; color:#000000;">สถานที่ : <b class="text-secondary">{{ $data_maintains->name_area ? $data_maintains->name_area : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">รายละเอียดสถานที่ : <b class="text-secondary">{{ $data_maintains->detail_location ? $data_maintains->detail_location : "-" }}</b></p>
+                            </div>
                         </div>
+
+                        <div class="col-12 col-md-6">
+                            <div>
+                                <h5 class="mb-0 text-primary" style="font-weight: bolder;">ข้อมูลผู้แจ้ง</h5>
+                                <hr class="my-2">
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ชื่อผู้แจ้ง : <b class="text-secondary">{{ $data_maintains->name_user ? $data_maintains->name_user : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">เบอร์ : <b class="text-secondary">{{ $data_maintains->phone_user ? $data_maintains->phone_user : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">E-Mail : <b class="text-secondary">{{ $data_maintains->mail_user ? $data_maintains->mail_user : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ตำแหน่ง : <b class="text-secondary">{{ $data_maintains->position_user ? $data_maintains->position_user : "-" }}</b></p>
+                                <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">แผนก : <b class="text-secondary">{{ $data_maintains->department_user ? $data_maintains->department_user : "-" }}</b></p>
+                            </div>
+                        </div>
+
                     </div>
-
-                    <div class="col-12 col-md-4">
-                        <div>
-                            <h5 class="mb-0 text-primary" style="font-weight: bolder;">ข้อมูลผู้แจ้ง</h5>
-                            <hr class="my-2">
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ชื่อผู้แจ้ง : <b class="text-secondary">{{ $data_maintains->name_user ? $data_maintains->name_user : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">เบอร์ : <b class="text-secondary">{{ $data_maintains->phone_user ? $data_maintains->phone_user : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">E-Mail : <b class="text-secondary">{{ $data_maintains->mail_user ? $data_maintains->mail_user : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">ตำแหน่ง : <b class="text-secondary">{{ $data_maintains->position_user ? $data_maintains->position_user : "-" }}</b></p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold; color:#000000;">แผนก : <b class="text-secondary">{{ $data_maintains->department_user ? $data_maintains->department_user : "-" }}</b></p>
-                        </div>
-                    </div>
-
-                    {{-- <div class="col-12 col-md-4">
-                        <div>
-                            <h5 class="mb-0 text-info" style="font-weight: bolder;">ผู้รับผิดชอบ</h5>
-                            <hr class="my-2">
-                            <p class="overflow-dot mb-0" style="font-weight: bold;">ผู้รับผิดชอบ 1 : deer</p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold;">ผู้รับผิดชอบ 2 : benze</p>
-                            <p class="overflow-dot mb-0" style="font-weight: bold;">ผู้รับผิดชอบ 3 : lucky</p>
-                        </div>
-                    </div> --}}
-
                 </div>
             </div>
         </div>
     </div>
-
-
-    <form id="form_create_officer_notis" method="POST" action="{{ url('/maintain_officer_Store'.'/'.$data_maintains->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <div id="cardOfficer" class="card radius-10 mb-2">
-            <div class="row p-4">
-                <div style="text-align: right;">
-                    <div class="dropdown float-end px-1">
-                        <select required class="form-select btn-secondary" name="status" id="select_status_repair">
-                            <option value="" {{ $data_maintains->status == '' ? 'selected' : '' }}>เลือกสถานะ</option>
-                            <option value="รอดำเนินการ" class="text-warning" {{ $data_maintains->status == 'รอดำเนินการ' ? 'selected' : '' }}>รอดำเนินการ</option>
-                            <option value="ไม่สามารถดำเนินการได้" class="text-danger" {{ $data_maintains->status == 'ไม่สามารถดำเนินการได้' ? 'selected' : '' }}>ไม่สามารถดำเนินการได้</option>
-                            <option value="เสร็จสิ้น" class="text-success" {{ $data_maintains->status == 'เสร็จสิ้น' ? 'selected' : '' }}>เสร็จสิ้น</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label for="device_code" class="control-label">{{ 'รหัสอุปกรณ์' }}</label>
-                    <input required class="form-control" name="device_code" type="text" id="device_code" value="{{ isset($data_maintains->device_code) ? $data_maintains->device_code : ''}}" >
-                </div>
-                <div class="form-group">
-                    <div class="mx-auto mb-2">
-                        <label for="datetime_start" class="control-label">{{ 'วันที่คาดว่าจะเริ่มดำเนินการ' }}</label>
-                        <span class="btn btn-warning" style="float: right;" data-toggle="modal" data-target="#modal_schedule" onclick="createWorkCalendar();"><i class="fa-solid fa-calendar-days"></i></span>
-                    </div>
-                    <input required class="form-control datepicker" name="datetime_start" type="datetime-local" id="datetime_start" placeholder="เลือกวันที่เริ่มดำเนินการ" value="{{ isset($data_maintains->datetime_start) ? $data_maintains->datetime_start : ''}}">
-                </div>
-                <div class="form-group">
-                    <label for="datetime_end" class="control-label">{{ 'วันที่คาดว่าจะเสร็จสิ้น' }}</label>
-                    <input required class="form-control datepicker" name="datetime_end" type="datetime-local" id="datetime_end" placeholder="เลือกวันที่เสร็จสิ้น" value="{{ isset($data_maintains->datetime_end) ? $data_maintains->datetime_end : ''}}">
-                </div>
-
-                <div class="form-group">
-                    <div class="mx-auto mb-2">
-                        <label for="material" class="control-label">{{ 'วัสดุ / อุปกรณ์ที่ใช้ในการซ่อม ' }}</label>
-                        <span class="btn btn-warning" style="float: right; "  data-toggle="modal" data-target="#modal_material" ><i class="fa-solid fa-plus"></i></span>
-                    </div>
-                    <input readonly class="form-control" name="material" id="material" value="{{ isset($data_maintains->material) ? $data_maintains->material : ''}}" >
-                </div>
-                <div class="form-group ">
-                    <label for="repair_costs" class="control-label">{{ 'ค่าใช้จ่ายในการซ่อม' }}</label>
-                    <input class="form-control" name="repair_costs" type="text" id="repair_costs" value="{{ isset($data_maintains->repair_costs) ? $data_maintains->repair_costs : ''}}" >
-
-                </div>
-                <div class="form-group ">
-                    <label for="photo_repair_costs" class="control-label">{{ 'หลักฐานค่าใช้จ่าย(ไม่เกิน 10 รูป)' }}</label>
-                    {{-- <input required class="form-control" name="photo_repair_costs" type="text" id="photo_repair_costs" value="" > --}}
-
-                </div>
-
-                <div class="col-12">
-                    {{-- <label for="inputAddress3" class="form-label">รูปภาพ</label> --}}
-                    <div id="image-upload-container" class="img-box">
-                        <label for="img1" class="img-item mb-5" id="img-label-1" style="display: block;">
-                            <div class="icon-img-item">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                            <input class="d-none" type="file" name="photo_repair_costs[]" id="img1" accept="image/*" onchange="previewImage(this, 'preview1', 1)">
-                            <img id="preview1" class="img-preview" alt="Image Preview" style="background-color: #fff; display:none; width: 100%; height:100%; object-fit: contain; z-index: 2; position: relative;" />
-                            <button type="button" class="mt-1 btn btn-danger btn-sm w-100" id="remove-btn-1" onclick="removeImage(1)" style="display: none;">ลบรูป</button>
-                        </label>
-                    </div>
-                </div>
-
-                <script>
-                    let imgCount = 1; // จำนวน input ที่ใช้งาน
-                    let maxImages = 10; // จำนวนสูงสุดของรูปภาพ
-
-                    function previewImage(input, previewId, count) {
-                        const preview = document.getElementById(previewId);
-                        const removeBtn = document.getElementById(`remove-btn-${count}`);
-
-                        // รีเซ็ตค่าของ preview ก่อนที่จะโหลดใหม่
-                        preview.style.display = 'none';
-                        preview.src = '';
-
-                        const file = input.files[0];
-
-                        if (file) {
-                            const reader = new FileReader();
-
-                            reader.onload = function(e) {
-                                preview.src = e.target.result;
-                                preview.style.display = 'block';
-
-                                // แสดงปุ่มลบเมื่อมีการเพิ่มรูปภาพ
-                                removeBtn.style.display = 'block';
-
-                                // ปิดการใช้งาน input หลังจากเลือกไฟล์แล้ว
-                                input.disabled = true;
-
-                                // เพิ่ม input ถัดไปถ้ายังไม่เกิน 10 ช่อง
-                                if (document.querySelectorAll('.img-item').length < maxImages) {
-                                    addImageUploadField();
+    <div class="col-12 col-lg-4">
+        <form id="form_create_officer_notis" method="POST" action="{{ url('/maintain_officer_Store'.'/'.$data_maintains->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div id="cardOfficer" class="card radius-15 mb-2" style="border-radius: 15px;">
+                <div class="row p-4">
+                    <div style="text-align: right;">
+                        <div class="dropdown float-end px-1">
+                            @php
+                                switch ($data_maintains->status) {
+                                    case 'แจ้งซ่อม':
+                                        $class_select_status = "btn-primary";
+                                        break;
+                                    case 'ไม่สามารถดำเนินการได้':
+                                        $class_select_status = "btn-danger";
+                                        break;
+                                    case 'รอดำเนินการ':
+                                        $class_select_status = "btn-warning text-dark";
+                                        break;
+                                    case 'เสร็จสิ้น':
+                                        $class_select_status = "btn-success";
+                                        break;
+                                    default:
+                                        $class_select_status = "btn-secondary";
                                 }
-                            };
+                            @endphp
 
-                            reader.readAsDataURL(file);
-                        }
-                    }
+                            <select  class="form-select {{$class_select_status}}" name="status" id="select_status_repair">
+                                <option value="" hidden>
+                                    @if($data_maintains->status == 'แจ้งซ่อม')
+                                        แจ้งซ่อม
+                                    @endif
+                                    @if($data_maintains->status == 'รอดำเนินการ')
+                                        รอดำเนินการ
+                                    @endif
+                                </option>
+                                <option value="ไม่สามารถดำเนินการได้" class="text-danger" {{ $data_maintains->status == 'ไม่สามารถดำเนินการได้' ? 'selected' : '' }}>ไม่สามารถดำเนินการได้</option>
+                                <option value="เสร็จสิ้น" class="text-success" {{ $data_maintains->status == 'เสร็จสิ้น' ? 'selected' : '' }}>เสร็จสิ้น</option>
+                            </select>
 
-                    function addImageUploadField() {
-                        const container = document.getElementById('image-upload-container');
+                        </div>
+                    </div>
+                    
 
-                        // ตรวจสอบว่ามีช่องเพิ่มรูปอยู่หรือยัง ถ้ายังไม่มีค่อยเพิ่ม
-                        if (!document.querySelector('.img-item input:not([disabled])')) {
-                            imgCount++; // เพิ่มตัวนับ imgCount ทุกครั้งที่สร้าง input ใหม่
-                            const newLabel = document.createElement('label');
-                            newLabel.setAttribute('for', `img${imgCount}`);
-                            newLabel.setAttribute('class', 'img-item mb-5');
-                            newLabel.setAttribute('id', `img-label-${imgCount}`);
 
-                            // ใช้ imgCount ในการสร้าง ID ที่ไม่ซ้ำกัน
-                            newLabel.innerHTML = `
+
+                    <div class="form-group ">
+                        <label for="device_code" class="control-label">{{ 'รหัสอุปกรณ์' }}</label>
+                        <input required class="form-control" name="device_code" type="text" id="device_code" value="{{ isset($data_maintains->device_code) ? $data_maintains->device_code : ''}}">
+                    </div>
+                    <div class="form-group">
+                        <div class="mx-auto mb-2">
+                            <label for="datetime_start" class="control-label">{{ 'วันที่คาดว่าจะเริ่มดำเนินการ' }}</label>
+                            <span class="btn btn-warning" style="float: right;" data-toggle="modal" data-target="#modal_schedule" onclick="createWorkCalendar();"><i class="fa-solid fa-calendar-days"></i></span>
+                        </div>
+                        <input required class="form-control datepicker" name="datetime_start" type="datetime-local" id="datetime_start" placeholder="เลือกวันที่เริ่มดำเนินการ" value="{{ isset($data_maintains->datetime_start) ? $data_maintains->datetime_start : ''}}" onchange="validateDate()">
+                   
+                    </div>
+                    <div class="form-group">
+                        <label for="datetime_end" class="control-label">{{ 'วันที่คาดว่าจะเสร็จสิ้น' }}</label>
+                     
+                        <input required class="form-control datepicker" name="datetime_end" type="datetime-local" id="datetime_end" placeholder="เลือกวันที่เสร็จสิ้น" value="{{ isset($data_maintains->datetime_end) ? $data_maintains->datetime_end : ''}}" onchange="validateDate()">
+                     
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="mx-auto mb-2">
+                            <label for="material" class="control-label">{{ 'วัสดุ / อุปกรณ์ที่ใช้ในการซ่อม ' }}</label>
+                            <span class="btn btn-warning" style="float: right; " data-toggle="modal" data-target="#modal_material"><i class="fa-solid fa-plus"></i></span>
+                        </div>
+                        <input readonly class="form-control d-none" name="material" id="material" value="{{ isset($data_maintains->material) ? $data_maintains->material : ''}}">
+                        <div class="material-group">
+                            @if(!empty($data_maintains->material))
+                            @foreach($materials as $material)
+                            <div class="material-item  my-2">
+                                {{ $loop->iteration }}. <span class="w-100 me-2">{{ $material['material'] }}</span> <span>จำนวน {{ $material['quantity'] }}</span> <br>
+                            </div>
+                            <!-- <div class="material-item d-flex my-2">
+                                        <input class="form-control w-100 me-2" type="text" value="{{ $material['material'] }}" readonly>
+                                        <input class="form-control w-25" type="text" value="{{ $material['quantity'] }}" readonly>
+                                    </div> -->
+                            @endforeach
+                            @endif
+                        </div>
+
+                    </div>
+                    <div class="form-group ">
+                        <label for="repair_costs" class="control-label">{{ 'ค่าใช้จ่ายในการซ่อม' }}</label>
+                        <input class="form-control" name="repair_costs" type="text" id="repair_costs" value="{{ isset($data_maintains->repair_costs) ? $data_maintains->repair_costs : ''}}">
+
+                    </div>
+                    <div class="form-group ">
+                        <label for="photo_repair_costs" class="control-label">{{ 'หลักฐานค่าใช้จ่าย(ไม่เกิน 10 รูป)' }}</label>
+                        {{-- <input required class="form-control" name="photo_repair_costs" type="text" id="photo_repair_costs" value="" > --}}
+
+                    </div>
+
+                    <div class="col-12">
+                        {{-- <label for="inputAddress3" class="form-label">รูปภาพ</label> --}}
+                        <div id="image-upload-container" class="img-box">
+
+                        
+                            @php
+                            if(!empty($data_maintains->photo_repair_costs)){
+                            $photos = is_array($data_maintains->photo_repair_costs) ? $data_maintains->photo_repair_costs : json_decode($data_maintains->photo_repair_costs, true);
+                            }
+                            @endphp
+
+                            @if(!empty($photos))
+                                @foreach($photos as $index => $item)
+                                <div class="img-item mb-5" style="display: block;" id="photo-{{$index}}">
+                                    <div class="icon-img-item">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <img class="img-preview" alt="Image Preview" style="border-radius:10px;background-color: #fff;  width: 100%; height:100%; object-fit: contain; z-index: 02; position: relative;" src="{{ url('storage')}}/{{$item}}">
+                                    <button type="button" class="mt-1 btn btn-danger btn-sm w-100" onclick="removeImageFromDB({{ $index }})">ลบรูป</button>
+                                    <input type="hidden" name="remaining_photos[]" value="{{ $item }}">
+                                </div>
+                                @endforeach
+                            @endif
+
+                            <label for="img1" class="img-item mb-5" id="img-label-1" style="display: block;">
                                 <div class="icon-img-item">
                                     <i class="fa-solid fa-plus"></i>
                                 </div>
-                                <input class="d-none" type="file" name="photos[]" id="img${imgCount}" accept="image/*" onchange="previewImage(this, 'preview${imgCount}', ${imgCount})">
-                                <img id="preview${imgCount}" class="img-preview" alt="Image Preview" style="display:none; width: 100%; height:100%; object-fit: contain; z-index: 2; position: relative;" />
-                                <button type="button" class="mt-1 btn btn-danger btn-sm w-100" id="remove-btn-${imgCount}" onclick="removeImage(${imgCount})" style="display: none;">ลบรูป</button>
-                            `;
+                                <label for="img1" class="img-item mb-5" id="img-label-1" style="display: block;">
+                                    <div class="icon-img-item">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <input class="d-none" type="file" name="photo_repair_costs[]" id="img1" accept="image/*" onchange="previewImage(this, 'preview1', 1)">
+                                    <img id="preview1" class="img-preview" alt="Image Preview" style="background-color: #fff; display:none; width: 100%; height:100%; object-fit: contain; z-index: 2; position: relative;" />
+                                    <button type="button" class="mt-1 btn btn-danger btn-sm w-100" id="remove-btn-1" onclick="removeImageFromUpload(1)" style="display: none;">ลบรูป</button>
+                                </label>
 
-                            container.appendChild(newLabel); // เพิ่มกล่อง input ใหม่ลงใน container
+                            </label>
+                        </div>
+                    </div>
+
+                    <script>
+                        function validateDate() {
+                            let datetimeStart = document.getElementById('datetime_start').value;
+                            let datetimeEnd = document.getElementById('datetime_end').value;
+
+                            if (datetimeStart && datetimeEnd) {
+                                if (new Date(datetimeStart) > new Date(datetimeEnd)) {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "โอ๊ะ...",
+                                        html: `
+                                            <span class="text-danger bold">วันที่เริ่มดำเนินการ</span>ต้องไม่มากกว่า<span class="text-danger bold">วันที่เสร็จสิ้น</span>
+                                        `,
+                                    });
+
+                                 // แปลงค่า datetimeStart และบวกเวลาเพิ่ม 1 ชั่วโมง
+                                 let startDateTime = new Date(datetimeStart);  // Assuming datetimeStart is a valid date string
+                                startDateTime.setHours(startDateTime.getHours() + 1);
+
+                                // Format the new datetime to the proper string format in local time
+                                let formattedDate = startDateTime.getFullYear() + '-' +
+                                    String(startDateTime.getMonth() + 1).padStart(2, '0') + '-' +
+                                    String(startDateTime.getDate()).padStart(2, '0') + 'T' +
+                                    String(startDateTime.getHours()).padStart(2, '0') + ':' +
+                                    String(startDateTime.getMinutes()).padStart(2, '0');
+
+                                // Set the value of the datetime_end field
+                                document.getElementById('datetime_end').value = formattedDate;
+
+                                    return false;
+                                }
+                            }
+                            return true;
                         }
 
-                        console.log(container);
-                    }
+                        function removeImageFromDB(index) {
 
-                    function removeImage(count) {
-                        const labelToRemove = document.getElementById(`img-label-${count}`);
-                        if (labelToRemove) {
-                            labelToRemove.remove(); // ลบ label ที่มีรูปภาพ
-                            // ตรวจสอบว่าต้องเพิ่มช่องเพิ่มรูปไหม ถ้าไม่มีแล้วให้เพิ่ม 1 ช่อง
-                            if (document.querySelectorAll('.img-item').length < maxImages) {
-                                addImageUploadField();
+                            Swal.fire({
+                                title: "ต้องการลบภาพนี้หรือไม่?",
+                                showDenyButton: true,
+                                showCancelButton: false,
+                                imageUrl: "{{url('img/stickerline/PNG/7.png')}}",
+                                imageWidth: 270,
+                                imageHeight: 220,
+                                imageAlt: "Custom image",
+                                confirmButtonText: "ลบ",
+                                denyButtonText: `ไม่ลบ`
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "ลบเรียบร้อย",
+                                        timer: 1000,
+                                        timerProgressBar: true,
+                                        willClose: () => {
+                                            clearInterval(timerInterval);
+                                        }
+                                    }).then(() => {
+                                        const photoDiv = document.getElementById(`photo-${index}`);
+                            if (photoDiv) {
+                                photoDiv.remove(); // ลบจาก DOM
+                            }
+                                    });
+                                } else if (result.isDenied) {
+                                    Swal.fire({
+                                        icon: "info",
+                                        title: "ยกเลิกเรียบร้อย",
+                                        timer: 1000,
+                                        timerProgressBar: true,
+                                        didOpen: () => {
+                                            const timer = Swal.getPopup().querySelector("b");
+                                            timerInterval = setInterval(() => {
+                                                timer.textContent = `${Swal.getTimerLeft()}`;
+                                            }, 100);
+                                        },
+                                        willClose: () => {
+                                            clearInterval(timerInterval);
+                                        }
+                                    });
+                                }
+                            });
+                           
+                        }
+
+
+                        function removeImageFromUpload(index) {
+
+                        Swal.fire({
+                            title: "ต้องการลบภาพนี้หรือไม่?",
+                            showDenyButton: true,
+                            showCancelButton: false,
+                            imageUrl: "{{url('img/stickerline/PNG/7.png')}}",
+                            imageWidth: 270,
+                            imageHeight: 220,
+                            imageAlt: "Custom image",
+                            confirmButtonText: "ลบ",
+                            denyButtonText: `ไม่ลบ`
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "ลบเรียบร้อย",
+                                    timer: 1000,
+                                    timerProgressBar: true,
+                                }).then(() => {
+                                    removeImage(index);
+                                });
+                            } else if (result.isDenied) {
+                                Swal.fire({
+                                    icon: "info",
+                                    title: "ยกเลิกเรียบร้อย",
+                                    timer: 1000,
+                                    timerProgressBar: true,
+                                    didOpen: () => {
+                                        const timer = Swal.getPopup().querySelector("b");
+                                        timerInterval = setInterval(() => {
+                                            timer.textContent = `${Swal.getTimerLeft()}`;
+                                        }, 100);
+                                    },
+                                    willClose: () => {
+                                        clearInterval(timerInterval);
+                                    }
+                                });
+                            }
+                        });
+
+                        }
+
+                        let imgCount = 1; // จำนวน input ที่ใช้งาน
+                        let maxImages = 10; // จำนวนสูงสุดของรูปภาพ
+
+                        function previewImage(input, previewId, count) {
+                            const preview = document.getElementById(previewId);
+                            const removeBtn = document.getElementById(`remove-btn-${count}`);
+
+                            // รีเซ็ตค่าของ preview ก่อนที่จะโหลดใหม่
+                            preview.style.display = 'none';
+                            preview.src = '';
+
+                            const file = input.files[0];
+
+                            if (file) {
+                                const reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                    preview.src = e.target.result;
+                                    preview.style.display = 'block';
+
+                                    // แสดงปุ่มลบเมื่อมีการเพิ่มรูปภาพ
+                                    removeBtn.style.display = 'block';
+
+                                    // ปิดการใช้งาน input หลังจากเลือกไฟล์แล้ว
+                                    input.disabled = true;
+
+                                    // เพิ่ม input ถัดไปถ้ายังไม่เกิน 10 ช่อง
+                                    if (document.querySelectorAll('.img-item').length <= maxImages) {
+                                        addImageUploadField();
+                                    }
+                                };
+
+                                reader.readAsDataURL(file);
                             }
                         }
-                    }
 
-                    // ฟังก์ชันนี้จะเรียกใช้เมื่อหน้าโหลดขึ้น
-                    function loadOldImages(images) {
-                        images.forEach((image, index) => {
-                            // สร้าง input ใหม่ให้กับรูปภาพแต่ละอัน
-                            const imgInput = document.createElement('input');
-                            imgInput.type = 'file';
-                            imgInput.name = 'photo_repair_costs[]';
-                            imgInput.id = `img${index + 1}`;
-                            imgInput.accept = 'image/*';
-                            imgInput.disabled = true; // ปิดการใช้งาน input เพราะเป็นการโหลดภาพเก่า
+                        function addImageUploadField() {
+                            const container = document.getElementById('image-upload-container');
+                            
+                            // นับเฉพาะ input[type="file"] ที่ไม่ใช่ disabled เพื่อเช็คจำนวนรูปภาพ
+                            const fileInputs = container.querySelectorAll('input[type="file"]:not([disabled])');
+                            const imagePreviews = container.querySelectorAll('img.img-preview');
 
-                            // สร้าง label สำหรับรูปภาพ
-                            const newLabel = document.createElement('label');
-                            newLabel.setAttribute('for', imgInput.id);
-                            newLabel.setAttribute('class', 'img-item mb-5');
-                            newLabel.setAttribute('id', `img-label-${index + 1}`);
+                            // ตรวจสอบจำนวนรูปที่มีอยู่ ถ้าน้อยกว่า 10 ให้เพิ่ม input ใหม่
+                            if (imagePreviews.length < 10 && fileInputs.length === 0) {
+                                imgCount++; // เพิ่มตัวนับ imgCount ทุกครั้งที่สร้าง input ใหม่
 
-                            // สร้าง tag img สำหรับแสดงตัวอย่าง
-                            const imgPreview = document.createElement('img');
-                            imgPreview.id = `preview${index + 1}`;
-                            imgPreview.classList.add('img-preview');
-                            imgPreview.src = `{{ url('/') }}/${image}`; // กำหนด src ของรูปภาพ
-                            imgPreview.style.display = 'block'; // แสดงภาพ
-                            imgPreview.style.width = '100%'; // กำหนดขนาด
-                            imgPreview.style.height = '100%';
-                            imgPreview.style.objectFit = 'contain';
-                            imgPreview.style.zIndex = '2';
-                            imgPreview.style.position = 'relative';
+                                const newLabel = document.createElement('label');
+                                newLabel.setAttribute('for', `img${imgCount}`);
+                                newLabel.setAttribute('class', 'img-item mb-5');
+                                newLabel.setAttribute('id', `img-label-${imgCount}`);
 
-                            // สร้างปุ่มลบ
-                            const removeBtn = document.createElement('button');
-                            removeBtn.type = 'button';
-                            removeBtn.className = 'mt-1 btn btn-danger btn-sm w-100';
-                            removeBtn.id = `remove-btn-${index + 1}`;
-                            removeBtn.style.display = 'block'; // แสดงปุ่มลบ
-                            removeBtn.onclick = () => removeImage(index + 1);
-                            removeBtn.innerText = 'ลบรูป';
+                                // ใช้ imgCount ในการสร้าง ID ที่ไม่ซ้ำกัน
+                                newLabel.innerHTML = `
+                                    <div class="icon-img-item">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <input class="d-none" type="file" name="photo_repair_costs[]" id="img${imgCount}" accept="image/*" onchange="previewImage(this, 'preview${imgCount}', ${imgCount})">
+                                    <img id="preview${imgCount}" class="img-preview" alt="Image Preview" style="display:none; width: 100%; height:100%; object-fit: contain; z-index: 2; position: relative;" />
+                                    <button type="button" class="mt-1 btn btn-danger btn-sm w-100" id="remove-btn-${imgCount}" onclick="removeImageFromUpload(${imgCount})" style="display: none;">ลบรูป</button>
+                                `;
 
-                            // เพิ่ม input, img, และ button เข้าไปใน label
-                            newLabel.appendChild(imgInput);
-                            newLabel.appendChild(imgPreview);
-                            newLabel.appendChild(removeBtn);
+                                container.appendChild(newLabel); // เพิ่มกล่อง input ใหม่ลงใน container
+                            }
+                        }
 
-                            // เพิ่ม label เข้าไปใน container
-                            document.getElementById('image-upload-container').appendChild(newLabel);
+                        function removeImage(count) {
+                            const labelToRemove = document.getElementById(`img-label-${count}`);
+                            if (labelToRemove) {
+                                labelToRemove.remove(); // ลบ label ที่มีรูปภาพ
+                                // ตรวจสอบว่าต้องเพิ่มช่องเพิ่มรูปไหม ถ้าไม่มีแล้วให้เพิ่ม 1 ช่อง
+                                if (document.querySelectorAll('.img-item').length < maxImages) {
+                                    addImageUploadField();
+                                }
+                            }
+                        }
+
+                        document.getElementById('form_create_officer_notis').addEventListener('submit', function(e) {
+                            const inputs = document.querySelectorAll('.img-item input[type="file"]');
+
+                            // ลบ disabled ใน input ของรูปภาพก่อนส่งฟอร์ม
+                            inputs.forEach(input => {
+                                input.disabled = false; // ปล่อยให้ input ใช้งานได้
+                            });
+
+                           
+
+                            // ถ้าต้องการตรวจสอบว่า input ใดที่มีไฟล์
+                            // const hasFiles = Array.from(inputs).some(input => input.files.length > 0);
+                            // console.log('มีไฟล์ที่อัปโหลด:', hasFiles);
                         });
-                    }
+
+                         // ฟังก์ชันแปลงปี ค.ศ. เป็น พ.ศ.
+                        function convertToBE(dateString) {
+                            let date = new Date(dateString);
+                            let year = date.getFullYear() + 543;
+                            return dateString.replace(date.getFullYear(), year);
+                        }
+
+                        // ฟังก์ชันแปลงปี พ.ศ. กลับเป็น ค.ศ.
+                        function convertToCE(dateString) {
+                            let date = new Date(dateString);
+                            let year = date.getFullYear() - 543;
+                            return dateString.replace(date.getFullYear(), year);
+                        }
+
+                        // แปลงวันที่เป็น พ.ศ. ตอนแสดงผล
+                        document.addEventListener('DOMContentLoaded', function() {
+                            let datetimeStart = document.getElementById('datetime_start');
+                            let datetimeEnd = document.getElementById('datetime_end');
+
+                            if (datetimeStart.value) {
+                                datetimeStart.value = convertToBE(datetimeStart.value);
+                            }
+                            if (datetimeEnd.value) {
+                                datetimeEnd.value = convertToBE(datetimeEnd.value);
+                            }
+                        });
 
 
-                </script>
+                        function convertsubmitform() {
+                            let datetimeStart = document.getElementById('datetime_start');
+                            let datetimeEnd = document.getElementById('datetime_end');
 
-                <div class="form-group">
-                    <label for="remark_officer" class="control-label">{{ 'ข้อคิดเห็นจากช่างหรือผู้รับผิดชอบ' }}</label>
-                    <textarea class="form-control" name="remark_officer" type="text" id="remark_officer">{{ isset($data_maintains->remark_officer) ? $data_maintains->remark_officer : ''}}</textarea>
+                            if (datetimeStart.value) {
+                                datetimeStart.value = convertToCE(datetimeStart.value);
+                            }
+                            if (datetimeEnd.value) {
+                                datetimeEnd.value = convertToCE(datetimeEnd.value);
+                            }
+
+                        }
+
+                        // ฟังก์ชันนี้จะเรียกใช้เมื่อหน้าโหลดขึ้น
+                        function loadOldImages(images) {
+                            images.forEach((image, index) => {
+                                // สร้าง input ใหม่ให้กับรูปภาพแต่ละอัน
+                                const imgInput = document.createElement('input');
+                                imgInput.type = 'file';
+                                imgInput.name = 'photo_repair_costs[]';
+                                imgInput.id = `img${index + 1}`;
+                                imgInput.accept = 'image/*';
+                                imgInput.disabled = true; // ปิดการใช้งาน input เพราะเป็นการโหลดภาพเก่า
+
+                                // สร้าง label สำหรับรูปภาพ
+                                const newLabel = document.createElement('label');
+                                newLabel.setAttribute('for', imgInput.id);
+                                newLabel.setAttribute('class', 'img-item mb-5');
+                                newLabel.setAttribute('id', `img-label-${index + 1}`);
+
+                                // สร้าง tag img สำหรับแสดงตัวอย่าง
+                                const imgPreview = document.createElement('img');
+                                imgPreview.id = `preview${index + 1}`;
+                                imgPreview.classList.add('img-preview');
+                                imgPreview.src = `{{ url('/') }}/${image}`; // กำหนด src ของรูปภาพ
+                                imgPreview.style.display = 'block'; // แสดงภาพ
+                                imgPreview.style.width = '100%'; // กำหนดขนาด
+                                imgPreview.style.height = '100%';
+                                imgPreview.style.objectFit = 'contain';
+                                imgPreview.style.zIndex = '2';
+                                imgPreview.style.position = 'relative';
+
+                                // สร้างปุ่มลบ
+                                const removeBtn = document.createElement('button');
+                                removeBtn.type = 'button';
+                                removeBtn.className = 'mt-1 btn btn-danger btn-sm w-100';
+                                removeBtn.id = `remove-btn-${index + 1}`;
+                                removeBtn.style.display = 'block'; // แสดงปุ่มลบ
+                                removeBtn.onclick = () => removeImageFromUpload(index + 1);
+                                removeBtn.innerText = 'ลบรูป';
+
+                                // เพิ่ม input, img, และ button เข้าไปใน label
+                                newLabel.appendChild(imgInput);
+                                newLabel.appendChild(imgPreview);
+                                newLabel.appendChild(removeBtn);
+
+                                // เพิ่ม label เข้าไปใน container
+                                document.getElementById('image-upload-container').appendChild(newLabel);
+                            });
+                        }
+                    </script>
+
+                    <div class="form-group">
+                        <label for="remark_officer" class="control-label">{{ 'ข้อคิดเห็นจากช่างหรือผู้รับผิดชอบ' }}</label>
+                        <textarea class="form-control" name="remark_officer" type="text" id="remark_officer">{{ isset($data_maintains->remark_officer) ? $data_maintains->remark_officer : ''}}</textarea>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-end">
+                        <button class="btn btn-success btn-md px-5" style="border-radius: 50px;" type="button" onclick="confirmSave();">บันทึก</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 col-lg-4 col-md-4 mb-2 " style="float: right;">
-            <button class="btn btn-success w-100" type="button" onclick="confirmSave()">บันทึก</button>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
 </div>
 
 <!-- Include jQuery -->
@@ -681,8 +976,8 @@
 
 <script>
     let officer_id = '{{$data_officer->id}}';
-    console.log("officer_id :"+officer_id);
-    document.addEventListener('DOMContentLoaded', function () {
+    // console.log("officer_id :" + officer_id);
+    document.addEventListener('DOMContentLoaded', function() {
         updateImageCounterInReceipt(); // ตั้งค่าเลขภาพเริ่มต้นตอนโหลดหน้า ของ ค่าใช้จ่ายในการซ่อม
         // getOldImageOfficer();
         // ดึงเฉพาะฟิลด์ที่มี required
@@ -698,14 +993,14 @@
         });
 
         let dataMaintains = @json($data_maintains);
-        console.log(dataMaintains);
+        // console.log(dataMaintains);
 
         // เรียกใช้ฟังก์ชัน initDateTimePickers เมื่อลงโหลดหน้า
         window.onload = initDateTimePickers;
 
         let selectElement = document.getElementById('select_status_repair');
         // เรียกฟังก์ชันทันทีเมื่อโหลดหน้ามาเพื่ออัพเดต class
-        updateClassBasedOnValue(selectElement);
+        // updateClassBasedOnValue(selectElement);
         // เพิ่ม event listener สำหรับการเปลี่ยนค่าใน select
         selectElement.addEventListener('change', function() {
             updateClassBasedOnValue(selectElement);
@@ -751,22 +1046,33 @@
         } else {
             selectElement.setAttribute('class', 'form-select btn-secondary');
         }
+
+        let id_maintain = "{{$data_maintains->id}}";
+        
+        fetch("{{ url('/') }}/api/chang_status_maintain" + "?id_maintain=" + id_maintain + "&status_maintain=" + selectElement.value)
+        .then(response => response.json())
+        .then(result => {
+           console.log(result);
+
+        });
+
+    
     }
 
     $('.deerCarousel').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:false,
-        dots:true,
-        responsive:{
-            0:{
-                items:1
+        loop: false,
+        margin: 10,
+        nav: false,
+        dots: true,
+        responsive: {
+            0: {
+                items: 1
             },
-            600:{
-                items:3
+            600: {
+                items: 3
             },
-            1000:{
-                items:5
+            1000: {
+                items: 5
             }
         }
     })
@@ -820,7 +1126,6 @@
         console.log("arrow left");
 
     });
-
 </script>
 
 <script>
@@ -867,7 +1172,7 @@
             });
             return;
         }
-
+       
         // if (!validateFormFiles()) {
         //     return; // ถ้าไม่มีไฟล์อัปโหลดหยุดการทำงาน
         // }
@@ -880,8 +1185,8 @@
             imageWidth: 270,
             imageHeight: 220,
             imageAlt: "Custom image",
-            confirmButtonText: "บันทึก",
-            denyButtonText: `ไม่บันทึก`
+            confirmButtonText: "ยืนยัน",
+            denyButtonText: `ยกเลิก`
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -889,15 +1194,6 @@
                     title: "บันทึกข้อมูลเรียบร้อย",
                     timer: 1000,
                     timerProgressBar: true,
-                    didOpen: () => {
-                        const timer = Swal.getPopup().querySelector("b");
-                        timerInterval = setInterval(() => {
-                            timer.textContent = `${Swal.getTimerLeft()}`;
-                        }, 100);
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval);
-                    }
                 }).then(() => {
                     // หลังจากแสดงการแจ้งเตือนเสร็จแล้ว จะทำการบันทึกค่าและส่ง form
                     previousStatusValue = document.querySelector('#select_status_repair').value; // อัปเดตค่าเมื่อบันทึก
@@ -907,6 +1203,7 @@
                         input.disabled = false; // ปล่อยให้ input ใช้งานได้
                     });
 
+                    convertsubmitform();
                     form_create_officer_notis.submit(); // ส่งฟอร์ม
                 });
             } else if (result.isDenied) {
@@ -932,31 +1229,34 @@
     }
 
     // ผูก event กับปุ่มบันทึกให้เรียก confirmSave แทนการ submit ปกติ
-    document.querySelector("button[type='submit']").addEventListener("click", function (e) {
+    document.querySelector("button[type='submit']").addEventListener("click", function(e) {
         e.preventDefault(); // ป้องกันการ submit ปกติ
         confirmSave(); // เรียกใช้งาน confirmSave
     });
-
 </script>
 
 
 <style>
-    .fc-toolbar-title { /* อักษร header schedule */
+    .fc-toolbar-title {
+        /* อักษร header schedule */
         font-size: 1rem !important;
         font-family: 'Mitr', sans-serif !important;
     }
 
-    .fc .fc-button { /* ปุ่ม header schedule */
+    .fc .fc-button {
+        /* ปุ่ม header schedule */
         font-size: 0.75rem !important;
         font-family: 'Mitr', sans-serif !important;
     }
 
-    .fc-list-event .fc-list-event-dot { /* ทำให้จุดสีหมวดหมู่ใน ตารางงานเจ้าหน้าที่ซ่อมอยู่กึ่งกลางบรรทัด*/
+    .fc-list-event .fc-list-event-dot {
+        /* ทำให้จุดสีหมวดหมู่ใน ตารางงานเจ้าหน้าที่ซ่อมอยู่กึ่งกลางบรรทัด*/
         margin-top: 0.4rem !important;
     }
 </style>
 
-<script>  //ฟังก์ชันสำหรับตารางงานเจ้าหน้าที่
+<script>
+    //ฟังก์ชันสำหรับตารางงานเจ้าหน้าที่
     const createWorkCalendar = () => {
         fetch("{{ url('/') }}/api/WorkCalendar/" + officer_id)
             .then(response => response.json())
@@ -981,7 +1281,7 @@
                     businessHours: true,
                     dayMaxEvents: true, // อนุญาตให้แสดงปุ่ม more เพื่อดูข้อมูลทั้งหมด
                     events: [],
-                    eventContent: function (arg) {
+                    eventContent: function(arg) {
                         let eventTitle = document.createElement('div');
                         eventTitle.textContent = arg.event.title;
                         eventTitle.setAttribute('class', 'eventTitle');
@@ -999,9 +1299,11 @@
                         container.appendChild(circle);
                         container.appendChild(eventTitle);
 
-                        return { domNodes: [container] };
+                        return {
+                            domNodes: [container]
+                        };
                     },
-                    eventDidMount: function (info) {
+                    eventDidMount: function(info) {
                         info.el.style.border = '1px solid #000'; // เพิ่มขอบสีดำ
                     }
                 });
@@ -1010,7 +1312,7 @@
                     console.log(event);
                     if (event.datetime_start) {
                         calendar.addEvent({
-                            title: 'ชื่อ : '+event.name_device + ' , รหัส : '+event.device_code,
+                            title: 'ชื่อ : ' + event.name_device + ' , รหัส : ' + event.device_code,
                             start: event.datetime_start,
                             end: event.datetime_end,
                             color: '#' + event.color_categories + 'CC',
@@ -1025,12 +1327,18 @@
                 });
 
                 calendar.render();
+
+                const myModal = document.querySelector("#modal_schedule");
+                myModal.addEventListener("shown.modal", () => {
+                    calendar.render();
+                });
             });
 
     }
 </script>
 
-<script> // สำหรับ เพิ่ม material
+<script>
+    // สำหรับ เพิ่ม material
     document.getElementById('add-row').addEventListener('click', function() { // สร้างแถวใหม่เพื่อใช้เพิ่ม ชื่อและจำนวน
         let newRow = document.createElement('div');
         newRow.classList.add('form-group', 'd-flex', 'justify-content-between', 'material-row');
@@ -1041,36 +1349,60 @@
         document.getElementById('material-inputs').appendChild(newRow);
     });
 
-    document.getElementById('save-materials').addEventListener('click', function() { // เมื่อกดปุ่มบันทึกให้เอาข้อมูลใน modal มาใส่ใน array materials เพื่อส่งไปยัง form
+    document.getElementById('save-materials').addEventListener('click', function() {
         let materials = [];
         let materialRows = document.querySelectorAll('.material-row');
         let hasError = false;
+
+        // ล้างข้อมูลเก่าใน material-group ก่อนเพิ่มข้อมูลใหม่
+        let materialGroup = document.querySelector('.material-group');
+        materialGroup.innerHTML = ''; // ล้างเนื้อหาเก่า
 
         materialRows.forEach(function(row) {
             let name = row.querySelector('input[name="material_name[]"]').value;
             let quantity = row.querySelector('input[name="material_quantity[]"]').value;
 
             if (name && !quantity) {
-                // ถ้ามีชื่อ แต่ไม่มีจำนวน
-                // alert("กรุณากรอกจำนวนสำหรับวัสดุ: " + name);
-                row.querySelector('input[name="material_quantity[]"]').classList.add('bg_warning_missed_data'); // เพิ่ม bg_warning_missed_data
-                hasError = true; // มีข้อผิดพลาด
+                row.querySelector('input[name="material_quantity[]"]').classList.add('bg_warning_missed_data');
+                hasError = true;
             } else if (!name && quantity) {
-                // ถ้ามีชื่อ แต่ไม่มีจำนวน
-                // alert("กรุณากรอกชื่อสำหรับวัสดุ: " + quantity);
-                row.querySelector('input[name="material_name[]"]').classList.add('bg_warning_missed_data'); // เพิ่ม bg_warning_missed_data
-                hasError = true; // มีข้อผิดพลาด
-            } else if (name && quantity){
-                // ถ้ามีชื่อและจำนวนครบ
-                materials.push(`${name} ${quantity}`);
-            }
+                row.querySelector('input[name="material_name[]"]').classList.add('bg_warning_missed_data');
+                hasError = true;
+            } else if (name && quantity) {
+                // เก็บข้อมูลในรูปแบบออบเจ็กต์
+                materials.push({
+                    "material": name,
+                    "quantity": parseInt(quantity) // แปลงเป็นจำนวนเต็ม
+                });
 
+                // สร้าง div สำหรับแสดงรายการวัสดุใน material-group
+                let materialItem = document.createElement('div');
+                materialItem.classList.add('material-item', 'my-2');
+
+                // สร้าง span สำหรับชื่อวัสดุ
+                let nameSpan = document.createElement('span');
+                nameSpan.classList.add('w-100', 'me-2');
+                nameSpan.textContent = name; // กำหนดชื่อวัสดุ
+
+                // สร้าง span สำหรับจำนวนวัสดุ
+                let quantitySpan = document.createElement('span');
+                quantitySpan.textContent = 'จำนวน ' + quantity; // กำหนดจำนวนวัสดุ
+
+                // ใส่ span ทั้งสองเข้าใน div material-item
+                materialItem.appendChild(document.createTextNode(`${materials.length}. `)); // ใส่ลำดับ
+                materialItem.appendChild(nameSpan);
+                materialItem.appendChild(quantitySpan);
+
+                // เพิ่ม material-item เข้าไปใน material-group
+                materialGroup.appendChild(materialItem);
+
+            }
         });
 
         if (!hasError) {
-            // ตรวจสอบว่า materials ไม่ว่างก่อนที่จะ join
             if (materials.length > 0) {
-                document.getElementById('material').value = materials.join(' , ');
+                // แปลง materials เป็น JSON แล้วใส่ลงในฟิลด์ material
+                document.getElementById('material').value = JSON.stringify(materials);
                 console.log(document.getElementById('material').value);
             } else {
                 document.getElementById('material').value = ''; // ถ้าไม่มีข้อมูล ให้เป็นค่าว่าง
@@ -1078,6 +1410,7 @@
             document.getElementById('modal_material_close_btn').click(); // ปิด modal
         }
     });
+
 
     document.getElementById('save-materials').addEventListener('click', function() {
         addInputListeners();
@@ -1118,7 +1451,6 @@
             });
         });
     }
-
 </script>
 
 

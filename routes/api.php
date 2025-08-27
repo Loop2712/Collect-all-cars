@@ -497,6 +497,7 @@ Route::get('/get_5_SlowestMaintains', 'MaintainDashboardController@get_5_Slowest
 Route::get('/get_cateChartMaintains', 'MaintainDashboardController@get_cateChartMaintains'); // Create By Junior Dear --> "กราฟแสดงการแจ้งซ่อมตามหมวดหมู่ + หมวดหมู่ย่อย" ใน Dashboard
 Route::get('/get_areaAmountChartMaintains', 'MaintainDashboardController@get_areaAmountChartMaintains'); // Create By Junior Dear --> "กราฟแสดงการแจ้งแต่ละพื้นที่" ใน Dashboard
 Route::get('/WorkCalendarDashboard/{partner_id}', 'MaintainDashboardController@WorkCalendarDashboard'); // Create By Junior Dear --> ข้อมูลตารางงานของ Dashboard
+Route::get('/chang_status_maintain', 'Maintain_notisController@chang_status_maintain');
 // END maintain
 
 // quality_maintain

@@ -227,8 +227,14 @@
 
 @php
 	$data_partner = App\Models\Sos_partner::where('id' , Auth::user()->organization_id)->first();
-	$color_navbar = $data_partner->color_navbar ;
-	$class_color_menu = $data_partner->class_color_menu ;
+
+    if($data_partner !== null){
+        $color_navbar = $data_partner->color_navbar ;
+        $class_color_menu = $data_partner->class_color_menu ;
+    }else{
+        $color_navbar = '#ffffff';
+        $class_color_menu = '#ffffff';
+    }
 @endphp
 
 <body>

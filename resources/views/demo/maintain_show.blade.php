@@ -276,7 +276,7 @@
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="d-block text-center">
                                         <div class="img-show mb-2">
-                                            <img src="{{url('img/stickerline/PNG/1.png')}}" alt="">
+                                            <img src="{{url('img/stickerline/PNG/1.png')}}" alt="" onclick="openModal();currentSlide(1)">
                                         </div>
                                         <div class="img-group">
                                             <img src="{{url('img/stickerline/PNG/1.png')}}" class="active" alt="" data-slide="1">

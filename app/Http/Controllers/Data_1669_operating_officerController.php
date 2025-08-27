@@ -156,7 +156,7 @@ class Data_1669_operating_officerController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         Data_1669_operating_officer::destroy($id);
 

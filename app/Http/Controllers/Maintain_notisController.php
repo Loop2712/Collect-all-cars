@@ -438,32 +438,53 @@ class Maintain_notisController extends Controller
         return view('test_repair_admin/test_officer_maintain',compact('data_maintains' ,'data_officer'));
     }
 
-    public function Maintain_officer_Store(Request $request, $id) {
-        $maintain_noti = Maintain_noti::findOrFail($id); // ใช้ findOrFail เพื่อจัดการกรณีที่ไม่พบ id
+   public function Maintain_officer_Store(Request $request, $id) {
+        $maintain_noti = Maintain_noti::findOrFail($id);  
+        $requestData = $request->all();
+  
 
-        // ตรวจสอบว่ามีการอัปโหลดรูปภาพ
+        // dd($requestData);
+    
+        // ตรวจสอบว่ามีรูปภาพที่เหลือจากฟอร์ม
+        $remaining_photos = $request->input('remaining_photos', []);
+        
+        // ดึงรูปภาพเก่าจากฐานข้อมูล
+        $current_photos = json_decode($maintain_noti->photo_repair_costs, true) ?? [];
+        
+        // อัปเดตเฉพาะรูปที่ยังคงเหลือ
+        $maintain_noti->photo_repair_costs = json_encode($remaining_photos);
+        
+        // อัปเดตรูปใหม่ถ้ามีการอัปโหลดเพิ่มเติม
         if ($request->hasFile('photo_repair_costs')) {
-            $photo_repair_costs = [];
-
             foreach ($request->file('photo_repair_costs') as $photo) {
-                // บันทึกรูปภาพในโฟลเดอร์ 'uploads' และรับเส้นทางของไฟล์ที่บันทึก
                 $path = $photo->store('uploads', 'public');
-                $photo_repair_costs[] = $path; // เพิ่มเส้นทางรูปภาพใน array
+                $remaining_photos[] = $path; // เพิ่มเส้นทางรูปใหม่
             }
-
-            // แปลง array เป็น JSON เพื่อบันทึกในคอลัมน์ photo ในฐานข้อมูล
-            $maintain_noti->photo_repair_costs = json_encode($photo_repair_costs);
+            $maintain_noti->photo_repair_costs = json_encode($remaining_photos); // อัปเดตคอลัมน์
         }
-
-        // ดึงข้อมูลอื่น ๆ โดยไม่รวม photo
+        // อัปเดตข้อมูลอื่น ๆ โดยยกเว้นฟิลด์ photo_repair_costs
         $requestData = $request->except('photo_repair_costs');
 
-        // อัปเดตข้อมูลอื่นๆ ในฐานข้อมูล
-        $maintain_noti->update($requestData); // อัปเดตด้วยข้อมูลที่ไม่ซ้ำซ้อนกับคอลัมน์ photo
+      // ตรวจสอบว่ามีค่า datetime_start และ datetime_end หรือไม่
+        if (!empty($requestData['datetime_start']) && !empty($requestData['datetime_end'])) {
+            // ถ้าสถานะปัจจุบันเป็น 'แจ้งซ่อม' ให้เปลี่ยนเป็น 'รอดำเนินการ'
+            if ($maintain_noti->status == 'แจ้งซ่อม') {
+                $requestData['status'] = 'รอดำเนินการ';
+
+                $newRequest = new Request();
+                $newRequest->merge(['id_maintain' => $id]);
+                $newRequest->merge(['status_maintain' => 'รอดำเนินการ']);
+        
+                // ส่ง Request ใหม่ไปยังฟังก์ชัน chang_status_maintain
+                $this->chang_status_maintain($newRequest);
+            }
+        }
+
+        // ทำการอัปเดตข้อมูลในฐานข้อมูล
+        $maintain_noti->update($requestData);
 
         return redirect()->back();
     }
-
     public function WorkCalendar(Request $request, $officer_id) {
         $officer_id_int = (int)$officer_id; // แปลงเป็น integer
         $data_maintains = Maintain_noti::whereJsonContains('officer_id',$officer_id_int)
@@ -1023,11 +1044,11 @@ class Maintain_notisController extends Controller
 
         if ($status_maintain == 'รอดำเนินการ') {
             $template_path = storage_path('../public/json/maintain/timeline/command.json');
-
+            
         } else if ($status_maintain == 'กำลังดำเนินการ') {
             $template_path = storage_path('../public/json/maintain/timeline/process.json');
-
-        }
+            
+        } 
         else if ($status_maintain == 'เสร็จสิ้น') {
             $template_path = storage_path('../public/json/maintain/timeline/success.json');
 
@@ -1035,18 +1056,18 @@ class Maintain_notisController extends Controller
         else if ($status_maintain == 'ไม่สามารถดำเนินการได้') {
             $template_path = storage_path('../public/json/text_success.json');
         }
-
+        
         $string_json = file_get_contents($template_path);
-
+        
         $string_json = str_replace("name_cat",$data_maintain->name_sub_categorys,$string_json);
 
 
         if($status_maintain == 'รอดำเนินการ' && $status_maintain == 'กำลังดำเนินการ' && $status_maintain == 'เสร็จสิ้น'){
 
         }if($status_maintain == 'กำลังดำเนินการ' && $status_maintain == 'เสร็จสิ้น'){
-
+            
         }if($status_maintain == 'เสร็จสิ้น'){
-
+            
         }if($status_maintain == 'ไม่สามารถดำเนินการได้'){
 
             $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","มีการเปลี่ยนเจ้าหน้าที่ใหม่สำหรับการแจ้งซ่อมนี้ กรุณารอกำหนดแจ้งซ่อมจากเจ้าหน้าที่ใหม่",$string_json);

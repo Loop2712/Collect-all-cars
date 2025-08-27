@@ -4,6 +4,9 @@
 @section('content')
 
 <style>
+    .btn_confirmdelete{
+        transition: all .15s ease-in-out;
+    }
     .btn-outline-delete{
         color: #db2d2e !important;
         border: none !important;
@@ -495,10 +498,15 @@
                             @else
                                 <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
                             @endif -->
+
+                            <!-- onclick="cancel_membership('{{ $item->user_id }}');" -->
                         </td>
                         <td class="text-center">
                             @if($item->role != 'admin-partner')
-                            <button class="btn-outline-delete" onclick="cancel_membership('{{ $item->user_id }}');">
+                            <button class="btn-outline-delete"  data-toggle="modal" data-target="#modalconfirmDelete" onclick="
+                            document.querySelector('.btn_confirmdelete').id = '{{ $item->user_id }}'; @if(!empty($item->user->photo)) document.querySelector('#img_user_delete').src = '{{ url('/storage') .'/'. $item->user->photo  }}'; @else document.querySelector('#img_user_delete').src = '{{ url('/partner/images/user/avatar-1.jpg') }}';  @endif
+                            document.querySelector('#name_user_delete').innerHTML = '{{ $item->name_officer_command }}';
+                            "> 
                                 <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
                             </button>
                             @else
@@ -753,6 +761,46 @@
 
 <!------------------------------------------------ end mobile---------------------------------------------- -->
 
+
+<!-- Modal delete officer-->
+<div class="modal fade" id="modalconfirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+            <div class="modal-header d-none">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <button class="btn btn-close-modal"  data-dismiss="modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body ">
+                <center>
+                    <h5 class="text-danger">ยืนยันการยกเลิกสถานะ</h5>
+                    <br>
+                    <img id="img_user_delete" width="150px" height="150px" style="border-radius: 50%;object-fit: cover;" class="m-2" src="">
+                    <h5 id="name_user_delete"></h5>
+                </center>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder='โปรดพิมพ์ "ยืนยัน  " ' oninput="checkinputDelete(this.value);"  aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-danger btn_confirmdelete" type="button" id="" disabled onclick="cancel_membership(this.id);">ลบ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkinputDelete(value) {
+        if (value == "ยืนยัน") {
+            document.querySelector('.btn_confirmdelete').disabled = false;
+        }else{
+            document.querySelector('.btn_confirmdelete').disabled = true;
+
+        }
+    }
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -954,7 +1002,7 @@
                             `+ creator_name +`
                         </td>
                         <td class="text-center">
-                            <button class="btn-outline-delete" onclick="cancel_membership('`+ result[xxiv]['user_id'] +`');">
+                            <button class="btn-outline-delete" onclick="document.querySelector('.btn_confirmdelete').id = ${result[xxiv]['user_id']}" data-toggle="modal" data-target="#modalconfirmDelete">
                                 <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
                             </button>
                         </td>

@@ -707,9 +707,10 @@ Route::resource('maintain_use_materials', 'Maintain_use_materialsController');
 Route::get('maintain_notis_rating/{maintain_id}', 'Maintain_notisController@maintain_notis_rating');
 Route::get('command_maintain', 'Maintain_notisController@command_maintain');
 Route::post('/maintain_officer_Store/{id}', 'Maintain_notisController@Maintain_officer_Store'); //by junior dear
-Route::get('/mockup_video_call', function () {
+Route::get('/demo_management_view', function () {
     return view('nationalitie_sos/mockup_video_call');
 });
+
 
 //==== ส่วน dashboard ViiFix =====
 Route::get('/dashboard_viifix', 'MaintainDashboardController@dashboard_viifix_index'); //by junior dear
@@ -798,7 +799,9 @@ Route::get('/demo/set_group_line', function () {
 Route::get('/demo/register_organization', function () {
     return view('demo/register_organization');
 });
-
+Route::get('/demo/home', function () {
+    return view('demo/home');
+});
 Route::resource('sos_phone_country', 'Sos_phone_countryController');
 
 // Route::resource('sos_partners', 'Sos_partnersController');
