@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use App\Http\Controllers\API\LineApiController;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LoginController extends Controller
 {
@@ -120,36 +121,13 @@ class LoginController extends Controller
     }
 
     // Line login
-    // public function redirectToLine(Request $request)
-    // {
-    //     $request->session()->put('Student', $request->get('Student'));
-    //     $request->session()->put('redirectTo', $request->get('redirectTo'));
-    //     $request->session()->put('from', $request->get('from'));
-
-    //     return Socialite::driver('line')->redirect();
-    // }
-
     public function redirectToLine(Request $request)
     {
-        $student = $request->get('Student');
-        $redirectTo = $request->get('redirectTo');
-        $from = $request->get('from');
+        $request->session()->put('Student', $request->get('Student'));
+        $request->session()->put('redirectTo', $request->get('redirectTo'));
+        $request->session()->put('from', $request->get('from'));
 
-        // เก็บลง Session ไว้เหมือนเดิม (เผื่อไว้)
-        $request->session()->put('Student', $student);
-        $request->session()->put('redirectTo', $redirectTo);
-        $request->session()->put('from', $from);
-
-        // สร้างข้อมูลพ่วงส่งไปกับ LINE (ใช้ http_build_query เพื่อให้จัดฟอร์แมตง่าย)
-        $stateData = http_build_query([
-            'redirectTo' => $redirectTo,
-            'Student' => $student,
-            'from' => $from
-        ]);
-
-        return Socialite::driver('line')
-            ->with(['state' => $stateData]) // ส่งค่าพ่วงไปกับ state
-            ->redirect();
+        return Socialite::driver('line')->redirect();
     }
 
     // Line login TU
@@ -221,89 +199,51 @@ class LoginController extends Controller
     }
 
     // Line callback
-    // public function handleLineCallback(Request $request)
-    // {
-    //     // $user = Socialite::driver('line')->user();
-    //     $user = Socialite::driver('line')->stateless()->user();
-
-    //     // try {
-    //     //     $user = Socialite::driver('line')->user();
-    //     // } catch (InvalidStateException $e) {
-    //     //     $user = Socialite::driver('line')->stateless()->user();
-    //     // }
-
-    //     // echo "<pre>";
-    //     // print_r($user);
-    //     // echo "<pre>";
-    //     // exit();
-
-    //     $by_api = $request->session()->get('by_api');
-
-        // if (!empty($by_api)) {
-        //     // register api
-
-        //     $data_register_api = [] ;
-        //     $data_register_api['name'] = $request->session()->get('name'); 
-        //     $data_register_api['phone'] = $request->session()->get('phone'); 
-        //     $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
-        //     $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
-        //     $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
-        //     $data_register_api['by_api'] = $request->session()->get('by_api'); 
-
-        //     $this->_register_API($user , "line" , $data_register_api );
-
-        // }else{
-        //     $student = $request->session()->get('Student');
-        //     $from = $request->session()->get('from');
-        //     $check_in_at = $request->session()->get('check_in_at');
-        //     // register general
-        //     $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
-        // }
-
-
-    //     $value = $request->session()->get('redirectTo');
-    //     $request->session()->forget('redirectTo');
-
-    //     return redirect()->intended($value);
-
-    // }
-
     public function handleLineCallback(Request $request)
     {
-        // ใช้ stateless() เพื่อข้ามปัญหา Session Mismatch ของตัว State เอง
+        // $user = Socialite::driver('line')->user();
         $user = Socialite::driver('line')->stateless()->user();
 
-        // ดึงค่า state ที่ LINE ส่งคืนมา
-        $state = $request->get('state');
-        parse_str($state, $result);
+        // try {
+        //     $user = Socialite::driver('line')->user();
+        // } catch (InvalidStateException $e) {
+        //     $user = Socialite::driver('line')->stateless()->user();
+        // }
 
-        // ดึงค่า โดยลำดับความสำคัญคือ: 1. จาก Session, 2. จาก State (ถ้า Session หาย), 3. ค่า Default
-        $student = $request->session()->get('Student') ?? ($result['Student'] ?? null);
-        $from = $request->session()->get('from') ?? ($result['from'] ?? null);
-        $redirectTo = $request->session()->get('redirectTo') ?? ($result['redirectTo'] ?? 'https://www.viicheck.com');
-        $check_in_at = $request->session()->get('check_in_at');
+        // echo "<pre>";
+        // print_r($user);
+        // echo "<pre>";
+        // exit();
+
         $by_api = $request->session()->get('by_api');
 
         if (!empty($by_api)) {
-            $data_register_api = [
-                'name' => $request->session()->get('name'),
-                'phone' => $request->session()->get('phone'),
-                'tambon_th' => $request->session()->get('tambon_th'),
-                'amphoe_th' => $request->session()->get('amphoe_th'),
-                'changwat_th' => $request->session()->get('changwat_th'),
-                'by_api' => $by_api,
-            ];
-            $this->_register_API($user, "line", $data_register_api);
-        } else {
-            // ลงทะเบียนหรือล็อกอินปกติ
-            $this->_registerOrLoginUser($user, "line", $student, $from, $check_in_at);
+            // register api
+
+            $data_register_api = [] ;
+            $data_register_api['name'] = $request->session()->get('name'); 
+            $data_register_api['phone'] = $request->session()->get('phone'); 
+            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
+            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
+            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
+            $data_register_api['by_api'] = $request->session()->get('by_api'); 
+
+            $this->_register_API($user , "line" , $data_register_api );
+
+        }else{
+            $student = $request->session()->get('Student');
+            $from = $request->session()->get('from');
+            $check_in_at = $request->session()->get('check_in_at');
+            // register general
+            $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
         }
 
-        // ล้างค่า session
-        $request->session()->forget(['redirectTo', 'Student', 'from']);
 
-        // ดีดไปหน้าที่ต้องการ
-        return redirect()->to($redirectTo);
+        $value = $request->session()->get('redirectTo');
+        $request->session()->forget('redirectTo');
+
+        return redirect()->intended($value);
+
     }
 
     protected function _registerOrLoginUser($data, $type , $student , $from , $check_in_at)
@@ -329,36 +269,20 @@ class LoginController extends Controller
                 $user->email = "กรุณาเพิ่มอีเมล";
             }
 
-            // AVATAR
+            // สำหรับ User ใหม่ ให้จัดการรูปทันทีถ้ามี avatar ส่งมา
             if (!empty($data->avatar)) {
-                $user->avatar = $data->avatar;
-
-                // $url = $data->avatar;
-                // $img = storage_path("app/public")."/uploads". "/" . 'photo' . $data->id . '.png';
-                // // Save image
-                // file_put_contents($img, file_get_contents($url));
-                // $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
+                $this->uploadAndResizeAvatar($user, $data);
             }
             else if (empty($data->avatar)) {
                 $user->avatar = null;
                 $user->photo = null ;
             }
-
             $user->save();
+
         }else{
             // AVATAR
-            if (!empty($data->avatar)) {
-                $user->avatar = $data->avatar;
-
-                // $url = $data->avatar;
-                // $img = storage_path("app/public")."/uploads". "/" . 'photo' . $data->id . '.png';
-                // // Save image
-                // file_put_contents($img, file_get_contents($url));
-                // $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
-            }
-            else if (empty($data->avatar)) {
-                $user->avatar = null;
-                $user->photo = null ;
+            if (!empty($data->avatar) && $data->avatar !== $user->avatar) {
+                $this->uploadAndResizeAvatar($user, $data);
             }
             
             DB::table('users')
@@ -490,6 +414,42 @@ class LoginController extends Controller
                 }
         }
 
+    }
+
+    private function uploadAndResizeAvatar($user, $data)
+    {
+        try {
+            // สร้างโฟลเดอร์ profile
+            $folderPath = storage_path("app/public/uploads/profile");
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true);
+            }
+
+            // ลบรูปเก่าออกก่อนถ้ามี
+            if (!empty($user->photo) && file_exists(storage_path("app/public/" . $user->photo))) {
+                unlink(storage_path("app/public/" . $user->photo));
+            }
+
+            // เพิ่ม time() เพื่อป้องกัน Browser จำ Cache รูปเก่า
+            $fileName = 'photo_' . $data->id . '_' . time() . '.png'; 
+            $savePath = $folderPath . '/' . $fileName;
+
+            // ดึงรูปจาก URL มาทำ Resize
+            Image::make($data->avatar)
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($savePath);
+
+            // บันทึก Path ลง Database
+            $user->avatar = $data->avatar; // เก็บ URL ต้นฉบับ
+            $user->photo = "uploads/profile/" . $fileName; // เก็บ Path รูปที่ Resize แล้ว
+            
+        } catch (\Exception $e) {
+            // ถ้าระบบรูปภาพพัง (เช่น Disk เต็ม) ให้ข้ามไปเพื่อให้ Login ทำงานต่อได้
+            \Log::error("Avatar Upload Error: " . $e->getMessage());
+        }
     }
 
     protected function _register_API($data, $type , $data_register_api)
