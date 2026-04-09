@@ -120,13 +120,36 @@ class LoginController extends Controller
     }
 
     // Line login
+    // public function redirectToLine(Request $request)
+    // {
+    //     $request->session()->put('Student', $request->get('Student'));
+    //     $request->session()->put('redirectTo', $request->get('redirectTo'));
+    //     $request->session()->put('from', $request->get('from'));
+
+    //     return Socialite::driver('line')->redirect();
+    // }
+
     public function redirectToLine(Request $request)
     {
-        $request->session()->put('Student', $request->get('Student'));
-        $request->session()->put('redirectTo', $request->get('redirectTo'));
-        $request->session()->put('from', $request->get('from'));
+        $student = $request->get('Student');
+        $redirectTo = $request->get('redirectTo');
+        $from = $request->get('from');
 
-        return Socialite::driver('line')->redirect();
+        // เก็บลง Session ไว้เหมือนเดิม (เผื่อไว้)
+        $request->session()->put('Student', $student);
+        $request->session()->put('redirectTo', $redirectTo);
+        $request->session()->put('from', $from);
+
+        // สร้างข้อมูลพ่วงส่งไปกับ LINE (ใช้ http_build_query เพื่อให้จัดฟอร์แมตง่าย)
+        $stateData = http_build_query([
+            'redirectTo' => $redirectTo,
+            'Student' => $student,
+            'from' => $from
+        ]);
+
+        return Socialite::driver('line')
+            ->with(['state' => $stateData]) // ส่งค่าพ่วงไปกับ state
+            ->redirect();
     }
 
     // Line login TU
@@ -247,57 +270,40 @@ class LoginController extends Controller
 
     public function handleLineCallback(Request $request)
     {
-        try {
-            $user = Socialite::driver('line')->stateless()->user();
-            // dd($user); 
+        // ใช้ stateless() เพื่อข้ามปัญหา Session Mismatch ของตัว State เอง
+        $user = Socialite::driver('line')->stateless()->user();
 
-        } catch (\Exception $e) {
-            dd("LINE Callback Error: " . $e->getMessage());
-        }
+        // ดึงค่า state ที่ LINE ส่งคืนมา
+        $state = $request->get('state');
+        parse_str($state, $result);
 
-        // ดักดูค่าใน Session ก่อนที่จะเริ่มทำ Logic อื่นๆ
-        $sessionData = $request->session()->all();
-        // dd($sessionData);
-
+        // ดึงค่า โดยลำดับความสำคัญคือ: 1. จาก Session, 2. จาก State (ถ้า Session หาย), 3. ค่า Default
+        $student = $request->session()->get('Student') ?? ($result['Student'] ?? null);
+        $from = $request->session()->get('from') ?? ($result['from'] ?? null);
+        $redirectTo = $request->session()->get('redirectTo') ?? ($result['redirectTo'] ?? 'https://www.viicheck.com');
+        $check_in_at = $request->session()->get('check_in_at');
         $by_api = $request->session()->get('by_api');
 
         if (!empty($by_api)) {
-            $data_register_api = [] ;
-            $data_register_api['name'] = $request->session()->get('name'); 
-            $data_register_api['phone'] = $request->session()->get('phone'); 
-            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
-            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
-            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
-            $data_register_api['by_api'] = $request->session()->get('by_api'); 
-
-            $this->_register_API($user , "line" , $data_register_api );
+            $data_register_api = [
+                'name' => $request->session()->get('name'),
+                'phone' => $request->session()->get('phone'),
+                'tambon_th' => $request->session()->get('tambon_th'),
+                'amphoe_th' => $request->session()->get('amphoe_th'),
+                'changwat_th' => $request->session()->get('changwat_th'),
+                'by_api' => $by_api,
+            ];
+            $this->_register_API($user, "line", $data_register_api);
         } else {
-            $student = $request->session()->get('Student');
-            $from = $request->session()->get('from');
-            $check_in_at = $request->session()->get('check_in_at');
-
-            // 3. ลองเช็กดูว่าฟังก์ชันนี้ทำงานสำเร็จไหม
+            // ลงทะเบียนหรือล็อกอินปกติ
             $this->_registerOrLoginUser($user, "line", $student, $from, $check_in_at);
-
-            dd([
-                'auth_check' => Auth::check(),
-                'current_user' => Auth::user(),
-                'session_redirectTo' => session('redirectTo')
-            ]);
         }
 
-        $value = $request->session()->get('redirectTo');
-        
-        if (!$value) {
-            dd("Login Success แต่หาทางไปต่อไม่ได้ (redirectTo is null)", [
-                'user' => Auth::user(),
-                'session' => $sessionData
-            ]);
-        }
+        // ล้างค่า session
+        $request->session()->forget(['redirectTo', 'Student', 'from']);
 
-        $request->session()->forget('redirectTo');
-
-        return redirect()->intended($value);
+        // ดีดไปหน้าที่ต้องการ
+        return redirect()->to($redirectTo);
     }
 
     protected function _registerOrLoginUser($data, $type , $student , $from , $check_in_at)
