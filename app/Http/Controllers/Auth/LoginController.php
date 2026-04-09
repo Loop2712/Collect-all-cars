@@ -198,52 +198,109 @@ class LoginController extends Controller
     }
 
     // Line callback
-    public function handleLineCallback(Request $request)
-    {
-        // $user = Socialite::driver('line')->user();
-        $user = Socialite::driver('line')->stateless()->user();
+    // public function handleLineCallback(Request $request)
+    // {
+    //     // $user = Socialite::driver('line')->user();
+    //     $user = Socialite::driver('line')->stateless()->user();
 
-        // try {
-        //     $user = Socialite::driver('line')->user();
-        // } catch (InvalidStateException $e) {
-        //     $user = Socialite::driver('line')->stateless()->user();
+    //     // try {
+    //     //     $user = Socialite::driver('line')->user();
+    //     // } catch (InvalidStateException $e) {
+    //     //     $user = Socialite::driver('line')->stateless()->user();
+    //     // }
+
+    //     // echo "<pre>";
+    //     // print_r($user);
+    //     // echo "<pre>";
+    //     // exit();
+
+    //     $by_api = $request->session()->get('by_api');
+
+        // if (!empty($by_api)) {
+        //     // register api
+
+        //     $data_register_api = [] ;
+        //     $data_register_api['name'] = $request->session()->get('name'); 
+        //     $data_register_api['phone'] = $request->session()->get('phone'); 
+        //     $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
+        //     $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
+        //     $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
+        //     $data_register_api['by_api'] = $request->session()->get('by_api'); 
+
+        //     $this->_register_API($user , "line" , $data_register_api );
+
+        // }else{
+        //     $student = $request->session()->get('Student');
+        //     $from = $request->session()->get('from');
+        //     $check_in_at = $request->session()->get('check_in_at');
+        //     // register general
+        //     $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
         // }
 
-        // echo "<pre>";
-        // print_r($user);
-        // echo "<pre>";
-        // exit();
 
-        $by_api = $request->session()->get('by_api');
+    //     $value = $request->session()->get('redirectTo');
+    //     $request->session()->forget('redirectTo');
 
-        if (!empty($by_api)) {
-            // register api
+    //     return redirect()->intended($value);
 
-            $data_register_api = [] ;
-            $data_register_api['name'] = $request->session()->get('name'); 
-            $data_register_api['phone'] = $request->session()->get('phone'); 
-            $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
-            $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
-            $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
-            $data_register_api['by_api'] = $request->session()->get('by_api'); 
+    // }
 
-            $this->_register_API($user , "line" , $data_register_api );
+    public function handleLineCallback(Request $request)
+{
+    // 1. ดักดูว่า LINE ส่งข้อมูล User มาให้เราหรือยัง
+    try {
+        $user = Socialite::driver('line')->stateless()->user();
+        
+        // ถ้าอยากเห็นข้อมูลว่า LINE ส่งอะไรมาบ้าง ให้เอาคอมเมนต์หน้า dd ออก
+        dd($user); 
 
-        }else{
-            $student = $request->session()->get('Student');
-            $from = $request->session()->get('from');
-            $check_in_at = $request->session()->get('check_in_at');
-            // register general
-            $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
-        }
-
-
-        $value = $request->session()->get('redirectTo');
-        $request->session()->forget('redirectTo');
-
-        return redirect()->intended($value);
-
+    } catch (\Exception $e) {
+        dd("LINE Callback Error: " . $e->getMessage());
     }
+
+    // 2. ดักดูค่าใน Session ก่อนที่จะเริ่มทำ Logic อื่นๆ
+    // บางทีค่า 'redirectTo' อาจจะหายไปตรงนี้
+    $sessionData = $request->session()->all();
+    
+    // ลองเปิดดูว่ามีค่า 'redirectTo' หรือ 'from' ที่เราตั้งไว้ในตอนแรกไหม
+    dd($sessionData);
+
+    $by_api = $request->session()->get('by_api');
+
+    if (!empty($by_api)) {
+        $data_register_api = [] ;
+        $data_register_api['name'] = $request->session()->get('name'); 
+        $data_register_api['phone'] = $request->session()->get('phone'); 
+        $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
+        $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
+        $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
+        $data_register_api['by_api'] = $request->session()->get('by_api'); 
+
+        $this->_register_API($user , "line" , $data_register_api );
+    } else {
+        $student = $request->session()->get('Student');
+        $from = $request->session()->get('from');
+        $check_in_at = $request->session()->get('check_in_at');
+
+        // 3. ลองเช็กดูว่าฟังก์ชันนี้ทำงานสำเร็จไหม
+        $this->_registerOrLoginUser($user, "line", $student, $from, $check_in_at);
+    }
+
+    $value = $request->session()->get('redirectTo');
+    
+    // 4. จุดตายของระบบ: ถ้า $value เป็น null มันจะ redirect ไปหน้า default 
+    // หรือถ้าโดเมน (www) ไม่ตรงกัน มันจะพาเรากลับไปหน้า login ใหม่วนไปเรื่อยๆ
+    if (!$value) {
+        dd("Login Success แต่หาทางไปต่อไม่ได้ (redirectTo is null)", [
+            'user' => Auth::user(),
+            'session' => $sessionData
+        ]);
+    }
+
+    $request->session()->forget('redirectTo');
+
+    return redirect()->intended($value);
+}
 
     protected function _registerOrLoginUser($data, $type , $student , $from , $check_in_at)
     {
