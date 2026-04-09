@@ -198,70 +198,27 @@ class LoginController extends Controller
     }
 
     // Line callback
-    // public function handleLineCallback(Request $request)
-    // {
-    //     // $user = Socialite::driver('line')->user();
-    //     $user = Socialite::driver('line')->stateless()->user();
-
-    //     // try {
-    //     //     $user = Socialite::driver('line')->user();
-    //     // } catch (InvalidStateException $e) {
-    //     //     $user = Socialite::driver('line')->stateless()->user();
-    //     // }
-
-    //     // echo "<pre>";
-    //     // print_r($user);
-    //     // echo "<pre>";
-    //     // exit();
-
-    //     $by_api = $request->session()->get('by_api');
-
-        // if (!empty($by_api)) {
-        //     // register api
-
-        //     $data_register_api = [] ;
-        //     $data_register_api['name'] = $request->session()->get('name'); 
-        //     $data_register_api['phone'] = $request->session()->get('phone'); 
-        //     $data_register_api['tambon_th'] = $request->session()->get('tambon_th'); 
-        //     $data_register_api['amphoe_th'] = $request->session()->get('amphoe_th'); 
-        //     $data_register_api['changwat_th'] = $request->session()->get('changwat_th'); 
-        //     $data_register_api['by_api'] = $request->session()->get('by_api'); 
-
-        //     $this->_register_API($user , "line" , $data_register_api );
-
-        // }else{
-        //     $student = $request->session()->get('Student');
-        //     $from = $request->session()->get('from');
-        //     $check_in_at = $request->session()->get('check_in_at');
-        //     // register general
-        //     $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
-        // }
-
-
-    //     $value = $request->session()->get('redirectTo');
-    //     $request->session()->forget('redirectTo');
-
-    //     return redirect()->intended($value);
-
-    // }
-
     public function handleLineCallback(Request $request)
     {
-        try {
-            $user = Socialite::driver('line')->stateless()->user();
-            // dd($user); 
+        // $user = Socialite::driver('line')->user();
+        $user = Socialite::driver('line')->stateless()->user();
 
-        } catch (\Exception $e) {
-            dd("LINE Callback Error: " . $e->getMessage());
-        }
+        // try {
+        //     $user = Socialite::driver('line')->user();
+        // } catch (InvalidStateException $e) {
+        //     $user = Socialite::driver('line')->stateless()->user();
+        // }
 
-        // ดักดูค่าใน Session ก่อนที่จะเริ่มทำ Logic อื่นๆ
-        $sessionData = $request->session()->all();
-        // dd($sessionData);
+        // echo "<pre>";
+        // print_r($user);
+        // echo "<pre>";
+        // exit();
 
         $by_api = $request->session()->get('by_api');
 
         if (!empty($by_api)) {
+            // register api
+
             $data_register_api = [] ;
             $data_register_api['name'] = $request->session()->get('name'); 
             $data_register_api['phone'] = $request->session()->get('phone'); 
@@ -271,33 +228,21 @@ class LoginController extends Controller
             $data_register_api['by_api'] = $request->session()->get('by_api'); 
 
             $this->_register_API($user , "line" , $data_register_api );
-        } else {
+
+        }else{
             $student = $request->session()->get('Student');
             $from = $request->session()->get('from');
             $check_in_at = $request->session()->get('check_in_at');
-
-            // 3. ลองเช็กดูว่าฟังก์ชันนี้ทำงานสำเร็จไหม
-            $this->_registerOrLoginUser($user, "line", $student, $from, $check_in_at);
-
-            dd([
-                'auth_check' => Auth::check(),
-                'current_user' => Auth::user(),
-                'session_redirectTo' => session('redirectTo')
-            ]);
+            // register general
+            $this->_registerOrLoginUser($user,"line",$student , $from , $check_in_at );
         }
+
 
         $value = $request->session()->get('redirectTo');
-        
-        if (!$value) {
-            dd("Login Success แต่หาทางไปต่อไม่ได้ (redirectTo is null)", [
-                'user' => Auth::user(),
-                'session' => $sessionData
-            ]);
-        }
-
         $request->session()->forget('redirectTo');
 
         return redirect()->intended($value);
+
     }
 
     protected function _registerOrLoginUser($data, $type , $student , $from , $check_in_at)
