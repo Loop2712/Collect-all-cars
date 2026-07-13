@@ -617,7 +617,7 @@ input:checked + .slider:before {
 </div> -->
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 

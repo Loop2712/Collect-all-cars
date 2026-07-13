@@ -1989,7 +1989,7 @@
 
 
 <input type="hidden" id="text_sos" name="" value="{{ $text_sos }}">
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <style type="text/css">
     #map {

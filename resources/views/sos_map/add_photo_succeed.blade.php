@@ -192,7 +192,7 @@
     </div>
 </div>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 <script>
         
 document.addEventListener('DOMContentLoaded', (event) => {
